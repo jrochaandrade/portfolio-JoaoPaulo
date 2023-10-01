@@ -1,0 +1,11 @@
+{
+    "name": "OffenderRegistry",
+    "alias": "offenderregistry",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\OffenderRegistry\\Providers\\OffenderRegistryServiceProvider"
+    ],
+    "files": []
+}

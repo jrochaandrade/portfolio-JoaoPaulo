@@ -1,4 +1,4 @@
 {
-    "MapaInterativo": true,
-    "CadastroInfratores": true
+    "InteractiveMap": true,
+    "OffenderRegistry": true
 }

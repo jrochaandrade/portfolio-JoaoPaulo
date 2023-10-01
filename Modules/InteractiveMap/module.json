@@ -1,0 +1,11 @@
+{
+    "name": "InteractiveMap",
+    "alias": "interactivemap",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\InteractiveMap\\Providers\\InteractiveMapServiceProvider"
+    ],
+    "files": []
+}
