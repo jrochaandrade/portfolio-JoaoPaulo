@@ -1,0 +1,11 @@
+{
+    "name": "MapaInterativo",
+    "alias": "mapainterativo",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\MapaInterativo\\Providers\\MapaInterativoServiceProvider"
+    ],
+    "files": []
+}

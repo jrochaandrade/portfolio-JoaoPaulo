@@ -1,0 +1,11 @@
+{
+    "name": "CadastroInfratores",
+    "alias": "cadastroinfratores",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CadastroInfratores\\Providers\\CadastroInfratoresServiceProvider"
+    ],
+    "files": []
+}
