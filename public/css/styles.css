@@ -16,9 +16,9 @@
 
 body {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    background-color: gray;
-    background-repeat: no-repeat;
-    
+    background-color: #0F172A;
+    /* background-image: linear-gradient(to right, #0F172A, #313d3d); */
+    background-repeat: no-repeat;    
 }
 
 h3 {
@@ -142,5 +142,41 @@ a.sidebar-link {
 
     #sidebar.collapsed {
         margin-left: 0;
+    }
+}
+
+.effect {
+    --left: 0px;
+    --top: 0px;
+}
+
+.effect::before {
+    content: '';
+    background-color: #1c2a4a;
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+
+    position: absolute;
+    left: calc(min(89vw - 10rem, max(0px, var(--left))));
+    top: calc(min(89vh - 10rem, max(0px, var(--top)))); 
+    transform: translate(-50%, -50%) scale(3);
+    z-index: -10;
+
+    filter: blur(50px);
+
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.effect:hover::before {
+    opacity: 1;
+}
+
+
+/* Desative o efeito para telas menores que 768px de largura */
+@media (max-width: 768px) {
+    .effect::before {
+        display: none;
     }
 }
