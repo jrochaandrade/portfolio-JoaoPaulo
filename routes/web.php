@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Home\HomeController;
 use Illuminate\Support\Facades\Route;
+use Modules\InteractiveMap\Http\Controllers\InteractiveMapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+ /* Route::get('/', function () {
+    return view('index');
+}); */
+ 
+
+ Route::get('/', [HomeController::class, 'index'])->name('home.index');
+ Route::get('/mapa', [InteractiveMapController::class, 'index'])->name('mapa.index');
+
+ 

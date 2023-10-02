@@ -18,12 +18,36 @@ body {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
     background-color: #0F172A;
     /* background-image: linear-gradient(to right, #0F172A, #313d3d); */
-    background-repeat: no-repeat;    
+    background-repeat: no-repeat;
+    color: white;    
 }
 
+h1 {
+    text-align: center;
+    margin: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px;
+}
 h3 {
-    font-size: 1.2375rem;
-    color: #fff;
+    text-align: center;
+    margin: 20px;
+}
+
+.textList {
+    list-style: none;
+}
+
+.textList::before {
+    content: '•';
+    margin-right: 10px;
+    color: white;
+}
+
+p {
+    text-align: justify;
 }
 
 a {

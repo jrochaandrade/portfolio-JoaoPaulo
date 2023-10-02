@@ -21,9 +21,23 @@ body {
     background-repeat: no-repeat;    
 }
 
-h3 {
-    font-size: 1.2375rem;
+h1 {
     color: #fff;
+    text-align: center;
+}
+
+h2 {
+    color: white;    
+
+}
+
+h3 {
+    color: white;
+    
+}
+
+p {
+    color: white;
 }
 
 a {
@@ -57,7 +71,7 @@ li {
 /* Sidebar collapsed */
 
 #sidebar.collapsed {
-    margin-left: -264px;
+    margin-left: -264px; /* verificar alteração sidebar */
 }
 
 .main {
