@@ -4,7 +4,7 @@ toggler.addEventListener("click", function(){
 });
 
 
-
+/* Script primera side bar */
 const effects = document.querySelectorAll('.effect');
 
 effects.forEach(effect => { 
@@ -19,3 +19,6 @@ effects.forEach(effect => {
     
     });
 });
+
+/* Script segunda sidebar */
+

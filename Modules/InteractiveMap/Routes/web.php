@@ -19,3 +19,4 @@ use Modules\InteractiveMap\Http\Controllers\InteractiveMapController;
 }); */
 
 Route::get('/mapa', [InteractiveMapController::class, 'index'])->name('mapa.index');
+Route::get('/sidebar', [InteractiveMapController::class, 'sidebar'])->name('sidebar.index');

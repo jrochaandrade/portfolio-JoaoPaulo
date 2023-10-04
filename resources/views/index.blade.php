@@ -137,8 +137,7 @@
                                         <li  class="textList">QGIS: Usei o QGIS para processar e preparar os dados geográficos, bem como para criar camadas de mapas personalizadas.</li>
                                         <li class="textList">JavaScript: A linguagem de programação JavaScript foi a chave para a interatividade do mapa. Usei a biblioteca Leaflet.js para criar e personalizar o mapa.</li>
                                         <li class="textList">HTML/CSS: Utilizei HTML e CSS para criar a estrutura e o estilo da página web que abrigava o mapa interativo.</li>
-                                        <li class="textList">Banco de Dados: Armazenei dados geográficos em um banco de dados, permitindo consultas e atualizações eficientes.</li>
-                                        <li class="textList">Integração de APIs: Integrei APIs de terceiros para aprimorar a funcionalidade, como a incorporação de informações meteorológicas em tempo real.</li>
+                                        <li class="textList">Banco de Dados: Armazenei dados geográficos em um banco de dados, permitindo consultas e atualizações eficientes.</li>                                        
                                     </ul>
                                 </p>
                                 <p>

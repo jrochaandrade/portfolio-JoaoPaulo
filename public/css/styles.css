@@ -18,7 +18,8 @@ body {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
     background-color: #0F172A;
     /* background-image: linear-gradient(to right, #0F172A, #313d3d); */
-    background-repeat: no-repeat;    
+    background-repeat: no-repeat;
+    color: white;   
 }
 
 h3 {

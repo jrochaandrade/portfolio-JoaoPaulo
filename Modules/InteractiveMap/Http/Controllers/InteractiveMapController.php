@@ -17,6 +17,11 @@ class InteractiveMapController extends Controller
         return view('interactivemap::index');
     }
 
+    public function sidebar ()
+    {
+        return view('interactivemap::sidebar');
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Renderable
