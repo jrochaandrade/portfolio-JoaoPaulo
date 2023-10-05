@@ -9,12 +9,12 @@
 
 
 <div class="sidebar">
-    <div class="logo-details">
-        <i class="bi bi-cpu"></i>
-        <span class="logo_name">Dev Rocha</span>
-    </div>
     <ul class="nav-links">
-        <li>
+        <div class="logo-details">
+            <i class="bi bi-cpu"></i>
+            <span class="logo_name">Dev Rocha</span>
+        </div>
+        <li class="mt-3">
             <a href="#">
                 <i class="bi bi-grid"></i>
                 <span class="link_name">Dashboard</span>
@@ -103,7 +103,7 @@
 
 <section class="home-section">
     <div class="home-content">
-        <i class="bi bi-list"></i>
+        <i class="bi bi-list botaofechar"></i>
         <span class="text">Drop Down Sidebar</span>
     </div>
 </section>
@@ -125,6 +125,30 @@
     sidebarBtn.addEventListener("click", ()=>{
         sidebar.classList.toggle("close");
     })
+
+   /* // Verifica se o estado da barra lateral foi armazenado no localStorage
+    const sidebarState = localStorage.getItem("sidebarState");
+
+    if (sidebarState === "closed") {
+        // Se o estado for "closed", fecha a barra lateral
+        const sidebar = document.querySelector(".sidebar");
+        sidebar.classList.add("close");
+    }
+
+    // Adiciona um evento de clique ao botão para alternar o estado da barra lateral
+    const sidebarBtn = document.querySelector(".botaofechar");
+    sidebarBtn.addEventListener("click", () => {
+        const sidebar = document.querySelector(".sidebar");
+        sidebar.classList.toggle("close");
+
+        // Armazena o estado atual da barra lateral no localStorage
+        if (sidebar.classList.contains("close")) {
+            localStorage.setItem("sidebarState", "closed");
+        } else {
+            localStorage.setItem("sidebarState", "open");
+        }
+    }); */
+
     
 
 </script>

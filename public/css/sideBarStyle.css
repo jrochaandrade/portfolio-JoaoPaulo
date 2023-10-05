@@ -14,8 +14,9 @@
     left: 0;
     height: 100%;
     width: 260px;
-    z-index: 100;
+    z-index: 100; 
     transition: all 0.5s ease;
+    box-shadow: 0 0 35px 0 rgba(49, 57, 66, 0.5);
 }
 
 .sidebar.close {
@@ -27,6 +28,9 @@
     width: 100%;
     display: flex;
     align-items: center;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    border-bottom: 20px;
 }
 
 .sidebar .logo-details i {
@@ -55,7 +59,7 @@
 .sidebar .nav-links {
     
     height: 100%;
-    padding-top: 30px;
+    padding-top: 10px; /* 30 0 150 0 */
     padding-left: 0;
     align-items: center;
     overflow: auto;
@@ -257,11 +261,12 @@
 
 .home-section {
     position: relative;
-    background-color: #e4e9f7;
+    background-color: #0F172A;
     height: 100vh;
     left: 260px;
-    width: calc(100% -260px);
+    width: calc(100% - 260px);
     transition: all 0.5s ease;
+    
 }
 
 .sidebar.close ~ .home-section {
@@ -275,9 +280,9 @@
     align-items: center;
 }
 
-.home-section .home-content .bi-list { 
+.home-section .home-content .botaofechar { 
     font-size: 30px;
-    color: black;
+    color: white;
     margin: 0 15px;
     cursor: pointer;
 }
@@ -287,5 +292,5 @@
 .home-section .home-content .text {
     font-size: 26px;
     font-weight: 600;
-    color: black;
+    color: white;
 }
