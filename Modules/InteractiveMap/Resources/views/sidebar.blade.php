@@ -107,7 +107,7 @@
 
 <section class="home-section">
     <div class="home-content">
-        <button  class="btn" type="button" data-bs-theme="dark">
+        <button id="botao"  class="btn" type="button" data-bs-theme="dark">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- <i class="bi bi-list botaofechar"></i> -->
@@ -117,44 +117,7 @@
 
 <script>
     
-    let arrow = document.querySelectorAll(".arrow");
-    for (var i = 0; i < arrow.length; i++) {
-        arrow[i].addEventListener("click", (e)=>{
-            let arrowParent = e.target.parentElement.parentElement;
-            arrowParent.classList.toggle("showMenu");
-        });
-    }
-
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".btn");
-    sidebarBtn.addEventListener("click", ()=>{
-        sidebar.classList.toggle("close");
-    })
-
-   /* // Verifica se o estado da barra lateral foi armazenado no localStorage
-    const sidebarState = localStorage.getItem("sidebarState");
-
-    if (sidebarState === "closed") {
-        // Se o estado for "closed", fecha a barra lateral
-        const sidebar = document.querySelector(".sidebar");
-        sidebar.classList.add("close");
-    }
-
-    // Adiciona um evento de clique ao botão para alternar o estado da barra lateral
-    const sidebarBtn = document.querySelector(".botaofechar");
-    sidebarBtn.addEventListener("click", () => {
-        const sidebar = document.querySelector(".sidebar");
-        sidebar.classList.toggle("close");
-
-        // Armazena o estado atual da barra lateral no localStorage
-        if (sidebar.classList.contains("close")) {
-            localStorage.setItem("sidebarState", "closed");
-        } else {
-            localStorage.setItem("sidebarState", "open");
-        }
-    }); */
-
-    
+      
 
 </script>
 
