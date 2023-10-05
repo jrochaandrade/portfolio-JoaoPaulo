@@ -11,8 +11,12 @@
 <div class="sidebar">
     <ul class="nav-links">
         <div class="logo-details">
-            <i class="bi bi-cpu"></i>
-            <span class="logo_name">Dev Rocha</span>
+            <a href="#">
+                <img src="{{ asset('images/LogoDR3-100.jpg') }}" alt="">
+            </a>
+            <a href="">
+                <span class="logo_name">Dev Rocha</span>
+            </a>
         </div>
         <li class="mt-3">
             <a href="#">
@@ -103,7 +107,10 @@
 
 <section class="home-section">
     <div class="home-content">
-        <i class="bi bi-list botaofechar"></i>
+        <button  class="btn" type="button" data-bs-theme="dark">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- <i class="bi bi-list botaofechar"></i> -->
         <span class="text">Drop Down Sidebar</span>
     </div>
 </section>
@@ -114,14 +121,12 @@
     for (var i = 0; i < arrow.length; i++) {
         arrow[i].addEventListener("click", (e)=>{
             let arrowParent = e.target.parentElement.parentElement;
-            console.log(arrowParent);
             arrowParent.classList.toggle("showMenu");
         });
     }
 
     let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".bi-list");
-    console.log(sidebar);
+    let sidebarBtn = document.querySelector(".btn");
     sidebarBtn.addEventListener("click", ()=>{
         sidebar.classList.toggle("close");
     })

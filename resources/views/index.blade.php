@@ -8,13 +8,16 @@
 
 
 
-<div class="container-fluid">
+<div class="">
     <div class="wrapper effect">
         <!-- Sidebar -->
         <aside id="sidebar" class="collapsed">
             <div class="h-100">
                 <div class="sidebar-logo">
-                    <a href="#">Página principal</a>
+                <a href="#">
+                    <img src="{{ asset('images/LogoDR3-100.jpg') }}" alt="">
+                </a>
+                    <a href="#" class="nome-logo">Dev Rocha</a>
                 </div>
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
@@ -109,7 +112,7 @@
         <div class="main">
             <nav class=" navbar navbar-expand px-3 border-bottom">
                 <!-- Button for sidebar toggle -->
-                <button class="btn" type="button" data-bs-theme="dark">
+                <button  class="btn" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </nav>
