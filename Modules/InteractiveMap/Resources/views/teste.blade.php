@@ -62,12 +62,7 @@
                         <span class="text nav-text">Em breve</span>
                     </a>
                 </li> 
-                <li class="nav-links">
-                    <a href="#">
-                        <i class="bi bi-hourglass-split icon"></i>
-                        <span class="text nav-text">Em breve</span>
-                    </a>
-                </li>                                 
+                                               
             </ul>
         </div>
         <div class="bottom-content">
