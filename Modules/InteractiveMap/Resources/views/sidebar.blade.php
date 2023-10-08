@@ -2,7 +2,6 @@
 
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/sideBarStyle.css') }}">
-
 @endsection
 
 @section('card-body')

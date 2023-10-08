@@ -12,8 +12,8 @@
     <!-- CDN Icons Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Adicionar estilos -->
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <!-- <meta http-equiv="refresh" content="3; http://127.0.0.1:8000/sidebar"> -->
+    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+    <!-- <meta http-equiv="refresh" content="5; http://127.0.0.1:8000/teste"> -->
     <title>Meu portfolio</title>
     @yield('card-head')
 </head>
