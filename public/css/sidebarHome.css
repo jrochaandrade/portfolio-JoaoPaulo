@@ -30,7 +30,6 @@ body {
     background: var(--body-color);
     height: 100vh;
     transition: var(--tran-05);
-
 }
 
 body.dark {
@@ -61,7 +60,8 @@ body.dark {
 }
 
 .sidebar.close {
-    width: 79px;
+    width: 0px;
+    padding: 10px 0 10px 0;
 }
 
 /* ++++++++++++++++++++Resuable CSS+++++++++++++++++++++++ */
@@ -78,17 +78,19 @@ body.dark {
     opacity: 0;
 }
 
+.sidebar.close .header-text {
+    opacity: 0;
+}
+
 .sidebar .image {
-    padding-right: 12px;
     min-width: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.sidebar.close .image {
-    padding-right: 12px;
-}
+
+
 
 /* Eu adicionei para tirar o padding da ul */
 .sidebar ul {
@@ -108,7 +110,11 @@ body.dark {
     align-items: center;
     justify-content: center;
     min-width: 50px;
-    font-size: 20px;
+    font-size: 20px;    
+}
+
+.sidebar.close li .icon {
+    opacity: 0;
 }
 
 .sidebar li .icon,
@@ -126,16 +132,30 @@ body.dark {
     border-radius: 6px;
 }
 
+.sidebar.close .image-text img {
+    opacity: 0; /* opacidade 0 */
+}
+
 .sidebar header .image-text {
     display:flex;
     align-items: center;
 
 }
 
+.sidebar header .image-text .image {
+    padding-right: 11px;
+}
+.sidebar.close header .image-text .image {
+    padding-left: 29px;
+}
 
 header .image-text .header-text {
     display: flex;
     flex-direction: column;
+}
+
+.sidebar.close .image-text .header-text {
+    margin-left: 14px;
 }
 
 .header-text .name {
@@ -165,6 +185,7 @@ header .image-text .header-text {
 
 .sidebar.close header .toggle {
     transform: translateY(-50%);
+    right: -20px;
 }
 
 body.dark .sidebar header .toggle {
@@ -230,6 +251,10 @@ body.dark .sidebar li a:hover .text {
     background: var(--primary-color-light);
 }
 
+.bottom-content .mode {
+    right: 3px;
+}
+
 .menu-bar .mode .moon-sun {
     height: 50px;
     width: 60px;
@@ -253,6 +278,15 @@ body.dark .menu-bar .mode i.sun {
 body.dark .menu-bar .mode i.moon {
     opacity: 0;
 }
+
+.sidebar.close body.dark .menu-bar .mode i.sun {
+    opacity: 0;
+}
+
+body.dark .sidebar.close .menu-bar .mode i.sun {
+    opacity: 0;
+}
+
 
 
 .menu-bar .mode .toggle-switch {
@@ -305,12 +339,21 @@ body.dark .switch::before {
 
 .home .text {
     color: var(--text-color);
+    height: 100%;
+    /* padding: 8px 40px; */
+    overflow-y: auto;
+}
+
+.sidebar.close .home .text {
+    color: var(--text-color);
+    padding: 20px 50px;
     overflow-y: auto;
 }
 
 .sidebar.close ~ .home {
-    left: 79px;
-    width: calc(100% - 79px);
+    left: 0px;
+    width: 100%;
+    height: 100%;
     overflow-y: auto;
 }
 
