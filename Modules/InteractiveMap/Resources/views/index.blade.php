@@ -1,7 +1,10 @@
 @extends('layouts.masterPage')
 
 @section('card-head')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mapStyle.css') }}">
 @endsection
 
 
@@ -105,11 +108,41 @@
                         Enviar Embargo
                     </label>
                     <input type="file" name="kmlFile" id="kmlFile" style="display: none;"> <!-- jogar o estilo para o css depois -->
-                </form>
+                </form>                
+            </div>
+            <div class="">
+                <table class="table-responsive table table-striped" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Endereço</th>
+                            <th>Cidade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (@$polygonsData as $data)
+                        <tr>
+                            <td>{{ $data->id_polygon }}</td>
+                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->address }}</td>
+                            <td>{{ $data->city }}</td>
+                            
+                            <td></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-end pagination">
+                    {{ $polygonsData->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>             
     </div>
 </div>
+
+
 
 <script>
     // Adicionar um ouvinte de evento para o input de arquivo
@@ -118,6 +151,8 @@
         this.closest('form').submit();
     });
 </script>
+
+
 
 <!-- <script src="{{asset('js/script.js')}}"></script> -->
 @endsection

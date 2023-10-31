@@ -18,7 +18,9 @@ class InteractiveMapController extends Controller
      */
     public function index()
     {
-        return view('interactivemap::index');
+        $polygonsData = PolygonData::paginate(5);
+
+        return view('interactivemap::index', compact('polygonsData'));
     }
 
     public function uploadKml (Request $request)
@@ -132,7 +134,7 @@ class InteractiveMapController extends Controller
             throw new \Exception($e->getMessage(), 500);
         } 
 
-        return view('interactivemap::index');
+        return redirect('map');
     }
 
     public function formatDate ($defaultDate, $date) {

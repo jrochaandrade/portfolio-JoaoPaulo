@@ -10,12 +10,14 @@
 
 :root{
     /* Colors */
-    --body-color: #E4E9F7;
+    --body-color: #ffffff;
     --sidebar-color: #FFF;
     --primary-color: #695CFE;
     --primary-color-light: #F6F5FF;
     --toggle-color: #DDD;
     --text-color: #707070;
+    --table-color: #ffffff;
+    --paginatecolor: #e5e0e0;
 
 
     /* Transition */
@@ -43,6 +45,8 @@ body.dark {
     --primary-color-light: #3A3B3C;
     --toggle-color: #FFF;
     --text-color: #CCC;
+    --table-color: #141e34;
+    --paginatecolor: #223253;
 }
 
 /* ++++++++++++++++++++Sidebar+++++++++++++++++++++++ */
@@ -319,4 +323,24 @@ body.dark .switch::before {
     height: 100vh;
     padding: 20px 60px 40px 60px;
     overflow-y: auto;
+}
+
+.table-responsive thead tr th {
+    background-color: var(--table-color);
+    color: var(--text-color);
+}
+.table-responsive tbody tr td {
+    background-color: var(--table-color);
+    color: var(--text-color);
+}
+
+.pagination .page-item .page-link{
+    background-color: var(--table-color);
+    color: var(--text-color);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--paginatecolor);
+    color: var(--text-color);
+    border-color: var(--text-color);
 }
