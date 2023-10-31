@@ -328,10 +328,12 @@ body.dark .switch::before {
 .table-responsive thead tr th {
     background-color: var(--table-color);
     color: var(--text-color);
+    border: 2px solid rgb(105, 103, 103);
 }
 .table-responsive tbody tr td {
     background-color: var(--table-color);
     color: var(--text-color);
+    border: 2px solid rgb(105, 103, 103);
 }
 
 .pagination .page-item .page-link{
@@ -343,4 +345,8 @@ body.dark .switch::before {
     background-color: var(--paginatecolor);
     color: var(--text-color);
     border-color: var(--text-color);
+}
+
+.small {
+    padding: 10px;
 }

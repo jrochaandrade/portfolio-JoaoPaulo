@@ -1,0 +1,19 @@
+.card-footer {
+    height: 35px;
+    background: var(--body-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    font-size: small;
+    font-weight: 600;
+    padding: 7px;
+}
+
+.card-footer p a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.content {
+    padding: 0px;
+}

@@ -23,5 +23,6 @@ use Modules\InteractiveMap\Http\Controllers\InteractiveMapController;
 
  Route::get('/', [HomeController::class, 'index'])->name('home.index');
  Route::get('/mapa', [InteractiveMapController::class, 'index'])->name('mapa.index');
+ Route::get('/teste', [InteractiveMapController::class, 'teste'])->name('teste');
 
  
