@@ -37,13 +37,10 @@ body {
 }
 
 body.dark {
-    /* --body-color: #18191A; */
     --body-color: #0F172A;
     --body-secondy-color: #222e49;
-    /* --sidebar-color: #242526; */
     --sidebar-color: #0F172A;
     --primary-color: #3A3B3C;
-    /* --primary-color-light: #3A3B3C; */
     --primary-color-light: #3A3B3C;
     --toggle-color: #FFF;
     --text-color: #CCC;
@@ -404,4 +401,3 @@ body.dark .switch::before {
     margin-top: 10px;
     margin-bottom: 20px;
 }
-

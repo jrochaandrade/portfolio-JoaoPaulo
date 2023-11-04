@@ -14,13 +14,14 @@
     
     <!-- Adicionar estilos -->
     <link rel="stylesheet" href="{{ asset('css/styleDefault.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}"> -->
     <title>Meu portfolio</title>
     @yield('card-head')
 </head>
 
 
 <body id="" class="">
-    <section class="content">
+    <section class="">
         <div class="card">            
             <!-- Card Body -->
             <div class="card-body" id="marcaDagua">                    

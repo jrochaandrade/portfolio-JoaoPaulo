@@ -7,6 +7,8 @@ const body = document.querySelector("body"),
 
     window.addEventListener("resize", checkWindowSize);
 
+    applySavedTheme()
+
 function checkWindowSize() {
     console.log("Função checkWindowSize está sendo executada.");
     if (window.innerWidth <= 768) {
@@ -38,15 +40,16 @@ toggle.addEventListener("click", () => {
 });
 
 
-    /* modeSwtich.addEventListener("click", () => {
-        body.classList.toggle("dark");
-
-        if(body.classList.contains("dark")){
-            modeText.innerText = "Light Mode"
-        }else{
-            modeText.innerText = "Dark Mode"
-        }
-    }); */
+modeSwtich.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
+    localStorage.setItem('theme', currentTheme);
+    if(body.classList.contains("dark")){
+        modeText.innerText = "Light Mode"
+    }else{
+        modeText.innerText = "Dark Mode"
+    }
+});
 
 
     
@@ -63,7 +66,7 @@ function applySavedTheme() {
 }
 
 // Adicione um ouvinte de evento para verificar a preferência do tema ao carregar a página
-document.addEventListener('DOMContentLoaded', applySavedTheme);
+/* document.addEventListener('DOMContentLoaded', applySavedTheme);
 
 // Adicione um ouvinte de evento para o botão de alternância de tema
 modeSwtich.addEventListener('click', () => {
@@ -71,3 +74,4 @@ modeSwtich.addEventListener('click', () => {
     const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
     localStorage.setItem('theme', currentTheme);
 });
+ */
