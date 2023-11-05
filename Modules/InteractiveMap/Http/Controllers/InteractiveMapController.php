@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
+use Modules\InteractiveMap\Entities\PolygonCoordinates;
 use Modules\InteractiveMap\Entities\PolygonData;
 use Illuminate\Support\Facades\DB;
 
@@ -73,8 +74,8 @@ class InteractiveMapController extends Controller
             } 
 
             // Adicionar id unico no array
-            $uniqueIdCoord = rand();
-            $register['unique_id_coord'] = $uniqueIdCoord;
+            $uniqueIdData = rand();
+            $register['unique_id'] = $uniqueIdData;
 
             //Adicionar poligonos internos e externos no array
             $register['polygon_external'] = $arrayExternalCoord;
@@ -97,17 +98,16 @@ class InteractiveMapController extends Controller
 
             $polygonsUpload [] = $register;
 
-
         }
 
-        DB::beginTransaction();
+       /*  DB::beginTransaction();
 
-        try {
+        try { */
             //Armazenas os dados do poligno na tabela polygon_data
             foreach ($polygonsUpload as $polygon) {
                 $polygonData = new PolygonData ([
                     'id_register' =>$polygon['ID_CADAST'],
-                    'unique_id' =>$polygon['unique_id_coord'],
+                    'unique_id' =>$polygon['unique_id'],
                     'name' =>$polygon['NOME'],
                     'cpf' => $cpf,
                     'cnpj' => $cnpj,
@@ -129,17 +129,76 @@ class InteractiveMapController extends Controller
                 ]);
                 $polygonData->save();
             }
+            // Chama a função saveCoordinates para armazenar as coordenadas dos polígonos na tabela polygon_coordinates
+            //dd($polygonsUpload);
+            foreach ($polygonsUpload as $polygons) {
+                $uniqueIdData = $polygon['unique_id'];
+                foreach ($polygons['polygon_external'] as $coordinates) {
+                    $typePolygon = 'Externo';
+                    $this->saveCoordinates($coordinates, $uniqueIdCoord, $typePolygon, $uniqueIdData);
+                }
+                if ($polygons['polygon_internal'] != null) {
+                    foreach ($polygons['polygon_internal'] as $coordinates) {
+                        $typePolygon = 'Interno';
+                        $this->saveCoordinates($coordinates, $uniqueIdCoord, $typePolygon, $uniqueIdData);
+                    }
+                }
+            }
 
             
+
+
+        /*     DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw new \Exception($e->getMessage(), 500);
+        }  */
+
+        return redirect('map');
+    }
+
+    private function saveCoordinates($coordinates, $uniqueIdCoord, $typePolygon, $uniqueIdData) 
+    {
+
+        //dd($polygon, $uniqueIdCoord, $typePolygon, $uniqueIdData);
+
+        DB::beginTransaction();
+        try {
+
+            // Verificar o id unico do embargo recebido do polígono e buscar o embargo na tabela
+
+            $polygon = PolygonData::where('unique_id', $uniqueIdData)->first();
+
+            $idPolygon = $polygon['id_polygon'];
+
+            $uniqueIdCoord = rand();
+
+            $stringCoorinates = (string) $coordinates;
+
+            $arrayCoordinates = explode(' ', trim($stringCoorinates));
+
+            foreach ($arrayCoordinates as $coordinateEdited) {
+                list($long, $lat) = explode(',', $coordinateEdited);
+
+                $coordinatesPolygon = new PolygonCoordinates([
+                    'latitude' => (string) $lat,
+                    'longitude'=> (string) $long,
+                    'polygon_data_id_fk' => $idPolygon,
+                    'unique_id_coord' => $uniqueIdCoord,
+                    'type_polygon' => $typePolygon
+                ]);
+
+                $polygon->polygonCoordinates()->save($coordinatesPolygon);
+            }
+
+
 
 
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             throw new \Exception($e->getMessage(), 500);
-        } 
-
-        return redirect('map');
+        }
     }
 
     public function formatDate ($defaultDate, $date) {

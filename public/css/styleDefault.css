@@ -1,3 +1,7 @@
+.card-header {
+    background: var(--body-secondy-color);
+}
+
 .card-footer {
     height: 35px;
     background: var(--body-color);
@@ -7,6 +11,7 @@
     font-size: small;
     font-weight: 600;
     padding: 7px;
+    background: var(--body-secondy-color);
 }
 
 .card-footer p a {

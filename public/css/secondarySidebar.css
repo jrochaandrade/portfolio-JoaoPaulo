@@ -377,7 +377,7 @@ body.dark .switch::before {
 
 .card-header {
     height: 70px;
-    background: var(--body-secondy-color);
+    
     color: var(--text-color);
     padding: 10px 30px 10px 55px;
     border-radius: 5px;
@@ -387,7 +387,7 @@ body.dark .switch::before {
     position: relative;
     left: 270px;
     width: calc(100% - 270px);
-    background: var(--body-secondy-color);
+    
 }
 
 .sidebar.close ~ .card-footer {
