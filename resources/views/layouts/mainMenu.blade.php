@@ -22,7 +22,7 @@
             </li>
             <ul class="menu-links">
                 <li class="nav-links">
-                    <a href="{{ route('home.index') }}">
+                    <a href="{{ route('home.index') }}" class="link">
                         <i class="bi bi-house icon"></i>
                         <span class="text nav-text">Portfolio</span>
                     </a>

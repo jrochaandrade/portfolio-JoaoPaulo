@@ -20,7 +20,9 @@ use Modules\InteractiveMap\Http\Controllers\InteractiveMapController;
 
 Route::get('/map', [InteractiveMapController::class, 'index'])->name('map.index');
 Route::post('/uploadKml', [InteractiveMapController::class, 'uploadKml'])->name('uploadKml');
-/* Route::get('/sidebar', [InteractiveMapController::class, 'sidebar'])->name('sidebar.index');
-Route::get('/teste', [InteractiveMapController::class, 'teste'])->name('teste');
+
+
+
+Route::get('/sidebar', [InteractiveMapController::class, 'sidebar'])->name('sidebar.index');
+Route::get('/oldsidebar', [InteractiveMapController::class, 'oldsidebar'])->name('oldsidebar');
 Route::get('/teste2', [InteractiveMapController::class, 'teste2'])->name('teste2');
- */

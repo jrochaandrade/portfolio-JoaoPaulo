@@ -1,7 +1,7 @@
 @extends('layouts.masterPage')
 
 @section('card-head')
-<link rel="stylesheet" href="{{ asset('css/sideBarStyle.css') }}">
+<link rel="stylesheet" href="{{ asset('css/oldSideBarStyle.css') }}">
 @endsection
 
 @section('card-body')

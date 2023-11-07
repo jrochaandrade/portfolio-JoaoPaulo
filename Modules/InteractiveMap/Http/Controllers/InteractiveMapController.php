@@ -23,10 +23,10 @@ class InteractiveMapController extends Controller
 
         return view('interactivemap::index', compact('polygonsData'));
     }
-    public function teste()
+    public function oldsidebar()
     {
 
-        return view('teste');
+        return view('oldsidebar');
     }
 
     public function uploadKml (Request $request)
