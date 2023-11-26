@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li class="nav-links">
-                    <a href="{{ route('map.index') }}">
+                    <a href="{{ route('mapa.index') }}">
                         <i class="fa-regular fa-map icon"></i>
                         <span class="text nav-text">Mapa interativo</span>
                     </a>

@@ -2,6 +2,7 @@
 
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
+<script src="{{ asset('js/scriptsInteractiveIndex.js') }}" defer></script>
 @endsection
 
 @section('card-body')
@@ -9,19 +10,22 @@
 
 <div class="home">
     <div class="card-header">
-        <h1 class=header><strong>Mapa Interativo</strong></h1>    
+        <h1 class=header><strong>Mapa Interativo</strong></h1>
     </div>
     <div class="text">
         <div class="container-fluid content">
-            <div class="inputSend">                
-                <form action="{{ route('uploadKml') }}" method="POST" data-toggle="tooltip" data-placement="right" enctype="multipart/form-data" class="d-inline-block">
+            <div class="inputSend">
+                <form action="{{ route('uploadKml') }}" method="POST" data-toggle="tooltip" data-placement="right"
+                    enctype="multipart/form-data" class="d-inline-block">
                     @csrf
-                    <label for="kmlFile" class="btn btn-success d-inline-block" title="Enviar os embargos no formato KML">
+                    <label for="kmlFile" class="btn btn-success d-inline-block"
+                        title="Enviar os embargos no formato KML">
                         <i class="bi bi-plus-square"></i>
                         Enviar Embargo
                     </label>
-                    <input type="file" name="kmlFile" id="kmlFile" style="display: none;"> <!-- jogar o estilo para o css depois -->
-                </form>                
+                    <input type="file" name="kmlFile" id="kmlFile" style="display: none;">
+                    <!-- jogar o estilo para o css depois -->
+                </form>
             </div>
             <div class="">
                 <table class="table-responsive table table-striped" id="dataTable">
@@ -41,7 +45,7 @@
                             <td>{{ $data->name }}</td>
                             <td>{{ $data->address }}</td>
                             <td>{{ $data->city }}</td>
-                            
+
                             <td></td>
                         </tr>
                         @endforeach
@@ -50,22 +54,11 @@
                 <div class="d-flex justify-content-end pagination">
                     {{ $polygonsData->links('pagination::bootstrap-5') }}
                 </div>
+                <div class="containerMap">
+                    <div id="map" class="map"></div>
+                </div>
             </div>
-        </div>             
+        </div>
     </div>
 </div>
-
-
-
-<script>
-    // Adicionar um ouvinte de evento para o input de arquivo
-    document.getElementById('kmlFile').addEventListener('change', function () {
-        // Envie o formulário quando um arquivo for selecionado
-        this.closest('form').submit();
-    });
-</script>
-
-
-
-<!-- <script src="{{asset('js/script.js')}}"></script> -->
 @endsection

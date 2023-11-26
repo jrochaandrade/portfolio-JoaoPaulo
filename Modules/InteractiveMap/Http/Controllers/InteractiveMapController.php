@@ -10,13 +10,20 @@ use Illuminate\Support\Facades\File;
 use Modules\InteractiveMap\Entities\PolygonCoordinates;
 use Modules\InteractiveMap\Entities\PolygonData;
 use Illuminate\Support\Facades\DB;
+use Spatie\RouteAttributes\Attributes\Middleware;
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Put;
+use Spatie\RouteAttributes\Attributes\Delete;
 
+//#[Middleware('auth')]
 class InteractiveMapController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
+    #[Get(uri: '/mapa', name: 'mapa.index')]
     public function index()
     {
         $polygonsData = PolygonData::paginate(5);
@@ -28,7 +35,7 @@ class InteractiveMapController extends Controller
 
         return view('oldsidebar');
     }
-
+    #[Post(uri: 'uploadKml', name: 'uploadKml')]
     public function uploadKml (Request $request)
     {
 
@@ -154,7 +161,7 @@ class InteractiveMapController extends Controller
             throw new \Exception($e->getMessage(), 500);
         }  */
 
-        return redirect('map');
+        return redirect('mapa');
     }
 
     private function saveCoordinates($coordinates, $uniqueIdCoord, $typePolygon, $uniqueIdData) 
