@@ -14,7 +14,7 @@ class PolygonCoordinates extends Model
     protected $table = 'polygon_coordinates';
 
     protected $fillable = [
-        'unique_id_coord', 'polygon_data_id_fk', 'latitude', 'longitude', 'type_polygon'
+        'unique_id_coord', 'polygon_data_id_fk', 'latitude', 'longitude', 'type_polygon', 'unique_id_external'
     ];
 
     protected $primaryKey = 'id_polygon';

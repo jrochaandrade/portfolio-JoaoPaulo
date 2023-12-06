@@ -48,7 +48,7 @@ class InteractiveMapController extends Controller
 
         $xml = new \SimpleXMLElement($kmlContent);
 
-        $polygonsUpload = [];
+        //$polygonsUpload = [];
         foreach ($xml->Document->Folder->Placemark as $placemark) {
             $register = [];
 
@@ -61,7 +61,25 @@ class InteractiveMapController extends Controller
                 $register[$name] = $value;
             }
 
-            // Verifica se o polígono é interno ou externo e armazena as coordenadasd em arrays separadas
+            $uniqueIdCoord = null;            
+            $arrayVertice = [];
+            if (isset($placemark->MultiGeometry->Polygon)) {
+                $i = 0;
+                foreach ($placemark->MultiGeometry->Polygon as $polygon) {
+                    if(property_exists($polygon, 'outerBoundaryIs')) {
+                        $arrayVertice[$i]['external'] = $polygon->outerBoundaryIs->LinearRing->coordinates;
+                        if(property_exists($polygon, 'innerBoundaryIs')) {
+                            $arrayVertice[$i]['internal'] = [];
+                            foreach ($polygon->innerBoundaryIs as $innerBoundary) {
+                                $arrayVertice[$i]['internal'][] = $innerBoundary->LinearRing->coordinates;
+                            }                        
+                        }
+                    }
+                    $i++;                    
+                }
+            }
+
+            /* // Verifica se o polígono é interno ou externo e armazena as coordenadasd em arrays separadas
             $uniqueIdCoord = null;
             $arrayExternalCoord = [];
             $arrayInternalCoord = [];
@@ -78,27 +96,17 @@ class InteractiveMapController extends Controller
                         }                        
                     }
                 }
-            } 
+            } */ 
 
             // Adicionar id unico no array
             $uniqueIdData = rand();
             $register['unique_id'] = $uniqueIdData;
 
-            //Adicionar poligonos internos e externos no array
-            $register['polygon_external'] = $arrayExternalCoord;
-            $register['polygon_internal'] = $arrayInternalCoord;
-
-            // Verifica o tamanho do cpf para definir se é cpf ou cnpj e salva no campo adequado
-            if (strlen($register['CPF_CNPJ']) > 14) {
-                $cnpj = $register['CPF_CNPJ'];
-                $cpf = null;
-            } else {
-                $cpf = $register['CPF_CNPJ'];
-                $cnpj = null;
-            }
+            //Adicionar poligonos internos e externos no array            
+            $register['vertices'] = $arrayVertice;
 
             // Chama a função formatarData para formatar conforme padrão do bando
-            $defaultDate = null;
+            $defaultDate = '';
             $date = $register['DATA'];
             $defaultDate = $this->formatDate($defaultDate, $date);
             $register['DATA'] = $defaultDate;
@@ -112,6 +120,16 @@ class InteractiveMapController extends Controller
         try { */
             //Armazenas os dados do poligno na tabela polygon_data
             foreach ($polygonsUpload as $polygon) {
+                
+                // Verifica o tamanho do cpf para definir se é cpf ou cnpj e salva no campo adequado
+                if (strlen($register['CPF_CNPJ']) > 14) {
+                    $cnpj = $register['CPF_CNPJ'];
+                    $cpf = null;
+                } else {
+                    $cpf = $register['CPF_CNPJ'];
+                    $cnpj = null;
+                }
+
                 $polygonData = new PolygonData ([
                     'id_register' =>$polygon['ID_CADAST'],
                     'unique_id' =>$polygon['unique_id'],
@@ -136,9 +154,28 @@ class InteractiveMapController extends Controller
                 ]);
                 $polygonData->save();
             }
+
+
+            foreach ($polygonsUpload as $polygons) {
+                $uniqueIdData = $polygon['unique_id'];
+                foreach ($polygons['vertices'] as $vertice) {
+                    foreach ($vertice['external'] as $coordinates){
+                        $uniqueIdExternal = rand();
+                        $typePolygon = 'Externo';
+                        $this->saveCoordinates($coordinates, $uniqueIdExternal, $typePolygon, $uniqueIdData);
+                        if (array_key_exists('internal', $vertice) && $vertice['internal'] !== null) {
+                            foreach ($vertice['internal'] as $coordinates) {
+                                $typePolygon = 'Interno';
+                                $this->saveCoordinates($coordinates, $uniqueIdExternal, $typePolygon, $uniqueIdData);
+                            }
+                        }
+                   }
+                }
+            }
+
             // Chama a função saveCoordinates para armazenar as coordenadas dos polígonos na tabela polygon_coordinates
             //dd($polygonsUpload);
-            foreach ($polygonsUpload as $polygons) {
+            /* foreach ($polygonsUpload as $polygons) {
                 $uniqueIdData = $polygon['unique_id'];
                 foreach ($polygons['polygon_external'] as $coordinates) {
                     $typePolygon = 'Externo';
@@ -150,7 +187,7 @@ class InteractiveMapController extends Controller
                         $this->saveCoordinates($coordinates, $uniqueIdCoord, $typePolygon, $uniqueIdData);
                     }
                 }
-            }
+            } */
 
             
 
@@ -164,7 +201,7 @@ class InteractiveMapController extends Controller
         return redirect('mapa');
     }
 
-    private function saveCoordinates($coordinates, $uniqueIdCoord, $typePolygon, $uniqueIdData) 
+    private function saveCoordinates($coordinates, $uniqueIdExternal, $typePolygon, $uniqueIdData) 
     {
 
         //dd($polygon, $uniqueIdCoord, $typePolygon, $uniqueIdData);
@@ -192,7 +229,8 @@ class InteractiveMapController extends Controller
                     'longitude'=> (string) $long,
                     'polygon_data_id_fk' => $idPolygon,
                     'unique_id_coord' => $uniqueIdCoord,
-                    'type_polygon' => $typePolygon
+                    'type_polygon' => $typePolygon,
+                    'unique_id_external' => $uniqueIdExternal
                 ]);
 
                 $polygon->polygonCoordinates()->save($coordinatesPolygon);
