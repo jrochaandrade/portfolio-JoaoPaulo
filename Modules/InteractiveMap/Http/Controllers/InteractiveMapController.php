@@ -24,17 +24,63 @@ class InteractiveMapController extends Controller
      * @return Renderable
      */
     #[Get(uri: '/mapa', name: 'mapa.index')]
-    public function index()
+    public function index(Request $request)
     {
         $polygonsData = PolygonData::paginate(5);
 
-        return view('interactivemap::index', compact('polygonsData'));
+        $polygons = $this->searchCoordinates($request);
+
+        return view('interactivemap::index', compact('polygonsData', 'polygons'));
     }
     public function oldsidebar()
     {
 
         return view('oldsidebar');
     }
+
+
+    function searchCoordinates(Request $request) 
+    {
+        $polygons = [];
+        //$filteredEmbargoes = 
+
+        // Obter todos os embargos
+        $embargoes = PolygonData::all();
+
+        //Armazenar todos os ids dos embargos
+        $embargoesIds = [];
+        foreach ($embargoes as $embargo) {
+            $embargoesIds[] = [
+                'id' => $embargo['id_polygon'],
+            ];
+        }
+        
+        // Armazena todos os ids únicos que fazem ligação com os ids armazenados na variável $embargoesIds
+        $uniquesIds = DB::table('polygon_coordinates')->whereIn('polygon_data_id_fk', $embargoesIds)->distinct()->pluck('unique_id_coord');
+
+        // Percorre todos os ids únicos e busca na tabela polygon_coordinates e consulta as coordenadas lat, log e id da tabela pai
+        foreach ($uniquesIds as $uniqueId) {
+            $coordinates = DB::table('polygon_coordinates')->select('latitude', 'longitude', 'polygon_data_id_fk')->where('unique_id_coord', $uniqueId)->get();
+            // Percorre todas as coordenadas e cria um array onde é armazenadao as coordenadas e o id
+            $arrayCoordinates = [];
+            foreach ($coordinates as $coordinate) {
+                $arrayCoordinates[] = [
+                    'latitude' => $coordinate->latitude,
+                    'longitude' => $coordinate->longitude,
+                    'id' => $coordinate->polygon_data_id_fk,
+                ];
+            }
+            // Atribui o array de coordenadas ao array $polygons usando o id do poligono como chave
+            $polygons[$uniqueId] = $arrayCoordinates;
+        }
+
+        return $polygons;
+
+    }
+
+
+
+
     #[Post(uri: 'uploadKml', name: 'uploadKml')]
     public function uploadKml (Request $request)
     {

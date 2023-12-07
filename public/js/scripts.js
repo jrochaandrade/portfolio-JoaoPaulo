@@ -80,39 +80,4 @@ applySavedTheme()
 /* Fim script para manter o tema */
 
 
-/* Script para criar mapa Leaflet */
-let osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-})
-let google = L.tileLayer(' https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-    maxZoom: 19,
-    attribution: '© google', 
-})
 
-let googleSatelite = L.tileLayer(' https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-    maxZoom: 19,
-    attribution: '© google', 
-})
-
-let esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    maxZoom: 19,
-    attribution: '© arcgisonline.com - Esri', 
-})
-
-let baseMaps = {
-    "OpenStreetMap": osm,            
-    "Google": google,
-    "Google Satélite": googleSatelite,
-    "ESRI Satélite": esriSatellite
-}
-
-// Carregar mapa
-let map = L.map('map', {
-    center: [-10.93441238, -63.36372516],
-    zoom: 7,
-    layers: [google]
-})
-
-L.control.layers(baseMaps).addTo(map)
-/* Fim script para criar mapa Leaflet */

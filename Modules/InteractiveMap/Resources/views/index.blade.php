@@ -8,7 +8,7 @@
 @section('card-body')
 @include('layouts.mainMenu')
 
-<div class="home">
+<div class="home">    
     <div class="card-header">
         <h1 class=header><strong>Mapa Interativo</strong></h1>
     </div>
@@ -61,4 +61,75 @@
         </div>
     </div>
 </div>
+<script>
+    /* Script para criar mapa Leaflet */
+    let osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    })
+    let google = L.tileLayer(' https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 19,
+        attribution: '© google', 
+    })
+
+    let googleSatelite = L.tileLayer(' https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        maxZoom: 19,
+        attribution: '© google', 
+    })
+
+    let esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        attribution: '© arcgisonline.com - Esri', 
+    })
+
+    let baseMaps = {
+        "OpenStreetMap": osm,            
+        "Google": google,
+        "Google Satélite": googleSatelite,
+        "ESRI Satélite": esriSatellite
+    }
+
+    // Carregar mapa
+    let map = L.map('map', {
+        center: [-10.93441238, -63.36372516],
+        zoom: 7,
+        layers: [google]
+    })
+
+    L.control.layers(baseMaps).addTo(map)
+    /* Fim script para criar mapa Leaflet */
+</script>
+<script>
+    // Converte a variável PHP em JavaScript
+    let polygons = {!! json_encode($polygons) !!}
+    console.log(polygons)
+    // Desenha os poligonos no mapa de acordo com os poligono recebidos na variável $poligonos
+    // A variável vem da função index, que chama a função searchCoordinates
+    const polygonToEmbargoId = {}
+
+    for (const uniqueId in polygons) {
+        if (polygons.hasOwnProperty(uniqueId)) {
+            const arrayCoordinates = polygons[uniqueId]
+
+            const polygonCoord = arrayCoordinates.map(coordinates => ({
+                lat: coordinates.latitude,
+                lng: coordinates.longitude
+            }))
+
+            const polygon = L.polygon(polygonCoord, {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0,
+                weight: 2
+            }).addTo(map)
+
+            polygon.on('click', () => {
+                const polygonIdClicked = arrayCoordinates[0].id
+            })
+
+            polygonToEmbargoId[polygon.getBounds().toBBoxString()] = arrayCoordinates[0].id
+        }
+    }
+
+</script>
 @endsection
