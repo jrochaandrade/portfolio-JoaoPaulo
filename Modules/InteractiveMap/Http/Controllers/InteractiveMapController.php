@@ -28,9 +28,12 @@ class InteractiveMapController extends Controller
     {
         $polygonsData = PolygonData::paginate(5);
 
+        // Embargos sem paginação para click no mapa
+        $embargoes = PolygonData::all();
+
         $polygons = $this->searchCoordinates($request);
 
-        return view('interactivemap::index', compact('polygonsData', 'polygons'));
+        return view('interactivemap::index', compact('polygonsData', 'polygons', 'embargoes'));
     }
     public function oldsidebar()
     {
@@ -54,7 +57,7 @@ class InteractiveMapController extends Controller
                 'id' => $embargo['id_polygon'],
             ];
         }
-        
+
         // Armazena todos os ids únicos que fazem ligação com os ids armazenados na variável $embargoesIds
         $uniquesIds = DB::table('polygon_coordinates')->whereIn('polygon_data_id_fk', $embargoesIds)->distinct()->pluck('unique_id_coord');
 
@@ -69,7 +72,7 @@ class InteractiveMapController extends Controller
                     'longitude' => $coordinate->longitude,
                     'id' => $coordinate->polygon_data_id_fk,
                 ];
-            }
+            }            
             // Atribui o array de coordenadas ao array $polygons usando o id do poligono como chave
             $polygons[$uniqueId] = $arrayCoordinates;
         }
@@ -203,7 +206,8 @@ class InteractiveMapController extends Controller
 
 
             foreach ($polygonsUpload as $polygons) {
-                $uniqueIdData = $polygon['unique_id'];
+                
+                $uniqueIdData = $polygons['unique_id'];
                 foreach ($polygons['vertices'] as $vertice) {
                     foreach ($vertice['external'] as $coordinates){
                         $uniqueIdExternal = rand();
@@ -258,9 +262,8 @@ class InteractiveMapController extends Controller
             // Verificar o id unico do embargo recebido do polígono e buscar o embargo na tabela
 
             $polygon = PolygonData::where('unique_id', $uniqueIdData)->first();
-
             $idPolygon = $polygon['id_polygon'];
-
+            
             $uniqueIdCoord = rand();
 
             $stringCoorinates = (string) $coordinates;

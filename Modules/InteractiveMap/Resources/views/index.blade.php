@@ -102,11 +102,12 @@
 <script>
     // Converte a variável PHP em JavaScript
     let polygons = {!! json_encode($polygons) !!}
-    console.log(polygons)
+    let embargoes = {!! json_encode($embargoes) !!}
+    
     // Desenha os poligonos no mapa de acordo com os poligono recebidos na variável $poligonos
     // A variável vem da função index, que chama a função searchCoordinates
     const polygonToEmbargoId = {}
-
+    
     for (const uniqueId in polygons) {
         if (polygons.hasOwnProperty(uniqueId)) {
             const arrayCoordinates = polygons[uniqueId]
@@ -125,9 +126,23 @@
 
             polygon.on('click', () => {
                 const polygonIdClicked = arrayCoordinates[0].id
+                
+                // Chamar função para refazer a tabela posteriormente
+                // Encontre o embargo com Base no ID
+                const polygonEmbargo = embargoes.find(embargo => embargo.id_polygon === polygonIdClicked)                
+                
+                if (polygonEmbargo) {
+                    polygon.bindPopup(`
+                    Nome: ${polygonEmbargo.name}<br>
+                    CPF: ${polygonEmbargo.cpf}<br>
+                    Área: ${polygonEmbargo.area}<br>
+                    `)
+                }
+                
             })
-
+            
             polygonToEmbargoId[polygon.getBounds().toBBoxString()] = arrayCoordinates[0].id
+            
         }
     }
 
