@@ -8,5 +8,17 @@ document.getElementById('kmlFile').addEventListener('change', function () {
 /* Fim script para enviar formulário ao selecionar arquivo */
 
 
+/* Script para pesquisa */
+const search = document.getElementById('search')
+const btnSearch = document.getElementById('btnSearch')
+
+search.addEventListener('keypress', function (event) {
+    
+   
+    if (event.key === 'Enter') {
+        btnSearch.click()
+    }
+})
+/* Fim do script para pesquisa */
 
 
