@@ -10,23 +10,25 @@
 
 <div class="home">    
     <div class="card-header">
-        <h1 class=header><strong>Mapa Interativo</strong></h1>
+        <div class="titleHeader">
+            <h1 class=header><strong>Mapa Interativo</strong></h1>
+        </div>
+        <div class="inputSend">
+            <form action="{{ route('uploadKml') }}" method="POST" data-toggle="tooltip" data-placement="right"
+                enctype="multipart/form-data" class="d-inline-block">
+                @csrf
+                <label for="kmlFile" class="btn btn-success d-inline-block"
+                    title="Enviar os embargos no formato KML">
+                    <i class="bi bi-plus-square"></i>
+                    Enviar Embargo
+                </label>
+                <input type="file" name="kmlFile" id="kmlFile" style="display: none;">
+                <!-- jogar o estilo para o css depois -->
+            </form>
+        </div>
     </div>
     <div class="text">
         <div class="container-fluid content">
-            <div class="inputSend">
-                <form action="{{ route('uploadKml') }}" method="POST" data-toggle="tooltip" data-placement="right"
-                    enctype="multipart/form-data" class="d-inline-block">
-                    @csrf
-                    <label for="kmlFile" class="btn btn-success d-inline-block"
-                        title="Enviar os embargos no formato KML">
-                        <i class="bi bi-plus-square"></i>
-                        Enviar Embargo
-                    </label>
-                    <input type="file" name="kmlFile" id="kmlFile" style="display: none;">
-                    <!-- jogar o estilo para o css depois -->
-                </form>
-            </div>
             <div class="">
                 <table class="table-responsive table table-striped" id="dataTable">
                     <thead>

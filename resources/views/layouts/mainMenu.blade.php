@@ -18,7 +18,7 @@
         <div class="menu">
             <li class="search-box">
                 <i class="bi bi-search icon"></i>
-                <input type="search" placeholder="Search...">
+                <input type="search" placeholder="Search..." class="search" id="search">
             </li>
             <ul class="menu-links">
                 <li class="nav-links">

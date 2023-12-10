@@ -397,6 +397,8 @@ body.dark .switch::before {
 }
 
 .card-header {
+    display: flex;
+    justify-content: space-between;
     max-height: 70px;
     
     color: var(--text-color);
@@ -421,6 +423,7 @@ body.dark .switch::before {
 .inputSend {
     margin-top: 10px;
     margin-bottom: 20px;
+    width: 200px;
 }
 
 .containerMap {
