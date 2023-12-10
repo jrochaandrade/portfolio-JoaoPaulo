@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\InteractiveMap\Entities;
+namespace Modules\InteractiveMap\app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

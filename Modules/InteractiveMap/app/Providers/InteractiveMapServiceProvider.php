@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\InteractiveMap\Providers;
+namespace Modules\InteractiveMap\app\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;

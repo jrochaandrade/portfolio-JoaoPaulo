@@ -12,7 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
-use Modules\InteractiveMap\Http\Controllers\InteractiveMapController;
+use Modules\InteractiveMap\app\Http\Controllers\InteractiveMapController;
 
 /* Route::prefix('interactivemap')->group(function() {
     Route::get('/', 'InteractiveMapController@index');

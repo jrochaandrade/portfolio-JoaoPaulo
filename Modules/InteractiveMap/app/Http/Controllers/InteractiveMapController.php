@@ -1,14 +1,20 @@
 <?php
 
-namespace Modules\InteractiveMap\Http\Controllers;
+namespace Modules\InteractiveMap\app\Http\Controllers;
+
+
+
+
+//use app\Modules\InteractiveMap\app\Http\Controllers\Controller;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
-use Modules\InteractiveMap\Entities\PolygonCoordinates;
-use Modules\InteractiveMap\Entities\PolygonData;
+use Modules\InteractiveMap\Models\PolygonCoordinates;
+use Modules\InteractiveMap\app\Models\PolygonData;
+use Modules\InteractiveMap\app\Repository\PolygonDataRepository;
 use Illuminate\Support\Facades\DB;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Get;
@@ -26,7 +32,10 @@ class InteractiveMapController extends Controller
     #[Get(uri: '/mapa', name: 'mapa.index')]
     public function index(Request $request)
     {
-        $polygonsData = PolygonData::paginate(5);
+        //$polygonsData = PolygonData::paginate(5);
+
+        $polygonsData = PolygonDataRepository::search($request)->paginate(5);
+        //dd($polygonsData);
 
         // Embargos sem paginação para click no mapa
         $embargoes = PolygonData::all();
@@ -45,14 +54,14 @@ class InteractiveMapController extends Controller
     function searchCoordinates(Request $request) 
     {
         $polygons = [];
-        //$filteredEmbargoes = 
+        $filteredEmbargoes = PolygonDataRepository::search($request)->get();
 
         // Obter todos os embargos
-        $embargoes = PolygonData::all();
+        //$embargoes = PolygonData::all();
 
         //Armazenar todos os ids dos embargos
         $embargoesIds = [];
-        foreach ($embargoes as $embargo) {
+        foreach ($filteredEmbargoes as $embargo) {
             $embargoesIds[] = [
                 'id' => $embargo['id_polygon'],
             ];

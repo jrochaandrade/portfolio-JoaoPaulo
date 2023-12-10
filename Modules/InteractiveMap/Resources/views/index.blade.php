@@ -147,6 +147,30 @@
             
         }
     }
+</script>
+<script>
+    /* Script para centralizar o mapa e dar zoom nos polígonos filtrados */
+    let bounds = new L.LatLngBounds()
 
+    // Intere sobre os polígonos e adicione suas coordenadas à extensão
+    for (const uniqueId in polygons) {
+        const arrayPolygons = polygons[uniqueId]
+
+        for (const coordinate of arrayPolygons) {
+            bounds.extend(new L.LatLng(coordinate.latitude, coordinate.longitude))
+        }
+    }
+
+    // Centralizar o mapa na extensão dos polígonos
+    map.setView(bounds.getCenter())
+
+    // Ajuste o mapa para a extensão dos polígonos com um nível de zoom adequado
+    map.fitBounds(bounds)
+
+    // Defina um zoom máximo para evitar zoom excessivo
+    const maxZoom = 15
+    if (map.getZoom() > maxZoom) {
+        map.setZoom(maxZoom)
+    }
 </script>
 @endsection

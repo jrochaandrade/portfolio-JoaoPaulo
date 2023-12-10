@@ -18,8 +18,14 @@
         <div class="menu">
             <li class="search-box">
                 <i class="bi bi-search icon"></i>
-                <form action="#" id="formSearch" >
-                    <input type="search" placeholder="Search..." class="search" id="search" value="{{ request()->query('searchData') }}">
+                <form action="#" method="GET" id="formSearch" >
+                    <input 
+                    type="search" 
+                    placeholder="Search..." 
+                    class="searchData" 
+                    id="searchData"
+                    name="searchData"
+                    value="{{ request()->query('searchData') }}">
                     <button type="submit" id="btnSearch" style="display: none;">Buscar</button>
                 </form>
             </li>

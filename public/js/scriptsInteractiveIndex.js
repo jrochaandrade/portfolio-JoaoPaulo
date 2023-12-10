@@ -9,13 +9,13 @@ document.getElementById('kmlFile').addEventListener('change', function () {
 
 
 /* Script para pesquisa */
-const search = document.getElementById('search')
+const search = document.getElementById('searchData')
 const btnSearch = document.getElementById('btnSearch')
 
 search.addEventListener('keypress', function (event) {
     
    
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && event.target === search) {
         btnSearch.click()
     }
 })
