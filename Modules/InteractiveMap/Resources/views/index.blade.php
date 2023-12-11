@@ -29,14 +29,20 @@
     </div>
     <div class="text">
         <div class="container-fluid content">
-            <div class="">
+            <div class="">                
+                <a href="{{ route('mapa.index') }}" class="btn btn-primary clearBtn">
+                    <i class="bi bi-arrow-clockwise"></i>
+                    Limpar filtros
+                </a>
                 <table class="table-responsive table table-striped" id="dataTable">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
+                            <th>CPF</th>
                             <th>Endereço</th>
                             <th>Cidade</th>
+                            <th>Área</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -45,8 +51,10 @@
                         <tr>
                             <td>{{ $data->id_polygon }}</td>
                             <td>{{ $data->name }}</td>
+                            <td>{{ $data->cpf }}</td>
                             <td>{{ $data->address }}</td>
                             <td>{{ $data->city }}</td>
+                            <td>{{ $data->area }}</td>
 
                             <td></td>
                         </tr>
@@ -138,6 +146,7 @@
                     Nome: ${polygonEmbargo.name}<br>
                     CPF: ${polygonEmbargo.cpf}<br>
                     Área: ${polygonEmbargo.area}<br>
+                    Infração: ${polygonEmbargo.type_infraction}
                     `)
                 }
                 

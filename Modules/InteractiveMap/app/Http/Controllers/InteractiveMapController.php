@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
-use Modules\InteractiveMap\Models\PolygonCoordinates;
+use Modules\InteractiveMap\app\Models\PolygonCoordinates;
 use Modules\InteractiveMap\app\Models\PolygonData;
 use Modules\InteractiveMap\app\Repository\PolygonDataRepository;
 use Illuminate\Support\Facades\DB;
@@ -177,14 +177,15 @@ class InteractiveMapController extends Controller
 
         try { */
             //Armazenas os dados do poligno na tabela polygon_data
+            
             foreach ($polygonsUpload as $polygon) {
                 
                 // Verifica o tamanho do cpf para definir se é cpf ou cnpj e salva no campo adequado
-                if (strlen($register['CPF_CNPJ']) > 14) {
-                    $cnpj = $register['CPF_CNPJ'];
+                if (strlen($polygon['CPF_CNPJ']) > 14) {
+                    $cnpj = $polygon['CPF_CNPJ'];
                     $cpf = null;
                 } else {
-                    $cpf = $register['CPF_CNPJ'];
+                    $cpf = $polygon['CPF_CNPJ'];
                     $cnpj = null;
                 }
 

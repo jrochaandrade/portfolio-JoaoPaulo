@@ -43,6 +43,16 @@ function openSidebar() {
 // Feche o sidebar quando a página for carregada pela primeira vez
 closeSidebar();
 
+/* Script para abrir o navbar ao clicar no icone da lupa */
+const searchBox = document.getElementById('search-box')
+const searchInput = document.getElementById('searchData')
+
+searchBox.addEventListener('click', function () {
+    openSidebar()
+    searchInput.focus()
+})
+/* Fim do script para abrir o navbar ao clicar no icone da lupa */
+
 
 
 /* Script para mudar o tema */

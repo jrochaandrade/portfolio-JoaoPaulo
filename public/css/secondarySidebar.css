@@ -150,6 +150,7 @@ header .image-text .header-text {
 }
 
 .sidebar header .toggle {
+    cursor: pointer;
     position: absolute;
     top: 150%;
     right: -25px;
@@ -187,6 +188,7 @@ body.dark .sidebar header .toggle {
 .search-box input {
     height: 100%;
     width: 100%;
+    max-width: 150px;
     outline: none;
     border: none;
     border-radius: 6px;
@@ -194,6 +196,15 @@ body.dark .sidebar header .toggle {
     font-weight: 500;
     background: var(--primary-color-light);
     transition: var(--tran-05);
+}
+
+.search-box .filter {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.sidebar.close .search-box .filter {
+    display: none;
 }
 
 .sidebar li a {
@@ -429,4 +440,8 @@ body.dark .switch::before {
 .containerMap {
     display: flex;    
     justify-content: center;
+}
+
+.clearBtn {
+    margin-bottom: 20px;
 }

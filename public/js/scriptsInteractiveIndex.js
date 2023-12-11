@@ -11,13 +11,20 @@ document.getElementById('kmlFile').addEventListener('change', function () {
 /* Script para pesquisa */
 const search = document.getElementById('searchData')
 const btnSearch = document.getElementById('btnSearch')
+const filter = document.getElementById('filter')
 
 search.addEventListener('keypress', function (event) {
     
    
     if (event.key === 'Enter' && event.target === search) {
         btnSearch.click()
+        //search.value = ''        
     }
+})
+
+filter.addEventListener('click', function () {
+    btnSearch.click()
+    //search.value = ''
 })
 /* Fim do script para pesquisa */
 

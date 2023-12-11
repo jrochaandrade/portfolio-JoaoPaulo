@@ -164,6 +164,7 @@ header .image-text .header-text {
 }
 
 .sidebar header .toggle {
+    cursor: pointer;
     position: absolute;
     top: 150%;
     right: -25px;
@@ -199,9 +200,19 @@ body.dark .sidebar header .toggle {
     transition: var(--tran-05);
 }
 
+.search-box .filter {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.sidebar.close .search-box .filter {
+    display: none;
+}
+
 .search-box input {
     height: 100%;
     width: 100%;
+    max-width: 150px;
     outline: none;
     border: none;
     border-radius: 6px;
