@@ -50,6 +50,7 @@ const searchInput = document.getElementById('searchData')
 searchBox.addEventListener('click', function () {
     openSidebar()
     searchInput.focus()
+    searchInput.selectionStart = searchInput.selectionEnd = searchInput.value.length;
 })
 /* Fim do script para abrir o navbar ao clicar no icone da lupa */
 

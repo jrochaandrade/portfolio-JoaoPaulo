@@ -41,7 +41,7 @@ class InteractiveMapController extends Controller
         $embargoes = PolygonData::all();
 
         $polygons = $this->searchCoordinates($request);
-
+        
         return view('interactivemap::index', compact('polygonsData', 'polygons', 'embargoes'));
     }
     public function oldsidebar()
@@ -49,7 +49,7 @@ class InteractiveMapController extends Controller
 
         return view('oldsidebar');
     }
-
+    
 
     function searchCoordinates(Request $request) 
     {

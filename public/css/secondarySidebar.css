@@ -196,6 +196,7 @@ body.dark .sidebar header .toggle {
     font-weight: 500;
     background: var(--primary-color-light);
     transition: var(--tran-05);
+    color: var(--text-color);
 }
 
 .search-box .filter {
