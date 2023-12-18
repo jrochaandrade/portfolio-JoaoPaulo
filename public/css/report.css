@@ -1,0 +1,35 @@
+.btnInput {
+    margin-bottom: 30px;
+}
+
+.title {
+    text-align: center;
+}
+
+.photoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;    
+}
+
+.photoContainer img {
+    max-width: 500px;
+    max-height: 300px;
+    margin: 20px 0px;
+    }
+
+.logos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logos .logo1 {
+    height: 80px;
+    width: 140px;
+}
+
+.logos .logo2 {
+    height: 100px;
+    width: 100px;
+    margin-right: 5px;
+}

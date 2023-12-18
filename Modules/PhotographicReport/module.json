@@ -1,0 +1,11 @@
+{
+    "name": "PhotographicReport",
+    "alias": "photographicreport",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\PhotographicReport\\Providers\\PhotographicReportServiceProvider"
+    ],
+    "files": []
+}
