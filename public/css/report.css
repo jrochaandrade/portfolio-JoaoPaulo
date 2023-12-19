@@ -30,6 +30,15 @@
     
 }
 
+.lastPageWithBorder {    
+    border: 1px solid black;
+    margin-bottom: 0px;
+    
+    height: 1095px;
+    
+    
+}
+
 .page {
     width: 775px;
     padding: 10px;    

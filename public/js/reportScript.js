@@ -64,9 +64,7 @@ function handleFileSelect(event) {
                     };
                     reader.readAsDataURL(photo.src);
                 });
-            });
-            console.log(imgElements)
-            
+            });     
                 Promise.all(imgElements)
                 .then(images => { 
                 let cont = 0
@@ -151,8 +149,12 @@ btnPdf.addEventListener('click', generatePdf);
 
 function generatePdf() {
     const page = document.getElementById('page');
+    const pageWithBorder = document.getElementsByClassName('pageWithBorder')
+    const lastDiv = pageWithBorder[pageWithBorder.length - 1];
     
-
+    lastDiv.className = 'lastPageWithBorder'
+    
+    
     html2pdf(page, {
         margin: 0,
         filename: 'Teste.pdf',
