@@ -1,27 +1,71 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .btnInput {
     margin-bottom: 30px;
 }
 
 .title {
     text-align: center;
+    margin-bottom: 0px;
 }
 
-.photoContainer {
+.pageWithBorder {    
+    border: 1px solid black;
+    margin-bottom: 27.5px;
+    
+    height: 1095px;
+    
+    
+}
+
+.page {
+    width: 775px;
+    padding: 10px;    
+}
+
+.photoContainerDynamic {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;    
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;  
+    height: 910px;
 }
 
-.photoContainer img {
-    max-width: 500px;
-    max-height: 300px;
-    margin: 20px 0px;
-    }
+.photoContainer img.photo {
+    width: 500px;
+    height: 290px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+}
+
+/* .logosNone {    
+    display: none;
+} */
 
 .logos {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    max-width: 700px;
+    padding: 10px 20px;
+    height: 117px;
+    /* border-bottom: 1px solid black; */
+    
 }
+
 
 .logos .logo1 {
     height: 80px;
@@ -32,4 +76,11 @@
     height: 100px;
     width: 100px;
     margin-right: 5px;
+}
+
+.titleReport {
+    margin-left: 87px;
+    font-size: 12px;
+    margin: 0px 0px 5px 126px;
+    height: 18px;
 }

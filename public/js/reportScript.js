@@ -25,10 +25,7 @@ function handleFileSelect(event) {
 
     // Aguarde que todas as Promises sejam resolvidas
     Promise.all(promises)
-        .then(photos => {
-            
-            
-            
+        .then(photos => {  
             
             for (let i = 0; i < photos.length; i++) {
                 let dataString = photos[i].date;                
@@ -68,16 +65,75 @@ function handleFileSelect(event) {
                     reader.readAsDataURL(photo.src);
                 });
             });
+            console.log(imgElements)
+            
+                Promise.all(imgElements)
+                .then(images => { 
+                let cont = 0
+                // Loop para criar divs e imagens
+                for (let i = 0; i < images.length; i += 3) {
+                    // Crie uma div com a classe 'pageWithBorder'
+                    const pageDiv = document.createElement('div');
+                    pageDiv.className = 'pageWithBorder';
+                    pageDiv.id = 'pageWithBorder' + [cont]
 
-            // Aguarde que todos os elementos de imagem sejam criados
-            Promise.all(imgElements)
-                .then(images => {
-                    // Adicione os elementos de imagem ao contêiner na ordem correta
-                    const photoContainer = document.getElementById('photoContainer');
-                    photoContainer.innerHTML = '';
-                    images.forEach(imgElement => {
-                        photoContainer.appendChild(imgElement);
-                    });
+                    // Adicione o conteúdo da div 'logos' no início
+                    //pageDiv.innerHTML = document.getElementById('divLogos').innerHTML;
+
+                    const divLogos =  document.createElement('div')
+
+                    const logos = document.createElement('div')
+                    logos.className = 'logos'
+
+                    const img1 = document.createElement('img')
+                    img1.className = 'logo1'
+                    img1.src = '/images/logo1.png';
+
+                    const title = document.createElement('p')
+                    title.className = 'title'
+                    title.innerHTML = 'Polícia Militar do estado de Rondônia<br>Batalhão de Polícia Ambiental'
+
+                    const img2 = document.createElement('img')
+                    img2.className = 'logo2'
+                    img2.src = '/images/logo2.png';
+
+                    logos.append(img1, title, img2)
+
+                    divLogos.appendChild(logos)
+
+                    const inputDesc = document.getElementById('inputDesc').value
+                    
+                    const titleDoc = document.createElement('p')
+                    titleDoc.className = 'titleReport'
+                    titleDoc.innerText = inputDesc
+
+                    
+
+                    pageDiv.innerHTML = divLogos.innerHTML
+
+                    pageDiv.appendChild(titleDoc);
+
+                    
+                    const divImages =  document.createElement('div')
+                    divImages.className = 'photoContainerDynamic'
+                    
+
+                    // Adicione 3 imagens à div
+                    for (let j = 0; j < 3 && i + j < images.length; j++) {
+
+                        const imgElement = document.createElement('img');
+                        imgElement.src = images[i + j].src; // Alterado para usar reader.result diretamente
+
+                        imgElement.className = 'photo';                        
+                        divImages.appendChild(imgElement)
+                        pageDiv.appendChild(divImages);
+                    }
+
+                    // Adicione a div criada ao contêiner
+                    document.getElementById('photoContainer').appendChild(pageDiv);
+                    cont++
+                }
+        
                 })
                 .catch(error => {
                     console.error('Erro ao criar elementos de imagem:', error);
@@ -91,21 +147,23 @@ function handleFileSelect(event) {
 
 const btnPdf = document.getElementById('btnPdf');
 
-    btnPdf.addEventListener('click', generatePdf);
+btnPdf.addEventListener('click', generatePdf);
 
-    function generatePdf() {
-        const page = document.getElementById('page');
+function generatePdf() {
+    const page = document.getElementById('page');
+    
 
-        html2pdf(page, {
-            margin: 10,
-            filename: 'Teste.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        });
-    }
-
-
-
-
+    html2pdf(page, {
+        margin: 0,
+        filename: 'Teste.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait',
+            border: '1px solid #000', // Adicione esta linha para definir a borda
+        },
+    });
+}
 
