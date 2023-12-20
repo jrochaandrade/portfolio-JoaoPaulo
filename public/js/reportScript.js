@@ -1,5 +1,6 @@
 document.getElementById('fileInput').addEventListener('change', handleFileSelect);
 
+// Verifica se o arquivo é do tipo imagem, e extrai o metadados
 function handleFileSelect(event) {
     const files = event.target.files;
     const promises = [];
@@ -26,13 +27,12 @@ function handleFileSelect(event) {
     // Aguarde que todas as Promises sejam resolvidas
     Promise.all(promises)
         .then(photos => {  
-            
+            // Formatar data para o padrão reconhecido pela biblioteca
             for (let i = 0; i < photos.length; i++) {
                 let dataString = photos[i].date;                
                 
                 // Substitua os dois pontos apenas na parte da hora
-                let formattedDateString = dataString.replace(' ', 'T');                
-                //formattedDateString = formattedDateString.replace(/:(?=\d{2}T)/g, '-')
+                let formattedDateString = dataString.replace(' ', 'T');
                 // Substitua todos os dois pontos por underscores apenas antes do "T"
                 formattedDateString = formattedDateString.replace(/:/g, function(match, offset, string) {
                     // Substitua os dois pontos por underscores apenas antes do "T"
@@ -41,8 +41,7 @@ function handleFileSelect(event) {
                     } else {
                         return match;
                     }
-                });                
-            
+                });
                 // Crie um objeto Date com a data formatada
                 let formattedDate = new Date(formattedDateString);
                 photos[i].date = formattedDate;
@@ -75,53 +74,50 @@ function handleFileSelect(event) {
                     pageDiv.className = 'pageWithBorder';
                     pageDiv.id = 'pageWithBorder' + [cont]
 
-                    // Adicione o conteúdo da div 'logos' no início
-                    //pageDiv.innerHTML = document.getElementById('divLogos').innerHTML;
-
+                    // Cria as div e o conteúdo do cabeçalho
                     const divLogos =  document.createElement('div')
 
                     const logos = document.createElement('div')
                     logos.className = 'logos'
-
+                    // Cria logo 01 da esquerda
                     const img1 = document.createElement('img')
                     img1.className = 'logo1'
                     img1.src = '/images/logo1.png';
-
-                    const title = document.createElement('p')
+                    // Cria a descrição do centro do cabeçalho
+                    const title = document.createElement('label')
                     title.className = 'title'
-                    title.innerHTML = 'Polícia Militar do estado de Rondônia<br>Batalhão de Polícia Ambiental'
-
+                    title.innerHTML = 'Secretaria de Estado da Segurança, Defesa e Cidadania<br>Polícia Militar do estado de Rondônia<br>Batalhão de Polícia Ambiental<br>3ª Companhia de Polícia Ambiental<br>Seção de Planejamento Operacional'
+                    // Cria o logo 02 da direita
                     const img2 = document.createElement('img')
                     img2.className = 'logo2'
-                    img2.src = '/images/logo2.png';
+                    img2.src = '/images/logo2.jpg';
+                    // Cria o logo 03 da direita
+                    const img3 = document.createElement('img')
+                    img3.className = 'logo3'
+                    img3.src = '/images/logo3.png';
 
-                    logos.append(img1, title, img2)
+                    logos.append(img1, title, img2, img3)
 
                     divLogos.appendChild(logos)
-
+                    // Recebe o valor digitado no input do titulo
                     const inputDesc = document.getElementById('inputDesc').value
-                    
-                    const titleDoc = document.createElement('p')
-                    titleDoc.className = 'titleReport'
+                    // Cria um label para receber o texto digitado
+                    const titleDoc = document.createElement('label')
+                    titleDoc.className = 'description'
                     titleDoc.innerText = inputDesc
-
-                    
 
                     pageDiv.innerHTML = divLogos.innerHTML
 
                     pageDiv.appendChild(titleDoc);
-
-                    
+                    // Cria uma div para receber as imagens
                     const divImages =  document.createElement('div')
                     divImages.className = 'photoContainerDynamic'
-                    
 
                     // Adicione 3 imagens à div
                     for (let j = 0; j < 3 && i + j < images.length; j++) {
 
                         const imgElement = document.createElement('img');
-                        imgElement.src = images[i + j].src; // Alterado para usar reader.result diretamente
-
+                        imgElement.src = images[i + j].src;
                         imgElement.className = 'photo';                        
                         divImages.appendChild(imgElement)
                         pageDiv.appendChild(divImages);
@@ -131,7 +127,6 @@ function handleFileSelect(event) {
                     document.getElementById('photoContainer').appendChild(pageDiv);
                     cont++
                 }
-        
                 })
                 .catch(error => {
                     console.error('Erro ao criar elementos de imagem:', error);
@@ -141,19 +136,16 @@ function handleFileSelect(event) {
             console.error('Erro ao obter metadados Exif:', error);
         });
 }
-
-
+// Obtem o botão gerar pdf
 const btnPdf = document.getElementById('btnPdf');
-
 btnPdf.addEventListener('click', generatePdf);
-
+// Função para gerar o pdf
 function generatePdf() {
     const page = document.getElementById('page');
     const pageWithBorder = document.getElementsByClassName('pageWithBorder')
     const lastDiv = pageWithBorder[pageWithBorder.length - 1];
     
     lastDiv.className = 'lastPageWithBorder'
-    
     
     html2pdf(page, {
         margin: 0,
@@ -164,7 +156,7 @@ function generatePdf() {
             unit: 'mm',
             format: 'a4',
             orientation: 'portrait',
-            border: '1px solid #000', // Adicione esta linha para definir a borda
+            border: '1px solid #000',
         },
     });
 }

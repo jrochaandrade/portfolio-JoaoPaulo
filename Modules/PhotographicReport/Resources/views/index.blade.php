@@ -41,30 +41,19 @@
     </div>
     <div class="text">
         <div class="container-fluid content">
-            <label for="fileInput" class="btn btn-primary btnInput">Carregar imagens</label>
-            <input type="file" id="fileInput" multiple style="display: none;">
-            <button id="btnPdf" class="btn btn-success">Gerar PDF</button>
-            <input type="text" class="form-control inputDesc" id="inputDesc">
-            <div class="main" id="main">
-                <!-- <div id="divLogos">
-                    <div class="logosNone" id="logos">
-                        <img class="logo1" src="{{ asset('images/logo1.png') }}" alt="">
-                    
-                        <p class="title">Polícia Militar do estado de Rondônia<br>Batalhão de Polícia Ambiental</p>
-                    
-                        <img class="logo2" src="{{ asset('images/logo2.png') }}" alt="">
-                    </div>
-                </div> -->
+            <h5 class="h5">Protótipo para geração do relatório fotográfico utilizandos no âmbito do Batalhão de Polícia Ambiental<br>As fotos podem ser carregadas fora de ordem desde que os metadados da imagem esteja íntegro<br><br>Digite um título, carregue as imagens e em seguida clique em gerar PDF</h5>
+            <label for="inputDesc" id="labelDescription">Título do relatório</label>
+            <input type="text" class="form-control inputDesc" id="inputDesc" placeholder="Ex.: Relatório Fotográfico Missão Guardiões do Bioma 3 ET/2023 - 01 a 15/05/2023">
+            <div class="divButtons">
+                <label for="fileInput" class="btn btn-primary btnInput">Carregar imagens</label>
+                <input type="file" id="fileInput" multiple style="display: none;">
+                <button id="btnPdf" class="btn btn-success">Gerar PDF</button>
+            </div>
+            <div class="main" id="main">                
                 <div class="page" id="page">
-                    
-                    
                     <div class="photoContainer" id="photoContainer"></div>
                 </div>
-
-            </div>
-
-            
-            
+            </div> 
         </div>
     </div>
 </div>
