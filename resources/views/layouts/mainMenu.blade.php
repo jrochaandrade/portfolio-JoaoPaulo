@@ -44,14 +44,15 @@
                     </a>
                 </li>
                 <li class="nav-links">
-                    <a href="#">
-                        <i class="fa-regular fa-address-card icon"></i>
-                        <span class="text nav-text">Cadastro de infratores</span>
+                    <a href="{{ route('report.index') }}">
+                    <i class="fa-regular fa-images icon"></i>
+                        <span class="text nav-text">Relatório Fotográfico</span>
                     </a>
                 </li>
                 <li class="nav-links">
                     <a href="#">
-                        <i class="bi bi-hourglass-split icon"></i>
+                    <!-- <i class="fa-regular fa-address-card icon"></i> --> <!-- Cadastro infrator -->
+                    <i class="bi bi-hourglass-split icon"></i>
                         <span class="text nav-text">Em breve</span>
                     </a>
                 </li>
