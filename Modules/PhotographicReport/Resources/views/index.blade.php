@@ -41,9 +41,14 @@
     </div>
     <div class="text">
         <div class="container-fluid content">
-            <h5 class="h5">Protótipo para geração do relatório fotográfico utilizandos no âmbito do Batalhão de Polícia Ambiental<br>As fotos podem ser carregadas fora de ordem desde que os metadados da imagem esteja íntegro<br><br>Digite um título, carregue as imagens e em seguida clique em gerar PDF</h5>
+            <h5 class="h5">
+                Protótipo para geração do relatório fotográfico utilizandos no âmbito do Batalhão de Polícia Ambiental<br>
+                As fotos podem ser carregadas fora de ordem desde que os metadados da imagem esteja íntegro<br><br>
+                Digite um título, carregue as imagens e em seguida clique em gerar PDF<br><br>
+                Obs.: Se ao baixar o PDF estiver desconfigurado, clique em gerar pdf novamente
+            </h5>
             <label for="inputDesc" id="labelDescription">Título do relatório</label>
-            <input type="text" class="form-control inputDesc" id="inputDesc" placeholder="Ex.: Relatório Fotográfico Missão Guardiões do Bioma 3 ET/2023 - 01 a 15/05/2023">
+            <input type="text" class="form-control inputDesc" id="inputDesc" placeholder="Ex.: Relatório Fotográfico Missão Guardiões do Bioma 3 ET/2023 - 01 a 15/05/2023" value="Relatório fotográfico">
             <div class="divButtons">
                 <label for="fileInput" class="btn btn-primary btnInput">Carregar imagens</label>
                 <input type="file" id="fileInput" multiple style="display: none;">

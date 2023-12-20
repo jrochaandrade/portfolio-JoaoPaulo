@@ -70,8 +70,9 @@ function handleFileSelect(event) {
                 // Loop para criar divs e imagens
                 for (let i = 0; i < images.length; i += 3) {
                     // Crie uma div com a classe 'pageWithBorder'
-                    const pageDiv = document.createElement('div');
-                    pageDiv.className = 'pageWithBorder';
+                    const pageDiv = document.createElement('div')
+                    pageDiv.className = 'pageWithBorder'
+                    pageDiv.setAttribute('name', 'pageWithBorder')
                     pageDiv.id = 'pageWithBorder' + [cont]
 
                     // Cria as div e o conteúdo do cabeçalho
@@ -90,7 +91,7 @@ function handleFileSelect(event) {
                     // Cria o logo 02 da direita
                     const img2 = document.createElement('img')
                     img2.className = 'logo2'
-                    img2.src = '/images/logo2.jpg';
+                    img2.src = '/images/logo2.png';
                     // Cria o logo 03 da direita
                     const img3 = document.createElement('img')
                     img3.className = 'logo3'
@@ -123,6 +124,12 @@ function handleFileSelect(event) {
                         pageDiv.appendChild(divImages);
                     }
 
+                    // Adiciona o número da página no rodapé
+                    const pageCount = document.createElement('p');
+                    pageCount.className = 'pageNumber';
+                    pageCount.innerText = `Página ${cont + 1} de ${Math.ceil(images.length / 3)}`;
+                    pageDiv.appendChild(pageCount);
+
                     // Adicione a div criada ao contêiner
                     document.getElementById('photoContainer').appendChild(pageDiv);
                     cont++
@@ -140,16 +147,19 @@ function handleFileSelect(event) {
 const btnPdf = document.getElementById('btnPdf');
 btnPdf.addEventListener('click', generatePdf);
 // Função para gerar o pdf
-function generatePdf() {
+function generatePdf() {    
     const page = document.getElementById('page');
-    const pageWithBorder = document.getElementsByClassName('pageWithBorder')
+    const pageWithBorder = document.getElementsByName('pageWithBorder')
+    console.log(pageWithBorder.length)
     const lastDiv = pageWithBorder[pageWithBorder.length - 1];
+    console.log(lastDiv)
     
     lastDiv.className = 'lastPageWithBorder'
+
     
     html2pdf(page, {
         margin: 0,
-        filename: 'Teste.pdf',
+        filename: 'Relatório Fotográfico.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: {
