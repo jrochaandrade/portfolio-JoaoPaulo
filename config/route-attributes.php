@@ -25,7 +25,7 @@ return [
         app_path('Http/Controllers/Home'),
         //...$path_modules,
 
-        'Modules\InteractiveMap\app\Http\Controllers\\' => base_path('Modules\InteractiveMap\app\Http\Controllers'),
+        'Modules/InteractiveMap/app/Http/Controllers\\' => base_path('Modules/InteractiveMap/app/Http/Controllers'),
 
                
         
