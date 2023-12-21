@@ -9,10 +9,8 @@
 <div class="home">
     <div class="text">
         <div class="container-fluid content">
-            <h1>
-                Em desenvolvimento! 
-                <i class="fa-solid fa-person-digging"></i>
-            </h1> 
+            <h1>Em desenvolvimento!</h1> 
+            <img src="{{asset('gifs/const.gif')}}" alt="">
         </div>
     </div>
 </div>
