@@ -45,7 +45,8 @@
                 Protótipo para geração do relatório fotográfico utilizandos no âmbito do Batalhão de Polícia Ambiental<br><br>
                 As fotos podem ser carregadas fora de ordem desde que os metadados das imagens estejam íntegros<br><br>
                 Digite um título, carregue as imagens e em seguida clique em gerar PDF<br><br>
-                Obs.: Se ao baixar o PDF estiver desconfigurado, clique em gerar pdf novamente
+                Obs.: Se ao baixar o PDF estiver desconfigurado, clique em gerar pdf novamente<br><br>
+                Obs.2: Se estiver usando dispositívo móvel, utilizar o navegador em versão Desktop
             </h5>
             <label for="inputDesc" id="labelDescription">Título do relatório</label>
             <input type="text" class="form-control inputDesc" id="inputDesc" placeholder="Ex.: Relatório Fotográfico Missão Guardiões do Bioma 3 ET/2023 - 01 a 15/05/2023" value="Relatório fotográfico">
