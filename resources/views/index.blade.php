@@ -9,8 +9,10 @@
 <div class="home">
     <div class="text">
         <div class="container-fluid content">
-            <h1>teste</h1>
-            
+            <h1>
+                Em desenvolvimento! 
+                <i class="fa-solid fa-person-digging"></i>
+            </h1> 
         </div>
     </div>
 </div>
