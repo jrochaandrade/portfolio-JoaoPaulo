@@ -29,7 +29,7 @@ class InteractiveMapController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    #[Get(uri: '/mapa', name: 'mapa.index')]
+    //#[Get(uri: '/mapa', name: 'mapa.index')]
     public function index(Request $request)
     {
         //$polygonsData = PolygonData::paginate(5);

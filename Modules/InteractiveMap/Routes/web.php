@@ -18,7 +18,7 @@ use Modules\InteractiveMap\app\Http\Controllers\InteractiveMapController;
     Route::get('/', 'InteractiveMapController@index');
 }); */
 
-Route::get('/map', [InteractiveMapController::class, 'index'])->name('map.index');
+Route::get('/mapa', [InteractiveMapController::class, 'index'])->name('mapa.index');
 Route::post('/uploadKml', [InteractiveMapController::class, 'uploadKml'])->name('uploadKml');
 
 
