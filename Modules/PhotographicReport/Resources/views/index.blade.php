@@ -3,12 +3,12 @@
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/report.css') }}">
-<script src="{{ asset('js/scriptsInteractiveIndex.js') }}" defer></script>
+
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+<!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script> -->
 
 
 <!-- <script src="{{ asset('node_modules/jspdf/dist/jspdf.umd.min.js') }}"></script>
@@ -20,7 +20,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
 
 
-<script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+<!-- <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script> -->
 
 
 <script src="{{ asset('node_modules/exif-js/exif.js') }}" defer></script>
@@ -42,8 +42,8 @@
     <div class="text">
         <div class="container-fluid content">
             <h5 class="h5">
-                Protótipo para geração do relatório fotográfico utilizandos no âmbito do Batalhão de Polícia Ambiental<br>
-                As fotos podem ser carregadas fora de ordem desde que os metadados da imagem esteja íntegro<br><br>
+                Protótipo para geração do relatório fotográfico utilizandos no âmbito do Batalhão de Polícia Ambiental<br><br>
+                As fotos podem ser carregadas fora de ordem desde que os metadados das imagens estejam íntegros<br><br>
                 Digite um título, carregue as imagens e em seguida clique em gerar PDF<br><br>
                 Obs.: Se ao baixar o PDF estiver desconfigurado, clique em gerar pdf novamente
             </h5>
