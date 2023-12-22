@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('fileInput').addEventListener('change', handleFileSelect);
 
 // Verifica se o arquivo é do tipo imagem, e extrai o metadados
@@ -152,20 +153,20 @@ function handleFileSelect(event) {
 }
 
 function scrollToBottom() {
-    setTimeout(function() {
+    
         window.scrollTo(0,document.body.scrollHeight);
-    }, 5000);  // Atraso de 2 segundos
+    
 }
 
 
 
 function scrollToTop() {
-    setTimeout(function () {
+    
         window.scrollTo(0, 0);
-    }, 6000)
+    
 }
 
-
+});
 
 
 
@@ -252,3 +253,5 @@ function generatePdf() {
 
 
 
+
+    

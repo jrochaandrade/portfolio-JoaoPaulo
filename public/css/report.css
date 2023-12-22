@@ -3,6 +3,10 @@
     margin: 0px;
 }
 
+.card-header {
+    min-width: 762px;
+}
+
 
 .main {
     display: flex;
