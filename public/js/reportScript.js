@@ -144,17 +144,17 @@ function handleFileSelect(event) {
         });
 
         // Chame a função quando quiser rolar para o final da página
-scrollToBottom();
+        scrollToBottom();
 
-// Chame a função quando quiser rolar para o topo da página
-scrollToTop();
+        // Chame a função quando quiser rolar para o topo da página
+        scrollToTop();
 
 }
 
 function scrollToBottom() {
     setTimeout(function() {
         window.scrollTo(0,document.body.scrollHeight);
-    }, 7000);  // Atraso de 2 segundos
+    }, 5000);  // Atraso de 2 segundos
 }
 
 
@@ -162,7 +162,7 @@ function scrollToBottom() {
 function scrollToTop() {
     setTimeout(function () {
         window.scrollTo(0, 0);
-    }, 8000)
+    }, 6000)
 }
 
 
