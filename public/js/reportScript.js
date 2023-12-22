@@ -154,7 +154,7 @@ scrollToTop();
 function scrollToBottom() {
     setTimeout(function() {
         window.scrollTo(0,document.body.scrollHeight);
-    }, 5000);  // Atraso de 2 segundos
+    }, 7000);  // Atraso de 2 segundos
 }
 
 
@@ -162,7 +162,7 @@ function scrollToBottom() {
 function scrollToTop() {
     setTimeout(function () {
         window.scrollTo(0, 0);
-    }, 6000)
+    }, 8000)
 }
 
 
