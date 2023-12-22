@@ -85,7 +85,7 @@ function handleFileSelect(event) {
                     img1.className = 'logo1'
                     img1.src = '/images/logo1.png';
                     // Cria a descrição do centro do cabeçalho
-                    const title = document.createElement('label')
+                    const title = document.createElement('p')
                     title.className = 'title'
                     title.innerHTML = 'Secretaria de Estado da Segurança, Defesa e Cidadania<br>Polícia Militar do estado de Rondônia<br>Batalhão de Polícia Ambiental<br>3ª Companhia de Polícia Ambiental<br>Seção de Planejamento Operacional'
                     // Cria o logo 02 da direita
@@ -102,8 +102,8 @@ function handleFileSelect(event) {
                     divLogos.appendChild(logos)
                     // Recebe o valor digitado no input do titulo
                     const inputDesc = document.getElementById('inputDesc').value
-                    // Cria um label para receber o texto digitado
-                    const titleDoc = document.createElement('label')
+                    // Cria um paragrafo para receber o texto digitado
+                    const titleDoc = document.createElement('p')
                     titleDoc.className = 'description'
                     titleDoc.innerText = inputDesc
 
@@ -142,7 +142,34 @@ function handleFileSelect(event) {
         .catch(error => {
             console.error('Erro ao obter metadados Exif:', error);
         });
+
+        // Chame a função quando quiser rolar para o final da página
+scrollToBottom();
+
+// Chame a função quando quiser rolar para o topo da página
+scrollToTop();
+
 }
+
+function scrollToBottom() {
+    setTimeout(function() {
+        window.scrollTo(0,document.body.scrollHeight);
+    }, 5000);  // Atraso de 2 segundos
+}
+
+
+
+function scrollToTop() {
+    setTimeout(function () {
+        window.scrollTo(0, 0);
+    }, 6000)
+}
+
+
+
+
+
+
 // Obtem o botão gerar pdf
 const btnPdf = document.getElementById('btnPdf');
 btnPdf.addEventListener('click', generatePdf);
@@ -150,15 +177,17 @@ btnPdf.addEventListener('click', generatePdf);
 function generatePdf() {    
     const page = document.getElementById('page');
     const pageWithBorder = document.getElementsByName('pageWithBorder')
-    console.log(pageWithBorder.length)
+    
     const lastDiv = pageWithBorder[pageWithBorder.length - 1];
-    console.log(lastDiv)
+    
     
     lastDiv.className = 'lastPageWithBorder'
 
+    /* // Força o recálculo do layout antes de gerar o PDF
+    window.dispatchEvent(new Event('resize')); */
     
     html2pdf(page, {
-        margin: 0,
+        margin: [0, 0, 0, 0],
         filename: 'Relatório Fotográfico.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
@@ -170,4 +199,56 @@ function generatePdf() {
         },
     });
 }
+
+
+// Tentando com imprimir
+/* const btnPdf = document.getElementById('btnPdf');
+btnPdf.addEventListener('click', generatePdf);
+
+// Função para gerar o PDF
+function generatePdf() {    
+    const page = document.getElementById('page').innerHTML
+    const pageWithBorder = document.getElementsByName('pageWithBorder');
+    console.log(pageWithBorder.length);
+    const lastDiv = pageWithBorder[pageWithBorder.length - 1];
+    console.log(lastDiv);
+    
+    lastDiv.className = 'lastPageWithBorder';
+
+
+    let originalContent = document.body.innerHTML
+    document.body.innerHTML = page
+    window.print()
+    document.body.innerHTML = originalContent
+} */
+
+
+/* const btnPdf = document.getElementById('btnPdf');
+btnPdf.addEventListener('click', generatePdf);
+
+function generatePdf() {
+    window.jsPDF = window.jspdf.jsPDF;
+
+    var doc = new jsPDF();
+
+    var elementHTML = $('#photoContainer').html();
+
+    doc.html(elementHTML, {
+        callback: function (doc) {
+            doc.save();
+        },
+        x: 10,
+        y: 10,
+        html2canvas: {
+            scale: 2
+        },
+        jsPDF: {
+            unit: 'in',
+            format: 'letter',
+            orientation: 'portrait'
+        }
+    });
+} */
+
+
 

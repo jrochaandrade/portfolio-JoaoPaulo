@@ -18,3 +18,6 @@ use Modules\PhotographicReport\Http\Controllers\PhotographicReportController;
 }); */
 
 Route::get('/report', [PhotographicReportController::class, 'index'])->name('report.index');
+//Route::post('/upload', [PhotographicReportController::class, 'upload'])->name('report.upload');
+//Route::post('/upload', 'PhotographicReportController@upload')->name('report.upload');
+

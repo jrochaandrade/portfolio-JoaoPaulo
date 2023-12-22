@@ -61,7 +61,8 @@
     line-height: 1.3;
 }
 
-.pageWithBorder {    
+.pageWithBorder {
+    min-width: 761px;    
     border: 1px solid black;
     margin-bottom: 27.5px;    
     height: 1095px; 
@@ -78,6 +79,9 @@
 .page {
     width: 777px;
     padding: 10px;    
+}
+.photoContainer {
+    min-width: 762px;
 }
 
 .photoContainerDynamic {
