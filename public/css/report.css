@@ -70,7 +70,7 @@
 }
 
 .pageWithBorder {
-    min-width: 761px;    
+    min-width: 758px;    
     border: 1px solid black;
     margin-bottom: 27.5px;    
     height: 1095px; 
@@ -89,7 +89,7 @@
     padding: 10px;    
 }
 .photoContainer {
-    min-width: 762px;
+    min-width: 758px;
 }
 
 .photoContainerDynamic {

@@ -230,6 +230,7 @@ body.dark .sidebar header .toggle {
     opacity: 1;
     display: block;
     background-color: var(--primary-color);
+    z-index: 2;
     /* width: 180px; */
     
 }
@@ -437,9 +438,14 @@ body.dark .switch::before {
     width: 200px;
 }
 
+.map {
+    z-index: 0;
+}
+
 .containerMap {
     display: flex;    
     justify-content: center;
+    z-index: 0;
 }
 
 .clearBtn {
