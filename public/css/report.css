@@ -147,7 +147,7 @@
 
 
 /* Media query para telas menores que 768px */
-@media (max-width: 400px) {
+@media (max-width: 768px) {
     .page {
         width: 791px;           
     }
