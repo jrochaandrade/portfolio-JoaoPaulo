@@ -159,4 +159,27 @@
     .content {
         min-width: 900px;
     }
+    
+    /* .h5 {
+        width: 210px;
+    } */
+
+    /* .card-header {
+        width: 210px;
+    } */
+    /* .card-header h1 {
+        font-size: 25px;
+    } */
+
+    #inputDesc {
+        width: 210px;
+    }
+
+    .btnInput {
+        width: 210px;
+    }
+
+    #btnPdf {
+        width: 210px;
+    }
 }
