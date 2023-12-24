@@ -146,4 +146,17 @@
 }
 
 
+/* Media query para telas menores que 768px */
+@media (max-width: 400px) {
+    .page {
+        width: 791px;           
+    }
 
+    .main {
+        min-width: 887px;
+    }
+    
+    .content {
+        min-width: 900px;
+    }
+}
