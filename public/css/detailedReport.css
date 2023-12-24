@@ -1,0 +1,45 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+/* .main > * {
+    margin-bottom: 10px;
+} */
+
+/* .divRadiosBO {
+    display: flex;
+    
+} */
+
+.labelEmbargo {
+    display: none;
+}
+
+.inputEmbargo {
+    display: none;
+}
+
+.labelLumber {
+    display: none;
+}
+
+.inputLumber {
+    display: none;
+}
+
+.labelNaturalWood {
+    display: none;
+}
+
+.inputNaturalWood {
+    display: none;
+}
+
+.labelImageLetter {
+    display: none;
+}
+
+.inputImageLetter {
+    display: none;
+}

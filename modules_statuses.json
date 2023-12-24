@@ -1,5 +1,6 @@
 {
     "InteractiveMap": true,
     "OffenderRegistry": true,
-    "PhotographicReport": true
+    "PhotographicReport": true,
+    "DetailedReport": true
 }
