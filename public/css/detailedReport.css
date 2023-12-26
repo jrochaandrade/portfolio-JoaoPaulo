@@ -1,6 +1,30 @@
 * {
     padding: 0px;
     margin: 0px;
+    font-size: 15px;    
+}
+
+/* .titleHeader {
+    display: flex;
+    justify-content: center;
+} */
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    padding: 10px;
+    min-width: 900px;
+    background-color: white;
+    color: black;
+}
+
+.header {
+    height: 125px;
+    padding: 5px;
+    margin-bottom: 30px;
 }
 
 /* .main > * {
@@ -42,4 +66,124 @@
 
 .inputImageLetter {
     display: none;
+}
+
+.mitigating {
+    display: flex;
+    flex-direction: column;
+}
+
+.aggravating {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkboxAgravating {
+    display: flex;
+    flex-direction: column;
+}
+
+.divDeforestationSize {
+    display: none;
+}
+
+.divQuantityWood {
+    display: none;
+}
+
+
+
+.logos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;    
+    padding: 10px 20px;
+    height: 117px; 
+}
+
+.logos span {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    
+}
+
+.logos .logo1 {
+    height: 80px;
+    width: 167px;
+}
+
+.logos .logo2 {
+    height: 72px;
+    width: 70px;
+    /* margin-right: 5px; */
+}
+
+.logos .logo3 {
+    height: 72px;
+    width: 70px;
+    /* margin-right: 5px; */
+}
+
+.titleBody {
+    display: flex;    
+    flex-direction: column;    
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.titleBody p {
+    margin-bottom: 5px;
+}
+
+.divDocs {
+    margin-bottom: 20px;
+}
+
+.divDocs p {
+    margin-bottom: 5px;
+}
+
+.dataOffender {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tableDataOffender {
+    font-size: 5px;
+    width: 700px;    
+}
+
+.tableDataOffender th, .tableDataOffender td {
+    padding: 1px; /* Adapte conforme necessário para ajustar a altura das células */
+    /* font-size: 13px; */
+    height: 5px;
+}
+
+.cell{
+    width: 168px;
+}
+
+.titles {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.historic {
+    white-space: pre-line;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+}
+
+.images img {
+    width: 500px;
+    height: 290px;
+    margin-bottom: 10px;
+    border: 1px solid black;
 }
