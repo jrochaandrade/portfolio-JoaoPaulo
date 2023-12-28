@@ -4,6 +4,11 @@
     font-size: 15px;    
 }
 
+p {
+    text-align: justify;
+    line-height: 1.5;
+}
+
 /* .titleHeader {
     display: flex;
     justify-content: center;
@@ -12,86 +17,24 @@
 .content {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;    
 }
 
 .main {
-    padding: 10px;
-    min-width: 900px;
+    width: 884px;
     background-color: white;
     color: black;
+    
+    padding: 31px;
+    height: 100%;
 }
 
 .header {
-    height: 125px;
+    height: 138px;
     padding: 5px;
     margin-bottom: 30px;
 }
-
-/* .main > * {
-    margin-bottom: 10px;
-} */
-
-/* .divRadiosBO {
-    display: flex;
-    
-} */
-
-.labelEmbargo {
-    display: none;
-}
-
-.inputEmbargo {
-    display: none;
-}
-
-.labelLumber {
-    display: none;
-}
-
-.inputLumber {
-    display: none;
-}
-
-.labelNaturalWood {
-    display: none;
-}
-
-.inputNaturalWood {
-    display: none;
-}
-
-.labelImageLetter {
-    display: none;
-}
-
-.inputImageLetter {
-    display: none;
-}
-
-.mitigating {
-    display: flex;
-    flex-direction: column;
-}
-
-.aggravating {
-    display: flex;
-    flex-direction: column;
-}
-
-.checkboxAgravating {
-    display: flex;
-    flex-direction: column;
-}
-
-.divDeforestationSize {
-    display: none;
-}
-
-.divQuantityWood {
-    display: none;
-}
-
-
 
 .logos {
     display: flex;
@@ -170,6 +113,11 @@
     font-weight: 600;
 }
 
+.titles2 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
 .historic {
     white-space: pre-line;
     text-align: justify;
@@ -179,6 +127,8 @@
 .images {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .images img {
@@ -187,3 +137,60 @@
     margin-bottom: 10px;
     border: 1px solid black;
 }
+
+.team {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tableTeam {
+    font-size: 5px;
+    width: 100%;
+    margin-bottom: 80px; 
+}
+
+.tableTeam th, .tableTeam td {
+    padding: 1px;
+    white-space: nowrap;
+    padding: 0px 10px 0px 10px;    
+}
+
+.signature {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signature p {
+    margin: 0px;
+}
+
+.divBtn {
+    display: flex;
+    flex-direction: row;
+}
+
+.divBtn .btnPrint {
+    margin-right: 5px;
+}
+
+@media print {
+    .no-print{
+        display: none;
+    }
+}
+
+/* @media print {
+    @page {
+        size: auto;   
+        margin: 0mm; 
+    }
+
+    .main {
+        margin: 10mm, 10mm, 10mm, 5mm ;  
+    }
+}
+ */

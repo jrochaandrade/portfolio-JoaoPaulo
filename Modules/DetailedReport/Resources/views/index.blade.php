@@ -2,9 +2,10 @@
 
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/detailedReport.css') }}">
+<link rel="stylesheet" href="{{ asset('css/createDetailedReport.css') }}">
 
-<script src="{{ asset('js/detailedReport.js') }}" defer type="module"></script>
+
+<script src="{{ asset('js/createDetailedReport.js') }}" defer type="module"></script>
 
 
 @endsection
@@ -37,11 +38,14 @@
                             <input type="radio" name="typeBO" id="typePA" value="Prisão e Apreensão - PA">
                             <label for="typePA">PA</label>
                         </div>
+                        <label for="articleBO">Artigo Criminal:</label>
+                        <input type="text" class="form-control articleBO" name="articleBO" id="articleBO">
+
                         <label for="inputAI">Auto de Infração II:</label>
                         <input type="number" class="form-control" name="inputAI" id="inputAI">
                         <label for="valueAI">Valor do AI:</label>
                         <input type="number" class="form-control valueAI" name="valueAI" id="valueAI">
-                        <label for="articleAI">Artigo usado:</label>
+                        <label for="articleAI">Artigo Administrativo:</label>
                         <input type="text" class="form-control articleAI" name="articleAI" id="articleAI">
                         <span>Tipo da infração:</span>
                         <select name="selectTypeAI" class="form-control" id="selectTypeAI">
@@ -52,8 +56,15 @@
                         </select>
                         <div class="divDeforestationSize" id="divDeforestationSize">
                             <label for="deforestationSize" id="labelDeforestationSize">Tamanho do desmatamento (ha):</label>
-                            <input type="number" class="form-control" name="inputDeforestationSize" id="inputDeforestationSize">
-                        </div class="divlabelQuantityWood" id="divlabelQuantityWood">
+                            <input type="number" class="form-control" name="inputDeforestationSize" id="inputDeforestationSize" step="0.001">
+                            <input type="radio" name="reserve" id="offReserve" value="offReserve">
+                            <label for="offReserve">Fora da reserva legal</label>
+                            <input type="radio" name="reserve" id="reserve" value="reserve">
+                            <label for="reserve">Reserva legal</label>
+                            <input type="radio" name="reserve" id="regeneration" value="regeneration">
+                            <label for="regeneration">Vegetação em regeneração</label>
+                            
+                        </div >
                         <div class="divQuantityWood" id="divQuantityWood">
                             <label for="quantityWood" id="labelQuantityWood">Quantidade de madeira (m³):</label>
                             <input type="number" class="form-control" name="inputQuantityWood" id="inputQuantityWood">
@@ -228,11 +239,34 @@
                             </fieldset>
                         </div>
                     </div>
-                    <div class="administrativeAndCriminal">
+                    <!-- <div class="administrativeAndCriminal">
                         <h3>Das medidas administrativas e criminais</h3>
                         <div>
                             <h4>Medidas administrativas:</h4>
                         </div>
+                    </div> -->
+                    <div class="team">
+                        <p class="tiles2">Componentes da equipe</p>
+                        <label for="cmt">Comandante - Nome completo - Graduação - RE:</label>
+                        <input type="text" class="form-control cmt" id="cmt" name="cmt">
+                        <label for="unitCmt">Unidade CMT:</label>
+                        <input type="text" class="form-control unitCmt" name="unitCmt" id="unitCmt" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                        <label for="mot">Motorista:</label>
+                        <input type="text" class="form-control mot" id="mot" name="mot">
+                        <label for="unitMot">Unidade Motorista:</label>
+                        <input type="text" class="form-control unitMot" name="unitMot" id="unitMot" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                        <label for="ptr1">Patrulheiro 1:</label>
+                        <input type="text" class="form-control ptr1" id="ptr1" name="ptr1">
+                        <label for="unitPtr1">Unidade Patrulheiro 1:</label>
+                        <input type="text" class="form-control unitPtr1" name="unitPtr1" id="unitPtr1" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                        <label for="ptr2">Patrulheiro 2:</label>
+                        <input type="text" class="form-control ptr2" id="ptr2" name="ptr2">
+                        <label for="unitPtr2">Unidade Patrulheiro 2:</label>
+                        <input type="text" class="form-control unitPtr2" name="unitPtr2" id="unitPtr2" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                        <label for="ptr3">Patrulheiro 3:</label>
+                        <input type="text" class="form-control ptr3" id="ptr3" name="ptr3">
+                        <label for="unitPtr3">Unidade Patrulheiro 3:</label>
+                        <input type="text" class="form-control unitPtr3" name="unitPtr3" id="unitPtr3" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
                     </div>
                     <button class="btn btn-primary" id="generateReport">Gerar Relatório</button>
                 </form>

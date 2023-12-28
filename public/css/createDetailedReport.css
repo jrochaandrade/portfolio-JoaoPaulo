@@ -1,0 +1,94 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;    
+}
+
+/* .titleHeader {
+    display: flex;
+    justify-content: center;
+} */
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    padding: 10px;
+    min-width: 900px;
+    background-color: white;
+    color: black;
+}
+
+.header {
+    height: 125px;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+
+/* .main > * {
+    margin-bottom: 10px;
+} */
+
+/* .divRadiosBO {
+    display: flex;
+    
+} */
+
+.labelEmbargo {
+    display: none;
+}
+
+.inputEmbargo {
+    display: none;
+}
+
+.labelLumber {
+    display: none;
+}
+
+.inputLumber {
+    display: none;
+}
+
+.labelNaturalWood {
+    display: none;
+}
+
+.inputNaturalWood {
+    display: none;
+}
+
+.labelImageLetter {
+    display: none;
+}
+
+.inputImageLetter {
+    display: none;
+}
+
+.mitigating {
+    display: flex;
+    flex-direction: column;
+}
+
+.aggravating {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkboxAgravating {
+    display: flex;
+    flex-direction: column;
+}
+
+.divDeforestationSize {
+    display: none;
+}
+
+.divQuantityWood {
+    display: none;
+}
+
+

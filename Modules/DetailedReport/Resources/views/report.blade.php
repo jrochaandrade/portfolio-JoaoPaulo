@@ -4,6 +4,19 @@
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/detailedReport.css') }}">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
+
+<script src="{{ asset('js/printThis.js') }}" defer type="module"></script>
 <script src="{{ asset('js/detailedReport.js') }}" defer type="module"></script>
 
 
@@ -19,7 +32,7 @@
         </div>
     </div>    
     <div class="text">
-        <div class="container-fluid content">            
+        <div class="container-fluid content" id="content">            
             
             <div class="main" id="main">                
                 <div class="header">
@@ -103,10 +116,90 @@
 
                     <div class="images">
                     <img src="data:image/jpeg;base64,{{$data['image1']}}" alt="">
+                    <img src="data:image/jpeg;base64,{{$data['image2']}}" alt="">
+                    <img src="data:image/jpeg;base64,{{$data['image3']}}" alt="">
+                    <img src="data:image/jpeg;base64,{{$data['image4']}}" alt="">
                     </div>
 
+                    <div class="reasons">
+                        <p class="titles">2. Dos Motivos apresentado pelo envolvido</p>
+                        <p>{{$data['motive']}}</p>
+                    </div>
+
+                    <div class="mitigatingAndAggravating">
+                        <p class="titles">3. Das atenuantes e agravantes</p>
+                        <div class="mitigating">
+                            <p class="titles2">3.1 Das atenuantes</p>
+                            @foreach ($data['mitigating'] as $mitigating)
+                                <p>{{$mitigating}}</p>
+                            @endforeach
+                        </div>
+                        <div class="aggravating">
+                            <p class="titles2">3.2 Das agravantes</p>
+                            @foreach ($data['aggravating'] as $aggravating)
+                                <p>{{$aggravating}}</p>
+                            @endforeach
+                        </div>
+
+                        <div class="administrativeAndCriminal">
+                            <p class="titles">4. Das medidas administrativas e criminais</p>
+                            <p>Isto posto, foram necessárias medidas administrativas e criminais que se seguem.</p>
+                            <div class="administrative">
+                                <p class="titles2">4.1 Das medidas administrativas</p>
+                                <p>Como medidas adminstrativas foram lavrados:</p>
+                                <p>Auto de infração II Nº <strong>{{$data['inputAI']}}</strong> na importância de R${{$data['valueAI']}}, por
+                                {!!$data['administrative']!!}</p>
+
+                                <p>{!!$data['textEmbargo']!!}</p>
+                            </div>
+                            <div class="criminal">
+                                <p class="titles2">4.2 Das medidas criminais</p>
+                                <p>Dessa forma, a conduta do infrator implicou, em tese, no crime previsto no {{$data['articleBO']}} da Lei Federal nº 9.605 de 12 de Fevereiro de 1998, in verbis:</p>
+                                <p>Portanto, foi confeccionado o {{$data['typeBO']}} Nº <strong>{{$data['inputBO']}}</strong> em desfavor de {{$data['name']}}.</p>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="team">
+                        <table class="table table-bordered tableTeam">
+                            <tr>
+                                <th colspan="2" class="text-center">Componentes da equipe</th>
+                            </tr>
+                            <tr>
+                                <th class="cell">{{$data['cmt']}}</th>
+                                <td>{{$data['unitCmt']}}</td>
+                            </tr>
+                            <tr>
+                                <th class="cell">{{$data['mot']}}</th>
+                                <td>{{$data['unitMot']}}</td>
+                            </tr>
+                            <tr>
+                                <th class="cell">{{$data['ptr1']}}</th>
+                                <td>{{$data['unitPtr1']}}</td>
+                            </tr>
+                            <tr>
+                                <th class="cell">{{$data['ptr2']}}</th>
+                                <td>{{$data['unitPtr2']}}</td>
+                            </tr>
+                            <tr>
+                                <th class="cell">{{$data['ptr3']}}</th>
+                                <td>{{$data['unitPtr3']}}</td>
+                            </tr>                            
+                        </table>
+                    </div>
+
+                    <div class="signature">
+                        <p>{{$data['cmt']}}</p>
+                        <p>Relator</p>
+                    </div>
+
+                    
                 </div>
             </div> 
+            <div class="divBtn">
+                <button class="btn btn-primary btnPrint" id="btnPrint">Imprimir</button>
+                <button class="btn btn-success btnPfd" id="btnPdf">Gerar PDF</button>
+            </div>
         </div>
     </div>
 </div>

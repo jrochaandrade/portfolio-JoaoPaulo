@@ -21,20 +21,69 @@ class DetailedReportController extends Controller
     public function generate()
     {
         $data = array();
-
+        
         if($_SERVER["REQUEST_METHOD"] == 'POST') {
             $data['inputBO'] = isset($_POST['inputBO']) ? $_POST['inputBO'] : null;
             $data['typeBO'] = isset($_POST['typeBO']) ? $_POST['typeBO'] : null;
             $data['inputAI'] = isset($_POST['inputAI']) ? $_POST['inputAI'] : null;
             $data['valueAI'] = isset($_POST['valueAI']) ? $_POST['valueAI'] : null;
             $data['articleAI'] = isset($_POST['articleAI']) ? $_POST['articleAI'] : null;
+            $data['articleBO'] = isset($_POST['articleBO']) ? $_POST['articleBO'] : null;
             $data['selectTypeAI'] = isset($_POST['selectTypeAI']) ? $_POST['selectTypeAI'] : null;
+            $data['reserve'] = isset($_POST['reserve']) ? $_POST['reserve'] : null;
+            
             $data['inputDeforestationSize'] = isset($_POST['inputDeforestationSize']) ? $_POST['inputDeforestationSize'] : null;
+            
             $data['inputQuantityWood'] = isset($_POST['inputQuantityWood']) ? $_POST['inputQuantityWood'] : null;
             $data['inputEmbargo'] = isset($_POST['inputEmbargo']) ? $_POST['inputEmbargo'] : null;
             $data['inputLumber'] = isset($_POST['inputLumber']) ? $_POST['inputLumber'] : null;
             $data['inputNaturalWood'] = isset($_POST['inputNaturalWood']) ? $_POST['inputNaturalWood'] : null;
             $data['inputImageLetter'] = isset($_POST['inputImageLetter']) ? $_POST['inputImageLetter'] : null;
+            //$sizeIntereger = intval(isset($_POST['inputDeforestationSize']) ? $_POST['inputDeforestationSize'] : null);
+
+            if ($data['inputDeforestationSize'] != null) {
+                if ($data['inputDeforestationSize'] == intval($data['inputDeforestationSize'])) {
+                    $data['sizeIntereger'] = intval(isset($_POST['inputDeforestationSize']) ? $_POST['inputDeforestationSize'] : null);
+                } else {
+                    $fraction = explode ('.', floatval($data['inputDeforestationSize']));
+                    $data['sizeIntereger'] = $fraction[0];
+                    $data['sizeFaction'] = $fraction[1];                
+                }
+            }
+            
+            $data['textEmbargo'] = '';
+
+            if ($data['selectTypeAI'] == 'logging') {
+                if ($data['reserve'] == 'offReserve') {
+                    $typeDeforestation = 'área de vegetação nativa';                    
+                }else if ($data['reserve'] == 'reserve') {
+                    $typeDeforestation = 'área de reserva legal';                    
+                }else {
+                    $typeDeforestation = 'regeneração';
+                }
+
+                $data['administrative'] = ' desmatar floresta nativa em uma área de ' . $data["inputDeforestationSize"] . ' hectares em ' . $typeDeforestation;
+                
+                $data['administrative'] .= ', sem autorização prévia do órgão ambiental competente, conforme o ' . $data["articleAI"] . ', que prevê multa de R$ 5.000,00 (cinco mil reais) por hectare ou fração. Para chegar ao valor obtido, foi ';
+
+                if (intval($data['inputDeforestationSize']) == $data['inputDeforestationSize']) {
+                    $data['administrative'] .= 'multiplicado ' . $data["sizeIntereger"] . ' vezes R$ 5.000,00 totalizando R$' . $data["valueAI"];
+                } else {
+                    $data['administrative'] .= 'multiplicado ' . $data["sizeIntereger"] . ' vezes R$ 5.000,00 mais R$5.000,00 pela fração 0,' .  $data["sizeFaction"] . ' totalizando R$' . $data["valueAI"];
+                }
+                $data['textEmbargo'] = 'A área embargada é de <strong>' . $data['inputDeforestationSize'] . '</strong>  hectares de floresta nativa em ' . $typeDeforestation . ', conforme Termo de Embargo de Nº <strong>' . $data['inputEmbargo'] . '</strong>, para que a área suprimida se regenere.';              
+            } else {
+                $data['administrative'] = 'Em Desenvolvimento';
+            }
+
+            
+
+            //$data['article'] = 'Art. 51 do decreto federal 6.514/2008';
+            
+            
+ 
+            
+            
             //$data['inputImageLetter'] = isset($_POST['inputImageLetter']) ? $_POST['inputImageLetter'] : null;
             $data['name'] = isset($_POST['name']) ? $_POST['name'] : null;
             $data['cpf'] = isset($_POST['cpf']) ? $_POST['cpf'] : null;
@@ -54,6 +103,7 @@ class DetailedReportController extends Controller
             $image3 = $photos[2];
             $image4 = $photos[3]; */
             
+            
             $data['image1'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][0]));
             $data['image2'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][1]));
             $data['image3'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][2]));
@@ -64,6 +114,19 @@ class DetailedReportController extends Controller
             $data['motive'] = isset($_POST['motive']) ? $_POST['motive'] : null;
             $data['mitigating'] = isset($_POST['mitigating']) ? $_POST['mitigating'] : null;
             $data['aggravating'] = isset($_POST['aggravating']) ? $_POST['aggravating'] : null;
+            $data['cmt'] = isset($_POST['cmt']) ? $_POST['cmt'] : null;
+            $data['mot'] = isset($_POST['mot']) ? $_POST['mot'] : null;
+            $data['ptr1'] = isset($_POST['ptr1']) ? $_POST['ptr1'] : null;
+            $data['ptr2'] = isset($_POST['ptr2']) ? $_POST['ptr2'] : null;
+            $data['ptr3'] = isset($_POST['ptr3']) ? $_POST['ptr3'] : null;
+            $data['unitCmt'] = isset($_POST['unitCmt']) ? $_POST['unitCmt'] : null;
+            $data['unitMot'] = isset($_POST['unitMot']) ? $_POST['unitMot'] : null;
+            $data['unitPtr1'] = isset($_POST['unitPtr1']) ? $_POST['unitPtr1'] : null;
+            $data['unitPtr2'] = isset($_POST['unitPtr2']) ? $_POST['unitPtr2'] : null;
+            $data['unitPtr3'] = isset($_POST['unitPtr3']) ? $_POST['unitPtr3'] : null;
+
+            
+            
 
 
             
