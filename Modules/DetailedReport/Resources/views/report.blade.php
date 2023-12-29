@@ -1,5 +1,7 @@
 @extends('layouts.masterPage')
 
+@section('title', 'Polícia Militar Ambiental')
+
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/detailedReport.css') }}">
@@ -26,11 +28,11 @@
 @include('layouts.mainMenu')
 
 <div class="home">
-    <div class="card-header">
+    <!-- <div class="card-header">
         <div class="titleHeader">
             <h1>Relatório Circunstanciado</h1>
         </div>
-    </div>    
+    </div>  -->   
     <div class="text">
         <div class="container-fluid content" id="content">            
             
@@ -111,7 +113,9 @@
 
                     <div class="historic">
                         <p class="titles">1. Dos fatos</p>
-                        <p>{{$data['historic']}}</p>
+                        @foreach ($data['historic'] as $historic)
+                            <p class="indent">{{$historic}}</p>
+                        @endforeach
                     </div>
 
                     <div class="images">
@@ -123,7 +127,7 @@
 
                     <div class="reasons">
                         <p class="titles">2. Dos Motivos apresentado pelo envolvido</p>
-                        <p>{{$data['motive']}}</p>
+                        <p class="pIndent">{{$data['motive']}}</p>
                     </div>
 
                     <div class="mitigatingAndAggravating">
@@ -131,31 +135,31 @@
                         <div class="mitigating">
                             <p class="titles2">3.1 Das atenuantes</p>
                             @foreach ($data['mitigating'] as $mitigating)
-                                <p>{{$mitigating}}</p>
+                                <p class="pIndent">{{$mitigating}}</p>
                             @endforeach
                         </div>
                         <div class="aggravating">
                             <p class="titles2">3.2 Das agravantes</p>
                             @foreach ($data['aggravating'] as $aggravating)
-                                <p>{{$aggravating}}</p>
+                                <p class="pIndent">{{$aggravating}}</p>
                             @endforeach
                         </div>
 
                         <div class="administrativeAndCriminal">
                             <p class="titles">4. Das medidas administrativas e criminais</p>
-                            <p>Isto posto, foram necessárias medidas administrativas e criminais que se seguem.</p>
+                            <p class="pIndent">Isto posto, foram necessárias medidas administrativas e criminais que se seguem.</p>
                             <div class="administrative">
                                 <p class="titles2">4.1 Das medidas administrativas</p>
-                                <p>Como medidas adminstrativas foram lavrados:</p>
-                                <p>Auto de infração II Nº <strong>{{$data['inputAI']}}</strong> na importância de R${{$data['valueAI']}}, por
+                                <p class="pIndent">Como medidas adminstrativas foram lavrados:</p>
+                                <p class="pIndent">Auto de infração II Nº <strong>{{$data['inputAI']}}</strong> na importância de R${{$data['valueAI']}}, por
                                 {!!$data['administrative']!!}</p>
 
-                                <p>{!!$data['textEmbargo']!!}</p>
+                                <p class="pIndent">{!!$data['textEmbargo']!!}</p>
                             </div>
                             <div class="criminal">
                                 <p class="titles2">4.2 Das medidas criminais</p>
-                                <p>Dessa forma, a conduta do infrator implicou, em tese, no crime previsto no {{$data['articleBO']}} da Lei Federal nº 9.605 de 12 de Fevereiro de 1998, in verbis:</p>
-                                <p>Portanto, foi confeccionado o {{$data['typeBO']}} Nº <strong>{{$data['inputBO']}}</strong> em desfavor de {{$data['name']}}.</p>
+                                <p class="pIndent">Dessa forma, a conduta do infrator implicou, em tese, no crime previsto no {{$data['articleBO']}} da Lei Federal nº 9.605 de 12 de Fevereiro de 1998, in verbis:</p>
+                                <p class="pIndent">Portanto, foi confeccionado o {{$data['typeBO']}} Nº <strong>{{$data['inputBO']}}</strong> em desfavor de {{$data['name']}}.</p>
                             </div>
                         </div>                        
                     </div>
@@ -198,7 +202,10 @@
             </div> 
             <div class="divBtn">
                 <button class="btn btn-primary btnPrint" id="btnPrint">Imprimir</button>
-                <button class="btn btn-success btnPfd" id="btnPdf">Gerar PDF</button>
+                <!-- <button class="btn btn-success btnPfd" id="btnPdf">Gerar PDF</button> -->
+                <!-- <a href="{{ route('generate.pdf') }}">Gerar pdf</a> -->
+                <a href="{{ url('report/pdf') }}" class="btn btn-success btnCreatePDF" >Gerar pdf</a>
+                <button class="btn btn-secondary" id="btnBack">Voltar</button>
             </div>
         </div>
     </div>

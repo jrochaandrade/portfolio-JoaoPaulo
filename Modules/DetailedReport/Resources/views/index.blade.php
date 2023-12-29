@@ -24,29 +24,46 @@
             
             <div class="main" id="main">                
                 <form action="{{route('generate')}}" method="post" enctype="multipart/form-data">
-                    @csrf
+                    @csrf                    
                     <div class="occurrenceData">
                         <h3>Dados da Ocorrência</h3>
-                        <label for="inputBO">Numero da ocorrência:</label>
-                        <input type="number" class="form-control" name="inputBO" id="inputBO">
-                        <span for="">Tipo da ocorrência:</span>
-                        <div class="divRadiosBO">
-                            <input type="radio" name="typeBO" id="typeTCO" value="Termo circunstanciado de Ocorrência - TCO">
-                            <label for="typeTCO">TCO</label>
-                            <input type="radio" name="typeBO" id="typeCOP" value="Comunicado de Ocorrência Policial - COP">
-                            <label for="typeCOP">COP</label>
-                            <input type="radio" name="typeBO" id="typePA" value="Prisão e Apreensão - PA">
-                            <label for="typePA">PA</label>
+                        <div class="row">
+                            <div class="col-3">
+                                <label for="inputBO">Numero da ocorrência:</label>
+                                <input type="number" class="form-control" name="inputBO" id="inputBO">
+                            </div>
+                            <div class="col-2">
+                                <span for="">Tipo da ocorrência:</span>
+                                <div class="divRadiosBO">
+                                    <input type="radio" name="typeBO" id="typeTCO" value="Termo circunstanciado de Ocorrência - TCO">
+                                    <label for="typeTCO">TCO</label>
+                                    <input type="radio" name="typeBO" id="typeCOP" value="Comunicado de Ocorrência Policial - COP">
+                                    <label for="typeCOP">COP</label>
+                                    <input type="radio" name="typeBO" id="typePA" value="Prisão e Apreensão - PA">
+                                    <label for="typePA">PA</label>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <label for="articleBO">Artigo Criminal:</label>
+                                <input type="text" class="form-control articleBO" name="articleBO" id="articleBO">
+                            </div>
                         </div>
-                        <label for="articleBO">Artigo Criminal:</label>
-                        <input type="text" class="form-control articleBO" name="articleBO" id="articleBO">
 
-                        <label for="inputAI">Auto de Infração II:</label>
-                        <input type="number" class="form-control" name="inputAI" id="inputAI">
-                        <label for="valueAI">Valor do AI:</label>
-                        <input type="number" class="form-control valueAI" name="valueAI" id="valueAI">
-                        <label for="articleAI">Artigo Administrativo:</label>
-                        <input type="text" class="form-control articleAI" name="articleAI" id="articleAI">
+                        <div class="row">
+                            <div class="col-3">
+                                <label for="inputAI">Auto de Infração II:</label>
+                                <input type="number" class="form-control" name="inputAI" id="inputAI">
+                            </div>
+                            <div class="col-2">
+                                <label for="valueAI">Valor do AI:</label>
+                                <input type="number" class="form-control valueAI" name="valueAI" id="valueAI">
+                            </div>
+                            <div class="col-7">
+                                <label for="articleAI">Artigo Administrativo:</label>
+                                <input type="text" class="form-control articleAI" name="articleAI" id="articleAI">
+                            </div>
+                        </div>
+
                         <span>Tipo da infração:</span>
                         <select name="selectTypeAI" class="form-control" id="selectTypeAI">
                             <option value="" selected disabled>Selecione:</option>

@@ -24,7 +24,7 @@
     <!-- Adicionar estilos -->
     <link rel="stylesheet" href="{{ asset('css/styleDefault.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}"> -->
-    <title>Meu portfolio</title>
+    <title>@yield('title', 'Portifólio DevRocha')</title>
     @yield('card-head')
 </head>
 

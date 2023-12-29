@@ -72,7 +72,7 @@ p {
     display: flex;    
     flex-direction: column;    
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px;    
 }
 
 .titleBody p {
@@ -116,12 +116,16 @@ p {
 .titles2 {
     font-size: 15px;
     font-weight: 600;
+    text-indent: 1rem;
 }
 
 .historic {
     white-space: pre-line;
-    text-align: justify;
-    line-height: 1.5;
+    text-align: justify;    
+}
+
+.historic .indent {
+    text-indent: 3em;
 }
 
 .images {
@@ -166,6 +170,11 @@ p {
 
 .signature p {
     margin: 0px;
+    
+}
+
+.pIndent {
+    text-indent: 3em;
 }
 
 .divBtn {
@@ -174,6 +183,10 @@ p {
 }
 
 .divBtn .btnPrint {
+    margin-right: 5px;
+}
+
+.divBtn .btnCreatePDF {
     margin-right: 5px;
 }
 

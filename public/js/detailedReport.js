@@ -92,5 +92,12 @@ $(document).ready(function() {
     })
 })
 
+document.getElementById('btnBack').addEventListener('click', () => {
+    console.log('clicou')
+    window.history.back();
+    
+})
+
+
 
  
