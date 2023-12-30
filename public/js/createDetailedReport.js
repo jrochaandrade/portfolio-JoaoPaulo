@@ -3,16 +3,31 @@ const selectTypeAI = document.getElementById('selectTypeAI')
 selectTypeAI.addEventListener('change', function () {
     const divDeforestationSize = document.getElementById('divDeforestationSize')
     const divQuantityWood = document.getElementById('divQuantityWood')
+    const divEmbargos = document.getElementById('divEmbargos')
+    const divLumber = document.getElementById('divLumber')
+    const divNaturalWood = document.getElementById('divNaturalWood')
+    const divInputEmbargo = document.getElementById('divInputEmbargo')
+    const divInputImageletter = document.getElementById('divInputImageletter')
+    
     if(selectTypeAI.value === 'logging') {
         divDeforestationSize.style.display = 'block'
+        divEmbargos.style.display = 'block'
         divQuantityWood.style.display = 'none'
+        divLumber.style.display = 'none'
+        divNaturalWood.style.display = 'none'
+        divInputEmbargo.style.display = 'block'
+        divInputImageletter.style.display = 'block'
     } else {
         divQuantityWood.style.display = 'block'
         divDeforestationSize.style.display = 'none'
+        divEmbargos.style.display = 'none'
+        divLumber.style.display = 'block'
+        divNaturalWood.style.display = 'block'
+        divInputEmbargo.style.display = 'none'
+        divInputImageletter.style.display = 'none'
     }    
 })
 /* Fim do script para mudar entre inputs de tamanho desmatamento e quantidade de madeira */
-
 
 /* Script para vericar se possui embargo e mostar input na tela */
 const optionsEmbargo = document.getElementsByName('yesOrNoEmbargos')
@@ -65,6 +80,20 @@ if (optionsImageLetter[0].value === 'yes' && optionsImageLetter[0].checked) {
 
 }    
 /* Fim script para verificar se possui planilha de madeira in-natura e mostrar input na tela */
+
+
+/* Script para vericar se possui atenuantes e mostar na tela */
+const optionsMitigating= document.getElementsByName('yesOrNoMitigating')
+const divMitigating = document.getElementById('divMitigating')
+
+
+if (optionsMitigating[0].value === 'yes' && optionsMitigating[0].checked) {
+    radioYesOrNo(optionsMitigating, divMitigating)
+} else {
+    radioYesOrNo(optionsMitigating, divMitigating)
+
+}    
+/* Fim script para verificar se possui atenuantes e mostrar na tela */
 
 // Função para mostar os inputs
 function actionDynamicShow(label, input) {

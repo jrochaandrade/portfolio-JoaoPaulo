@@ -16,8 +16,13 @@ use Modules\DetailedReport\Http\Controllers\DetailedReportController;
     Route::get('/report/detailed', 'DetailedReportController@index');
 }); */
 
-Route::get('/report/detailed', [DetailedReportController::class, 'index'])->name('detailed.index');
-Route::post('/report/generate', [DetailedReportController::class, 'generate'])->name('generate');
+Route::get('/report/detailed', [DetailedReportController::class, 'index'])->name('detailed');
+
+Route::get('/report/create', [DetailedReportController::class, 'create'])->name('create');
+
+Route::get('/report/generateReport', [DetailedReportController::class, 'generateReport'])->name('generateReport');
+
+Route::post('/report/save', [DetailedReportController::class, 'store'])->name('save');
 
 
 Route::get('/report/pdf', [DetailedReportController::class, 'generatePdf'])->name('generate.pdf');

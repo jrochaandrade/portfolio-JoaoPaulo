@@ -48,27 +48,27 @@
                 <div class="body">
                     <div class="titleBody">
                         <p>Relatório Circunstanciado</p>
-                        <p>Auto de infração ambiental II - <strong>Nº {{$data['inputAI']}}</strong></p>
+                        <p>Auto de infração ambiental II - <strong>Nº {{$data['number_AI']}}</strong></p>
                     </div>
                     <div class="divDocs">
-                        <p>Auto de Infração Ambiental II - <strong>Nº {{$data['inputAI']}}</strong></p>
+                        <p>Auto de Infração Ambiental II - <strong>Nº {{$data['number_AI']}}</strong></p>
 
-                        <p>{{$data['typeBO']}} <strong>Nº {{$data['inputBO']}}</strong></p>
+                        <p>{{$data['type_BO']}} <strong>Nº {{$data['number_BO']}}</strong></p>
                         
-                        @if ($data['inputEmbargo'])
-                        <p>Termo de Embargo - <strong>Nº {{$data['inputEmbargo']}}</strong></p>
+                        @if ($data['number_embargo'])
+                        <p>Termo de Embargo - <strong>Nº {{$data['number_embargo']}}</strong></p>
                         @endif
                         
-                        @if ($data['inputLumber'])
+                        <!-- @if ($data['inputLumber'])
                         <p>Planilha de Madeira Serrada - <strong>Nº {{$data['inputLumber']}}</strong></p>
-                        @endif
+                        @endif -->
                         
-                        @if ($data['inputNaturalWood'])
+                        <!-- @if ($data['inputNaturalWood'])
                         <p>Planilha de Madeira <em>In-Natura</em> - <strong>Nº {{$data['inputNaturalWood']}}</strong></p>
-                        @endif
+                        @endif -->
                         
-                        @if ($data['inputImageLetter'])
-                        <p>Carta Imagem - <strong>Nº {{$data['inputImageLetter']}}</strong></p>
+                        @if ($data['number_letter'])
+                        <p>Carta Imagem - <strong>Nº {{$data['number_letter']}}</strong></p>
                         @endif 
                     </div>
                     <div class="dataOffender">
@@ -97,7 +97,7 @@
                                 <td>{{$data['birthday']}}</td>
                             </tr>
                             <tr>
-                                <th class="cell">FiliaçãoF</th>
+                                <th class="cell">Filiação</th>
                                 <td>{{$data['affiliation']}}</td>
                             </tr>
                             <tr>
@@ -113,10 +113,12 @@
 
                     <div class="historic">
                         <p class="titles">1. Dos fatos</p>
-                        @foreach ($data['historic'] as $historic)
+                        @foreach ($data['historicParagraphs'] as $historic)
                             <p class="indent">{{$historic}}</p>
                         @endforeach
                     </div>
+
+                    
 
                     <div class="images">
                     <img src="data:image/jpeg;base64,{{$data['image1']}}" alt="">
@@ -134,13 +136,13 @@
                         <p class="titles">3. Das atenuantes e agravantes</p>
                         <div class="mitigating">
                             <p class="titles2">3.1 Das atenuantes</p>
-                            @foreach ($data['mitigating'] as $mitigating)
+                            @foreach ($data['mitigatingArray'] as $mitigating)
                                 <p class="pIndent">{{$mitigating}}</p>
                             @endforeach
                         </div>
                         <div class="aggravating">
                             <p class="titles2">3.2 Das agravantes</p>
-                            @foreach ($data['aggravating'] as $aggravating)
+                            @foreach ($data['aggravatingArray'] as $aggravating)
                                 <p class="pIndent">{{$aggravating}}</p>
                             @endforeach
                         </div>
@@ -151,15 +153,15 @@
                             <div class="administrative">
                                 <p class="titles2">4.1 Das medidas administrativas</p>
                                 <p class="pIndent">Como medidas adminstrativas foram lavrados:</p>
-                                <p class="pIndent">Auto de infração II Nº <strong>{{$data['inputAI']}}</strong> na importância de R${{$data['valueAI']}}, por
-                                {!!$data['administrative']!!}</p>
+                                <p class="pIndent">Auto de infração II Nº <strong>{{$data['number_AI']}}</strong> na importância de R${{$data['value_AI']}}, por
+                                {!!$data['text_administrative']!!}</p>
 
-                                <p class="pIndent">{!!$data['textEmbargo']!!}</p>
+                                <p class="pIndent">{!!$data['text_embargo']!!}</p>
                             </div>
                             <div class="criminal">
                                 <p class="titles2">4.2 Das medidas criminais</p>
-                                <p class="pIndent">Dessa forma, a conduta do infrator implicou, em tese, no crime previsto no {{$data['articleBO']}} da Lei Federal nº 9.605 de 12 de Fevereiro de 1998, in verbis:</p>
-                                <p class="pIndent">Portanto, foi confeccionado o {{$data['typeBO']}} Nº <strong>{{$data['inputBO']}}</strong> em desfavor de {{$data['name']}}.</p>
+                                <p class="pIndent">Dessa forma, a conduta do infrator implicou, em tese, no crime previsto no {{$data['article_BO']}} da Lei Federal nº 9.605 de 12 de Fevereiro de 1998, in verbis:</p>
+                                <p class="pIndent">Portanto, foi confeccionado o {{$data['type_BO']}} Nº <strong>{{$data['number_BO']}}</strong> em desfavor de {{$data['name']}}.</p>
                             </div>
                         </div>                        
                     </div>
@@ -170,30 +172,30 @@
                                 <th colspan="2" class="text-center">Componentes da equipe</th>
                             </tr>
                             <tr>
-                                <th class="cell">{{$data['cmt']}}</th>
-                                <td>{{$data['unitCmt']}}</td>
+                                <th class="cell">{{$data['name_CMT']}}</th>
+                                <!-- <td>{{$data['unitCmt']}}</td> -->
                             </tr>
                             <tr>
-                                <th class="cell">{{$data['mot']}}</th>
-                                <td>{{$data['unitMot']}}</td>
+                                <th class="cell">{{$data['name_MOT']}}</th>
+                                <!-- <td>{{$data['unitMot']}}</td> -->
                             </tr>
                             <tr>
-                                <th class="cell">{{$data['ptr1']}}</th>
-                                <td>{{$data['unitPtr1']}}</td>
+                                <th class="cell">{{$data['name_PTR1']}}</th>
+                                <!-- <td>{{$data['unitPtr1']}}</td> -->
                             </tr>
                             <tr>
-                                <th class="cell">{{$data['ptr2']}}</th>
-                                <td>{{$data['unitPtr2']}}</td>
+                                <th class="cell">{{$data['name_PTR2']}}</th>
+                                <!-- <td>{{$data['unitPtr2']}}</td> -->
                             </tr>
                             <tr>
-                                <th class="cell">{{$data['ptr3']}}</th>
-                                <td>{{$data['unitPtr3']}}</td>
+                                <th class="cell">{{$data['name_PTR3']}}</th>
+                                <!-- <td>{{$data['unitPtr3']}}</td> -->
                             </tr>                            
                         </table>
                     </div>
 
                     <div class="signature">
-                        <p>{{$data['cmt']}}</p>
+                        <p>{{$data['name_CMT']}}</p>
                         <p>Relator</p>
                     </div>
 

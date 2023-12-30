@@ -50,10 +50,10 @@
                     </a>
                 </li>
                 <li class="nav-links">
-                    <a href="#">
+                    <a href="{{ route('detailed') }}">
                     <!-- <i class="fa-regular fa-address-card icon"></i> --> <!-- Cadastro infrator -->
                     <i class="bi bi-hourglass-split icon"></i>
-                        <span class="text nav-text">Em breve</span>
+                        <span class="text nav-text">Relatório Circunstanciado</span>
                     </a>
                 </li>
                 <li class="nav-links">

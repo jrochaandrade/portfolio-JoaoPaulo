@@ -4,6 +4,12 @@
     font-size: 15px;    
 }
 
+input {
+    margin-bottom: 20px;
+}
+
+
+
 /* .titleHeader {
     display: flex;
     justify-content: center;
@@ -16,7 +22,7 @@
 
 .main {
     padding: 10px;
-    min-width: 900px;
+    /* width: 900px; */
     background-color: white;
     color: black;
 }
@@ -88,6 +94,30 @@
 }
 
 .divQuantityWood {
+    display: none;
+}
+
+.divEmbargos {
+    display: none;
+}
+
+#divLumber {
+    display: none;
+}
+
+#divNaturalWood {
+    display: none;
+}
+
+#divInputEmbargo {
+    display: none;
+}
+
+#divInputImageletter {
+    display: none;
+}
+
+#divMitigating {
     display: none;
 }
 
