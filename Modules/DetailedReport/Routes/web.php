@@ -20,7 +20,7 @@ Route::get('/report/detailed', [DetailedReportController::class, 'index'])->name
 
 Route::get('/report/create', [DetailedReportController::class, 'create'])->name('create');
 
-Route::get('/report/generateReport', [DetailedReportController::class, 'generateReport'])->name('generateReport');
+Route::get('/report/generateReport/{id}', [DetailedReportController::class, 'show'])->name('generateReport');
 
 Route::post('/report/save', [DetailedReportController::class, 'store'])->name('save');
 

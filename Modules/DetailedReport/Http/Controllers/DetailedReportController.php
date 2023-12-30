@@ -23,13 +23,16 @@ class DetailedReportController extends Controller
      */
     public function index()
     {
+        $perPage = 5;
+        $reports = Report::paginate(5);
+        //dd($reports);
         
-        return view('detailedreport::index');
+        return view('detailedreport::index', compact('reports'));
     }
 
-    public function generateReport(Request $request)
+    public function show($id)
     {   
-        $id = 54;
+        
 
         
         
@@ -463,10 +466,10 @@ class DetailedReportController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+   /*  public function show($id)
     {
         return view('detailedreport::show');
-    }
+    } */
 
     /**
      * Show the form for editing the specified resource.
