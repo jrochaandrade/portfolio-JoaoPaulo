@@ -33,12 +33,6 @@ class DetailedReportController extends Controller
     public function show($id)
     {   
         
-
-        
-        
-
-        
-
         $data = Report::find($id);
         //$historic = isset($_POST['historic']) ? $_POST['historic'] : null;
         $historic = $data['historic'];
@@ -229,6 +223,19 @@ class DetailedReportController extends Controller
             $data['inputQuantityWood'] = isset($_POST['inputQuantityWood']) ? $_POST['inputQuantityWood'] : null;
             $data['inputLumber'] = isset($_POST['inputLumber']) ? $_POST['inputLumber'] : null;
             $data['inputNaturalWood'] = isset($_POST['inputNaturalWood']) ? $_POST['inputNaturalWood'] : null;
+            
+            
+            
+            $data['inputSeizedObjects'] = isset($_POST['inputSeizedObjects']) ? $_POST['inputSeizedObjects'] : null;
+            $data['inputDepositLocation'] = isset($_POST['inputDepositLocation']) ? $_POST['inputDepositLocation'] : null;
+            $data['inputNameFaithful'] = isset($_POST['inputNameFaithful']) ? $_POST['inputNameFaithful'] : null;
+            $data['inputNameresponsible'] = isset($_POST['inputNameresponsible']) ? $_POST['inputNameresponsible'] : null;
+
+
+
+
+
+
 
             $data['name'] = isset($_POST['name']) ? $_POST['name'] : null;
             $data['cpf'] = isset($_POST['cpf']) ? $_POST['cpf'] : null;
@@ -369,7 +376,12 @@ class DetailedReportController extends Controller
             'unit_PTR1' => $data['unitPtr1'],
             'unit_PTR2' => $data['unitPtr2'],
             'unit_PTR3' => $data['unitPtr3'],
-            'unic_id_report' => $unicIdReport
+            'unic_id_report' => $unicIdReport,
+            'seized_objects' => $data['inputSeizedObjects'],
+            'deposit_location' => $data['inputDepositLocation'],
+            'name_faithful' => $data['inputNameFaithful'],
+            'name_responsible' => $data['inputNameresponsible']
+
             
         ]);
 
@@ -478,7 +490,22 @@ class DetailedReportController extends Controller
      */
     public function edit($id)
     {
-        return view('detailedreport::edit');
+        $data = Report::find($id);
+
+        $mitigatingString  = $data['mitigating'];
+
+        $mitigating = explode('*', $mitigatingString);
+        //dd($mitigating);
+        $mitigatingArray = array();
+        foreach ($mitigating as $option) {
+            if($option != null) {
+                $mitigatingArray[] = $option;
+            }
+        }
+        dd($mitigatingArray);
+
+        return view('detailedreport::edit', compact('data', 'mitigatingArray'));
+        //return view('detailedreport::edit');
     }
 
     /**

@@ -1,36 +1,39 @@
 /* Script para mudar entre inputs de tamanho desmatamento e quantidade de madeira */
-const selectTypeAI = document.getElementById('selectTypeAI')
-selectTypeAI.addEventListener('change', function () {
-    const divDeforestationSize = document.getElementById('divDeforestationSize')
-    const divQuantityWood = document.getElementById('divQuantityWood')
-    const divEmbargos = document.getElementById('divEmbargos')
-    const divLumber = document.getElementById('divLumber')
-    const divNaturalWood = document.getElementById('divNaturalWood')
-    const divInputEmbargo = document.getElementById('divInputEmbargo')
-    const divInputImageletter = document.getElementById('divInputImageletter')
-    
-    if(selectTypeAI.value === 'logging') {
-        divDeforestationSize.style.display = 'block'
-        divEmbargos.style.display = 'block'
-        //divQuantityWood.style.display = 'none'
-        //divLumber.style.display = 'none'
-        //divNaturalWood.style.display = 'none'
-        divInputEmbargo.style.display = 'block'
-        divInputImageletter.style.display = 'block'
-    } else {
-        //divQuantityWood.style.display = 'block'
-        divDeforestationSize.style.display = 'none'
-        divEmbargos.style.display = 'none'
-        //divLumber.style.display = 'block'
-        //divNaturalWood.style.display = 'block'
-        divInputEmbargo.style.display = 'none'
-        divInputImageletter.style.display = 'none'
-    }    
-})
+document.addEventListener("DOMContentLoaded", function() {
+    const selectTypeAI = document.getElementById('selectTypeAI');
+    const divDeforestationSize = document.getElementById('divDeforestationSize');
+    const divQuantityWood = document.getElementById('divQuantityWood');
+    //const divEmbargos = document.getElementById('divEmbargos');
+    const divLumber = document.getElementById('divLumber');
+    const divNaturalWood = document.getElementById('divNaturalWood');
+    //const divInputEmbargo = document.getElementById('divInputEmbargo');
+    //const divInputImageletter = document.getElementById('divInputImageletter');
+
+    function updateFormVisibility() {
+        if (selectTypeAI.value === 'logging') {
+            divDeforestationSize.style.display = 'block';
+            //divEmbargos.style.display = 'block';
+            //divInputEmbargo.style.display = 'block';
+           // divInputImageletter.style.display = 'block';
+        } else {
+            divDeforestationSize.style.display = 'none';
+            //divEmbargos.style.display = 'none';
+            //divInputEmbargo.style.display = 'none';
+            //divInputImageletter.style.display = 'none';
+        }
+    }
+
+    // Atualiza a visibilidade ao carregar a página
+    updateFormVisibility();
+
+    // Adiciona um ouvinte para o evento 'change'
+    selectTypeAI.addEventListener('change', updateFormVisibility);
+});
+
 /* Fim do script para mudar entre inputs de tamanho desmatamento e quantidade de madeira */
 
 /* Script para vericar se possui embargo e mostar input na tela */
-const optionsEmbargo = document.getElementsByName('yesOrNoEmbargos')
+/* const optionsEmbargo = document.getElementsByName('yesOrNoEmbargos')
 const labelEmbargo = document.getElementById('labelEmbargo')
 const inputEmbargo = document.getElementById('inputEmbargo')
 
@@ -39,7 +42,7 @@ if (optionsEmbargo[0].value === 'yes' && optionsEmbargo[0].checked) {
 } else {
     radioYesOrNo(optionsEmbargo, labelEmbargo, inputEmbargo)
 
-}    
+}   */  
 /* Fim script para verificar se possui embargo e mostrar input na tela */
 
 /* Script para vericar se possui planilha de madeira serrada e mostar input na tela */
@@ -69,7 +72,7 @@ if (optionsNaturalWood[0].value === 'yes' && optionsNaturalWood[0].checked) {
 /* Fim script para verificar se possui planilha de madeira in-natura e mostrar input na tela */
 
 /* Script para vericar se possui planilha de madeira in-natura e mostar input na tela */
-const optionsImageLetter = document.getElementsByName('yesOrNoImageLetter')
+/* const optionsImageLetter = document.getElementsByName('yesOrNoImageLetter')
 const labelImageLetter = document.getElementById('labelImageLetter')
 const inputImageLetter = document.getElementById('inputImageLetter')
 
@@ -78,7 +81,7 @@ if (optionsImageLetter[0].value === 'yes' && optionsImageLetter[0].checked) {
 } else {
     radioYesOrNo(optionsImageLetter, labelImageLetter, inputImageLetter)
 
-}    
+}  */   
 /* Fim script para verificar se possui planilha de madeira in-natura e mostrar input na tela */
 
 

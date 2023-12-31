@@ -150,6 +150,7 @@
                         <div class="administrativeAndCriminal">
                             <p class="titles">4. Das medidas administrativas e criminais</p>
                             <p class="pIndent">Isto posto, foram necessárias medidas administrativas e criminais que se seguem.</p>
+                            <!-- Das medidas administrativas -->
                             <div class="administrative">
                                 <p class="titles2">4.1 Das medidas administrativas</p>
                                 <p class="pIndent">Como medidas adminstrativas foram lavrados:</p>
@@ -157,12 +158,17 @@
                                 {!!$data['text_administrative']!!}</p>
 
                                 <p class="pIndent">{!!$data['text_embargo']!!}</p>
+                                
+                                <p class="pIndent">Foi realizada a aprensão de {!!$data['seized_objects']!!} Conforme termo de Apreensão e Depósito Nºxxxx, que ficou depositado no endereço: {!!$data['deposit_location']!!} ficando como fiel depositário: {!!$data['name_faithful']!!}, sendo o responsável pelo recebimento e conferência do material: {!!$data['name_responsible']!!}.</p>
+                                
                             </div>
+                            <!-- Das medidas Criminais -->
                             <div class="criminal">
                                 <p class="titles2">4.2 Das medidas criminais</p>
                                 <p class="pIndent">Dessa forma, a conduta do infrator implicou, em tese, no crime previsto no {{$data['article_BO']}} da Lei Federal nº 9.605 de 12 de Fevereiro de 1998, in verbis:</p>
                                 <p class="pIndent">Portanto, foi confeccionado o {{$data['type_BO']}} Nº <strong>{{$data['number_BO']}}</strong> em desfavor de {{$data['name']}}.</p>
                             </div>
+
                         </div>                        
                     </div>
 

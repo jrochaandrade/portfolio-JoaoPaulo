@@ -60,13 +60,13 @@ h3 {
     
 } */
 
-.labelEmbargo {
+/* .labelEmbargo {
     display: none;
-}
+} */
 
-.inputEmbargo {
+/* .inputEmbargo {
     display: none;
-}
+} */
 
 .labelLumber {
     display: none;
@@ -84,13 +84,13 @@ h3 {
     display: none;
 }
 
-.labelImageLetter {
+/* .labelImageLetter {
     display: none;
 }
 
 .inputImageLetter {
     display: none;
-}
+} */
 
 .mitigating {
     display: flex;
@@ -107,9 +107,9 @@ h3 {
     flex-direction: column;
 }
 
-.divDeforestationSize {
+/* .divDeforestationSize {
     display: none;
-}
+} */
 
 .divQuantityWood {
     display: none;
@@ -127,24 +127,24 @@ h3 {
     display: none;
 }
 
-#divInputEmbargo {
+/* #divInputEmbargo {
     display: none;
-}
+} */
 
-#divInputImageletter {
+/* #divInputImageletter {
     display: none;
-}
+} */
 
-#divMitigating {
+/* #divMitigating {
     display: none;
 }
 
 #divAggravating {
     display: none;
-}
+} */
 
-#divSeizedObjects {
+/* #divSeizedObjects {
     display: none;
 }
-
+ */
 
