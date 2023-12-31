@@ -135,16 +135,21 @@ h3 {
     display: none;
 } */
 
-/* #divMitigating {
-    display: none;
-}
+/* 
 
-#divAggravating {
-    display: none;
-} */
+ */
 
 /* #divSeizedObjects {
     display: none;
 }
  */
 
+ #divMitigating {
+    display: flex;
+    flex-direction: column;
+}
+
+ #divAggravating {
+    display: flex;
+    flex-direction: column;
+}

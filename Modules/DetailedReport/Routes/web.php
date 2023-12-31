@@ -20,7 +20,9 @@ Route::get('/report/detailed', [DetailedReportController::class, 'index'])->name
 
 Route::get('/report/create', [DetailedReportController::class, 'create'])->name('create');
 
-Route::get('/report/edit/{id}', [DetailedReportController::class, 'edit'])->name('edit');
+Route::get('/report/edit/{id}', [DetailedReportController::class, 'edit'])->name('editReport');
+
+Route::put('/report/{id}', [DetailedReportController::class, 'update'])->name('updateReport');
 
 Route::get('/report/generateReport/{id}', [DetailedReportController::class, 'show'])->name('generateReport');
 

@@ -47,7 +47,7 @@
                             <td>{{ $report->cpf}}</td>
                             <td>
                                 <a href="{{ route('generateReport', ['id' => $report->report_ID]) }}" title="Gerar Relatório" class="text-primary"><span class="fa-stack fa-sm"><i class="far fa-square fa-stack-2x"></i><i class="fa-solid fa-file-lines fa-stack-1x"></i></span></a>
-                                <a href="#" data-toggle="tooltip" title="Editar Relatório" class="text-warning"><span class="fa-stack fa-sm"><i class="far fa-square fa-stack-2x"></i><i class="fas fa-pencil-alt fa-stack-1x"></i></span></a>
+                                <a href="{{ route('editReport', ['id' => $report->report_ID]) }}" data-toggle="tooltip" title="Editar Relatório" class="text-warning"><span class="fa-stack fa-sm"><i class="far fa-square fa-stack-2x"></i><i class="fas fa-pencil-alt fa-stack-1x"></i></span></a>
                                 <a data-toggle="tooltip" title="Excluir Relatório" class="text-danger" onclick="deleteData(#)"><span class="fa-stack fa-sm"><i class="far fa-square fa-stack-2x"></i><i class="far fa-trash-alt fa-stack-1x"></i></span></a>
                             </td>
 

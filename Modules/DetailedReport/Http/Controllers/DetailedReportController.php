@@ -502,9 +502,22 @@ class DetailedReportController extends Controller
                 $mitigatingArray[] = $option;
             }
         }
-        dd($mitigatingArray);
 
-        return view('detailedreport::edit', compact('data', 'mitigatingArray'));
+        $aggravatingString  = $data['aggravating'];
+
+        
+        $aggravating = explode('*', $aggravatingString);
+        //dd($aggravating);
+        $aggravatingArray = array();
+        foreach ($aggravating as $option) {
+            if($option != null) {
+                $aggravatingArray[] = $option;
+            }
+        }
+        //dd($mitigatingArray);
+        //dd($aggravatingArray);
+
+        return view('detailedreport::edit', compact('data', 'mitigatingArray', 'aggravatingArray'));
         //return view('detailedreport::edit');
     }
 
@@ -516,8 +529,50 @@ class DetailedReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Report::find($id);
+
+        // Update main fields of the Report model
+        $data->fill($request->except('mitigating', 'aggravating'));
+        $data->save();
+
+        // Update mitigating circumstances
+        $mitigating = $request->input('mitigating', []);
+        $data->mitigating = implode('*', $mitigating);
+        $data->save();
+
+        // Update aggravating circumstances
+        $aggravating = $request->input('aggravating', []);
+        $data->aggravating = implode('*', $aggravating);
+        $data->save();
+
+        
+        
+        // Upload new photos
+        if ($request->hasFile('images1')) {
+            $this->deletePhotos($data->report_ID);
+            $images = $this->imageUpload($request->file('images1'), 'image', $data['unic_id_report']);
+            $data->photos()->createMany($images);
+        }
+
+        return redirect()->route('editReport', ['id' => $data->report_ID]);
     }
+
+    private function deletePhotos($reportId)
+    {
+        // Get photos associated with the report ID
+        $photos = PhotosReport::where('report_report_ID', $reportId)->get();
+
+        foreach ($photos as $photo) {
+            // Delete from storage
+            Storage::disk('public')->delete($photo->image);
+
+            // Delete from database
+            $photo->delete();
+        }
+    }
+
+
+
 
     /**
      * Remove the specified resource from storage.
