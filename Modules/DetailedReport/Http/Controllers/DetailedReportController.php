@@ -47,34 +47,45 @@ class DetailedReportController extends Controller
         }
         //dd($paragraphs);
         $data['historicParagraphs'] =  $paragraphs;
-        
-        $mitigatingString = $data['mitigating'];
-        
-        $mitigatingExplode = explode('*', $mitigatingString);
-        //dd($mitigatingExplode);
-        $teste = array();
-        foreach($mitigatingExplode as $mitigating) {
-            if ($mitigating != null) {
-                $mitigatingArray[] = $mitigating;
-                
+
+        if ($mitigatingString = $data['mitigating']) {
+
+            $mitigatingString = $data['mitigating'];
+            
+            $mitigatingExplode = explode('*', $mitigatingString);
+            //dd($mitigatingExplode);
+            $teste = array();
+            foreach($mitigatingExplode as $mitigating) {
+                if ($mitigating != null) {
+                    $mitigatingArray[] = $mitigating;
+                    
+                }
             }
+            
+            $data['mitigatingArray'] = $mitigatingArray;
+        } else {
+            $data['mitigatingArray'] = 'Não possui atenuante.';
         }
         
-        $data['mitigatingArray'] = $mitigatingArray;
         
-        $aggravatingString = $data['aggravating'];
-        
-        $aggravatingExplode = explode('*', $aggravatingString);
-        //dd($aggravatingExplode);
-        $teste = array();
-        foreach($aggravatingExplode as $aggravating) {
-            if ($aggravating != null) {
-                $aggravatingArray[] = $aggravating;
-                
+        if ($aggravatingString = $data['aggravating']) {
+            $aggravatingString = $data['aggravating'];
+            
+            $aggravatingExplode = explode('*', $aggravatingString);
+            //dd($aggravatingExplode);
+            $teste = array();
+            foreach($aggravatingExplode as $aggravating) {
+                if ($aggravating != null) {
+                    $aggravatingArray[] = $aggravating;
+                    
+                }
             }
+            
+            $data['aggravatingArray'] = $aggravatingArray;
+
+        }else {
+            $data['aggravatingArray'] = 'Não possui agravante.';
         }
-        
-        $data['aggravatingArray'] = $aggravatingArray;
 
         $photosReport = PhotosReport::where('report_report_ID', $id)->get();
         $photosBased = array();
@@ -101,7 +112,6 @@ class DetailedReportController extends Controller
 
         //$data['photosBased'] = $photosBased;
 
-        //dd($data);
         
         //dd($data);
         return view('detailedreport::report', compact('data'));
@@ -180,63 +190,83 @@ class DetailedReportController extends Controller
         $data = array();
         
         if($_SERVER["REQUEST_METHOD"] == 'POST') {
-            $pathLogo1 = public_path('images/logo1.png');
+            // Salva os logos base64 na tabela - Necessário somente para geração do PDF
+            /* $pathLogo1 = public_path('images/logo1.png');
             $file1 = file_get_contents($pathLogo1);
             $base64Logo1 = base64_encode($file1);
             $data['logo1'] = isset($base64Logo1) ? $base64Logo1 : null;
-
             $pathLogo2 = public_path('images/logo2.png');
             $file2 = file_get_contents($pathLogo2);
             $base64Logo2 = base64_encode($file2);
             $data['logo2'] = isset($base64Logo2) ? $base64Logo2 : null;
-
             $pathLogo3 = public_path('images/logo3.png');
             $file3 = file_get_contents($pathLogo3);
             $base64Logo3 = base64_encode($file3);
-            $data['logo3'] = isset($base64Logo3) ? $base64Logo3 : null;
+            $data['logo3'] = isset($base64Logo3) ? $base64Logo3 : null; */
             
+            // Recebe o numero da ocorrência
             $data['inputBO'] = isset($_POST['inputBO']) ? $_POST['inputBO'] : null;
+            // Recebe o tipo da ocorrência
             $data['typeBO'] = isset($_POST['typeBO']) ? $_POST['typeBO'] : null;
+            // Recebe o numero do auto de infração
             $data['inputAI'] = isset($_POST['inputAI']) ? $_POST['inputAI'] : null;
+            // Recebe o valor do auto de infração - Verificar se é necessário
             $data['valueAI'] = isset($_POST['valueAI']) ? $_POST['valueAI'] : null;
+            // Recebe o artigo do auto de infração
             $data['articleAI'] = isset($_POST['articleAI']) ? $_POST['articleAI'] : null;
+            // Recebe o artigo da ocorrência
             $data['articleBO'] = isset($_POST['articleBO']) ? $_POST['articleBO'] : null;
+            // Recebe o tipo do AI se é Desmatamento ou Madeira
             $data['selectTypeAI'] = isset($_POST['selectTypeAI']) ? $_POST['selectTypeAI'] : null;
 
+
+            // **************Puxar esse valor da tabela de multas ***************
+            $fineValue = 5000;
+
+            // Recebe o tamanho do desmatamento e separa a parte inteira, verifica se tem fração e define o valor da multa.
             $data['sizeFraction'] = null;
             $data['inputDeforestationSize'] = isset($_POST['inputDeforestationSize']) ? $_POST['inputDeforestationSize'] : null;
             if ($data['inputDeforestationSize'] != null) {
                 if ($data['inputDeforestationSize'] == intval($data['inputDeforestationSize'])) {
                     $data['sizeIntereger'] = intval(isset($_POST['inputDeforestationSize']) ? $_POST['inputDeforestationSize'] : null);
+                    $data['valueInfraction'] = $data['sizeIntereger'] * $fineValue;
                 } else {
                     $fraction = explode ('.', floatval($data['inputDeforestationSize']));
                     $data['sizeIntereger'] = $fraction[0];
-                    $data['sizeFraction'] = $fraction[1];                
+                    $data['sizeFraction'] = $fraction[1];
+
+                    $data['valueInfraction'] = ($data['sizeIntereger'] * $fineValue) + 5000;                
                 }
             }
-
+            
+            // Recebe o tipo de desmatamento ex. Reserva Legal
             $data['reserve'] = isset($_POST['reserve']) ? $_POST['reserve'] : null;
-
+            // Recebe o numero do termo de embargo
             $data['inputEmbargo'] = isset($_POST['inputEmbargo']) ? $_POST['inputEmbargo'] : null;
+            // Recebe o numero da Carta imagem
             $data['inputImageLetter'] = isset($_POST['inputImageLetter']) ? $_POST['inputImageLetter'] : null;
-            
+
+
+            // Quando for implantar tipo madeira
+            // Recebe a quantidade de madeira apreendida
             $data['inputQuantityWood'] = isset($_POST['inputQuantityWood']) ? $_POST['inputQuantityWood'] : null;
+            // Recebe o numero da planilha de madeira serrada
             $data['inputLumber'] = isset($_POST['inputLumber']) ? $_POST['inputLumber'] : null;
+            // Recebe o numero da planilha de madeira in-natura
             $data['inputNaturalWood'] = isset($_POST['inputNaturalWood']) ? $_POST['inputNaturalWood'] : null;
-            
-            
-            
+
+
+            // Recebe o numero do termo de embargo
+            $data['inputTermo'] = isset($_POST['inputTermo']) ? $_POST['inputTermo'] : null;
+            // Recebe os objetos apreendidos
             $data['inputSeizedObjects'] = isset($_POST['inputSeizedObjects']) ? $_POST['inputSeizedObjects'] : null;
+            // Recebe o local onde foi depositado os objetos
             $data['inputDepositLocation'] = isset($_POST['inputDepositLocation']) ? $_POST['inputDepositLocation'] : null;
+            // Recebe os dados do fiel depositário
             $data['inputNameFaithful'] = isset($_POST['inputNameFaithful']) ? $_POST['inputNameFaithful'] : null;
+            // Recebe os dados do responsável pelo recebimento dos materiais
             $data['inputNameresponsible'] = isset($_POST['inputNameresponsible']) ? $_POST['inputNameresponsible'] : null;
-
-
-
-
-
-
-
+            // Recebe os dados do envolvido
             $data['name'] = isset($_POST['name']) ? $_POST['name'] : null;
             $data['cpf'] = isset($_POST['cpf']) ? $_POST['cpf'] : null;
             $data['rg'] = isset($_POST['rg']) ? $_POST['rg'] : null;
@@ -245,61 +275,36 @@ class DetailedReportController extends Controller
             $data['affiliation'] = isset($_POST['affiliation']) ? $_POST['affiliation'] : null;
             $data['address'] = isset($_POST['address']) ? $_POST['address'] : null;
             $data['location'] = isset($_POST['location']) ? $_POST['location'] : null;
-            
-            /* $historic = isset($_POST['historic']) ? $_POST['historic'] : null;
-
-            $paragraphsHistoric = explode("\r\n", $historic);
-            
-            $paragraphs = array();
-            foreach ($paragraphsHistoric as $paragraphHistoric) {
-                if ($paragraphHistoric != null) {                    
-                    $paragraphs[] = $paragraphHistoric;
-                }                
-            }
-            
-            $data['historic'] = isset($paragraphs) ? $paragraphs : null; */
+            // Recebe o histórico
             $data['historic'] = isset($_POST['historic']) ? $_POST['historic'] : null;
-            
-            $data['image1'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][0]));
-            $data['image2'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][1]));
-            $data['image3'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][2]));
-            $data['image4'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][3]));
-
+            // Verifica se foi carregado imagens
+            if($request->hasFile('image1')) {
+                $data['image1'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][0]));
+                $data['image2'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][1]));
+                $data['image3'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][2]));
+                $data['image4'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][3]));
+            }
+            // Recebe o motivo da infração
             $data['motive'] = isset($_POST['motive']) ? $_POST['motive'] : null;
+            // Verifica se as agravantes recebeu algum valor e salva todas em uma string separada por *
             $data['mitigating'] = isset($_POST['mitigating']) ? $_POST['mitigating'] : null;
             $mitigatingString = '';
             if ($data['mitigating'] != null) {
                 foreach ($data['mitigating'] as $mitigating) {
                     $mitigatingString .= $mitigating . '*';
                 }
-                
             }
             $data['mitigatingString'] = isset($mitigatingString) ? $mitigatingString : null;
-
-            // Separar novamente quando for jogar na View
-            /* $mitigatingExplode = explode('*', $mitigatingString);
-            //dd($mitigatingExplode);
-            $teste = array();
-            foreach($mitigatingExplode as $mitigating) {
-                if ($mitigating != null) {
-                    $teste[] = $mitigating;
-
-                }
-            }
-            dd($teste); */
-
+            // Verifica se as agravantes recebeu algum valor e salva todas em uma string separada por *
             $data['aggravating'] = isset($_POST['aggravating']) ? $_POST['aggravating'] : null;
             $aggravatingString = '';
             if ($data['aggravating'] != null) {
                 foreach ($data['aggravating'] as $aggravating) {
                     $aggravatingString .= $aggravating . '*';
                 }
-                
             }
             $data['aggravatingString'] = isset($aggravatingString) ? $aggravatingString : null;
-
-
-
+            // Recebe os dados da equipe
             $data['cmt'] = isset($_POST['cmt']) ? $_POST['cmt'] : null;
             $data['mot'] = isset($_POST['mot']) ? $_POST['mot'] : null;
             $data['ptr1'] = isset($_POST['ptr1']) ? $_POST['ptr1'] : null;
@@ -310,9 +315,8 @@ class DetailedReportController extends Controller
             $data['unitPtr1'] = isset($_POST['unitPtr1']) ? $_POST['unitPtr1'] : null;
             $data['unitPtr2'] = isset($_POST['unitPtr2']) ? $_POST['unitPtr2'] : null;
             $data['unitPtr3'] = isset($_POST['unitPtr3']) ? $_POST['unitPtr3'] : null;
-            
+            // Verifica se o usuário selecionou Desmatamento ou Madeira e formatar o texto conforme selecionado
             $data['textEmbargo'] = '';
-            
             if ($data['selectTypeAI'] == 'logging') {
                 if ($data['reserve'] == 'offReserve') {
                     $typeDeforestation = 'área de vegetação nativa';                    
@@ -322,12 +326,18 @@ class DetailedReportController extends Controller
                     $typeDeforestation = 'regeneração';
                 }
                 
-                $data['administrative'] = ' desmatar floresta nativa em uma área de ' . $data["inputDeforestationSize"] . ' hectares em ' . $typeDeforestation . ', sem autorização prévia do órgão ambiental competente, conforme o ' . $data["articleAI"] . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ 5.000,00 (cinco mil reais) por hectare ou fração. Para chegar ao valor obtido, foi ';
+                $data['administrative'] = ' desmatar floresta nativa em uma área de ' . $data["inputDeforestationSize"] . ' hectares em ' . $typeDeforestation . ', sem autorização prévia do órgão ambiental competente, conforme o ' . $data["articleAI"] . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração. Para chegar ao valor obtido, foi ';
                 
+                
+                // Recebe o tamanho do desmatamento e separa o valor inteiro e a fração, forma o texto que vai apresentar no relatório.
                 if (intval($data['inputDeforestationSize']) == $data['inputDeforestationSize']) {
-                    $data['administrative'] .= 'multiplicado ' . $data["sizeIntereger"] . ' vezes R$ 5.000,00 totalizando R$' . $data["valueAI"];
+                    // Formata o valor da infração
+                    $valueInfractionFormated = number_format($data["valueInfraction"], 2, ',', '.');
+                    $data['administrative'] .= 'multiplicado ' . $data["sizeIntereger"] . ' vezes R$ '.  number_format($fineValue, 2, ',', '.') . ' totalizando R$' . $valueInfractionFormated;
                 } else {
-                    $data['administrative'] .= 'multiplicado ' . $data["sizeIntereger"] . ' vezes R$ 5.000,00 mais R$5.000,00 pela fração 0,' .  $data["sizeFraction"] . ' totalizando R$' . $data["valueAI"];
+                    // Formata o valor da infração
+                    $valueInfractionFormated = number_format($data["valueInfraction"], 2, ',', '.');
+                    $data['administrative'] .= 'multiplicado ' . $data["sizeIntereger"] . ' vezes R$ '.  number_format($fineValue, 2, ',', '.') . ' mais R$ '.  number_format($fineValue, 2, ',', '.') . ' pela fração 0,' .  $data["sizeFraction"] . ' totalizando R$' . $valueInfractionFormated;
                 }
                 $data['textEmbargo'] = 'A área embargada é de <strong>' . $data['inputDeforestationSize'] . '</strong>  hectares de floresta nativa em ' . $typeDeforestation . ', conforme Termo de Embargo de Nº <strong>' . $data['inputEmbargo'] . '</strong>, para que a área suprimida se regenere.';              
             } else {
@@ -336,7 +346,9 @@ class DetailedReportController extends Controller
         } else {
             dd('Formuário não enviado');
         }
+        //Cria um id único para o relatório
         $unicIdReport = rand();
+        // Salva os dados na tabela reports
         $dataReport = Report::create([
             'name' => $data['name'],
             'cpf' => $data['cpf'],
@@ -357,7 +369,6 @@ class DetailedReportController extends Controller
             'size_deforestation' => $data['inputDeforestationSize'],
             'size_deforestation_intereger' => $data['sizeIntereger'],
             'size_deforestation_fraction' => $data['sizeFraction'],
-            //'size_deforestation_fraction' => 0,132,
             'area_deforestation' => $data['reserve'],
             'number_embargo' => $data['inputEmbargo'],
             'number_letter' => $data['inputImageLetter'],
@@ -377,32 +388,32 @@ class DetailedReportController extends Controller
             'unit_PTR2' => $data['unitPtr2'],
             'unit_PTR3' => $data['unitPtr3'],
             'unic_id_report' => $unicIdReport,
+            'term_seizure' => $data['inputTermo'],
             'seized_objects' => $data['inputSeizedObjects'],
             'deposit_location' => $data['inputDepositLocation'],
             'name_faithful' => $data['inputNameFaithful'],
-            'name_responsible' => $data['inputNameresponsible']
-
-            
+            'name_responsible' => $data['inputNameresponsible'],
+            'value_infraction' => $data['valueInfraction']
         ]);
 
+        $report = Report::where('unic_id_report', $unicIdReport)->first();
+        $idReport = $report['report_ID'];
+
+
+
+
         // Salvar as imagens no banco de dados
-
         if ($request->hasFile('images1')) {
-
             $images = $this->imageUpload($request->file('images1'), 'image', $unicIdReport);
             $dataReport->photos()->createMany($images);
-
         }
-
-
-        
-        
-        // Armazenar $images na sessão
+        // Armazenar $data na sessão
         Session::put('data', $data);       
         
-        return redirect('report/detailed');
+        //return redirect('report/detailed');
+        //generateReport
+        return redirect()->route('generateReport', ['id' => $idReport]);
 
-        
     }
 
     /* private function imageUpload($images, $imageColumn = null, $unicIdReport)
@@ -554,7 +565,9 @@ class DetailedReportController extends Controller
             $data->photos()->createMany($images);
         }
 
-        return redirect()->route('editReport', ['id' => $data->report_ID]);
+        //return redirect()->route('editReport', ['id' => $data->report_ID]);
+        //return redirect('/report/detailed');
+        return redirect()->route('generateReport', ['id' => $data->report_ID]);
     }
 
     private function deletePhotos($reportId)

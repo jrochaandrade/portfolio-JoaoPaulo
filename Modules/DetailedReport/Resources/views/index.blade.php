@@ -58,6 +58,9 @@
                     </tbody>
                     @endforeach
                 </table>
+                <div class="d-flex justify-content-end pagination">
+                    {{ $reports->links('pagination::bootstrap-5') }}
+                </div>
                 <a href="{{ route('create') }}" class="btn btn-success">Criar relatório</a>
                 
             </div> 
