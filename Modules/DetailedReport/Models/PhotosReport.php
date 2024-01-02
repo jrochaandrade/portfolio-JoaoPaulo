@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PhotosReport extends Model
 {
-    protected $fillable = ['image', 'report_report_ID'];
+    protected $fillable = ['image', 'report_report_ID', 'type_image'];
 
     public function report() {
         return $this->belongsTo(Report::class, 'report_report_ID', 'report_ID');

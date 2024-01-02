@@ -115,9 +115,9 @@ h3 {
     display: none;
 }
 
-.divEmbargos {
+/* .divEmbargos {
     display: none;
-}
+} */
 
 #divLumber {
     display: none;
@@ -152,4 +152,16 @@ h3 {
  #divAggravating {
     display: flex;
     flex-direction: column;
+}
+
+.divSeizedObjectsHidden {
+    display: none;
+}
+
+.divInputEmbargoHidden {
+    display: none;
+}
+
+.divInputImageletterHidden {
+    display: none;
 }

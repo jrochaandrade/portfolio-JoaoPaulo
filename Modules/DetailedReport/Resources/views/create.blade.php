@@ -171,9 +171,9 @@
                                 <label for="noSeizedObjects" class="labelNotBold">Não</label>
                             </div>
                             <div id="divSeizedObjects">
-                                <label for="inputTermo" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
-                                <input type="text" class="form-control inputTermo" name="inputTermo" id="inputTermo" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="123545">
-                                <label for="inputSeizedObjects" class="termOfSeizure" id="termOfSeizure">Descreva os objetos apreendidos:</label>
+                                <label for="inputTermOfSeizure" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
+                                <input type="text" class="form-control inputTermOfSeizure" name="inputTermOfSeizure" id="inputTermOfSeizure" placeholder=""  value="123545">
+                                <label for="inputSeizedObjects" class="seizedObjects" id="seizedObjects">Descreva os objetos apreendidos:</label>
                                 <input type="text" class="form-control inputSeizedObjects" name="inputSeizedObjects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="01 - Motossera Huskvarna, 01 - Trator de esteira amarelo">
                                 <label for="inputDepositLocation" class="labelDepositLocation" id="labelDepositLocation">Endereço onde foi depositado:</label>
                                 <input type="text" class="form-control depositLocation" name="inputDepositLocation" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="Rua Jasmim Nº 36 Bairro Centro - Ji-Paraná/RO">
@@ -181,6 +181,12 @@
                                 <input type="text" class="form-control inputNameFaithful" name="inputNameFaithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="Prefeitura de Ji-Paraná CNPJ: 01.002.543/0001-25">
                                 <label for="inputNameresponsible" class="labelNameresponsible" id="labelNameresponsible">Nome e CPF do responsável pelo recebimento:</label>
                                 <input type="text" class="form-control inputNameresponsible" name="inputNameresponsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="Marcelo Antonio CPF: 126.135.464-58">
+
+                                <div class="divImagesObjects">
+                                    <!-- <h3>Imagens da ocorrência</h3> -->
+                                    <label for="images1">Carregar 4 imagens, sendo 3 dos objetos apreendidos e 1 do local onde ficaram depositado:</label>
+                                    <input type="file" class="form-control images1" name="images2[]" id="images2" multiple>
+                                </div>
                             </div>
                             
                         </div>

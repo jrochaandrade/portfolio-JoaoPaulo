@@ -88,11 +88,22 @@ class DetailedReportController extends Controller
         }
 
         $photosReport = PhotosReport::where('report_report_ID', $id)->get();
+        
         $photosBased = array();
         $i = 0;
-
+        $image1 = [];
+        $image2 = [];
+        
         foreach ($photosReport as $photo) {
-            $caminhoImagem = '/' . $photo['image'];
+            if ($photo->type_image == 'image1') {
+                $image1[] = $photo;
+            } else{
+                $image2[] = $photo;
+            }
+        }
+        $i = 0;
+        foreach ($image1 as $image) {
+            $caminhoImagem = '/' . $image['image'];
 
             // Obter a URL da imagem
             $urlImagem = Storage::url($caminhoImagem);
@@ -104,12 +115,39 @@ class DetailedReportController extends Controller
             $imagemBase64 = base64_encode($conteudoImagem);
 
             // Atribuir à variável de dados
-            $data['image' . ($i + 1)] = $imagemBase64;
+            $data['imageOcorrence' . ($i + 1)] = $imagemBase64;
+
+            $i++;
+        } 
+        $i = 0;
+        foreach ($image2 as $image) {
+            $caminhoImagem = '/' . $image['image'];
+
+            // Obter a URL da imagem
+            $urlImagem = Storage::url($caminhoImagem);
+            
+            // Carregar o conteúdo da imagem da URL
+            $conteudoImagem = file_get_contents(public_path('storage/' . $caminhoImagem));
+            
+            // Converter o conteúdo da imagem para base64
+            $imagemBase64 = base64_encode($conteudoImagem);
+
+            // Atribuir à variável de dados
+            $data['imageObjects' . ($i + 1)] = $imagemBase64;
 
             $i++;
         }
 
 
+
+        $data['article_administrive'] = 'Art. 51.  Destruir, desmatar, danificar ou explorar floresta ou qualquer tipo de vegetação nativa ou de espécies nativas plantadas, em área de reserva legal ou servidão florestal, de domínio público ou privado, sem autorização prévia do órgão ambiental competente ou em desacordo com a concedida:                 (Redação dada pelo Decreto nº 6.686, de 2008).
+
+        Multa de R$ 5.000,00 (cinco mil reais) por hectare ou fração.';
+
+        $data['article_criminal'] = 'Art. 50. Destruir ou danificar florestas nativas ou plantadas ou vegetação fixadora de dunas, protetora de mangues, objeto de especial preservação:
+
+            Pena - detenção, de três meses a um ano, e multa.';
+        
         //$data['photosBased'] = $photosBased;
 
         
@@ -242,7 +280,8 @@ class DetailedReportController extends Controller
             // Recebe o tipo de desmatamento ex. Reserva Legal
             $data['reserve'] = isset($_POST['reserve']) ? $_POST['reserve'] : null;
             // Recebe o numero do termo de embargo
-            $data['inputEmbargo'] = isset($_POST['inputEmbargo']) ? $_POST['inputEmbargo'] : null;
+            $data['inputEmbargo'] = ($_POST['inputEmbargo'] !== '') ? $_POST['inputEmbargo'] : null;
+
             // Recebe o numero da Carta imagem
             $data['inputImageLetter'] = isset($_POST['inputImageLetter']) ? $_POST['inputImageLetter'] : null;
 
@@ -256,8 +295,8 @@ class DetailedReportController extends Controller
             $data['inputNaturalWood'] = isset($_POST['inputNaturalWood']) ? $_POST['inputNaturalWood'] : null;
 
 
-            // Recebe o numero do termo de embargo
-            $data['inputTermo'] = isset($_POST['inputTermo']) ? $_POST['inputTermo'] : null;
+            // Recebe o numero do termo de apreensão
+            $data['inputTermOfSeizure'] = isset($_POST['inputTermOfSeizure']) ? $_POST['inputTermOfSeizure'] : null;
             // Recebe os objetos apreendidos
             $data['inputSeizedObjects'] = isset($_POST['inputSeizedObjects']) ? $_POST['inputSeizedObjects'] : null;
             // Recebe o local onde foi depositado os objetos
@@ -266,6 +305,13 @@ class DetailedReportController extends Controller
             $data['inputNameFaithful'] = isset($_POST['inputNameFaithful']) ? $_POST['inputNameFaithful'] : null;
             // Recebe os dados do responsável pelo recebimento dos materiais
             $data['inputNameresponsible'] = isset($_POST['inputNameresponsible']) ? $_POST['inputNameresponsible'] : null;
+             // Verifica se foi carregado imagens
+             if($request->hasFile('image2')) {
+                $data['imageObjects1'] = base64_encode(file_get_contents($_FILES['images2']['tmp_name'][0]));
+                $data['imageObjects2'] = base64_encode(file_get_contents($_FILES['images2']['tmp_name'][1]));
+                $data['imageObjects3'] = base64_encode(file_get_contents($_FILES['images2']['tmp_name'][2]));
+                $data['imageObjects4'] = base64_encode(file_get_contents($_FILES['images2']['tmp_name'][3]));
+            }
             // Recebe os dados do envolvido
             $data['name'] = isset($_POST['name']) ? $_POST['name'] : null;
             $data['cpf'] = isset($_POST['cpf']) ? $_POST['cpf'] : null;
@@ -337,9 +383,9 @@ class DetailedReportController extends Controller
                 } else {
                     // Formata o valor da infração
                     $valueInfractionFormated = number_format($data["valueInfraction"], 2, ',', '.');
-                    $data['administrative'] .= 'multiplicado ' . $data["sizeIntereger"] . ' vezes R$ '.  number_format($fineValue, 2, ',', '.') . ' mais R$ '.  number_format($fineValue, 2, ',', '.') . ' pela fração 0,' .  $data["sizeFraction"] . ' totalizando R$' . $valueInfractionFormated;
+                    $data['administrative'] .= 'multiplicado ' . $data["sizeIntereger"] . ' vezes R$ '.  number_format($fineValue, 2, ',', '.') . ' mais R$ '.  number_format($fineValue, 2, ',', '.') . ' pela fração 0,' .  $data["sizeFraction"] .' hectare' . ' totalizando R$' . $valueInfractionFormated;
                 }
-                $data['textEmbargo'] = 'A área embargada é de <strong>' . $data['inputDeforestationSize'] . '</strong>  hectares de floresta nativa em ' . $typeDeforestation . ', conforme Termo de Embargo de Nº <strong>' . $data['inputEmbargo'] . '</strong>, para que a área suprimida se regenere.';              
+                $data['textEmbargo'] = 'A área embargada é de <strong>' . $data['inputDeforestationSize'] . '</strong>  hectares de floresta nativa em ' . $typeDeforestation . ', conforme Termo de Embargo Nº <strong>' . $data['inputEmbargo'] . '</strong>, para que a área suprimida se regenere.';              
             } else {
                 $data['administrative'] = 'Em Desenvolvimento';
             }
@@ -388,7 +434,7 @@ class DetailedReportController extends Controller
             'unit_PTR2' => $data['unitPtr2'],
             'unit_PTR3' => $data['unitPtr3'],
             'unic_id_report' => $unicIdReport,
-            'term_seizure' => $data['inputTermo'],
+            'term_seizure' => $data['inputTermOfSeizure'],
             'seized_objects' => $data['inputSeizedObjects'],
             'deposit_location' => $data['inputDepositLocation'],
             'name_faithful' => $data['inputNameFaithful'],
@@ -399,14 +445,21 @@ class DetailedReportController extends Controller
         $report = Report::where('unic_id_report', $unicIdReport)->first();
         $idReport = $report['report_ID'];
 
-
-
-
-        // Salvar as imagens no banco de dados
-        if ($request->hasFile('images1')) {
-            $images = $this->imageUpload($request->file('images1'), 'image', $unicIdReport);
+        // Salvar as imagens dos objetos no banco de dados
+        if ($request->hasFile('images2')) {
+            $typeImage = 'image2';
+            $images = $this->imageUpload($request->file('images2'), 'image', $unicIdReport, $typeImage);
             $dataReport->photos()->createMany($images);
         }
+
+
+        // Salvar as imagens da ocorrência no banco de dados
+        if ($request->hasFile('images1')) {
+            $typeImage = 'image1';
+            $images = $this->imageUpload($request->file('images1'), 'image', $unicIdReport, $typeImage);
+            $dataReport->photos()->createMany($images);
+        }
+
         // Armazenar $data na sessão
         Session::put('data', $data);       
         
@@ -447,8 +500,9 @@ class DetailedReportController extends Controller
         return $uploadedImages;
     } */
 
-    private function imageUpload($images, $imageColumn = null, $unicIdReport)
+    private function imageUpload($images, $imageColumn = null, $unicIdReport, $typeImage)
     {
+        
         $report = Report::where('unic_id_report', $unicIdReport)->first();
         $idReport = $report['report_ID'];
         $uploadedImages = [];
@@ -460,6 +514,7 @@ class DetailedReportController extends Controller
             $photosReport = new PhotosReport([
                 'image' => $imagePath,
                 'report_report_ID' => $idReport,
+                'type_image' => $typeImage
             ]);
 
             // Salvar o registro de imagem
@@ -542,10 +597,11 @@ class DetailedReportController extends Controller
     {
         $data = Report::find($id);
 
-        // Update main fields of the Report model
-        $data->fill($request->except('mitigating', 'aggravating'));
-        $data->save();
 
+        // Update main fields of the Report model
+        $data->fill($request->except('mitigating', 'aggravating', 'size_deforestation_intereger', 'size_deforestation_fraction'));
+        $data->save();
+        
         // Update mitigating circumstances
         $mitigating = $request->input('mitigating', []);
         $data->mitigating = implode('*', $mitigating);
@@ -554,26 +610,61 @@ class DetailedReportController extends Controller
         // Update aggravating circumstances
         $aggravating = $request->input('aggravating', []);
         $data->aggravating = implode('*', $aggravating);
+        
         $data->save();
 
+        // Recebe o tamanho do desmatamento e separa a parte inteira, verifica se tem fração e define o valor da multa.
+        // *******************Mudar para puxar da tabela de infração **********************************
+        $fineValue = 5000; 
+        // ********************************************************************************
+        $fraction = null;
+        $sizeDeforestation = isset($data['size_deforestation']) ? $data['size_deforestation'] : null;
+        if ($sizeDeforestation != null) {
+            if ($sizeDeforestation == intval($sizeDeforestation)) {
+                $sizeDeforestationIntereger = intval(isset($sizeDeforestation ) ? $sizeDeforestation  : null);
+                $data->size_deforestation_intereger = $sizeDeforestationIntereger;
+                $valueInfraction = $sizeDeforestationIntereger * $fineValue;
+                $data->value_infraction = $valueInfraction;
+            } else {
+                $sizeDeforestationIntereger = intval(isset($sizeDeforestation ) ? $sizeDeforestation  : null);
+                $fraction = explode ('.', floatval($sizeDeforestation));
+                
+                $data->size_deforestation_intereger = $fraction[0];
+                $data->size_deforestation_fraction = $fraction[1];
+                
+                $data->value_infraction = ($sizeDeforestationIntereger * $fineValue) + 5000;
+            }
+        }
         
+        $data->save();
         
-        // Upload new photos
+        // Upload das fotos da ocorrência
         if ($request->hasFile('images1')) {
-            $this->deletePhotos($data->report_ID);
-            $images = $this->imageUpload($request->file('images1'), 'image', $data['unic_id_report']);
+            $typeImage = 'image1';
+            $this->deletePhotos($data->report_ID, $typeImage);
+            $images = $this->imageUpload($request->file('images1'), 'image', $data['unic_id_report'], $typeImage);
+            $data->photos()->createMany($images);
+        }
+        // Upload das fotos da apreensão
+        if ($request->hasFile('images2')) {
+            $typeImage = 'image2';
+            $this->deletePhotos($data->report_ID, $typeImage);
+            $images = $this->imageUpload($request->file('images2'), 'image', $data['unic_id_report'], $typeImage);
             $data->photos()->createMany($images);
         }
 
         //return redirect()->route('editReport', ['id' => $data->report_ID]);
         //return redirect('/report/detailed');
-        return redirect()->route('generateReport', ['id' => $data->report_ID]);
+        return redirect()->route('editReport', ['id' => $data->report_ID]);
     }
 
-    private function deletePhotos($reportId)
+    private function deletePhotos($reportId, $typeImage)
     {
         // Get photos associated with the report ID
-        $photos = PhotosReport::where('report_report_ID', $reportId)->get();
+        $photos = PhotosReport::where('report_report_ID', $reportId)
+                     ->where('type_image', $typeImage)
+                     ->get();
+
 
         foreach ($photos as $photo) {
             // Delete from storage

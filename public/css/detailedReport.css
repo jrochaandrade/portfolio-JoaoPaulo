@@ -213,12 +213,7 @@ p {
 }
  */
 
- .citar {
-    border-left: 2px solid #333;
-    padding-left: 15px;
-    margin: 10px 0;
-  }
-  
-  .citar p {
-    margin: 0;
-  }
+ .article {
+    font-size: 12px;
+    margin-left: 30px;
+ }

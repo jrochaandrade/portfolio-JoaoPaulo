@@ -89,7 +89,7 @@
                                 <select name="type_AI" class="form-control" id="selectTypeAI">
                                     
                                     <option value="logging" selected>Desmatamento</option>
-                                    <option value="wood">Madeira</option>
+                                    <!-- <option value="wood">Madeira</option> -->
                                     <!-- <option value="openFine">Multa aberta</option>  -->
                                 </select>
                                 @else
@@ -140,44 +140,66 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <!-- <div class="divEmbargos" id="divEmbargos">
-                                                <span class="titleLabel">Possui Embargo?</span>
-                                                <div class="divRadiosEmbargos">
+                                            <span class="titleLabel">Possui Embargo?</span>
+                                            <div class="divRadiosEmbargos">
+                                                @if ($data['number_embargo'] != null)
+                                                    <input type="radio" name="yesOrNoEmbargos" id="yesEmbargos"  value="yes" checked>
+                                                    <label for="yesEmbargos" class="labelNotBold">Sim</label>
+                                                    <!-- <input type="radio" name="yesOrNoEmbargos" id="noEmbargos" value="no">
+                                                    <label for="noEmbargos" class="labelNotBold">Não</label> -->
+                                                @endif
+                                                @if ($data['number_embargo'] == null)
                                                     <input type="radio" name="yesOrNoEmbargos" id="yesEmbargos"  value="yes">
                                                     <label for="yesEmbargos" class="labelNotBold">Sim</label>
-                                                    <input type="radio" name="yesOrNoEmbargos" id="noEmbargos" value="no" checked>
-                                                    <label for="noEmbargos" class="labelNotBold">Não</label>
-                                                </div>
-                                            </div> -->
+                                                    <!-- <input type="radio" name="yesOrNoEmbargos" id="noEmbargos" value="no" checked>
+                                                    <label for="noEmbargos" class="labelNotBold">Não</label> -->
+                                                @endif                                                
+                                            </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <!-- <span class="titleLabel">Possui Carta Imagem?</span>
+                                            <span class="titleLabel">Possui Carta Imagem?</span>
                                             <div class="divRadiosImageLetter">
-                                                <input type="radio" name="yesOrNoImageLetter" id="yesImageLetter" value="yes">
-                                                <label for="yesImageLetter" class="labelNotBold">Sim</label>
-                                                <input type="radio" name="yesOrNoImageLetter" id="noImageLetter" value="no" checked>
-                                                <label for="noImageLetter" class="labelNotBold">Não</label>
-                                            </div> -->
+                                                @if ($data['number_letter'] != null)
+                                                    <input type="radio" name="yesOrNoImageLetter" id="yesImageLetter" value="yes" checked>
+                                                    <label for="yesImageLetter" class="labelNotBold">Sim</label>
+                                                    <!-- <input type="radio" name="yesOrNoImageLetter" id="noImageLetter" value="no">
+                                                    <label for="noImageLetter" class="labelNotBold">Não</label> -->
+                                                @endif
+                                                @if ($data['number_letter'] == null)
+                                                    <input type="radio" name="yesOrNoImageLetter" id="yesImageLetter" value="yes">
+                                                    <label for="yesImageLetter" class="labelNotBold">Sim</label>
+                                                    <!-- <input type="radio" name="yesOrNoImageLetter" id="noImageLetter" value="no" checked>
+                                                    <label for="noImageLetter" class="labelNotBold">Não</label> -->
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>                           
+                            <div class="row">
+                            <div class="row">
+                                @if ($data['number_embargo'] == null)
+                                    <div class="col-sm-6 divInputEmbargoHidden" id="divInputEmbargo">
+                                @else
+                                    <div class="col-sm-6" id="divInputEmbargo">
+                                @endif
+                                        <label for="inputEmbargo" class="labelEmbargo" id="labelEmbargo">Informe o numero do Termo de Embargo:</label>
+                                        <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="{!!$data['number_embargo']!!}">
+                                    </div>
+                                @if ($data['number_letter'] == null)
+                                    <div class="col-sm-6 divInputImageletterHidden" id="divInputImageletter">
+                                @else                                
+                                <div class="col-sm-6" id="divInputImageletter">                                
+                                @endif    
+                                    <label for="inputImageLetter" class="labelImageLetter" id="labelImageLetter">Informe o numero da Carta Imagem:</label>
+                                    <input type="text" class="form-control inputImageLetter" name="number_letter" id="inputImageLetter" value="{!!$data['number_letter']!!}">
+                                </div>
+                            </div>
+
+                                
+                            </div>
                         </div>
 
-                        <div class="row">
-                            @if ($data['number_embargo'] != null)
-                            <div class="col-sm-6" id="divInputEmbargo">
-                                <label for="inputEmbargo" class="labelEmbargo" id="labelEmbargo">Informe o numero do Termo de Embargo:</label>
-                                <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="{!!$data['number_embargo']!!}">
-                            </div>
-                            @endif
-                            @if ($data['number_letter'] != null)
-                            <div class="col-sm-6" id="divInputImageletter">                                
-                                <label for="inputImageLetter" class="labelImageLetter" id="labelImageLetter">Informe o numero da Carta Imagem:</label>
-                                <input type="text" class="form-control inputImageLetter" name="number_letter" id="inputImageLetter" value="{!!$data['number_letter']!!}">
-                            </div>
-                            @endif
-                        </div>
 
                         
                         
@@ -213,14 +235,29 @@
 
 
                         <div class="seizedObjects">
-                            <!-- <span class="titleLabel">Possui objetos apreendidos?</span>
+                            <span class="titleLabel">Possui objetos apreendidos?</span>
                             <div class="divRadiosSeizedObjects">
+                            @if ($data['term_seizure'] != null)
+                                <input type="radio" name="yesOrNoSeizedObjects" id="yesSeizedObjects" value="yes" checked>
+                                <label for="yesSeizedObjects" class="labelNotBold">Sim</label>
+                                <!-- <input type="radio" name="yesOrNoSeizedObjects" id="noSeizedObjects" value="no">
+                                <label for="noSeizedObjects" class="labelNotBold">Não</label> -->
+                            @endif
+                            @if ($data['term_seizure'] == null)
                                 <input type="radio" name="yesOrNoSeizedObjects" id="yesSeizedObjects" value="yes">
                                 <label for="yesSeizedObjects" class="labelNotBold">Sim</label>
-                                <input type="radio" name="yesOrNoSeizedObjects" id="noSeizedObjects" value="no" checked>
-                                <label for="noSeizedObjects" class="labelNotBold">Não</label>
-                            </div> -->
-                            <div id="divSeizedObjects">
+                                <!-- <input type="radio" name="yesOrNoSeizedObjects" id="noSeizedObjects" value="no" checked>
+                                <label for="noSeizedObjects" class="labelNotBold">Não</label> -->
+                            @endif
+                            </div>
+
+                            @if ($data['term_seizure'] == null)
+                                <div class="divSeizedObjectsHidden" id="divSeizedObjects" >
+                            
+                            @endif
+                                <div id="divSeizedObjects">
+                                <label for="inputTermOfSeizure" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
+                                <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder="" value="{!!$data['term_seizure']!!}">
                                 <label for="inputSeizedObjects" class="labelSeizedObjects" id="labelSeizedObjects">Descreva os objetos apreendidos:</label>
                                 <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="{!!$data['seized_objects']!!}">
                                 <label for="inputDepositLocation" class="labelDepositLocation" id="labelDepositLocation">Endereço onde foi depositado:</label>
@@ -229,6 +266,10 @@
                                 <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="{!!$data['name_faithful']!!}">
                                 <label for="inputNameresponsible" class="labelNameresponsible" id="labelNameresponsible">Nome e CPF do responsável pelo recebimento:</label>
                                 <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="{!!$data['name_responsible']!!}">
+                                <div class="divImages">
+                                    <label for="images1">Alterar as 4 fotos da apreenssão, enviar 3 dos objetos apreendidos e 1 do local onde ficou depositado:</label>
+                                    <input type="file" class="form-control images2" name="images2[]" id="images2" multiple>
+                                </div>
                             </div>
                             
                         </div>
@@ -467,7 +508,8 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-success" id="generateReport">Salvar</button>
+                    <button class="btn btn-primary" id="generateReport">Salvar</button>
+                    <a class="btn btn-success" href="{{ route('generateReport', ['id'=>$data->report_ID]) }}">Visualizar Relatório</a>
                 </form>
             </div> 
         </div>

@@ -72,7 +72,7 @@
                         <p>Carta Imagem - <strong>Nº {{$data['number_letter']}}</strong></p>
                         @endif 
                         
-                        @if ($data['number_embargo'])
+                        @if ($data['term_seizure'])
                         <p>Termo de Apreensão e Depósito - <strong>Nº {{$data['term_seizure']}}</strong></p>
                         @endif
                     </div>
@@ -126,10 +126,10 @@
                     
 
                     <div class="images">
-                    <img src="data:image/jpeg;base64,{{$data['image1']}}" alt="">
-                    <img src="data:image/jpeg;base64,{{$data['image2']}}" alt="">
-                    <img src="data:image/jpeg;base64,{{$data['image3']}}" alt="">
-                    <img src="data:image/jpeg;base64,{{$data['image4']}}" alt="">
+                    <img src="data:image/jpeg;base64,{{$data['imageOcorrence1']}}" alt="">
+                    <img src="data:image/jpeg;base64,{{$data['imageOcorrence2']}}" alt="">
+                    <img src="data:image/jpeg;base64,{{$data['imageOcorrence3']}}" alt="">
+                    <img src="data:image/jpeg;base64,{{$data['imageOcorrence4']}}" alt="">
                     </div>
 
                     <div class="reasons">
@@ -138,10 +138,11 @@
                     </div>
 
                     <div class="mitigatingAndAggravating">
-                        <p class="titles">3. Das atenuantes e agravantes</p>
+                        <p class="titles">3. Das atenuantes e agravantes conforme rege a Lei Federal nº 9.605/98, in verbi</p>
                         <div class="mitigating">
-                            <p class="titles2">3.1 Das atenuantes</p>
+                            <p class="titles2">3.1 Das atenuantes </p>
                             @if(is_array($data['mitigatingArray']))
+                            <p class="pIndent">Art. 14. São circunstâncias que atenuam a pena:</p>
                             @foreach ($data['mitigatingArray'] as $mitigating)
                                 <p class="pIndent">{{$mitigating}}</p>
                             @endforeach
@@ -153,6 +154,7 @@
                         <div class="aggravating">
                             <p class="titles2">3.2 Das agravantes</p>
                             @if (is_array($data['aggravatingArray']))
+                                <p class="pIndent">Art. 15. São circunstâncias que agravam a pena, quando não constituem ou qualificam o crime:</p>
                             @foreach ($data['aggravatingArray'] as $aggravating)
                                 <p class="pIndent">{{$aggravating}}</p>
                             @endforeach
@@ -171,19 +173,32 @@
                                 <p class="titles2">4.1 Das medidas administrativas</p>
                                 <p class="pIndent">Como medidas adminstrativas foram lavrados:</p>
                                 <p class="pIndent">Auto de infração II Nº <strong>{{$data['number_AI']}}</strong> na importância de R$ {{ number_format($data["value_infraction"], 2, ',', '.') }}, por
-                                {!!$data['text_administrative']!!}</p>
+                                {!!$data['text_administrative']!!}.</p>
 
+                                <p class="pIndent article">{!!$data['article_administrive']!!}</p>
+
+                                @if ($data['number_embargo'])
                                 <p class="pIndent">{!!$data['text_embargo']!!}</p>
-                                
+                                @endif
+
+                                @if ($data['term_seizure'])
                                 <p class="pIndent">Foi realizada a aprensão de {!!$data['seized_objects']!!}. Conforme termo de Apreensão e Depósito Nº <strong>{!!$data['term_seizure']!!}</strong>, que ficou depositado no endereço: <strong>{!!$data['deposit_location']!!}</strong>. Ficando como fiel depositário: <strong>{!!$data['name_faithful']!!}</strong>, sendo o responsável pelo recebimento e conferência do material: <strong>{!!$data['name_responsible']!!}</strong>.</p>
+                                <div class="images">
+                                <img src="data:image/jpeg;base64,{{$data['imageObjects1']}}" alt="">
+                                <img src="data:image/jpeg;base64,{{$data['imageObjects2']}}" alt="">
+                                <img src="data:image/jpeg;base64,{{$data['imageObjects3']}}" alt="">
+                                <img src="data:image/jpeg;base64,{{$data['imageObjects4']}}" alt="">
+                                </div>
+                                @endif
+
                                 
                             </div>
                             <!-- Das medidas Criminais -->
                             <div class="criminal">
                                 <p class="titles2">4.2 Das medidas criminais</p>
                                 <p class="pIndent">Dessa forma, a conduta do infrator implicou, em tese, no crime previsto no {{$data['article_BO']}} da Lei Federal nº 9.605 de 12 de Fevereiro de 1998, in verbis:</p>
-                                <p class="pIndent">Puxar o artigo da tabela</p>
-                                <p class="pIndent">Portanto, foi confeccionado o {{$data['type_BO']}} Nº <strong>{{$data['number_BO']}}</strong> em desfavor de {{$data['name']}}.</p>
+                                <p class="pIndent article">{!!$data['article_criminal']!!}</p>
+                                <p class="pIndent">Portanto, foi confeccionado o {{$data['type_BO']}} Nº <strong>{{$data['number_BO']}}</strong> em desfavor de <strong>{{$data['name']}}</strong>.</p>
                             </div>
 
                         </div>                        
