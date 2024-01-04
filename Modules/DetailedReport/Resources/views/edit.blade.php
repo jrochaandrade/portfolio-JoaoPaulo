@@ -75,13 +75,29 @@
                                 <label for="inputAI">Auto de Infração II:</label>
                                 <input type="number" class="form-control" name="number_AI" id="inputAI" value="{!!$data['number_AI']!!}">
                             </div>
-                            <div class="col-sm-2">
+                            <!-- <div class="col-sm-2">
                                 <label for="valueAI">Valor do AI:</label>
                                 <input type="number" class="form-control valueAI" name="value_AI" id="valueAI" value="{!!$data['value_AI']!!}">
-                            </div>
-                            <div class="col-sm-4">
+                            </div> -->
+                            <div class="col-sm-3">
                                 <label for="articleAI">Artigo Administrativo:</label>
                                 <input type="text" class="form-control articleAI" name="article_AI" id="articleAI" value="{!!$data['article_AI']!!}">
+                            </div>
+                            <div class="col-sm-3" id="divUseFire">
+                                <span class="titleLabel">Uso de fogo?</span>
+                                <div class="divRadiosUseFire">
+                                    @if ($data['use_fire'] === "noUseFire")
+                                    <input type="radio" name="use_fire" id="yesUseFire"  value="useFire">
+                                    <label for="yesUseFire" class="labelNotBold">Sim</label>
+                                    <input type="radio" name="use_fire" id="noUseFire" value="noUseFire" checked>
+                                    <label for="noUseFire" class="labelNotBold">Não</label>
+                                    @else
+                                    <input type="radio" name="use_fire" id="yesUseFire"  value="useFire" checked>
+                                    <label for="yesUseFire" class="labelNotBold">Sim</label>
+                                    <input type="radio" name="use_fire" id="noUseFire" value="noUseFire">
+                                    <label for="noUseFire" class="labelNotBold">Não</label>
+                                    @endif
+                                </div>
                             </div>
                             <div class="col-sm-3">
                                 <span class="titleLabel">Tipo da infração:</span>
@@ -114,27 +130,27 @@
                                         <div class="col-sm-5">
                                             <span class="titleLabel">Área onde ocorreu o desmatamento:</span>                                            
                                             <div>
-                                                @if ($data['area_deforestation'] === "offReserve")
-                                                <input type="radio" name="area_deforestation" id="offReserve" value="offReserve" checked>
+                                                @if ($data['area_deforestation'] === "área de reserva legal")
+                                                <input type="radio" name="area_deforestation" id="offReserve" value="área de reserva legal" checked>
                                                 <label for="offReserve" class="labelNotBold">Fora da reserva legal</label>
                                                 @else
-                                                <input type="radio" name="area_deforestation" id="offReserve" value="offReserve">
+                                                <input type="radio" name="area_deforestation" id="offReserve" value="área de reserva legal">
                                                 <label for="offReserve" class="labelNotBold">Fora da reserva legal</label>
                                                 @endif
 
-                                                @if ($data['area_deforestation'] === "reserve")
-                                                <input type="radio" name="area_deforestation" id="reserve" value="reserve" checked>
+                                                @if ($data['area_deforestation'] === "área de vegetação nativa")
+                                                <input type="radio" name="area_deforestation" id="reserve" value="área de vegetação nativa" checked>
                                                 <label for="reserve" class="labelNotBold">Reserva legal</label>
                                                 @else
-                                                <input type="radio" name="area_deforestation" id="reserve" value="reserve">
+                                                <input type="radio" name="area_deforestation" id="reserve" value="área de vegetação nativa">
                                                 <label for="reserve" class="labelNotBold">Reserva legal</label>
                                                 @endif
                                                 
-                                                @if ($data['area_deforestation'] === "regeneration")
-                                                <input type="radio" name="area_deforestation" id="regeneration" value="regeneration" checked>
+                                                @if ($data['area_deforestation'] === "em regeneração")
+                                                <input type="radio" name="area_deforestation" id="regeneration" value="em regeneração" checked>
                                                 <label for="regeneration" class="labelNotBold">Regeneração</label>
                                                 @else
-                                                <input type="radio" name="area_deforestation" id="regeneration" value="regeneration">
+                                                <input type="radio" name="area_deforestation" id="regeneration" value="em regeneração">
                                                 <label for="regeneration" class="labelNotBold">Regeneração</label>
                                                 @endif
                                             </div>
@@ -303,7 +319,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="birthday">Data de nascimento:</label>
-                                    <input type="text" class="form-control birthday" name="birthday" id="birthday" value="{!!$data['birthday']!!}">
+                                    <input type="date" class="form-control birthday" name="birthday" id="birthday" value="{!!$data['birthday']!!}">
                                 </div>
                                 <div class="col-sm-7">
                                     <label for="affiliation">Filiação:</label>
@@ -509,7 +525,7 @@
                         </div>
                     </div>
                     <button class="btn btn-primary" id="generateReport">Salvar</button>
-                    <a class="btn btn-success" href="{{ route('generateReport', ['id'=>$data->report_ID]) }}">Visualizar Relatório</a>
+                    <!-- <a class="btn btn-success" href="{{ route('generateReport', ['id'=>$data->report_ID]) }}">Visualizar Relatório</a> -->
                 </form>
             </div> 
         </div>

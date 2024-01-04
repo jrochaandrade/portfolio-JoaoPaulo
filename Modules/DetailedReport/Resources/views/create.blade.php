@@ -31,41 +31,50 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="inputBO">Numero da ocorrência:</label>
-                                <input type="number" class="form-control" name="inputBO" id="inputBO" value="314630014">
+                                <input type="number" class="form-control" name="number_BO" id="inputBO" value="3146300143">
                             </div>
                             <div class="col-sm-2">
                                 <span class="titleLabel">Tipo da ocorrência:</span>
                                 <div class="divRadiosBO">
-                                    <input type="radio" name="typeBO" id="typeTCO" value="Termo circunstanciado de Ocorrência - TCO"  checked>
+                                    <input type="radio" name="type_BO" id="typeTCO" value="Termo circunstanciado de Ocorrência - TCO"  checked>
                                     <label for="typeTCO" class="labelNotBold">TCO</label>
-                                    <input type="radio" name="typeBO" id="typeCOP" value="Comunicado de Ocorrência Policial - COP" >
+                                    <input type="radio" name="type_BO" id="typeCOP" value="Comunicado de Ocorrência Policial - COP" >
                                     <label for="typeCOP" class="labelNotBold">COP</label>
-                                    <input type="radio" name="typeBO" id="typePA" value="Prisão e Apreensão - PA" >
+                                    <input type="radio" name="type_BO" id="typePA" value="Prisão e Apreensão - PA" >
                                     <label for="typePA" class="labelNotBold">PA</label>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="articleBO">Artigo Criminal:</label>
-                                <input type="text" class="form-control articleBO" name="articleBO" id="articleBO" value="Art. 51">
+                                <input type="text" class="form-control articleBO" name="article_BO" id="articleBO" value="Art. 50">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-3">
                                 <label for="inputAI">Auto de Infração II:</label>
-                                <input type="number" class="form-control" name="inputAI" id="inputAI" value="125425">
+                                <input type="number" class="form-control" name="number_AI" id="inputAI" value="125425">
                             </div>
-                            <div class="col-sm-2">
+                            <!-- <div class="col-sm-2">
                                 <label for="valueAI">Valor do AI:</label>
                                 <input type="number" class="form-control valueAI" name="valueAI" id="valueAI" value="5000">
-                            </div>
-                            <div class="col-sm-4">
+                            </div> -->
+                            <div class="col-sm-3">
                                 <label for="articleAI">Artigo Administrativo:</label>
-                                <input type="text" class="form-control articleAI" name="articleAI" id="articleAI" value="Art. 51">
+                                <input type="text" class="form-control articleAI" name="article_AI" id="articleAI" value="Art. 51">
+                            </div>
+                            <div class="col-sm-3" id="divUseFire">
+                                <span class="titleLabel">Uso de fogo?</span>
+                                <div class="divRadiosUseFire">
+                                    <input type="radio" name="use_fire" id="yesUseFire"  value="useFire">
+                                    <label for="yesUseFire" class="labelNotBold">Sim</label>
+                                    <input type="radio" name="use_fire" id="noUseFire" value="noUseFire" checked>
+                                    <label for="noUseFire" class="labelNotBold">Não</label>
+                                </div>
                             </div>
                             <div class="col-sm-3">
                                 <span class="titleLabel">Tipo da infração:</span>
-                                <select name="selectTypeAI" class="form-control" id="selectTypeAI">
+                                <select name="type_AI" class="form-control" id="selectTypeAI">
                                     <option value="" selected disabled>Selecione:</option>
                                     <option value="logging">Desmatamento</option>
                                     <option value="wood">Madeira</option>
@@ -80,16 +89,16 @@
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <label for="inputDeforestationSize" id="labelDeforestationSize">Tamanho do desmatamento (ha):</label>
-                                            <input type="number" class="form-control" name="inputDeforestationSize" id="inputDeforestationSize" step="0.001" value="45.325">
+                                            <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="45.325">
                                         </div>
                                         <div class="col-sm-5">
                                             <span class="titleLabel">Área onde ocorreu o desmatamento:</span>                                            
                                             <div>
-                                                <input type="radio" name="reserve" id="reserve" value="reserve" checked>
+                                                <input type="radio" name="area_deforestation" id="reserve" value="área de reserva legal" checked>
                                                 <label for="reserve" class="labelNotBold">Reserva legal</label>
-                                                <input type="radio" name="reserve" id="offReserve" value="offReserve">
+                                                <input type="radio" name="area_deforestation" id="offReserve" value="área de vegetação nativa">
                                                 <label for="offReserve" class="labelNotBold">Fora da reserva legal</label>
-                                                <input type="radio" name="reserve" id="regeneration" value="regeneration">
+                                                <input type="radio" name="area_deforestation" id="regeneration" value="em regeneração">
                                                 <label for="regeneration" class="labelNotBold">Regeneração</label>
                                             </div>
                                         </div>
@@ -121,11 +130,11 @@
                         <div class="row">
                             <div class="col-sm-6" id="divInputEmbargo">
                                 <label for="inputEmbargo" class="labelEmbargo" id="labelEmbargo">Informe o numero do Termo de Embargo:</label>
-                                <input type="number" class="form-control inputEmbargo" name="inputEmbargo" id="inputEmbargo" value="163254">
+                                <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="163254">
                             </div>
                             <div class="col-sm-6" id="divInputImageletter">                                
                                 <label for="inputImageLetter" class="labelImageLetter" id="labelImageLetter">Informe o numero da Carta Imagem:</label>
-                                <input type="text" class="form-control inputImageLetter" name="inputImageLetter" id="inputImageLetter" value="JIPA-2023-JPRA025">
+                                <input type="text" class="form-control inputImageLetter" name="number_letter" id="inputImageLetter" value="JIPA-2023-JPRA025">
                             </div>
                         </div>
 
@@ -172,15 +181,15 @@
                             </div>
                             <div id="divSeizedObjects">
                                 <label for="inputTermOfSeizure" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
-                                <input type="text" class="form-control inputTermOfSeizure" name="inputTermOfSeizure" id="inputTermOfSeizure" placeholder=""  value="123545">
+                                <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder=""  value="123545">
                                 <label for="inputSeizedObjects" class="seizedObjects" id="seizedObjects">Descreva os objetos apreendidos:</label>
-                                <input type="text" class="form-control inputSeizedObjects" name="inputSeizedObjects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="01 - Motossera Huskvarna, 01 - Trator de esteira amarelo">
+                                <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="01 - Motossera Huskvarna, 01 - Trator de esteira amarelo">
                                 <label for="inputDepositLocation" class="labelDepositLocation" id="labelDepositLocation">Endereço onde foi depositado:</label>
-                                <input type="text" class="form-control depositLocation" name="inputDepositLocation" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="Rua Jasmim Nº 36 Bairro Centro - Ji-Paraná/RO">
+                                <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="Rua Jasmim Nº 36 Bairro Centro - Ji-Paraná/RO">
                                 <label for="inputNameFaithful" class="labelNameFaithful" id="labelNameFaithful">Nome e CPF/CNPJ fiel depositário:</label>
-                                <input type="text" class="form-control inputNameFaithful" name="inputNameFaithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="Prefeitura de Ji-Paraná CNPJ: 01.002.543/0001-25">
+                                <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="Prefeitura de Ji-Paraná CNPJ: 01.002.543/0001-25">
                                 <label for="inputNameresponsible" class="labelNameresponsible" id="labelNameresponsible">Nome e CPF do responsável pelo recebimento:</label>
-                                <input type="text" class="form-control inputNameresponsible" name="inputNameresponsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="Marcelo Antonio CPF: 126.135.464-58">
+                                <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="Marcelo Antonio CPF: 126.135.464-58">
 
                                 <div class="divImagesObjects">
                                     <!-- <h3>Imagens da ocorrência</h3> -->
@@ -220,7 +229,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="birthday">Data de nascimento:</label>
-                                    <input type="text" class="form-control birthday" name="birthday" id="birthday" value="23121988">
+                                    <input type="date" class="form-control birthday" name="birthday" id="birthday" value="23121988">
                                 </div>
                                 <div class="col-sm-7">
                                     <label for="affiliation">Filiação:</label>
@@ -378,51 +387,51 @@ Foram tomadas ainda as medidas Administrativas cabíveis conforme Termo de Embar
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="cmt">Comandante - Nome completo - Graduação - RE:</label>
-                                <input type="text" class="form-control cmt" id="cmt" name="cmt" value="Alberto Martins - CB QPPM - 100095154">
+                                <input type="text" class="form-control cmt" id="cmt" name="name_CMT" value="Alberto Martins - CB QPPM - 100095154">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitCmt">Unidade CMT:</label>
-                                <input type="text" class="form-control unitCmt" name="unitCmt" id="unitCmt" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                                <input type="text" class="form-control unitCmt" name="unit_CMT" id="unitCmt" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="mot">Motorista:</label>
-                                <input type="text" class="form-control mot" id="mot" name="mot" value="Marcos Pedroso neto - CB QPPM - 100096452">
+                                <input type="text" class="form-control mot" id="mot" name="name_MOT" value="Marcos Pedroso neto - CB QPPM - 100096452">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitMot">Unidade Motorista:</label>
-                                <input type="text" class="form-control unitMot" name="unitMot" id="unitMot" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                                <input type="text" class="form-control unitMot" name="unit_MOT" id="unitMot" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr1">Patrulheiro 1:</label>
-                                <input type="text" class="form-control ptr1" id="ptr1" name="ptr1" value="Rogger Marcos de Paula - SD QPPM - 100098754">
+                                <input type="text" class="form-control ptr1" id="ptr1" name="name_PTR1" value="Rogger Marcos de Paula - SD QPPM - 100098754">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr1">Unidade Patrulheiro 1:</label>
-                                <input type="text" class="form-control unitPtr1" name="unitPtr1" id="unitPtr1" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                                <input type="text" class="form-control unitPtr1" name="unit_PTR1" id="unitPtr1" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr2">Patrulheiro 2:</label>
-                                <input type="text" class="form-control ptr2" id="ptr2" name="ptr2" value="Mauricio Neto Godoi - SD QPPM - 100098745">
+                                <input type="text" class="form-control ptr2" id="ptr2" name="name_PTR2" value="Mauricio Neto Godoi - SD QPPM - 100098745">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr2">Unidade Patrulheiro 2:</label>
-                                <input type="text" class="form-control unitPtr2" name="unitPtr2" id="unitPtr2" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                                <input type="text" class="form-control unitPtr2" name="unit_PTR2" id="unitPtr2" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr3">Patrulheiro 3:</label>
-                                <input type="text" class="form-control ptr3" id="ptr3" name="ptr3" value="Murilo Gomes - SD QPPM - 10005745">
+                                <input type="text" class="form-control ptr3" id="ptr3" name="name_PTR3" value="Murilo Gomes - SD QPPM - 10005745">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr3">Unidade Patrulheiro 3:</label>
-                                <input type="text" class="form-control unitPtr3" name="unitPtr3" id="unitPtr3" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                                <input type="text" class="form-control unitPtr3" name="unit_PTR3" id="unitPtr3" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
                             </div>
                         </div>
                     </div>

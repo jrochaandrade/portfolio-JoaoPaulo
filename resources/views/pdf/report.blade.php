@@ -230,27 +230,27 @@
                     <div class="body">
                         <div class="titleBody" style="text-align: center;">
                             <p style="text-align: center;">Relatório Circunstanciado</p>
-                            <p style="text-align: center;">Auto de infração ambiental II - <strong>Nº {{$data['inputAI']}}</strong></p>
+                            <p style="text-align: center;">Auto de infração ambiental II - <strong>Nº {{$data['number_AI']}}</strong></p>
                         </div>
                         <div class="divDocs">
-                            <p>Auto de Infração Ambiental II - <strong>Nº {{$data['inputAI']}}</strong></p>
+                            <p>Auto de Infração Ambiental II - <strong>Nº {{$data['number_AI']}}</strong></p>
 
-                            <p>{{$data['typeBO']}} <strong>Nº {{$data['inputBO']}}</strong></p>
+                            <p>{{$data['type_BO']}} <strong>Nº {{$data['number_BO']}}</strong></p>
                             
-                            @if ($data['inputEmbargo'])
-                            <p>Termo de Embargo - <strong>Nº {{$data['inputEmbargo']}}</strong></p>
+                            @if ($data['number_embargo'])
+                            <p>Termo de Embargo - <strong>Nº {{$data['number_embargo']}}</strong></p>
                             @endif
                             
-                            @if ($data['inputLumber'])
+                            <!-- @if ($data['inputLumber'])
                             <p>Planilha de Madeira Serrada - <strong>Nº {{$data['inputLumber']}}</strong></p>
                             @endif
                             
                             @if ($data['inputNaturalWood'])
                             <p>Planilha de Madeira <em>In-Natura</em> - <strong>Nº {{$data['inputNaturalWood']}}</strong></p>
-                            @endif
+                            @endif -->
                             
-                            @if ($data['inputImageLetter'])
-                            <p>Carta Imagem - <strong>Nº {{$data['inputImageLetter']}}</strong></p>
+                            @if ($data['number_letter'])
+                            <p>Carta Imagem - <strong>Nº {{$data['number_letter']}}</strong></p>
                             @endif 
                         </div>
                         <div class="dataOffender" style="margin-bottom: 20px;">
@@ -336,15 +336,15 @@
                             <div class="administrative">
                                 <p class="titles2" style="text-indent: 1em;">4.1 Das medidas administrativas</p>
                                 <p style="margin: 10px; text-indent: 3em;">Como medidas adminstrativas foram lavrados:</p>
-                                <p style="margin: 10px; text-indent: 3em;">Auto de infração II Nº <strong>{{$data['inputAI']}}</strong> na importância de R${{$data['valueAI']}}, por
-                                {!!$data['administrative']!!}</p>
+                                <p style="margin: 10px; text-indent: 3em;">Auto de infração II Nº <strong>{{$data['number_AI']}}</strong> na importância de R${{$data['value_infraction']}}, por
+                                {!!$data['text_administrative']!!}</p>
 
-                                <p style="margin: 10px; text-indent: 3em;">{!!$data['textEmbargo']!!}</p>
+                                <p style="margin: 10px; text-indent: 3em;">{!!$data['text_embargo']!!}</p>
                             </div>
                             <div class="criminal">
                                 <p class="titles2" style="text-indent: 1em;">4.2 Das medidas criminais</p>
-                                <p style="margin: 10px; text-indent: 3em;">Dessa forma, a conduta do infrator implicou, em tese, no crime previsto no {{$data['articleBO']}} da Lei Federal nº 9.605 de 12 de Fevereiro de 1998, in verbis:</p>
-                                <p style="margin: 10px; text-indent: 3em;">Portanto, foi confeccionado o {{$data['typeBO']}} Nº <strong>{{$data['inputBO']}}</strong> em desfavor de {{$data['name']}}.</p>
+                                <p style="margin: 10px; text-indent: 3em;">Dessa forma, a conduta do infrator implicou, em tese, no crime previsto no {{$data['article_BO']}} da Lei Federal nº 9.605 de 12 de Fevereiro de 1998, in verbis:</p>
+                                <p style="margin: 10px; text-indent: 3em;">Portanto, foi confeccionado o {{$data['type_BO']}} Nº <strong>{{$data['number_BO']}}</strong> em desfavor de {{$data['name']}}.</p>
                             </div>
                         </div>                        
 
@@ -354,30 +354,30 @@
                                     <th colspan="2" class="text-center" style="border: 1px solid gray">Componentes da equipe</th>
                                 </tr>
                                 <tr>
-                                    <th class="cell" style="border: 1px solid gray;">{{$data['cmt']}}</th>
-                                    <td style="border: 1px solid gray;">{{$data['unitCmt']}}</td>
+                                    <th class="cell" style="border: 1px solid gray;">{{$data['name_CMT']}}</th>
+                                    <td style="border: 1px solid gray;">{{$data['unit_CMT']}}</td>
                                 </tr>
                                 <tr>
-                                    <th class="cell" style="border: 1px solid gray;">{{$data['mot']}}</th>
-                                    <td style="border: 1px solid gray;">{{$data['unitMot']}}</td>
+                                    <th class="cell" style="border: 1px solid gray;">{{$data['name_MOT']}}</th>
+                                    <td style="border: 1px solid gray;">{{$data['unit_MOT']}}</td>
                                 </tr>
                                 <tr>
-                                    <th class="cell" style="border: 1px solid gray;">{{$data['ptr1']}}</th>
-                                    <td style="border: 1px solid gray;">{{$data['unitPtr1']}}</td>
+                                    <th class="cell" style="border: 1px solid gray;">{{$data['name_PTR1']}}</th>
+                                    <td style="border: 1px solid gray;">{{$data['unit_PTR1']}}</td>
                                 </tr>
                                 <tr>
-                                    <th class="cell" style="border: 1px solid gray;">{{$data['ptr2']}}</th>
-                                    <td style="border: 1px solid gray;">{{$data['unitPtr2']}}</td>
+                                    <th class="cell" style="border: 1px solid gray;">{{$data['name_PTR2']}}</th>
+                                    <td style="border: 1px solid gray;">{{$data['unit_PTR2']}}</td>
                                 </tr>
                                 <tr>
-                                    <th class="cell" style="border: 1px solid gray;">{{$data['ptr3']}}</th>
-                                    <td style="border: 1px solid gray;">{{$data['unitPtr3']}}</td>
+                                    <th class="cell" style="border: 1px solid gray;">{{$data['name_PTR3']}}</th>
+                                    <td style="border: 1px solid gray;">{{$data['unit_PTR3']}}</td>
                                 </tr>                            
                             </table>
                         </div>
 
                         <div class="signature">
-                            <p style="text-align: center;">{{$data['cmt']}}</p>
+                            <p style="text-align: center;">{{$data['name_CMT']}}</p>
                             <p style="text-align: center;">Relator</p>
                         </div>
 

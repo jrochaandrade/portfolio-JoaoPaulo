@@ -1,6 +1,6 @@
 @extends('layouts.masterPage')
 
-@section('title', 'Polícia Militar Ambiental')
+@section('title', ' Relatório Circunstanciado - Polícia Militar Ambiental')
 
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
@@ -48,15 +48,15 @@
                 <div class="body">
                     <div class="titleBody">
                         <p>Relatório Circunstanciado</p>
-                        <p>Auto de infração ambiental II - <strong>Nº {{$data['number_AI']}}</strong></p>
+                        <p>Auto de infração ambiental II - Nº <strong>{{$data['number_AI']}}</strong></p>
                     </div>
                     <div class="divDocs">
-                        <p>Auto de Infração Ambiental II - <strong>Nº {{$data['number_AI']}}</strong></p>
+                        <p>Auto de Infração Ambiental II - Nº <strong>{{$data['number_AI']}}</strong></p>
 
-                        <p>{{$data['type_BO']}} <strong>Nº {{$data['number_BO']}}</strong></p>
+                        <p>{{$data['type_BO']}} Nº <strong>{{$data['number_BO']}}</strong></p>
                         
                         @if ($data['number_embargo'])
-                        <p>Termo de Embargo - <strong>Nº {{$data['number_embargo']}}</strong></p>
+                        <p>Termo de Embargo - Nº <strong>{{$data['number_embargo']}}</strong></p>
                         @endif
 
                         
@@ -69,11 +69,11 @@
                         @endif -->
                         
                         @if ($data['number_letter'])
-                        <p>Carta Imagem - <strong>Nº {{$data['number_letter']}}</strong></p>
+                        <p>Carta Imagem - Nº <strong>{{$data['number_letter']}}</strong></p>
                         @endif 
                         
                         @if ($data['term_seizure'])
-                        <p>Termo de Apreensão e Depósito - <strong>Nº {{$data['term_seizure']}}</strong></p>
+                        <p>Termo de Apreensão e Depósito - Nº <strong>{{$data['term_seizure']}}</strong></p>
                         @endif
                     </div>
                     <div class="dataOffender">
@@ -99,7 +99,7 @@
                             </tr>
                             <tr>
                                 <th class="cell">Data de nascimento</th>
-                                <td>{{$data['birthday']}}</td>
+                                <td>{{ \Carbon\Carbon::parse($data['birthday'])->format('d/m/Y') }}</td>
                             </tr>
                             <tr>
                                 <th class="cell">Filiação</th>
@@ -122,9 +122,6 @@
                             <p class="indent">{{$historic}}</p>
                         @endforeach
                     </div>
-
-                    
-
                     <div class="images">
                     <img src="data:image/jpeg;base64,{{$data['imageOcorrence1']}}" alt="">
                     <img src="data:image/jpeg;base64,{{$data['imageOcorrence2']}}" alt="">
@@ -138,7 +135,7 @@
                     </div>
 
                     <div class="mitigatingAndAggravating">
-                        <p class="titles">3. Das atenuantes e agravantes conforme rege a Lei Federal nº 9.605/98, in verbi</p>
+                        <p class="titles">3. Das atenuantes e agravantes conforme rege a Lei Federal nº 9.605/98</p>
                         <div class="mitigating">
                             <p class="titles2">3.1 Das atenuantes </p>
                             @if(is_array($data['mitigatingArray']))
@@ -172,10 +169,15 @@
                             <div class="administrative">
                                 <p class="titles2">4.1 Das medidas administrativas</p>
                                 <p class="pIndent">Como medidas adminstrativas foram lavrados:</p>
+                                
                                 <p class="pIndent">Auto de infração II Nº <strong>{{$data['number_AI']}}</strong> na importância de R$ {{ number_format($data["value_infraction"], 2, ',', '.') }}, por
                                 {!!$data['text_administrative']!!}.</p>
-
+                                
                                 <p class="pIndent article">{!!$data['article_administrive']!!}</p>
+                                
+                                @if($data['use_fire'] == 'useFire')
+                                <p class="pIndent article">Art. 60.  As sanções administrativas previstas nesta Subseção serão aumentadas pela metade quando: I - ressalvados os casos previstos nos arts. 46 e 58, a infração for consumada mediante uso de fogo ou provocação de incêndio;</p>
+                                @endif
 
                                 @if ($data['number_embargo'])
                                 <p class="pIndent">{!!$data['text_embargo']!!}</p>
@@ -183,16 +185,17 @@
 
                                 @if ($data['term_seizure'])
                                 <p class="pIndent">Foi realizada a aprensão de {!!$data['seized_objects']!!}. Conforme termo de Apreensão e Depósito Nº <strong>{!!$data['term_seizure']!!}</strong>, que ficou depositado no endereço: <strong>{!!$data['deposit_location']!!}</strong>. Ficando como fiel depositário: <strong>{!!$data['name_faithful']!!}</strong>, sendo o responsável pelo recebimento e conferência do material: <strong>{!!$data['name_responsible']!!}</strong>.</p>
+
+
                                 <div class="images">
                                 <img src="data:image/jpeg;base64,{{$data['imageObjects1']}}" alt="">
                                 <img src="data:image/jpeg;base64,{{$data['imageObjects2']}}" alt="">
                                 <img src="data:image/jpeg;base64,{{$data['imageObjects3']}}" alt="">
                                 <img src="data:image/jpeg;base64,{{$data['imageObjects4']}}" alt="">
                                 </div>
-                                @endif
-
-                                
+                                @endif                                
                             </div>
+                            
                             <!-- Das medidas Criminais -->
                             <div class="criminal">
                                 <p class="titles2">4.2 Das medidas criminais</p>
@@ -243,7 +246,7 @@
             <div class="divBtn">
                 <button class="btn btn-primary btnPrint" id="btnPrint">Imprimir</button>
                 <!-- <button class="btn btn-success btnPfd" id="btnPdf">Gerar PDF</button> -->
-                <!-- <a href="{{ route('generate.pdf') }}">Gerar pdf</a> -->
+                <a href="{{ route('generate.pdf') }}">Gerar pdf</a>
                 <a href="{{ route('editReport', ['id'=>$data->report_ID]) }}" class="btn btn-warning btnCreatePDF" >Editar</a>
                 <button class="btn btn-secondary" id="btnBack">Voltar</button>
             </div>

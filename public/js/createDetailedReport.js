@@ -83,6 +83,8 @@ if (optionsImageLetter[0].value === 'yes' && optionsImageLetter[0].checked) {
 /* Fim script para verificar se possui planilha de madeira in-natura e mostrar input na tela */
 
 
+
+
 /* Script para vericar se possui atenuantes e mostar na tela */
 /* const optionsMitigating= document.getElementsByName('yesOrNoMitigating')
 const divMitigating = document.getElementById('divMitigating')
@@ -255,6 +257,24 @@ function dynamicHiddenMitigatingAgravating(label, checkboxes) {
         checkbox.checked = false; // Desmarcar as opções ao ocultar
     });
 }
+
+
+
+
+    /* $(document).ready(function () {
+        $('#birthday').inputmask('99/99/9999', { placeholder: '__/__/____' });
+    });
+ */
+
+    $(document).ready(function () {
+        $('#phone').inputmask('(99) 99999-9999', { placeholder: '(__) _____-____' });
+    });
+
+
+    $(document).ready(function () {
+        $('#cpf').inputmask('999.999.999-99', { placeholder: '___.___.___-__' });
+    });
+
 
 
 
