@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
 use Dompdf\Options;
+use Modules\DetailedReport\Http\Requests\ReportRequest;
 use Modules\DetailedReport\Models\PhotosReport;
 use Modules\DetailedReport\Models\Report;
 use Illuminate\Support\Facades\Storage;
@@ -269,7 +270,7 @@ class DetailedReportController extends Controller
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(ReportRequest $request)
     {
         $data = array();
         
