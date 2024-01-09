@@ -106,12 +106,17 @@
                                     </div>
                                 @endif -->
                                 <label for="articleAI">Artigo Administrativo:</label>
-                                <select name="article_AI" id="article_AI" class="form-control">
+                                <select name="article_AI" id="article_AI" class="form-control articleAI {{ $errors->has('article_AI') ? 'is-invalid' : '' }}">
                                     <option value="" selected disabled>Selecione:</option>
                                     <option value="Art. 43" >Art. 43 Destruir APP:</option>
                                     <option value="Art. 50" >Art. 50 Desmate fora reserva legal:</option>
                                     <option value="Art. 51" >Art. 51 Desmate reserva legal:</option>
                                 </select>
+                                @if ($errors->has('article_AI'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('article_AI') }}
+                                    </div>
+                                @endif
                             </div>
                             
                            
