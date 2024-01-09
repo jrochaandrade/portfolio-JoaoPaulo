@@ -246,7 +246,7 @@
             <div class="divBtn">
                 <button class="btn btn-primary btnPrint" id="btnPrint">Imprimir</button>
                 <!-- <button class="btn btn-success btnPfd" id="btnPdf">Gerar PDF</button> -->
-                <a href="{{ route('generate.pdf') }}">Gerar pdf</a>
+                <!-- <a href="{{ route('generate.pdf') }}">Gerar pdf</a> -->
                 <a href="{{ route('editReport', ['id'=>$data->report_ID]) }}" class="btn btn-warning btnCreatePDF" >Editar</a>
                 <button class="btn btn-secondary" id="btnBack">Voltar</button>
             </div>
