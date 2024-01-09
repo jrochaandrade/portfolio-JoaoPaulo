@@ -93,6 +93,7 @@ $(document).ready(function() {
     }) */
 })
 
+// Botão Voltar
 document.getElementById('btnBack').addEventListener('click', () => {
     window.history.back();
     

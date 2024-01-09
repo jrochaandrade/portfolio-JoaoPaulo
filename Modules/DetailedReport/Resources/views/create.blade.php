@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <label for="inputAI">Auto de Infração II:</label>
                                 <input type="text" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value="125425"  pattern="\d*">
                                 @if ($errors->has('number_AI'))
@@ -79,7 +79,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <p class="titleLabel">Tipo da infração:</p>
                                 <select name="type_AI" class="form-control {{ $errors->has('type_AI') ? 'is-invalid' : '' }}" id="selectTypeAI">
                                     <option value="" selected disabled>Selecione:</option>
@@ -97,14 +97,21 @@
                                 <label for="valueAI">Valor do AI:</label>
                                 <input type="number" class="form-control valueAI" name="valueAI" id="valueAI" value="5000">
                             </div> -->
-                            <div class="col-sm-3">
-                                <label for="articleAI">Artigo Administrativo:</label>
+                            <div class="col-sm-4">
+                                <!-- <label for="articleAI">Artigo Administrativo:</label>
                                 <input type="text" class="form-control articleAI {{ $errors->has('article_AI') ? 'is-invalid' : '' }}" name="article_AI" id="articleAI" value="Art. 51">
                                 @if ($errors->has('article_AI'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('article_AI') }}
                                     </div>
-                                @endif
+                                @endif -->
+                                <label for="articleAI">Artigo Administrativo:</label>
+                                <select name="article_AI" id="article_AI" class="form-control">
+                                    <option value="" selected disabled>Selecione:</option>
+                                    <option value="Art. 43" >Art. 43 Destruir APP:</option>
+                                    <option value="Art. 50" >Art. 50 Desmate fora reserva legal:</option>
+                                    <option value="Art. 51" >Art. 51 Desmate reserva legal:</option>
+                                </select>
                             </div>
                             
                            
