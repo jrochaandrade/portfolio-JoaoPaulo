@@ -86,9 +86,10 @@ function handleFileSelect(event) {
                     img1.className = 'logo1'
                     img1.src = '/images/logo1.png';
                     // Cria a descrição do centro do cabeçalho
+                    const unit = document.getElementById('inputUnit').value
                     const title = document.createElement('p')
                     title.className = 'title'
-                    title.innerHTML = 'Secretaria de Estado da Segurança, Defesa e Cidadania<br>Polícia Militar do estado de Rondônia<br>Batalhão de Polícia Ambiental<br>3ª Companhia de Polícia Ambiental<br>Seção de Planejamento Operacional'
+                    title.innerHTML = 'Secretaria de Estado da Segurança, Defesa e Cidadania<br>Polícia Militar do estado de Rondônia<br>Batalhão de Polícia Ambiental<br>' + unit + '<br><br>'
                     // Cria o logo 02 da direita
                     const img2 = document.createElement('img')
                     img2.className = 'logo2'
@@ -144,11 +145,19 @@ function handleFileSelect(event) {
             console.error('Erro ao obter metadados Exif:', error);
         });
 
-        // Chame a função quando quiser rolar para o final da página
-        scrollToBottom();
+        /* // Chame a função quando quiser rolar para o final da página
+        scrollToBottom(); */
 
-        // Chame a função quando quiser rolar para o topo da página
-        scrollToTop();
+        setTimeout(() => {
+            scrollToBottom();
+        }, 5000);
+
+        setTimeout(() => {
+            scrollToTop();
+        }, 6000);
+
+        /* // Chame a função quando quiser rolar para o topo da página
+        scrollToTop(); */
 
 }
 
@@ -157,6 +166,15 @@ function scrollToBottom() {
         window.scrollTo(0,document.body.scrollHeight);
     
 }
+
+/* function scrollToBottom() {
+    // Obtém a posição da primeira div com a classe 'pageWithBorder'
+    const firstPageWithBorder = document.getElementById('pageWithBorder0');
+    const position = firstPageWithBorder.offsetTop + firstPageWithBorder.offsetHeight;
+
+    // Rola até o fim da primeira div 'pageWithBorder'
+    window.scrollTo(0, position);
+} */
 
 
 
