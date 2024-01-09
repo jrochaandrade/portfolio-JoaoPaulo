@@ -112,7 +112,7 @@ class DetailedReportController extends Controller
             
             // Carregar o conteúdo da imagem da URL
             $conteudoImagem = file_get_contents(public_path('storage/' . $caminhoImagem));
-            
+            dd($conteudoImagem);
             // Converter o conteúdo da imagem para base64
             $imagemBase64 = base64_encode($conteudoImagem);
 
