@@ -228,8 +228,8 @@
 
                                 <div class="divImagesObjects">
                                     <!-- <h3>Imagens da ocorrência</h3> -->
-                                    <label for="images1">Carregar 4 imagens, sendo 3 dos objetos apreendidos e 1 do local onde ficaram depositado:</label>
-                                    <input type="file" class="form-control images1" name="images2[]" id="images2" multiple>
+                                    <label for="images2">Carregar 4 imagens, sendo 3 dos objetos apreendidos e 1 do local onde ficaram depositado:</label>
+                                    <input type="file" class="form-control images2" name="images2[]" id="images2" multiple>
                                 </div>
                             </div>
                             
@@ -284,7 +284,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="birthday">Data de nascimento:</label>
-                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="23121988">
+                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="23/12/1988">
                                     @if ($errors->has('birthday'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('birthday') }}
@@ -346,10 +346,10 @@ Foram tomadas ainda as medidas Administrativas cabíveis conforme Termo de Embar
                     <div class="divImages">
                         <h3>Imagens da ocorrência</h3>
                         <label for="images1">Carregar 4 imagens:</label>
-                        <input type="file" class="form-control images1 {{ $errors->has('image1[]') ? 'is-invalid' : '' }}" name="images1[]" id="images1" multiple>
-                        @if ($errors->has('image1[]'))
+                        <input type="file" class="form-control images1 {{ $errors->has('images1[]') ? 'is-invalid' : '' }}" name="images1[]" id="images1" multiple>
+                        @if ($errors->has('images1[]'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('image1[]') }}
+                                {{ $errors->first('images1[]') }}
                             </div>
                         @endif
                     </div>
