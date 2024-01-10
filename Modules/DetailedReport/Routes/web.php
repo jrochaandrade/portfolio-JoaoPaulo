@@ -16,18 +16,27 @@ use Modules\DetailedReport\Http\Controllers\DetailedReportController;
     Route::get('/report/detailed', 'DetailedReportController@index');
 }); */
 
-Route::get('/report/detailed', [DetailedReportController::class, 'index'])->name('detailed');
-
-Route::get('/report/create', [DetailedReportController::class, 'create'])->name('create');
-
-Route::get('/report/edit/{id}', [DetailedReportController::class, 'edit'])->name('editReport');
-
-Route::put('/report/{id}', [DetailedReportController::class, 'update'])->name('updateReport');
-
-Route::get('/report/generateReport/{id}', [DetailedReportController::class, 'show'])->name('generateReport');
-
-Route::post('/report/save', [DetailedReportController::class, 'store'])->name('save');
 
 
-Route::get('/report/pdf', [DetailedReportController::class, 'generatePdf'])->name('generate.pdf');
+Route::group(['middleware' => ['auth']], function() /* colocando as rotas dentro dessa rota vai proteger do acesso via endereço */
+{
+    Route::get('/report/detailed', [DetailedReportController::class, 'index'])->name('detailed');
+
+    Route::get('/report/create', [DetailedReportController::class, 'create'])->name('create');
+    
+    Route::get('/report/edit/{id}', [DetailedReportController::class, 'edit'])->name('editReport');
+    
+    Route::put('/report/{id}', [DetailedReportController::class, 'update'])->name('updateReport');
+    
+    Route::get('/report/generateReport/{id}', [DetailedReportController::class, 'show'])->name('generateReport');
+    
+    Route::post('/report/save', [DetailedReportController::class, 'store'])->name('save');
+    
+    
+    Route::get('/report/pdf', [DetailedReportController::class, 'generatePdf'])->name('generate.pdf');
+});
+
+//Auth::routes();
+
+
 

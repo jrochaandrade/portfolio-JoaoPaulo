@@ -90,5 +90,12 @@ function applySavedTheme() {
 applySavedTheme()
 /* Fim script para manter o tema */
 
+document.getElementById('ancoraLogout').addEventListener('click', function (event) {
+    
+    event.preventDefault()
+
+    document.getElementById('btnLogoutHidden').click()
+})
+
 
 

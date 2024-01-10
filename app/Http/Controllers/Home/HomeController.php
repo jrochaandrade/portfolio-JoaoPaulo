@@ -10,6 +10,7 @@ use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Put;
 use Spatie\RouteAttributes\Attributes\Delete;
 
+//#[Middleware('auth')]
 class HomeController extends Controller
 {
     /**

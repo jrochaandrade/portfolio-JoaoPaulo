@@ -74,3 +74,11 @@
     border: 1px solid var(--text-color);
     box-shadow: 0 0 35px 0 rgba(107, 107, 162, 0.5);;
 }
+
+.btnLogoutHidden {   
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #0000EE; /* Link color */
+    padding: 0;
+}

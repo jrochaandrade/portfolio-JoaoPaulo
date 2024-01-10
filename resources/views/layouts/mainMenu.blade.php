@@ -73,7 +73,11 @@
         </div>
         <div class="bottom-content">
             <li class="">
-                <a href="#">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf 
+                    <button class="btnLogoutHidden" type="submit" id="btnLogoutHidden"></button>
+                </form>
+                <a href="#" id="ancoraLogout">
                     <i class="bi bi-door-open icon"></i>
                     <span class="text nav-text">Logout</span>
                 </a>

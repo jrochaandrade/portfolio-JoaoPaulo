@@ -26,3 +26,7 @@ use Modules\InteractiveMap\Http\Controllers\InteractiveMapController;
  //Route::get('/teste', [InteractiveMapController::class, 'teste'])->name('teste');
 
  
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
