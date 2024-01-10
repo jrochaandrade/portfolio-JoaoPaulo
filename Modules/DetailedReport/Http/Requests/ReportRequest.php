@@ -51,8 +51,8 @@ class ReportRequest extends FormRequest
             /* 'name_PTR1' => 'required',
             'name_PTR2' => 'required',
             'name_PTR3' => 'required', */
-            //'unit_CMT' => 'required',
-            //'unit_MOT' => 'required',
+            'unit_CMT' => 'required',
+            'unit_MOT' => 'required',
             /* 'unit_PTR1' => 'required',
             'unit_PTR2' => 'required',
             'unit_PTR3' => 'required', */

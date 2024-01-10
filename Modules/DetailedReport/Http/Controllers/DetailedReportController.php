@@ -688,7 +688,7 @@ class DetailedReportController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(ReportRequest $request, $id)
     {
         $data = Report::find($id);
 

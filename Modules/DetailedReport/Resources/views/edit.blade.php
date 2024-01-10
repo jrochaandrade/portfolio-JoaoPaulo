@@ -32,7 +32,12 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="inputBO">Numero da ocorrência:</label>
-                                <input type="number" class="form-control" name="number_BO" id="inputBO" value="{!!$data['number_BO']!!}">
+                                <input type="number" class="form-control {{ $errors->has ('number_BO') ? 'is-invalid' : '' }}" name="number_BO" id="inputBO" value="{!!$data['number_BO']!!}">
+                                @if ($errors->has('number_BO'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('number_BO') }}
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-sm-2">
                                 <span class="titleLabel">Tipo da ocorrência:</span>
@@ -66,19 +71,53 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="articleBO">Artigo Criminal:</label>
-                                <input type="text" class="form-control articleBO" name="article_BO" id="articleBO" value="{!!$data['article_BO']!!}">
+                                <input type="text" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}" name="article_BO" id="articleBO" value="{!!$data['article_BO']!!}">
+                                @if ($errors->has('article_BO'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('article_BO') }}
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-3">
                                 <label for="inputAI">Auto de Infração II:</label>
-                                <input type="number" class="form-control" name="number_AI" id="inputAI" value="{!!$data['number_AI']!!}">
+                                <input type="number" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value="{!!$data['number_AI']!!}">
+                                @if ($errors->has('number_AI'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('number_AI') }}
+                                    </div>
+                                @endif
                             </div>
                             <!-- <div class="col-sm-2">
                                 <label for="valueAI">Valor do AI:</label>
                                 <input type="number" class="form-control valueAI" name="value_AI" id="valueAI" value="{!!$data['value_AI']!!}">
                             </div> -->
+                            <div class="col-sm-3">
+                                <span class="titleLabel">Tipo da infração:</span>
+                                @if ($data['type_AI'] === "logging")
+                                <select name="type_AI" class="form-control {{ $errors->has('type_AI') ? 'is-invalid' : '' }}" id="selectTypeAI">
+                                    
+                                    <option value="logging" selected>Desmatamento</option>
+                                    <!-- <option value="wood">Madeira</option> -->
+                                    <!-- <option value="openFine">Multa aberta</option>  -->
+                                </select>
+                                
+                                @else
+                                <select name="type_AI" class="form-control" id="selectTypeAI">
+                                    
+                                    <option value="logging">Desmatamento</option>
+                                    <option value="wood" selected>Madeira</option>
+                                    <!-- <option value="openFine">Multa aberta</option>  -->
+                                </select>
+                                @endif
+                                @if ($errors->has('type_AI'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('type_AI') }}
+                                    </div>
+                                @endif
+                            </div>
                             <div class="col-sm-3">
                                 <label for="articleAI">Artigo Administrativo:</label>
                                 <!-- <input type="text" class="form-control articleAI" name="article_AI" id="articleAI" value="{!!$data['article_AI']!!}"> -->
@@ -119,24 +158,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <span class="titleLabel">Tipo da infração:</span>
-                                @if ($data['type_AI'] === "logging")
-                                <select name="type_AI" class="form-control" id="selectTypeAI">
-                                    
-                                    <option value="logging" selected>Desmatamento</option>
-                                    <!-- <option value="wood">Madeira</option> -->
-                                    <!-- <option value="openFine">Multa aberta</option>  -->
-                                </select>
-                                @else
-                                <select name="type_AI" class="form-control" id="selectTypeAI">
-                                    
-                                    <option value="logging">Desmatamento</option>
-                                    <option value="wood" selected>Madeira</option>
-                                    <!-- <option value="openFine">Multa aberta</option>  -->
-                                </select>
-                                @endif
-                            </div>
+                            
                         </div>
 
                         <div class="row divDeforestationSize" id="divDeforestationSize">
@@ -321,39 +343,79 @@
                             <div class="row">
                                 <div class="col-sm-7">
                                     <label for="name">Nome do envolvido:</label>
-                                    <input type="text" class="form-control name" name="name" id="name" value="{!!$data['name']!!}">
+                                    <input type="text" class="form-control name {{ $errors->has ('name') ? 'is-invalid': '' }}" name="name" id="name" value="{!!$data['name']!!}">
+                                    @if ($errors->has('name'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('name') }}
+                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="cpf">CPF:</label>
-                                    <input type="text" class="form-control cpf" name="cpf" id="cpf" value="{!!$data['cpf']!!}">
+                                    <input type="text" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" name="cpf" id="cpf" value="{!!$data['cpf']!!}">
+                                    @if ($errors->has('cpf'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('name') }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="rg">RG:</label>
-                                    <input type="number" class="form-control rg" name="rg" id="rg" value="{!!$data['rg']!!}">
+                                    <input type="number" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="{!!$data['rg']!!}">
+                                    @if ($errors->first('rg'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('rg') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label for="phone">Telefone:</label>
-                                    <input type="text" class="form-control rg" name="phone" id="phone" value="{!!$data['phone']!!}">
+                                    <input type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="{!!$data['phone']!!}">
+                                    @if ($errors->has('phone'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('phone') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="birthday">Data de nascimento:</label>
-                                    <input type="date" class="form-control birthday" name="birthday" id="birthday" value="{!!$data['birthday']!!}">
+                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="{!!$data['birthday']!!}">
+                                    @if ($errors->has('birthday'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('birthday') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-sm-7">
                                     <label for="affiliation">Filiação:</label>
-                                    <input type="text" class="form-control affiliation" name="affiliation" id="affiliation" value="{!!$data['affiliation']!!}">
+                                    <input type="text" class="form-control affiliation {{ $errors->has('affiliation') ? 'is-invalid' : '' }}" name="affiliation" id="affiliation" value="{!!$data['affiliation']!!}">
+                                    @if ($errors->has('affiliation'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('affiliation') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label for="address">Endreço:</label>
-                                    <input type="text" class="form-control address" name="address" id="address" value="{!!$data['address']!!}">
+                                    <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="{!!$data['address']!!}">
+                                    @if ($errors->has('address'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('address') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="location">Local do fato:</label>
-                                    <input type="text" class="form-control location" name="location" id="location" value="{!!$data['location']!!}">
+                                    <input type="text" class="form-control location {{ $errors->has('location') ? 'is-invalid' : '' }}" name="location" id="location" value="{!!$data['location']!!}">
+                                    @if ($errors->has('location'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('location') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         
@@ -365,7 +427,12 @@
                     <div class="historic">
                         <h3>Histórico da ocorrência</h3>
                         <label for="historic">Dos fatos:</label>
-                        <textarea class="form-control" name="historic" id="historic" cols="30" rows="10" value="">{!!$data['historic']!!}</textarea>
+                        <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10" value="">{!!$data['historic']!!}</textarea>
+                        @if ($errors->has('historic'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('historic') }}
+                            </div>
+                        @endif
                     </div>
 
                     
@@ -375,12 +442,22 @@
                     <div class="divImages">
                         <h3>Imagens da ocorrência</h3>
                         <label for="images1">Alterar as 4 imagens:</label>
-                        <input type="file" class="form-control images1" name="images1[]" id="images1" multiple>
+                        <input type="file" class="form-control images1 {{ $errors->has('images1[]') ? 'is-invalid' : '' }}" name="images1[]" id="images1" multiple>
+                        @if ($errors->has('images1[]'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('images1[]') }}
+                            </div>
+                        @endif
                     </div>
                     <div class="offenderMotive">
                         <h3>Dos Motivos apresentado pelo envolvido</h3>
                         <label for="motive">Motivo:</label>
-                        <input type="text" class="form-control motive" name="motive" id="motive" value="{!!$data['motive']!!}">
+                        <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="{!!$data['motive']!!}">
+                        @if ($errors->has('motive'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('motive') }}
+                            </div>
+                        @endif
                     </div>
 
 
@@ -496,21 +573,41 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="cmt">Comandante - Nome completo - Graduação - RE:</label>
-                                <input type="text" class="form-control cmt" id="cmt" name="name_CMT" value="{!!$data['name_CMT']!!}">
+                                <input type="text" class="form-control cmt {{ $errors->has('name_CMT') ? 'is-invalid' : '' }}" id="cmt" name="name_CMT" value="{!!$data['name_CMT']!!}">
+                                @if ($errors->has('name_CMT'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('name_CMT') }}
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitCmt">Unidade CMT:</label>
-                                <input type="text" class="form-control unitCmt" name="unit_CMT" id="unitCmt" value="{!!$data['unit_CMT']!!}">
+                                <input type="text" class="form-control unitCmt {{ $errors->has('unit_CMT') ? 'is-invalid' : '' }}" name="unit_CMT" id="unitCmt" value="{!!$data['unit_CMT']!!}">
+                                @if ($errors->has('unit_CMT'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('unit_CMT') }}
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="mot">Motorista:</label>
-                                <input type="text" class="form-control mot" id="mot" name="name_MOT" value="{!!$data['name_MOT']!!}">
+                                <input type="text" class="form-control mot {{ $errors->has('name_MOT') ? 'is-invalid' : '' }}" id="mot" name="name_MOT" value="{!!$data['name_MOT']!!}">
+                                @if ($errors->has('name_MOT'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('name_MOT') }}
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitMot">Unidade Motorista:</label>
-                                <input type="text" class="form-control unitMot" name="unit_MOT" id="unitMot" value="{!!$data['unit_MOT']!!}">
+                                <input type="text" class="form-control unitMot {{ $errors->has('unit_MOT') ? 'is-invalid' : '' }}" name="unit_MOT" id="unitMot" value="{!!$data['unit_MOT']!!}">
+                                @if ($errors->has('unit_MOT'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('unit_MOT') }}
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row">
