@@ -5,9 +5,10 @@
 <!-- <link rel="stylesheet" href="{{ asset('css/createDetailedReport.css') }}">
 
 
-<script src="{{ asset('js/createDetailedReport.js') }}" defer type="module"></script> -->
-
+ -->
+<script src="{{ asset('js/indexDetailedReport.js') }}" defer type="module"></script>
 <meta http-equiv="refresh" content="; http://127.0.0.1:8000/report/detailed">
+
 
 @endsection
 
@@ -48,7 +49,12 @@
                             <td>
                                 <a href="{{ route('generateReport', ['id' => $report->report_ID]) }}" title="Gerar Relatório" class="text-primary"><span class="fa-stack fa-sm"><i class="far fa-square fa-stack-2x"></i><i class="fa-solid fa-file-lines fa-stack-1x"></i></span></a>
                                 <a href="{{ route('editReport', ['id' => $report->report_ID]) }}" data-toggle="tooltip" title="Editar Relatório" class="text-warning"><span class="fa-stack fa-sm"><i class="far fa-square fa-stack-2x"></i><i class="fas fa-pencil-alt fa-stack-1x"></i></span></a>
-                                <a data-toggle="tooltip" title="Excluir Relatório" class="text-danger" onclick="deleteData(#)"><span class="fa-stack fa-sm"><i class="far fa-square fa-stack-2x"></i><i class="far fa-trash-alt fa-stack-1x"></i></span></a>
+                                
+                                <a data-toggle="tooltip" title="Excluir Relatório" class="text-danger" id="btnDelete" onclick="deleteData({{ $report->report_ID }})">
+                                    <span class="fa-stack fa-sm"><i class="far fa-square fa-stack-2x"></i>
+                                        <i class="far fa-trash-alt fa-stack-1x"></i>
+                                    </span>
+                                </a>
                             </td>
 
 
@@ -70,4 +76,7 @@
 
 
 
+
+
 @endsection
+

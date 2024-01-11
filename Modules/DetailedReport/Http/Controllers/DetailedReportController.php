@@ -887,6 +887,21 @@ class DetailedReportController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reports = Report::find($id);
+        $photos = PhotosReport::where('report_report_ID', $id)->get();
+
+        
+        foreach ($photos as $photo) {           
+            
+            if (Storage::disk('public')->exists($photo->image)) {
+                Storage::disk('public')->delete($photo->image);
+            }
+        }
+        
+        //$photos->delete();
+        $reports->delete();
+
+        return redirect()->back();
+
     }
 }

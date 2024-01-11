@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth']], function() /* colocando as rotas dentro
     
     
     Route::get('/report/pdf', [DetailedReportController::class, 'generatePdf'])->name('generate.pdf');
+
+
+    Route::delete('/report/{id}', [DetailedReportController::class, 'destroy'])->name('report.destroy');
 });
 
 //Auth::routes();
