@@ -173,3 +173,9 @@ h3 {
     width: 198px;
 }
 
+.separateDivs {
+    border: 1px solid rgb(181, 176, 176);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+

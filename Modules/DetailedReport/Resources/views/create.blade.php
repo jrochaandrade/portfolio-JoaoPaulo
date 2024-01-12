@@ -26,12 +26,12 @@
             <div class="main" id="main">                
                 <form action="{{route('save')}}" method="post" enctype="multipart/form-data">
                     @csrf                    
-                    <div class="occurrenceData">
+                    <div class="occurrenceData separateDivs">
                         <h3>Dados da Ocorrência</h3>  <!-- value="{{old('namedoinput')}} mudar o value dos inputs para {{old('namedoinput')}} -->
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="inputBO">Numero da ocorrência:</label>
-                                <input type="text" class="form-control {{ $errors->has ('number_BO') ? 'is-invalid' : '' }}" name="number_BO" id="inputBO" value="3146300143"  pattern="\d*">
+                                <input type="text" class="form-control {{ $errors->has ('number_BO') ? 'is-invalid' : '' }}" name="number_BO" id="inputBO" value=""  pattern="\d*">
                                 @if ($errors->has('number_BO'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('number_BO') }}
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="articleBO">Artigo Criminal:</label>
-                                <input type="text" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}" name="article_BO" id="articleBO" value="Art. 50">
+                                <input type="text" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}" name="article_BO" id="articleBO" value="">
                                 @if ($errors->has('article_BO'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('article_BO') }}
@@ -71,7 +71,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="inputAI">Auto de Infração II:</label>
-                                <input type="text" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value="125425"  pattern="\d*">
+                                <input type="text" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value=""  pattern="\d*">
                                 @if ($errors->has('number_AI'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('number_AI') }}
@@ -128,7 +128,7 @@
                                     <div class="row">
                                         <div class="col-sm-2 divDeforestation">
                                             <label for="inputDeforestationSize" id="labelDeforestationSize">Tamanho do desmate (ha):</label>
-                                            <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="45.325">
+                                            <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="">
                                         </div>
                                         <div class="col-sm-4 divAreaDeforestation">
                                             <p class="titleLabel">Área onde ocorreu o desmatamento:</p>                                            
@@ -177,7 +177,7 @@
                         <div class="row">
                             <div class="col-sm-6" id="divInputEmbargo">
                                 <label for="inputEmbargo" class="labelEmbargo" id="labelEmbargo">Informe o numero do Termo de Embargo:</label>
-                                <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="163254">
+                                <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="">
                             </div>
                             <div class="col-sm-6" id="divInputImageletter">                                
                                 <label for="inputImageLetter" class="labelImageLetter" id="labelImageLetter">Informe o numero da Carta Imagem:</label>
@@ -187,7 +187,7 @@
 
                         <div class="divQuantityWood" id="divQuantityWood">
                             <label for="inputQuantityWood" id="labelQuantityWood">Quantidade de madeira (m³):</label>
-                            <input type="number" class="form-control" name="inputQuantityWood" id="inputQuantityWood" value="9,324">
+                            <input type="number" class="form-control" name="inputQuantityWood" id="inputQuantityWood" value="">
                         </div>
 
 
@@ -228,15 +228,15 @@
                             </div>
                             <div id="divSeizedObjects">
                                 <label for="inputTermOfSeizure" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
-                                <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder=""  value="123545">
+                                <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder=""  value="">
                                 <label for="inputSeizedObjects" class="seizedObjects" id="seizedObjects">Descreva os objetos apreendidos:</label>
-                                <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="01 - Motossera Huskvarna, 01 - Trator de esteira amarelo">
+                                <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="">
                                 <label for="inputDepositLocation" class="labelDepositLocation" id="labelDepositLocation">Endereço onde foi depositado:</label>
-                                <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="Rua Jasmim Nº 36 Bairro Centro - Ji-Paraná/RO">
+                                <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="">
                                 <label for="inputNameFaithful" class="labelNameFaithful" id="labelNameFaithful">Nome e CPF/CNPJ fiel depositário:</label>
-                                <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="Prefeitura de Ji-Paraná CNPJ: 01.002.543/0001-25">
+                                <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="">
                                 <label for="inputNameresponsible" class="labelNameresponsible" id="labelNameresponsible">Nome e CPF do responsável pelo recebimento:</label>
-                                <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="Marcelo Antonio CPF: 126.135.464-58">
+                                <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="">
 
                                 <div class="divImagesObjects">
                                     <!-- <h3>Imagens da ocorrência</h3> -->
@@ -251,14 +251,14 @@
 
 
                     
-                    <div class="offenderDate">
+                    <div class="offenderDate separateDivs">
                         <h3>Dados do envolvido/autuado</h3>
 
                         
                             <div class="row">
                                 <div class="col-sm-7">
                                     <label for="name">Nome do envolvido:</label>
-                                    <input type="text" class="form-control {{ $errors->has ('name') ? 'is-invalid': '' }} name" name="name" id="name" value="Carlos Neto de Lima">
+                                    <input type="text" class="form-control {{ $errors->has ('name') ? 'is-invalid': '' }} name" name="name" id="name" value="">
                                     @if ($errors->has('name'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name') }}
@@ -267,7 +267,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="cpf">CPF:</label>
-                                    <input type="text" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" name="cpf" id="cpf" value="45678512458">
+                                    <input type="text" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" name="cpf" id="cpf" value="">
                                     @if ($errors->has('cpf'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('name') }}
@@ -276,7 +276,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="rg">RG:</label>
-                                    <input type="text" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="963254">
+                                    <input type="text" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="">
                                     @if ($errors->first('rg'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('rg') }}
@@ -287,7 +287,7 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label for="phone">Telefone:</label>
-                                    <input type="text" class="form-control phone {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="6985421547">
+                                    <input type="text" class="form-control phone {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="">
                                     @if ($errors->has('phone'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('phone') }}
@@ -296,7 +296,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="birthday">Data de nascimento:</label>
-                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="23/12/1988">
+                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="">
                                     @if ($errors->has('birthday'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('birthday') }}
@@ -305,7 +305,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label for="affiliation">Filiação:</label>
-                                    <input type="text" class="form-control affiliation {{ $errors->has('affiliation') ? 'is-invalid' : '' }}" name="affiliation" id="affiliation" value="Pedro de Paula Neto e Maria da Flor Benedita">
+                                    <input type="text" class="form-control affiliation {{ $errors->has('affiliation') ? 'is-invalid' : '' }}" name="affiliation" id="affiliation" value="">
                                     @if ($errors->has('affiliation'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('affiliation') }}
@@ -316,7 +316,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label for="address">Endreço do envolvido:</label>
-                                    <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="Rua das Flores - Nº 456 - Bairro: Castanha">
+                                    <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="">
                                     @if ($errors->has('address'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('address') }}
@@ -325,7 +325,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="location">Local do fato:</label>
-                                    <input type="text" class="form-control location {{ $errors->has('location') ? 'is-invalid' : '' }}" name="location" id="location" value="Linha 116 KM 36 GB 124 Zona Rural de Ji -Paraná/RO">
+                                    <input type="text" class="form-control location {{ $errors->has('location') ? 'is-invalid' : '' }}" name="location" id="location" value="">
                                     @if ($errors->has('location'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('location') }}
@@ -339,23 +339,17 @@
 
 
 
-                    <div class="historic">
+                    <div class="historic separateDivs">
                         <h3>Histórico da ocorrência</h3>
                         <label for="historic">Dos fatos:</label>
-                        <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10">Aos (22) dias do mês de dezembro de 2023, por volta das 15 horas, esta equipe de policiais militares ambientais do BPA, juntamente com policiais do 4 BPM, em operação de Fiscalização de combate ao desmatamento e queimadas ilegais demonstrados por meio de alertas emitidos pelo Programa Brasil Mais do Ministério da Justiça e Segurança Pública, por fatos ocorridos na Linha Ponte Bonita Lote 56-B Gleba 24 no Município de Espigão do Oeste, mais precisamente nas Coordenadas Geográficas 11°15'15.03" S 60°46'22.71" W, local no qual foi emitido pelo sistema o alerta id: 3025339 sendo realizado fiscalização no local, sobrevoo com Aeronave Remotamente Pilotada (VANT) e ainda, realizado análise de imagens de satélite orbital vide Carta Imagem de Vegetação Nativa Antropizada n°: PM-94991-20231117-1152, na qual foi constatado um dano ambiental por supressão de vegetação de 120,9999 hectares em área de reserva legal ou remanescente de vegetação nativa em região classificada como Bioma Amazônico.
-
-Em contato por telefone com o senhor Eudack José Colombi, ele afirmou ser o proprietário do imóvel em questão e disse que realmente realizou o serviço de limpeza e que possuía a escritura da terra, mas até o momento do encerramento dessa ocorrência ele não enviou por meio eletrônico conforme solicitado, afirmando apenas que estava em viagem para o Espírito Santos e que tal documento estava em posse de seu Contador na Cidade de Espigão do Oeste-RO.
-
-Considerando que ele não se encontrava no estado de Rondônia, nem tal documentação não foi enviada e nem indicado o responsável legal, no dia 23 de dezembro procedemos com a elaboração da documentação referente ao desmatamentobem como a produçao de Auto de Infraçao para que a SEDAM lhe encaminhe posteriormente por AR. Diante disso por estar incurso no disposto do artigo 50 da Lei Federal 9.605/1998 (Destruir ou danificar florestas nativas ou plantadas ou vegetação fixadora de dunas, protetora de mangues, objeto de especial preservação) que prevê pena de- detenção, de três meses a um ano e multa, foi feito esta ocorrência e registrado na Polícia Civil para conhecimento e providencias.
-
-Foram tomadas ainda as medidas Administrativas cabíveis conforme Termo de Embargo número 007587 e Auto de Infração Ambiental II de número 102195 por destruir 120,9999 hectares de floresta nativa em área de reserva legal que prevê multa de R$ 5.000,00 (cinco mil reais) por hectare ou fração conforme Art. 51 do Decreto Federal 6514/2008. </textarea>
+                        <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10"></textarea>
                         @if ($errors->has('historic'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('historic') }}
                             </div>
                         @endif
                     </div>
-                    <div class="divImages">
+                    <div class="divImages separateDivs">
                         <h3>Imagens da ocorrência</h3>
                         <label for="images1">Carregar 4 imagens:</label>
                         <input type="file" class="form-control images1 {{ $errors->has('images1[]') ? 'is-invalid' : '' }}" name="images1[]" id="images1" multiple>
@@ -365,10 +359,10 @@ Foram tomadas ainda as medidas Administrativas cabíveis conforme Termo de Embar
                             </div>
                         @endif
                     </div>
-                    <div class="offenderMotive">
+                    <div class="offenderMotive separateDivs">
                         <h3>Dos Motivos apresentado pelo envolvido</h3>
                         <label for="motive">Motivo:</label>
-                        <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="Alegou não saber que precisava de autorização para realizar aquele desmatamento.">
+                        <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="">
                         @if ($errors->has('motive'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('motive') }}
@@ -377,7 +371,7 @@ Foram tomadas ainda as medidas Administrativas cabíveis conforme Termo de Embar
                     </div>
 
 
-                    <div class="mitigatingAggravating">
+                    <div class="mitigatingAggravating separateDivs">
                         <h3>Das atenuantes e agravantes</h3>
                         <div class="mitigating">                            
                             <p  class="titleLabel">Possui atenuantes?</p>
@@ -408,7 +402,7 @@ Foram tomadas ainda as medidas Administrativas cabíveis conforme Termo de Embar
                         </div>
 
 
-                        <div class="aggravating">
+                        <div class="aggravating ">
                             <p for="aggravating">Possui agravantes:</p>
                             <div class="divRadiosAggravating">
                                 <input type="radio" name="yesOrNoAggravating" id="yesAggravating" value="yes">
@@ -484,12 +478,12 @@ Foram tomadas ainda as medidas Administrativas cabíveis conforme Termo de Embar
                             <h4>Medidas administrativas:</h4>
                         </div>
                     </div> -->
-                    <div class="team">
+                    <div class="team separateDivs">
                         <h3 class="tiles2">Componentes da equipe</p>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="cmt">Comandante - Nome completo - Graduação - RE:</label>
-                                <input type="text" class="form-control cmt {{ $errors->has('name_CMT') ? 'is-invalid' : '' }}" id="cmt" name="name_CMT" value="Alberto Martins - CB QPPM - 100095154">
+                                <input type="text" class="form-control cmt {{ $errors->has('name_CMT') ? 'is-invalid' : '' }}" id="cmt" name="name_CMT" value="">
                                 @if ($errors->has('name_CMT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name_CMT') }}
@@ -509,7 +503,7 @@ Foram tomadas ainda as medidas Administrativas cabíveis conforme Termo de Embar
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="mot">Motorista:</label>
-                                <input type="text" class="form-control mot {{ $errors->has('name_MOT') ? 'is-invalid' : '' }}" id="mot" name="name_MOT" value="Marcos Pedroso neto - CB QPPM - 100096452">
+                                <input type="text" class="form-control mot {{ $errors->has('name_MOT') ? 'is-invalid' : '' }}" id="mot" name="name_MOT" value="">
                                 @if ($errors->has('name_MOT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name_MOT') }}
@@ -529,31 +523,31 @@ Foram tomadas ainda as medidas Administrativas cabíveis conforme Termo de Embar
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr1">Patrulheiro 1:</label>
-                                <input type="text" class="form-control ptr1" id="ptr1" name="name_PTR1" value="Rogger Marcos de Paula - SD QPPM - 100098754">
+                                <input type="text" class="form-control ptr1" id="ptr1" name="name_PTR1" value="">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr1">Unidade Patrulheiro 1:</label>
-                                <input type="text" class="form-control unitPtr1" name="unit_PTR1" id="unitPtr1" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                                <input type="text" class="form-control unitPtr1" name="unit_PTR1" id="unitPtr1" value="">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr2">Patrulheiro 2:</label>
-                                <input type="text" class="form-control ptr2" id="ptr2" name="name_PTR2" value="Mauricio Neto Godoi - SD QPPM - 100098745">
+                                <input type="text" class="form-control ptr2" id="ptr2" name="name_PTR2" value="">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr2">Unidade Patrulheiro 2:</label>
-                                <input type="text" class="form-control unitPtr2" name="unit_PTR2" id="unitPtr2" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                                <input type="text" class="form-control unitPtr2" name="unit_PTR2" id="unitPtr2" value="">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr3">Patrulheiro 3:</label>
-                                <input type="text" class="form-control ptr3" id="ptr3" name="name_PTR3" value="Murilo Gomes - SD QPPM - 10005745">
+                                <input type="text" class="form-control ptr3" id="ptr3" name="name_PTR3" value="">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr3">Unidade Patrulheiro 3:</label>
-                                <input type="text" class="form-control unitPtr3" name="unit_PTR3" id="unitPtr3" value="1º PEL-PA/3ªCIA-PA/BPA (JI-PARANÁ - RO)">
+                                <input type="text" class="form-control unitPtr3" name="unit_PTR3" id="unitPtr3" value="">
                             </div>
                         </div>
                     </div>
