@@ -43,10 +43,10 @@
                                 <span class="titleLabel">Tipo da ocorrência:</span>
                                 <div class="divRadiosBO">
                                 @if ($data['type_BO'] === "Termo circunstanciado de Ocorrência - TCO")
-                                    <input type="radio" name="type_BO" id="typeTCO" value="Termo circunstanciado de Ocorrência - TCO" checked>
+                                    <input type="radio" name="type_BO" id="typeTCO" value="Termo Circunstanciado de Ocorrência - TCO" checked>
                                     <label for="typeTCO" class="labelNotBold">TCO</label>
                                 @else
-                                    <input type="radio" name="type_BO" id="typeTCO" value="Termo circunstanciado de Ocorrência - TCO">
+                                    <input type="radio" name="type_BO" id="typeTCO" value="Termo Circunstanciado de Ocorrência - TCO">
                                     <label for="typeTCO" class="labelNotBold">TCO</label>
                                 @endif
 
