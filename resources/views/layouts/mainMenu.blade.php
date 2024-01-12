@@ -52,7 +52,8 @@
                 <li class="nav-links">
                     <a href="{{ route('detailed') }}">
                     <!-- <i class="fa-regular fa-address-card icon"></i> --> <!-- Cadastro infrator -->
-                    <i class="bi bi-hourglass-split icon"></i>
+                    <i class="fa-solid fa-file-lines icon"></i>
+                    
                         <span class="text nav-text">Relatório Circunstanciado</span>
                     </a>
                 </li>
