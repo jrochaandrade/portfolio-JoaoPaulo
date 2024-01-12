@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="inputBO">Numero da ocorrência:</label>
-                                <input type="text" class="form-control {{ $errors->has ('number_BO') ? 'is-invalid' : '' }}" name="number_BO" id="inputBO" value=""  pattern="\d*">
+                                <input type="text" class="form-control {{ $errors->has ('number_BO') ? 'is-invalid' : '' }}" name="number_BO" id="inputBO" value="{{old('number_BO')}}"  pattern="\d*">
                                 @if ($errors->has('number_BO'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('number_BO') }}
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="articleBO">Artigo Criminal:</label>
-                                <input type="text" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}" name="article_BO" id="articleBO" value="">
+                                <input type="text" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}" name="article_BO" id="articleBO" value="{{old('article_BO')}}">
                                 @if ($errors->has('article_BO'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('article_BO') }}
@@ -71,7 +71,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="inputAI">Auto de Infração II:</label>
-                                <input type="text" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value=""  pattern="\d*">
+                                <input type="text" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value="{{old('number_AI')}}"  pattern="\d*">
                                 @if ($errors->has('number_AI'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('number_AI') }}
@@ -128,7 +128,7 @@
                                     <div class="row">
                                         <div class="col-sm-2 divDeforestation">
                                             <label for="inputDeforestationSize" id="labelDeforestationSize">Tamanho do desmate (ha):</label>
-                                            <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="">
+                                            <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="{{old('size_deforestation')}}">
                                         </div>
                                         <div class="col-sm-4 divAreaDeforestation">
                                             <p class="titleLabel">Área onde ocorreu o desmatamento:</p>                                            
@@ -177,11 +177,11 @@
                         <div class="row">
                             <div class="col-sm-6" id="divInputEmbargo">
                                 <label for="inputEmbargo" class="labelEmbargo" id="labelEmbargo">Informe o numero do Termo de Embargo:</label>
-                                <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="">
+                                <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="{{old('number_embargo')}}">
                             </div>
                             <div class="col-sm-6" id="divInputImageletter">                                
                                 <label for="inputImageLetter" class="labelImageLetter" id="labelImageLetter">Informe o numero da Carta Imagem:</label>
-                                <input type="text" class="form-control inputImageLetter" name="number_letter" id="inputImageLetter" value="JIPA-2023-JPRA025">
+                                <input type="text" class="form-control inputImageLetter" name="number_letter" id="inputImageLetter" value="{{old('number_letter')}}">
                             </div>
                         </div>
 
@@ -228,15 +228,15 @@
                             </div>
                             <div id="divSeizedObjects">
                                 <label for="inputTermOfSeizure" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
-                                <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder=""  value="">
+                                <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder=""  value="{{old('term_seizure')}}">
                                 <label for="inputSeizedObjects" class="seizedObjects" id="seizedObjects">Descreva os objetos apreendidos:</label>
-                                <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="">
+                                <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="{{old('seized_objects')}}">
                                 <label for="inputDepositLocation" class="labelDepositLocation" id="labelDepositLocation">Endereço onde foi depositado:</label>
-                                <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="">
+                                <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="{{old('deposit_location')}}">
                                 <label for="inputNameFaithful" class="labelNameFaithful" id="labelNameFaithful">Nome e CPF/CNPJ fiel depositário:</label>
-                                <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="">
+                                <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="{{old('name_faithful')}}">
                                 <label for="inputNameresponsible" class="labelNameresponsible" id="labelNameresponsible">Nome e CPF do responsável pelo recebimento:</label>
-                                <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="">
+                                <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="{{old('name_responsible')}}">
 
                                 <div class="divImagesObjects">
                                     <!-- <h3>Imagens da ocorrência</h3> -->
@@ -258,7 +258,7 @@
                             <div class="row">
                                 <div class="col-sm-7">
                                     <label for="name">Nome do envolvido:</label>
-                                    <input type="text" class="form-control {{ $errors->has ('name') ? 'is-invalid': '' }} name" name="name" id="name" value="">
+                                    <input type="text" class="form-control {{ $errors->has ('name') ? 'is-invalid': '' }} name" name="name" id="name" value="{{old('name')}}">
                                     @if ($errors->has('name'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name') }}
@@ -267,7 +267,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="cpf">CPF:</label>
-                                    <input type="text" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" name="cpf" id="cpf" value="">
+                                    <input type="text" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" name="cpf" id="cpf" value="{{old('cpf')}}">
                                     @if ($errors->has('cpf'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('name') }}
@@ -276,7 +276,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="rg">RG:</label>
-                                    <input type="text" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="">
+                                    <input type="text" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="{{old('rg')}}">
                                     @if ($errors->first('rg'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('rg') }}
@@ -287,7 +287,7 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label for="phone">Telefone:</label>
-                                    <input type="text" class="form-control phone {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="">
+                                    <input type="text" class="form-control phone {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="{{old('phone')}}">
                                     @if ($errors->has('phone'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('phone') }}
@@ -296,7 +296,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="birthday">Data de nascimento:</label>
-                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="">
+                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="{{old('birthday')}}">
                                     @if ($errors->has('birthday'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('birthday') }}
@@ -305,7 +305,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label for="affiliation">Filiação:</label>
-                                    <input type="text" class="form-control affiliation {{ $errors->has('affiliation') ? 'is-invalid' : '' }}" name="affiliation" id="affiliation" value="">
+                                    <input type="text" class="form-control affiliation {{ $errors->has('affiliation') ? 'is-invalid' : '' }}" name="affiliation" id="affiliation" value="{{old('affiliation')}}">
                                     @if ($errors->has('affiliation'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('affiliation') }}
@@ -316,7 +316,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label for="address">Endreço do envolvido:</label>
-                                    <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="">
+                                    <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="{{old('address')}}">
                                     @if ($errors->has('address'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('address') }}
@@ -325,7 +325,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="location">Local do fato:</label>
-                                    <input type="text" class="form-control location {{ $errors->has('location') ? 'is-invalid' : '' }}" name="location" id="location" value="">
+                                    <input type="text" class="form-control location {{ $errors->has('location') ? 'is-invalid' : '' }}" name="location" id="location" value="{{old('location')}}">
                                     @if ($errors->has('location'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('location') }}
@@ -342,7 +342,7 @@
                     <div class="historic separateDivs">
                         <h3>Histórico da ocorrência</h3>
                         <label for="historic">Dos fatos:</label>
-                        <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10"></textarea>
+                        <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10">{{old('historic')}}</textarea>
                         @if ($errors->has('historic'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('historic') }}
@@ -362,7 +362,7 @@
                     <div class="offenderMotive separateDivs">
                         <h3>Dos Motivos apresentado pelo envolvido</h3>
                         <label for="motive">Motivo:</label>
-                        <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="">
+                        <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="{{old('motive')}}">
                         @if ($errors->has('motive'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('motive') }}
@@ -483,7 +483,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="cmt">Comandante - Nome completo - Graduação - RE:</label>
-                                <input type="text" class="form-control cmt {{ $errors->has('name_CMT') ? 'is-invalid' : '' }}" id="cmt" name="name_CMT" value="">
+                                <input type="text" class="form-control cmt {{ $errors->has('name_CMT') ? 'is-invalid' : '' }}" id="cmt" name="name_CMT" value="{{old('name_CMT')}}">
                                 @if ($errors->has('name_CMT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name_CMT') }}
@@ -503,7 +503,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="mot">Motorista:</label>
-                                <input type="text" class="form-control mot {{ $errors->has('name_MOT') ? 'is-invalid' : '' }}" id="mot" name="name_MOT" value="">
+                                <input type="text" class="form-control mot {{ $errors->has('name_MOT') ? 'is-invalid' : '' }}" id="mot" name="name_MOT" value="{{old('name_MOT')}}">
                                 @if ($errors->has('name_MOT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name_MOT') }}
@@ -523,31 +523,31 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr1">Patrulheiro 1:</label>
-                                <input type="text" class="form-control ptr1" id="ptr1" name="name_PTR1" value="">
+                                <input type="text" class="form-control ptr1" id="ptr1" name="name_PTR1" value="{{old('name_PTR1')}}">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr1">Unidade Patrulheiro 1:</label>
-                                <input type="text" class="form-control unitPtr1" name="unit_PTR1" id="unitPtr1" value="">
+                                <input type="text" class="form-control unitPtr1" name="unit_PTR1" id="unitPtr1" value="{{old('unit_PTR1')}}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr2">Patrulheiro 2:</label>
-                                <input type="text" class="form-control ptr2" id="ptr2" name="name_PTR2" value="">
+                                <input type="text" class="form-control ptr2" id="ptr2" name="name_PTR2" value="{{old('name_PTR2')}}">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr2">Unidade Patrulheiro 2:</label>
-                                <input type="text" class="form-control unitPtr2" name="unit_PTR2" id="unitPtr2" value="">
+                                <input type="text" class="form-control unitPtr2" name="unit_PTR2" id="unitPtr2" value="{{old('unit_PTR1')}}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr3">Patrulheiro 3:</label>
-                                <input type="text" class="form-control ptr3" id="ptr3" name="name_PTR3" value="">
+                                <input type="text" class="form-control ptr3" id="ptr3" name="name_PTR3" value="{{old('name_PTR3')}}">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr3">Unidade Patrulheiro 3:</label>
-                                <input type="text" class="form-control unitPtr3" name="unit_PTR3" id="unitPtr3" value="">
+                                <input type="text" class="form-control unitPtr3" name="unit_PTR3" id="unitPtr3" value="{{old('unit_PTR1')}}">
                             </div>
                         </div>
                     </div>
