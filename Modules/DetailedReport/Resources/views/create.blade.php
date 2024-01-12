@@ -41,7 +41,7 @@
                             <div class="col-sm-2 radiosBO">
                                 <p class="titleLabel">Tipo da ocorrência:</p>
                                 <div class="divRadiosBO ">
-                                    <input type="radio" name="type_BO" id="typeTCO" value="Termo circunstanciado de Ocorrência - TCO" class="{{ $errors->has('type_BO') ? 'is-invalid' : '' }}" checked>
+                                    <input type="radio" name="type_BO" id="typeTCO" value="Termo Circunstanciado de Ocorrência - TCO" class="{{ $errors->has('type_BO') ? 'is-invalid' : '' }}" checked>
                                     <label for="typeTCO" class="labelNotBold">TCO</label>
                                     
                                     <input type="radio" name="type_BO" id="typeCOP" value="Comunicado de Ocorrência Policial - COP" class="{{ $errors->has('type_BO') ? 'is-invalid' : '' }}">
@@ -403,7 +403,7 @@
 
 
                         <div class="aggravating ">
-                            <p for="aggravating">Possui agravantes:</p>
+                            <p class="titleLabel">Possui agravantes?</p>
                             <div class="divRadiosAggravating">
                                 <input type="radio" name="yesOrNoAggravating" id="yesAggravating" value="yes">
                                 <label for="yesAggravating" class="labelNotBold">Sim</label>
@@ -417,6 +417,7 @@
                                     <label class="labelNotBold">
                                         <input type="checkbox" name="aggravating[]" value="I - Reincidência nos crimes de natureza ambiental;" class=" ms-4"> I - Reincidência nos crimes de natureza ambiental;
                                     </label>
+                                    <p class="labelNotBold ms-4">II - Ter o agente cometido a infração:</p>
                                     <label class="labelNotBold">
                                         <input type="checkbox" name="aggravating[]" value="II - Ter o agente cometido a infração: a- para obter vantagem pecuniária;" class=" ms-4"> II - Ter o agente cometido a infração: a- para obter vantagem pecuniária;
                                     </label>
