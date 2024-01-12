@@ -158,6 +158,11 @@ class DetailedReportController extends Controller
             $data['article_administrive'] = 'Art. 43.  Destruir ou danificar florestas ou demais formas de vegetação natural ou utilizá-las com infringência das normas de proteção em área considerada de preservação permanente, sem autorização do órgão competente, quando exigível, ou em desacordo com a obtida: (Redação dada pelo Decreto nº 6.686, de 2008). Multa de R$ 5.000,00 (cinco mil reais) a R$ 50.000,00 (cinqüenta mil reais), por hectare ou fração.';
 
             $data['article_criminal'] = 'Art. 38. Destruir ou danificar floresta considerada de preservação permanente, mesmo que em formação, ou utilizá-la com infringência das normas de proteção: Pena - detenção, de um a três anos, ou multa, ou ambas as penas cumulativamente.';
+        }elseif ($data->article_AI == 'Art. 48') {
+            $data['article_administrive'] = 'Art. 48.  Impedir ou dificultar a regeneração natural de florestas ou demais formas de vegetação nativa em unidades de conservação ou outras áreas especialmente protegidas, quando couber, área de preservação permanente, reserva legal ou demais locais cuja regeneração tenha sido indicada pela autoridade ambiental competente: (Redação dada pelo Decreto nº 6.686, de 2008). Multa de R$ 5.000,00 (cinco mil reais), por hectare ou fração. (Redação dada pelo Decreto nº 6.686, de 2008). Parágrafo único.  O disposto no caput não se aplica para o uso permitido das áreas de preservação permanente. (Redação dada pelo Decreto nº 6.686, de 2008).';
+
+            $data['article_criminal'] = 'Art. 48. Impedir ou dificultar a regeneração natural de florestas e demais formas de vegetação: Pena - detenção, de seis meses a um ano, e multa.';
+
         }
 
         /* if ($data->article_BO == 'Art. 50') {
@@ -453,7 +458,10 @@ class DetailedReportController extends Controller
 
                     if ($data['article_AI'] == 'Art. 43') {
                         $data['text_administrative'] = ' desmatar ' .  number_format($data["size_deforestation"], 3, ',', '') . ' hectares de floresta em ' . $data['area_deforestation'] . ' e em área considerada de preservação permanente, sem autorização prévia do órgão ambiental competente, conforme o ' . $data["article_AI"] . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' a R$ 50.000,00 por hectare ou fração. Para chegar ao valor obtido foi utilizado a instrução IN 19/2023 do IBAMA para definir o valor mínimo por hectare, ';
-                    } else {
+                    }elseif ($data['article_AI'] == 'Art. 48'){
+                        $data['text_administrative'] = ' impedir ou dificultar a regeneração natural de ' .  number_format($data["size_deforestation"], 3, ',', '') . ' hectares de florestas ou demais formas de vegetação, sem autorização prévia do órgão ambiental competente, conforme o ' . $data["article_AI"] . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .'  por hectare ou fração. Para chegar ao valor obtido, foi ';
+
+                    }else {
 
                         $data['text_administrative'] = ' desmatar ' . number_format($data["size_deforestation"], 3, ',', '') . ' hectares de floresta em ' . $data['area_deforestation'] . ', sem autorização prévia do órgão ambiental competente, conforme o ' . $data["article_AI"] . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração. Para chegar ao valor obtido, foi ';
                     }
@@ -474,6 +482,9 @@ class DetailedReportController extends Controller
                 } else {
                     if ($data['article_AI'] == 'Art. 43') {
                         $data['text_administrative'] = ' desmatar ' .  number_format($data["size_deforestation"], 3, ',', '') . ' hectares de floresta em ' . $data['area_deforestation'] . ' em área considerada de preservação permanente com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $data["article_AI"] . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' a R$ 50.000,00 por hectare ou fração, aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido foi utilizado a instrução IN 19/2023 do IBAMA para definir o valor mínimo por hectare, ';
+                    } elseif ($data['article_AI'] == 'Art. 48'){
+                        $data['text_administrative'] = ' impedir ou dificultar a regeneração natural de ' .  number_format($data["size_deforestation"], 3, ',', '') . ' hectares de florestas ou demais formas de vegetação com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $data["article_AI"] . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração. Para chegar ao valor obtido, foi ';
+
                     } else {
 
                         $data['text_administrative'] = ' desmatar ' .  number_format($data["size_deforestation"], 3, ',', '') . ' hectares de floresta em ' . $data['area_deforestation'] . ' com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $data["article_AI"] . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração, aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido, foi ';
@@ -512,6 +523,8 @@ class DetailedReportController extends Controller
             $article_BO = 'Art. 50';
         } else if ($data['article_AI'] == 'Art. 43') {
             $article_BO = 'Art. 38';
+        }else if ($data['article_AI'] == 'Art. 48') {
+            $article_BO = 'Art. 48';
         }
 
 
@@ -722,6 +735,8 @@ class DetailedReportController extends Controller
             $data->article_BO = 'Art. 50';
         } else if ($data->article_AI == 'Art. 43') {
             $data->article_BO = 'Art. 38';
+        }else if ($data['article_AI'] == 'Art. 48') {
+            $article_BO = 'Art. 48';
         }
 
 
@@ -744,7 +759,10 @@ class DetailedReportController extends Controller
                     $data->value_infraction = $data->size_deforestation * $fineValue;
                     if ($data->article_AI == 'Art. 43') {
                         $data->text_administrative = ' desmatar ' .  number_format($data->size_deforestation_intereger, 3, ',', '') . ' hectares de floresta em ' . $data->area_deforestation . ' e em área considerada de preservação permanente, sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' a R$ 50.000,00 por hectare ou fração. Para chegar ao valor obtido foi utilizado a instrução IN 19/2023 do IBAMA para definir o valor mínimo por hectare, ';
-                    } else {
+                    } elseif ($data->article_AI == 'Art. 48') {
+                        $data->text_administrative = ' impedir ou dificultar a regeneração natural de ' . $data->size_deforestation_intereger . ' hectares de florestas ou demais formas de vegetação, sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração. Para chegar ao valor obtido, foi ';
+                    }
+                    else {
                         $data->text_administrative = ' desmatar floresta em uma área de ' . number_format($data->size_deforestation_intereger, 3, ',', '') . ' hectares em ' . $data->area_deforestation . ', sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração. Para chegar ao valor obtido, foi ';
 
                     }
@@ -761,6 +779,8 @@ class DetailedReportController extends Controller
                     
                     if ($data->article_AI == 'Art. 43') {
                         $data->text_administrative = ' desmatar ' . number_format($data->size_deforestation_intereger, 3, ',', '') . ' hectares de floresta em ' . $data->area_deforestation . ' e em área considerada de preservação permanente com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' a R$ 50.000,00 por hectare ou fração, aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido foi utilizado a instrução IN 19/2023 do IBAMA para definir o valor mínimo por hectare, ';
+                    } else if ($data->article_AI == 'Art. 48') {
+                        $data->text_administrative = ' impedir ou dificultar a regeneração natural de ' . number_format($data->size_deforestation_intereger, 3, ',', '') . ' hectares de florestas ou demais formas de vegetação com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração. Para chegar ao valor obtido, foi ';
                     } else {
 
                         $data->text_administrative = ' desmatar floresta em uma área de ' . number_format($data->size_deforestation_intereger, 3, ',', '') . ' hectares em ' . $data->area_deforestation . 'com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração, aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido, foi ';
@@ -790,6 +810,8 @@ class DetailedReportController extends Controller
                     //$data->value_infraction = $valueInfraction;
                     if ($data->article_AI == 'Art. 43') {
                         $data->text_administrative = ' desmatar ' . number_format($data->size_deforestation, 3, ',', '') . ' hectares de floresta em ' . $data->area_deforestation . ' em área considerada de preservação permanente, sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' a R$ 50.000,00 por hectare ou fração. Para chegar ao valor obtido foi utilizado a instrução IN 19/2023 do IBAMA para definir o valor mínimo por hectare, ';
+                    } else if ($data->article_AI == 'Art. 48') {
+                        $data->text_administrative = ' impedir ou dificultar a regeneração natural de ' . number_format($data->size_deforestation, 3, ',', '') . ' hectares de florestas ou demais formas de vegetação, sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração. Para chegar ao valor obtido, foi ';
                     } else {
 
                         $data->text_administrative = ' desmatar floresta em uma área de ' . number_format($data->size_deforestation, 3, ',', '') . ' hectares em ' . $data->area_deforestation . ', sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração. Para chegar ao valor obtido, foi ';
@@ -816,6 +838,8 @@ class DetailedReportController extends Controller
                     
                     if ($data->article_AI == 'Art. 43') {
                         $data->text_administrative = ' desmatar ' . number_format($data->size_deforestation, 3, ',', '') . ' hectares de floresta em ' . $data->area_deforestation . ' em área considerada de preservação permanente, sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' a R$ 50.000,000 por hectare ou fração, aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido foi utilizado a instrução IN 19/2023 do IBAMA para definir o valor mínimo por hectare, ';
+                    } elseif ($data->article_AI == 'Art. 48') {
+                        $data->text_administrative = ' impedir ou dificultar a regeneração natural de ' . number_format($data->size_deforestation, 3, ',', '') . ' hectares de florestas ou demais formas de vegetação com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração, aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido, foi ';
                     } else {
 
                         $data->text_administrative = ' desmatar floresta em uma área de ' . number_format($data->size_deforestation, 3, ',', '') . ' hectares em ' . $data->area_deforestation . ', sem autorização prévia do órgão ambiental competente, conforme o ' . $data->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração, aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido, foi ';

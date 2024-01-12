@@ -109,6 +109,7 @@
                                 <select name="article_AI" id="article_AI" class="form-control articleAI {{ $errors->has('article_AI') ? 'is-invalid' : '' }}">
                                     <option value="" selected disabled>Selecione:</option>
                                     <option value="Art. 43" >Art. 43 Destruir APP:</option>
+                                    <option value="Art. 48" >Art. 48 Impedir ou dificultar a regeneração:</option>
                                     <option value="Art. 50" >Art. 50 Desmate fora reserva legal:</option>
                                     <option value="Art. 51" >Art. 51 Desmate reserva legal:</option>
                                 </select>
@@ -137,7 +138,7 @@
                                                 <label for="reserve" class="labelNotBold">Reserva legal</label>
                                                 <input type="radio" name="area_deforestation" id="offReserve" value="área de vegetação nativa">
                                                 <label for="offReserve" class="labelNotBold">Fora da reserva legal</label>
-                                                <input type="radio" name="area_deforestation" id="regeneration" value="em regeneração">
+                                                <input type="radio" name="area_deforestation" id="regeneration" value="regeneração">
                                                 <label for="regeneration" class="labelNotBold">Regeneração</label>
                                             </div>
                                         </div>
