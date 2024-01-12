@@ -28,7 +28,7 @@ class ReportRequest extends FormRequest
     {
         return [
             'number_BO' => 'required|max:10',
-            'type_BO' => 'required|in:Termo circunstanciado de Ocorrência - TCO,Comunicado de Ocorrência Policial - COP,Prisão e Apreensão - PA',
+            'type_BO' => 'required|in:Termo Circunstanciado de Ocorrência - TCO,Comunicado de Ocorrência Policial - COP,Prisão e Apreensão - PA',
             'article_BO' => 'required',
             'number_AI' => 'required',
             'article_AI' => 'required',
