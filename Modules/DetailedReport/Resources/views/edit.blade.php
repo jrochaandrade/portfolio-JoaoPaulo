@@ -361,7 +361,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="rg">RG:</label>
-                                    <input type="number" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="{!!$data['rg']!!}">
+                                    <input type="text" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="{!!$data['rg']!!}">
                                     @if ($errors->first('rg'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('rg') }}
