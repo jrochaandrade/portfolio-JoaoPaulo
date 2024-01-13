@@ -527,7 +527,7 @@ class DetailedReportController extends Controller
             $article_BO = 'Art. 48';
         }
 
-
+        $id_usuario = auth()->id();
 
         //Cria um id único para o relatório
         $unicIdReport = rand();
@@ -579,6 +579,7 @@ class DetailedReportController extends Controller
             'deposit_location' => $data['deposit_location'],
             'name_faithful' => $data['name_faithful'],
             'name_responsible' => $data['name_responsible'],
+            'id_user_created_at' => $id_usuario
         ]);
 
         $report = Report::where('unic_id_report', $unicIdReport)->first();
@@ -862,6 +863,10 @@ class DetailedReportController extends Controller
         
         $data->text_embargo = 'A área embargada é de <strong>' . number_format($data->size_deforestation, 3, ',', '') . '</strong>  hectares de floresta nativa em ' . $data->area_deforestation . ', conforme Termo de Embargo Nº <strong>' . $data->number_embargo . '</strong>, para que a área suprimida se regenere.';
         
+        $id_usuario = auth()->id();
+
+        $data->id_user_last_updated_at = $id_usuario;
+
         $data->save();
         
         // Upload das fotos da ocorrência
@@ -912,20 +917,32 @@ class DetailedReportController extends Controller
     public function destroy($id)
     {
         $reports = Report::find($id);
+        //$photos = PhotosReport::where('report_report_ID', $id)->get(); // Exclusão do arquivo perde tudo
         $photos = PhotosReport::where('report_report_ID', $id)->get();
-
         
-        foreach ($photos as $photo) {           
+
+        // Exclusão do arquivo perde tudo
+       /*  foreach ($photos as $photo) {           
             
             if (Storage::disk('public')->exists($photo->image)) {
                 Storage::disk('public')->delete($photo->image);
             }
-        }
+        } */
         
-        //$photos->delete();
+        foreach ($photos as $photo) {
+            $photo->delete();
+        }
+
         $reports->delete();
+
+        $id_usuario = auth()->id();
+
+        $reports->id_user_deleted_at = $id_usuario;
+
+        $reports->save();
 
         return redirect()->back();
 
     }
 }
+

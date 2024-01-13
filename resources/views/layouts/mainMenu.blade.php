@@ -69,19 +69,28 @@
                         <span class="text nav-text">Em breve</span>
                     </a>
                 </li> 
+                
                                                
             </ul>
         </div>
         <div class="bottom-content">
             <li class="">
+                @if (auth()->check())
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf 
                     <button class="btnLogoutHidden" type="submit" id="btnLogoutHidden"></button>
                 </form>
-                <a href="#" id="ancoraLogout">
+                <a href="#" id="ancoraLogout" title="Sair">
                     <i class="bi bi-door-open icon"></i>
-                    <span class="text nav-text">Logout</span>
+                    <span class="text nav-text">{{auth()->user()->name}}</span>                    
                 </a>
+                @else
+                
+                <a href="{{ route('login')}}" title="Sair">
+                    <i class="bi bi-door-open icon"></i>
+                    <span class="text nav-text">Entrar</span>                    
+                </a>
+                @endif 
             </li>
 
             <li class="mode">

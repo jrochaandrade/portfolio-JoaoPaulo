@@ -24,10 +24,10 @@
     <div class="text">
         <div class="container-fluid content">            
             
-            <div class="main" id="main">                
-                <h1>index</h1>
+            <div class="main" id="main"> 
+                <a href="{{ route('create') }}" class="btn btn-success mb-5">Criar relatório</a>
                 <table class="table table-bordered id="tableReports">
-                    <thead>
+                <thead>
                         <tr>
                             <th>ID</th>
                             <th>Ocorrência</th>
@@ -67,7 +67,6 @@
                 <div class="d-flex justify-content-end pagination">
                     {{ $reports->links('pagination::bootstrap-5') }}
                 </div>
-                <a href="{{ route('create') }}" class="btn btn-success">Criar relatório</a>
                 
             </div> 
         </div>

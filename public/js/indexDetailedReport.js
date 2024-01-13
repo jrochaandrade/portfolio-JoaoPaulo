@@ -28,7 +28,7 @@ window.deleteData = function(report_ID) {
                 'value': jQuery('meta[name="csrf-token"]').attr('content'),
             });
             Swal.fire({
-                title: 'Embargo excluido!',
+                title: 'Relatório excluido!',
                 text: 'Aguarde a página ser recarregada.',
                 icon: 'success',
                 confirmButtonColor: '',
