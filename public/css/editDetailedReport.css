@@ -165,3 +165,29 @@ h3 {
 .divInputImageletterHidden {
     display: none;
 }
+
+.divDeforestation {
+    width: 249px;
+}
+
+.divAreaDeforestation {
+    width: 464px;
+}
+
+.divUseFire {
+    width: 163px;
+}
+
+.divEmbargos {  
+    width: 171px;
+}
+
+.divImageLetter {
+    width: 198px;
+}
+
+.separateDivs {
+    border: 1px solid rgb(181, 176, 176);
+    padding: 20px;
+    margin-bottom: 20px;
+}

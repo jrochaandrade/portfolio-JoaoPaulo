@@ -142,11 +142,7 @@ class DetailedReportController extends Controller
         if ($data->article_AI == 'Art. 51') {
             $data['article_administrive'] = 'Art. 51.  Destruir, desmatar, danificar ou explorar floresta ou qualquer tipo de vegetação nativa ou de espécies nativas plantadas, em área de reserva legal ou servidão florestal, de domínio público ou privado, sem autorização prévia do órgão ambiental competente ou em desacordo com a concedida: (Redação dada pelo Decreto nº 6.686, de 2008). Multa de R$ 5.000,00 (cinco mil reais) por hectare ou fração.';
 
-            $data['article_criminal'] = 'Art. 50. Destruir ou danificar florestas nativas ou plantadas ou vegetação fixadora de dunas, protetora de mangues, objeto de especial preservação:
-
-            Pena - detenção, de três meses a um ano, e multa.';
-        
-
+             
         
         } elseif ($data->article_AI == 'Art. 50') {
             $data['article_administrive'] = 'Art. 50.  Destruir ou danificar florestas ou qualquer tipo de vegetação nativa ou de espécies nativas plantadas, objeto de especial preservação, sem autorização ou licença da autoridade ambiental competente: Multa de R$ 5.000,00 (cinco mil reais) por hectare ou fração.';
@@ -165,14 +161,21 @@ class DetailedReportController extends Controller
 
         }
 
-        /* if ($data->article_BO == 'Art. 50') {
-            $data['article_criminal'] = 'Art. 50. Destruir ou danificar florestas nativas ou plantadas ou vegetação fixadora de dunas, protetora de mangues, objeto de especial preservação:
+        if ($data->article_BO == 'Art. 38') {
 
-                Pena - detenção, de três meses a um ano, e multa.';
-            } elseif ($data->article_BO == 'Art. 38') {
             $data['article_criminal'] = 'Art. 38. Destruir ou danificar floresta considerada de preservação permanente, mesmo que em formação, ou utilizá-la com infringência das normas de proteção: Pena - detenção, de um a três anos, ou multa, ou ambas as penas cumulativamente.';
 
-        } */
+        } elseif ($data->article_BO == 'Art. 48') {
+            
+            $data['article_criminal'] = 'Art. 48. Impedir ou dificultar a regeneração natural de florestas e demais formas de vegetação: Pena - detenção, de seis meses a um ano, e multa.';
+
+        } elseif ($data->article_BO == 'Art. 50') {
+
+            $data['article_criminal'] = 'Art. 50. Destruir ou danificar florestas nativas ou plantadas ou vegetação fixadora de dunas, protetora de mangues, objeto de especial preservação: Pena - detenção, de três meses a um ano, e multa.';
+
+        } else if ($data->article_BO == 'Art. 50A') {
+            $data['article_criminal'] = 'Art. 50-A. Desmatar, explorar economicamente ou degradar floresta, plantada ou nativa, em terras de domínio público ou devolutas, sem autorização do órgão competente:(Incluído pela Lei nº 11.284, de 2006) Pena - reclusão de 2 (dois) a 4 (quatro) anos e multa. (Incluído pela Lei nº 11.284, de 2006)';
+        }
 
         
         
@@ -519,13 +522,13 @@ class DetailedReportController extends Controller
 
         // Verifica qual artigo administrativo foi selecionado e seleciona o criminal
 
-        if ($data['article_AI'] == 'Art. 50' || $data['article_AI'] == 'Art. 51' ) {
+        /* if ($data['article_AI'] == 'Art. 50' || $data['article_AI'] == 'Art. 51' ) {
             $article_BO = 'Art. 50';
         } else if ($data['article_AI'] == 'Art. 43') {
             $article_BO = 'Art. 38';
         }else if ($data['article_AI'] == 'Art. 48') {
             $article_BO = 'Art. 48';
-        }
+        } */
 
         $id_usuario = auth()->id();
 
@@ -544,7 +547,7 @@ class DetailedReportController extends Controller
             'historic' => $data['historic'],
             'number_BO' => $data['number_BO'],
             'type_BO' => $data['type_BO'],
-            'article_BO' => $article_BO,
+            'article_BO' => $data['article_BO'],
             'number_AI' => $data['number_AI'],
             'value_AI' => $data['value_AI'],
             'article_AI' => $data['article_AI'],
@@ -732,13 +735,13 @@ class DetailedReportController extends Controller
         }
         $data->save(); */
 
-        if ($data->article_AI == 'Art. 50' || $data->article_AI == 'Art. 51' ) {
+        /* if ($data->article_AI == 'Art. 50' || $data->article_AI == 'Art. 51' ) {
             $data->article_BO = 'Art. 50';
         } else if ($data->article_AI == 'Art. 43') {
             $data->article_BO = 'Art. 38';
         }else if ($data['article_AI'] == 'Art. 48') {
             $article_BO = 'Art. 48';
-        }
+        } */
 
 
         // Recebe o tamanho do desmatamento e separa a parte inteira, verifica se tem fração e define o valor da multa.

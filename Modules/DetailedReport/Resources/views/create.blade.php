@@ -59,7 +59,13 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="articleBO">Artigo Criminal:</label>
-                                <input type="text" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}" name="article_BO" id="articleBO" value="{{old('article_BO')}}">
+                                <select name="article_BO" id="article_BO" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}" value="{{old('article_BO')}}">
+                                    <option value="" selected disabled>Selecione:</option>
+                                    <option value="Art. 38" >Art. 38 Destruir APP:</option>
+                                    <option value="Art. 48" >Art. 48 Impedir ou dificultar a regeneração:</option>
+                                    <option value="Art. 50" >Art. 50 Desmate:</option>
+                                    <option value="Art. 50" >Art. 50A Desmate terras publicas:</option>
+                                </select>                                
                                 @if ($errors->has('article_BO'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('article_BO') }}

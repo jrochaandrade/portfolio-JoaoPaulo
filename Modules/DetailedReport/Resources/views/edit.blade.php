@@ -27,7 +27,7 @@
                 <form action="{{ route('updateReport', ['id'=>$data->report_ID]) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf                    
-                    <div class="occurrenceData">
+                    <div class="occurrenceData separateDivs">
                         <h3>Dados da Ocorrência</h3>
                         <div class="row">
                             <div class="col-sm-4">
@@ -71,7 +71,29 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="articleBO">Artigo Criminal:</label>
-                                <input type="text" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}" name="article_BO" id="articleBO" value="{!!$data['article_BO']!!}">
+                                <select name="article_BO" id="article_BO" class="form-control articleAI {{ $errors->has('article_BO') ? 'is-invalid' : '' }}">
+                                    @if ($data['article_BO'] === "Art. 38")
+                                    <option value="Art. 38" selected>Art. 38 Destruir APP:</option>
+                                    <option value="Art. 48" >Art. 48 Impedir ou dificultar a regeneração:</option>
+                                    <option value="Art. 50" >Art. 50 Desmate:</option>
+                                    <option value="Art. 50A" >Art. 50A Desmate terras publicas:</option>
+                                    @elseif ($data['article_BO'] === "Art. 48")
+                                    <option value="Art. 38">Art. 38 Destruir APP:</option>
+                                    <option value="Art. 48 " selected>Art. 48 Impedir ou dificultar a regeneração:</option>
+                                    <option value="Art. 50" >Art. 50 Desmate:</option>
+                                    <option value="Art. 50A" >Art. 50A Desmate terras publicas:</option>
+                                    @elseif ($data['article_BO'] === "Art. 50")
+                                    <option value="Art. 38">Art. 38 Destruir APP:</option>
+                                    <option value="Art. 48" >Art. 48 Impedir ou dificultar a regeneração:</option>
+                                    <option value="Art. 50" selected>Art. 50 Desmate:</option>
+                                    <option value="Art. 50A" >Art. 50A Desmate terras publicas:</option>
+                                    @elseif ($data['article_BO'] === "Art. 50A")
+                                    <option value="Art. 38">Art. 38 Destruir APP:</option>
+                                    <option value="Art. 48" >Art. 48 Impedir ou dificultar a regeneração:</option>
+                                    <option value="Art. 50" >Art. 50 Desmate:</option>
+                                    <option value="Art. 50A" selected>Art. 50A Desmate terras publicas:</option>
+                                    @endif
+                                </select>
                                 @if ($errors->has('article_BO'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('article_BO') }}
@@ -118,7 +140,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <label for="articleAI">Artigo Administrativo:</label>
                                 <!-- <input type="text" class="form-control articleAI" name="article_AI" id="articleAI" value="{!!$data['article_AI']!!}"> -->
                                 <select name="article_AI" id="article_AI" class="form-control articleAI {{ $errors->has('article_AI') ? 'is-invalid' : '' }}">
@@ -150,22 +172,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="col-sm-3" id="divUseFire">
-                                <span class="titleLabel">Uso de fogo?</span>
-                                <div class="divRadiosUseFire">
-                                    @if ($data['use_fire'] === "noUseFire")
-                                    <input type="radio" name="use_fire" id="yesUseFire"  value="useFire">
-                                    <label for="yesUseFire" class="labelNotBold">Sim</label>
-                                    <input type="radio" name="use_fire" id="noUseFire" value="noUseFire" checked>
-                                    <label for="noUseFire" class="labelNotBold">Não</label>
-                                    @else
-                                    <input type="radio" name="use_fire" id="yesUseFire"  value="useFire" checked>
-                                    <label for="yesUseFire" class="labelNotBold">Sim</label>
-                                    <input type="radio" name="use_fire" id="noUseFire" value="noUseFire">
-                                    <label for="noUseFire" class="labelNotBold">Não</label>
-                                    @endif
-                                </div>
-                            </div>
+                            
                             
                         </div>
 
@@ -173,11 +180,11 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-sm-3">
-                                            <label for="inputDeforestationSize" id="labelDeforestationSize">Tamanho do desmatamento (ha):</label>
+                                        <div class="col-sm-3 divDeforestation">
+                                            <label for="inputDeforestationSize" id="labelDeforestationSize">Tamanho do desmate (ha):</label>
                                             <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="{!!$data['size_deforestation']!!}">
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-3 divAreaDeforestation">
                                             <span class="titleLabel">Área onde ocorreu o desmatamento:</span>                                            
                                             <div>
                                                 @if ($data['area_deforestation'] === "área de reserva legal")
@@ -205,7 +212,23 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-2 divUseFire" id="divUseFire">
+                                            <span class="titleLabel">Uso de fogo?</span>
+                                            <div class="divRadiosUseFire">
+                                                @if ($data['use_fire'] === "noUseFire")
+                                                <input type="radio" name="use_fire" id="yesUseFire"  value="useFire">
+                                                <label for="yesUseFire" class="labelNotBold">Sim</label>
+                                                <input type="radio" name="use_fire" id="noUseFire" value="noUseFire" checked>
+                                                <label for="noUseFire" class="labelNotBold">Não</label>
+                                                @else
+                                                <input type="radio" name="use_fire" id="yesUseFire"  value="useFire" checked>
+                                                <label for="yesUseFire" class="labelNotBold">Sim</label>
+                                                <input type="radio" name="use_fire" id="noUseFire" value="noUseFire">
+                                                <label for="noUseFire" class="labelNotBold">Não</label>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 divEmbargos">
                                             <span class="titleLabel">Possui Embargo?</span>
                                             <div class="divRadiosEmbargos">
                                                 @if ($data['number_embargo'] != null)
@@ -222,7 +245,7 @@
                                                 @endif                                                
                                             </div>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-2 divImageLetter">
                                             <span class="titleLabel">Possui Carta Imagem?</span>
                                             <div class="divRadiosImageLetter">
                                                 @if ($data['number_letter'] != null)
@@ -319,24 +342,24 @@
 
                             @if ($data['term_seizure'] == null)
                                 <div class="divSeizedObjectsHidden" id="divSeizedObjects" >
-                            
-                            @endif
-                                <div id="divSeizedObjects">
-                                <label for="inputTermOfSeizure" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
-                                <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder="" value="{!!$data['term_seizure']!!}">
-                                <label for="inputSeizedObjects" class="labelSeizedObjects" id="labelSeizedObjects">Descreva os objetos apreendidos:</label>
-                                <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="{!!$data['seized_objects']!!}">
-                                <label for="inputDepositLocation" class="labelDepositLocation" id="labelDepositLocation">Endereço onde foi depositado:</label>
-                                <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="{!!$data['deposit_location']!!}">
-                                <label for="inputNameFaithful" class="labelNameFaithful" id="labelNameFaithful">Nome e CPF/CNPJ fiel depositário:</label>
-                                <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="{!!$data['name_faithful']!!}">
-                                <label for="inputNameresponsible" class="labelNameresponsible" id="labelNameresponsible">Nome e CPF do responsável pelo recebimento:</label>
-                                <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="{!!$data['name_responsible']!!}">
-                                <div class="divImages">
-                                    <label for="images1">Alterar as 4 fotos da apreenssão, enviar 3 dos objetos apreendidos e 1 do local onde ficou depositado:</label>
-                                    <input type="file" class="form-control images2" name="images2[]" id="images2" multiple>
+                                    <div id="divSeizedObjects">
+                                        <label for="inputTermOfSeizure" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
+                                        <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder="" value="{!!$data['term_seizure']!!}">
+                                        <label for="inputSeizedObjects" class="labelSeizedObjects" id="labelSeizedObjects">Descreva os objetos apreendidos:</label>
+                                        <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="{!!$data['seized_objects']!!}">
+                                        <label for="inputDepositLocation" class="labelDepositLocation" id="labelDepositLocation">Endereço onde foi depositado:</label>
+                                        <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="{!!$data['deposit_location']!!}">
+                                        <label for="inputNameFaithful" class="labelNameFaithful" id="labelNameFaithful">Nome e CPF/CNPJ fiel depositário:</label>
+                                        <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="{!!$data['name_faithful']!!}">
+                                        <label for="inputNameresponsible" class="labelNameresponsible" id="labelNameresponsible">Nome e CPF do responsável pelo recebimento:</label>
+                                        <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="{!!$data['name_responsible']!!}">
+                                        <div class="divImages">
+                                            <label for="images1">Alterar as 4 fotos da apreenssão, enviar 3 dos objetos apreendidos e 1 do local onde ficou depositado:</label>
+                                            <input type="file" class="form-control images2" name="images2[]" id="images2" multiple>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                             
                         </div>
                     </div>
@@ -344,7 +367,7 @@
 
 
                     
-                    <div class="offenderDate">
+                    <div class="offenderDate separateDivs">
                         <h3>Dados do envolvido/autuado</h3>
 
                         
@@ -432,7 +455,7 @@
 
 
 
-                    <div class="historic">
+                    <div class="historic separateDivs">
                         <h3>Histórico da ocorrência</h3>
                         <label for="historic">Dos fatos:</label>
                         <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10" value="">{!!$data['historic']!!}</textarea>
@@ -447,7 +470,7 @@
 
 
 
-                    <div class="divImages">
+                    <div class="divImages separateDivs">
                         <h3>Imagens da ocorrência</h3>
                         <label for="images1">Alterar as 4 imagens:</label>
                         <input type="file" class="form-control images1 {{ $errors->has('images1[]') ? 'is-invalid' : '' }}" name="images1[]" id="images1" multiple>
@@ -457,7 +480,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="offenderMotive">
+                    <div class="offenderMotive separateDivs">
                         <h3>Dos Motivos apresentado pelo envolvido</h3>
                         <label for="motive">Motivo:</label>
                         <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="{!!$data['motive']!!}">
@@ -469,9 +492,9 @@
                     </div>
 
 
-                    <div class="mitigatingAggravating">
+                    <div class="mitigatingAggravating separateDivs">
                         <h3>Das atenuantes e agravantes</h3>
-                        <div class="mitigating">                            
+                        <div class="mitigating separateDivs">                            
                             <!-- <span  class="titleLabel">Possui atenuantes?</span>
                             <div class="divRadiosMitigating">
                                 <input type="radio" name="yesOrNoMitigating" id="yesMitigating" value="yes">
@@ -527,7 +550,7 @@
                         </div>
 
 
-                        <div class="aggravating">
+                        <div class="aggravating separateDivs">
                             <!-- <span for="aggravating">Possui agravantes:</span>
                             <div class="divRadiosAggravating">
                                 <input type="radio" name="yesOrNoAggravating" id="yesAggravating" value="yes">
@@ -576,7 +599,7 @@
                             <h4>Medidas administrativas:</h4>
                         </div>
                     </div> -->
-                    <div class="team">
+                    <div class="team separateDivs">
                         <h3 class="tiles2">Componentes da equipe</p>
                         <div class="row">
                             <div class="col-sm-6">
