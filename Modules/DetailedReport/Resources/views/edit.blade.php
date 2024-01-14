@@ -473,12 +473,8 @@
                     <div class="divImages separateDivs">
                         <h3>Imagens da ocorrência</h3>
                         <label for="images1">Alterar as 4 imagens:</label>
-                        <input type="file" class="form-control images1 {{ $errors->has('images1[]') ? 'is-invalid' : '' }}" name="images1[]" id="images1" multiple>
-                        @if ($errors->has('images1[]'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('images1[]') }}
-                            </div>
-                        @endif
+                        <input type="file" class="form-control images1 " name="images1[]" id="images1" multiple>
+                        
                     </div>
                     <div class="offenderMotive separateDivs">
                         <h3>Dos Motivos apresentado pelo envolvido</h3>

@@ -59,12 +59,12 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="articleBO">Artigo Criminal:</label>
-                                <select name="article_BO" id="article_BO" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}" value="{{old('article_BO')}}">
+                                <select name="article_BO" id="article_BO" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}"">
                                     <option value="" selected disabled>Selecione:</option>
-                                    <option value="Art. 38" >Art. 38 Destruir APP:</option>
-                                    <option value="Art. 48" >Art. 48 Impedir ou dificultar a regeneração:</option>
-                                    <option value="Art. 50" >Art. 50 Desmate:</option>
-                                    <option value="Art. 50" >Art. 50A Desmate terras publicas:</option>
+                                    <option value="Art. 38" {{ old('article_BO') == 'Art. 38' ? 'selected' : '' }}>Art. 38 Destruir APP:</option>
+                                    <option value="Art. 48" {{ old('article_BO') == 'Art. 48' ? 'selected' : '' }}>Art. 48 Impedir ou dificultar a regeneração:</option>
+                                    <option value="Art. 50" {{ old('article_BO') == 'Art. 50' ? 'selected' : '' }}>Art. 50 Desmate:</option>
+                                    <option value="Art. 50A" {{ old('article_BO') == 'Art. 50A' ? 'selected' : '' }}>Art. 50A Desmate terras publicas:</option>
                                 </select>                                
                                 @if ($errors->has('article_BO'))
                                     <div class="invalid-feedback">
@@ -89,8 +89,8 @@
                                 <p class="titleLabel">Tipo da infração:</p>
                                 <select name="type_AI" class="form-control {{ $errors->has('type_AI') ? 'is-invalid' : '' }}" id="selectTypeAI">
                                     <option value="" selected disabled>Selecione:</option>
-                                    <option value="logging">Desmatamento</option>
-                                    <option value="wood">Madeira</option>
+                                    <option value="logging" {{ old('type_AI') == 'logging' ? 'selected' : '' }}>Desmatamento</option>
+                                    <option value="wood" {{ old('type_AI') == 'wood' ? 'selected' : '' }}>Madeira</option>
                                     <!-- <option value="openFine">Multa aberta</option>  -->
                                 </select>
                                 @if ($errors->has('type_AI'))
@@ -113,17 +113,19 @@
                                 @endif -->
                                 <label for="articleAI">Artigo Administrativo:</label>
                                 <select name="article_AI" id="article_AI" class="form-control articleAI {{ $errors->has('article_AI') ? 'is-invalid' : '' }}">
-                                    <option value="" selected disabled>Selecione:</option>
-                                    <option value="Art. 43" >Art. 43 Destruir APP:</option>
-                                    <option value="Art. 48" >Art. 48 Impedir ou dificultar a regeneração:</option>
-                                    <option value="Art. 50" >Art. 50 Desmate fora reserva legal:</option>
-                                    <option value="Art. 51" >Art. 51 Desmate reserva legal:</option>
-                                </select>
-                                @if ($errors->has('article_AI'))
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('article_AI') }}
-                                    </div>
-                                @endif
+                                <option value="" selected disabled>Selecione:</option>
+                                <option value="Art. 43" {{ old('article_AI') == 'Art. 43' ? 'selected' : '' }}>Art. 43 Destruir APP:</option>
+                                <option value="Art. 48" {{ old('article_AI') == 'Art. 48' ? 'selected' : '' }}>Art. 48 Impedir ou dificultar a regeneração:</option>
+                                <option value="Art. 50" {{ old('article_AI') == 'Art. 50' ? 'selected' : '' }}>Art. 50 Desmate fora reserva legal:</option>
+                                <option value="Art. 51" {{ old('article_AI') == 'Art. 51' ? 'selected' : '' }}>Art. 51 Desmate reserva legal:</option>
+                            </select>
+
+                            @if ($errors->has('article_AI'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('article_AI') }}
+                                </div>
+                            @endif
+
                             </div>
                             
                            
@@ -356,13 +358,23 @@
                             </div>
                         @endif
                     </div>
-                    <div class="divImages separateDivs">
+                    <!-- <div class="divImages separateDivs">
                         <h3>Imagens da ocorrência</h3>
                         <label for="images1">Carregar 4 imagens:</label>
                         <input type="file" class="form-control images1 {{ $errors->has('images1[]') ? 'is-invalid' : '' }}" name="images1[]" id="images1" multiple>
                         @if ($errors->has('images1[]'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('images1[]') }}
+                            </div>
+                        @endif
+                    </div> -->
+                    <div class="divImages separateDivs">
+                        <h3>Imagens da ocorrência</h3>
+                        <label for="images1">Carregar 4 imagens:</label>
+                        <input type="file" class="form-control images1 {{ $errors->has('images1') ? 'is-invalid' : '' }}" name="images1[]" id="images1" multiple>
+                        @if ($errors->has('images1'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('images1') }}
                             </div>
                         @endif
                     </div>

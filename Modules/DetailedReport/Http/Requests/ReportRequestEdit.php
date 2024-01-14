@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ReportRequest extends FormRequest
+class ReportRequestEdit extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -43,7 +43,7 @@ class ReportRequest extends FormRequest
             'location' => 'required',
             'historic' => 'required',
             //'images1[]' => 'required|array',
-            'images1' => 'required',
+            
             //'images1.*' => 'max:2048',
             'motive' => 'required',
             'name_CMT' => 'required',
@@ -78,7 +78,7 @@ class ReportRequest extends FormRequest
             'address' => 'O campo Endereço é obrigatório',
             'location' => 'O campo Local do fato é obrigatório',
             'historic' => 'O campo Histórico é obrigatório',
-            'images1' => 'Obrigatório o envio de 4 imagens',
+            
             'motive' => 'O campo Motivo é obrigatório',
             'name_CMT' => 'O campo Comandante é obrigatório',
             'name_MOT' => 'O campo Motorista é obrigatório',

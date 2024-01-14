@@ -13,6 +13,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
 use Dompdf\Options;
 use Modules\DetailedReport\Http\Requests\ReportRequest;
+use Modules\DetailedReport\Http\Requests\ReportRequestEdit;
 use Modules\DetailedReport\Models\PhotosReport;
 use Modules\DetailedReport\Models\Report;
 use Illuminate\Support\Facades\Storage;
@@ -705,7 +706,7 @@ class DetailedReportController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(ReportRequest $request, $id)
+    public function update(ReportRequestEdit $request, $id)
     {
         $data = Report::find($id);
 
