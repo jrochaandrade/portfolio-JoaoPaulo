@@ -125,13 +125,17 @@ h3 {
     display: none;
 }
 
-#divLumber {
+#divWood {
+    display: none;
+}
+
+/* #divLumber {
     display: none;
 }
 
 #divNaturalWood {
     display: none;
-}
+} */
 
 #divInputEmbargo {
     display: none;

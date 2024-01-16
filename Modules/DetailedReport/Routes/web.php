@@ -37,6 +37,9 @@ Route::group(['middleware' => ['auth']], function() /* colocando as rotas dentro
 
 
     Route::delete('/report/{id}', [DetailedReportController::class, 'destroy'])->name('report.destroy');
+
+
+    Route::get('/autocomplete-article', [DetailedReportController::class, 'selectSearch']);
 });
 
 //Auth::routes();

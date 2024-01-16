@@ -2,9 +2,17 @@
 
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+
 <link rel="stylesheet" href="{{ asset('css/createDetailedReport.css') }}">
-
-
 <script src="{{ asset('js/createDetailedReport.js') }}" defer type="module"></script>
 
 <meta http-equiv="refresh" content="; http://127.0.0.1:8000/report/detailed">
@@ -31,7 +39,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="inputBO">Numero da ocorrência:</label>
-                                <input type="text" class="form-control {{ $errors->has ('number_BO') ? 'is-invalid' : '' }}" name="number_BO" id="inputBO" value="{{old('number_BO')}}"  pattern="\d*">
+                                <input type="text" class="form-control {{ $errors->has ('number_BO') ? 'is-invalid' : '' }}" name="number_BO" id="inputBO" value="3146300132"  pattern="\d*">
                                 @if ($errors->has('number_BO'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('number_BO') }}
@@ -58,8 +66,8 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <label for="articleBO">Artigo Criminal:</label>
-                                <select name="article_BO" id="article_BO" class="form-control articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}"">
+                                <p class="titleLabel" >Artigo Criminal:</p>
+                                <select name="article_BO" id="article_BO" class="form-select articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}"">
                                     <option value="" selected disabled>Selecione:</option>
                                     <option value="Art. 38" {{ old('article_BO') == 'Art. 38' ? 'selected' : '' }}>Art. 38 Destruir APP:</option>
                                     <option value="Art. 48" {{ old('article_BO') == 'Art. 48' ? 'selected' : '' }}>Art. 48 Impedir ou dificultar a regeneração:</option>
@@ -77,7 +85,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="inputAI">Auto de Infração II:</label>
-                                <input type="text" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value="{{old('number_AI')}}"  pattern="\d*">
+                                <input type="text" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value="123612"  pattern="\d*">
                                 @if ($errors->has('number_AI'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('number_AI') }}
@@ -85,47 +93,52 @@
                                 @endif
                             </div>
 
-                            <div class="col-sm-4">
+                            <!-- <div class="col-sm-4">
                                 <p class="titleLabel">Tipo da infração:</p>
                                 <select name="type_AI" class="form-control {{ $errors->has('type_AI') ? 'is-invalid' : '' }}" id="selectTypeAI">
                                     <option value="" selected disabled>Selecione:</option>
                                     <option value="logging" {{ old('type_AI') == 'logging' ? 'selected' : '' }}>Desmatamento</option>
                                     <option value="wood" {{ old('type_AI') == 'wood' ? 'selected' : '' }}>Madeira</option>
-                                    <!-- <option value="openFine">Multa aberta</option>  -->
+                                    
                                 </select>
                                 @if ($errors->has('type_AI'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('type_AI') }}
                                     </div>
                                 @endif
-                            </div>
+                            </div> -->
                             <!-- <div class="col-sm-2">
                                 <label for="valueAI">Valor do AI:</label>
                                 <input type="number" class="form-control valueAI" name="valueAI" id="valueAI" value="5000">
                             </div> -->
                             <div class="col-sm-4">
-                                <!-- <label for="articleAI">Artigo Administrativo:</label>
-                                <input type="text" class="form-control articleAI {{ $errors->has('article_AI') ? 'is-invalid' : '' }}" name="article_AI" id="articleAI" value="Art. 51">
-                                @if ($errors->has('article_AI'))
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('article_AI') }}
-                                    </div>
-                                @endif -->
                                 <label for="articleAI">Artigo Administrativo:</label>
-                                <select name="article_AI" id="article_AI" class="form-control articleAI {{ $errors->has('article_AI') ? 'is-invalid' : '' }}">
+                                <select class="form-select form-control {{ $errors->has('search_article') ? 'is-invalid' : '' }}" name="search_article" id="searchArticle"></select>
+                                <!-- <select name="article_AI" id="article_AI" class="form-control articleAI {{ $errors->has('article_AI') ? 'is-invalid' : '' }}">
                                 <option value="" selected disabled>Selecione:</option>
                                 <option value="Art. 43" {{ old('article_AI') == 'Art. 43' ? 'selected' : '' }}>Art. 43 Destruir APP:</option>
                                 <option value="Art. 48" {{ old('article_AI') == 'Art. 48' ? 'selected' : '' }}>Art. 48 Impedir ou dificultar a regeneração:</option>
                                 <option value="Art. 50" {{ old('article_AI') == 'Art. 50' ? 'selected' : '' }}>Art. 50 Desmate fora reserva legal:</option>
                                 <option value="Art. 51" {{ old('article_AI') == 'Art. 51' ? 'selected' : '' }}>Art. 51 Desmate reserva legal:</option>
-                            </select>
+                                </select> -->
 
-                            @if ($errors->has('article_AI'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('article_AI') }}
-                                </div>
-                            @endif
+                                @if ($errors->has('search_article'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('search_article') }}
+                                    </div>
+                                @endif
+                            </div>
 
+                            <div class="col-sm-4">
+                                <p class="titleLabel">Unidade de medida:</p>
+                                <select name="unit_measure" id="unit_measure" class="form-control articleAI {{ $errors->has('unit_measure') ? 'is-invalid' : '' }}">
+                                    <option value="" selected disabled>Selecione:</option>                                    
+                                </select>
+                                @if ($errors->has('unit_measure'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('unit_measure') }}
+                                    </div>
+                                @endif
                             </div>
                             
                            
@@ -137,7 +150,7 @@
                                     <div class="row">
                                         <div class="col-sm-2 divDeforestation">
                                             <label for="inputDeforestationSize" id="labelDeforestationSize">Tamanho do desmate (ha):</label>
-                                            <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="{{old('size_deforestation')}}">
+                                            <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="50">
                                         </div>
                                         <div class="col-sm-4 divAreaDeforestation">
                                             <p class="titleLabel">Área onde ocorreu o desmatamento:</p>                                            
@@ -168,7 +181,7 @@
                                                 <label for="noEmbargos" class="labelNotBold">Não</label>
                                             </div>
                                         </div>                                        
-                                        <div class="col-sm-2 divImageLetter">
+                                        <div class="col-sm-2 divImageLetter" id="divImageLetter">
                                             <p class="titleLabel">Possui Carta Imagem?</p>
                                             <div class="divRadiosImageLetter">
                                                 <input type="radio" name="yesOrNoImageLetter" id="yesImageLetter" value="yes">
@@ -186,47 +199,66 @@
                         <div class="row">
                             <div class="col-sm-6" id="divInputEmbargo">
                                 <label for="inputEmbargo" class="labelEmbargo" id="labelEmbargo">Informe o numero do Termo de Embargo:</label>
-                                <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="{{old('number_embargo')}}">
+                                <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="164532">
                             </div>
                             <div class="col-sm-6" id="divInputImageletter">                                
                                 <label for="inputImageLetter" class="labelImageLetter" id="labelImageLetter">Informe o numero da Carta Imagem:</label>
-                                <input type="text" class="form-control inputImageLetter" name="number_letter" id="inputImageLetter" value="{{old('number_letter')}}">
+                                <input type="text" class="form-control inputImageLetter" name="number_letter" id="inputImageLetter" value="JIPA-2024-JPRA002">
                             </div>
                         </div>
-
-                        <div class="divQuantityWood" id="divQuantityWood">
-                            <label for="inputQuantityWood" id="labelQuantityWood">Quantidade de madeira (m³):</label>
-                            <input type="number" class="form-control" name="inputQuantityWood" id="inputQuantityWood" value="">
-                        </div>
-
 
                         
-
+                        
+                        
+                        
                         <!-- Implantar quando for colovar madeira -->
-                        <!-- <div id="divLumber">
-                            <p for="">Possui Planilha de Madeira Serrada?</p>
-                            <div class="divRadiosLumber">
-                                <input type="radio" name="yesOrNoLumber" id="yesLumber" value="yes">
-                                <label for="yesLumber">Sim</label>
-                                <input type="radio" name="yesOrNoLumber" id="noLumber" value="no" checked>
-                                <label for="noLumber">Não</label>
+                        <div id="divWood">
+                            <div class="row">
+                                <div class="divQuantityWood col-sm-4" id="divQuantityWood">
+                                    <label for="quantityWood" id="labelQuantityWood">Quantidade de madeira (m³):</label>
+                                    <input type="number" class="form-control" name="quantity_wood" id="quantityWood" value="" step="0.001">
+                                </div>
+                                <div class="divRadiosLumber col-sm-4">
+                                    <p class="titleLabel">Possui Planilha de Madeira Serrada?</p>
+                                    <input type="radio" name="yesOrNoLumber" id="yesLumber" value="yes">
+                                    <label for="yesLumber">Sim</label>
+                                    <input type="radio" name="yesOrNoLumber" id="noLumber" value="no" checked>
+                                    <label for="noLumber">Não</label>
+                                </div>
+                                <div class="divRadiosNaturalWood col-sm-4">
+                                    <p class="titleLabel">Possui Planilha de Madeira In-Natura?</p>
+                                    <input type="radio" name="yesOrNoNaturalWood" id="yesNaturalWood" value="yes">
+                                    <label for="yesNaturalWood">Sim</label>
+                                    <input type="radio" name="yesOrNoNaturalWood" id="noNaturalWood" value="no" checked>
+                                    <label for="noNaturalWood">Não</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6" id="divLumber">
+                                    <label for="inputLumber" class="labelLumber" id="labelLumber">Informe o numero da Planilha de Madeira Serrada:</label>
+                                    <input type="number" class="form-control inputLumber" name="inputLumber" id="inputLumber" value="111111">
+                                </div>
+                                <div class="col-sm-6" id="divNaturalWood">
+                                    <label for="inputNaturalWood" class="labelNaturalWood" id="labelNaturalWood">Informe o numero da Planilha de Madeira In-Natura:</label>
+                                    <input type="number" class="form-control inputNaturalWood" name="inputNaturalWood" id="inputNaturalWood" value="111111">
+                                </div>
                             </div>
                         </div>
-                        <label for="inputLumber" class="labelLumber" id="labelLumber">Informe o numero da Planilha de Madeira Serrada:</label>
-                        <input type="number" class="form-control inputLumber" name="inputLumber" id="inputLumber" value="111111">
-                        <div id="divNaturalWood">
-                            <p for="">Possui Planilha de Madeira In-Natura?</p>
-                            <div class="divRadiosNaturalWood">
-                                <input type="radio" name="yesOrNoNaturalWood" id="yesNaturalWood" value="yes">
-                                <label for="yesNaturalWood">Sim</label>
-                                <input type="radio" name="yesOrNoNaturalWood" id="noNaturalWood" value="no" checked>
-                                <label for="noNaturalWood">Não</label>
-                            </div>
-                            <label for="inputNaturalWood" class="labelNaturalWood" id="labelNaturalWood">Informe o numero da Planilha de Madeira In-Natura:</label>
-                            <input type="number" class="form-control inputNaturalWood" name="inputNaturalWood" id="inputNaturalWood" value="111111">
-                        </div> -->
-
-
+                        
+                        <div class="typeWood">
+                            <p class="titleLabel">Descreva sobre as madeiras aprendidas:</p>
+                            <textarea class="form-control" name="text_type_wood" id="" cols="30" rows="5" placeholder="Ex.: Foi aprendido 40 metros cúbicos de madeira, sendo 10 metros cúbicos de madeira serrada, 10 metros cúbicos de madeira IN-NATURA do tipo Tóra e 20 metros cúbicos de madeira do tipo lasca.">Foi aprendido 40 metros cúbicos de madeira, sendo 10 metros cúbicos de madeira serrada, 10 metros cúbicos de madeira IN-NATURA do tipo Tóra e 20 metros cúbicos de madeira do tipo lasca</textarea>
+                            <!-- <p class="titleLabel">Tipo de madeira:</p>
+                            <select class="form-select" name="type_wood" id="type_wood">
+                                <option value="" selected disabled>Selecione:</option>
+                                <option value="serrada">Madeira serrada</option>
+                                <option value="IN-NATURA do tipo tóra">Tóra</option>
+                                <option value="IN-NATURA do tipo mourão">Mourão</option>
+                                <option value="do tipo lasca">Lasca</option>
+                            </select> -->
+                        </div>
+                        
                         <div class="seizedObjects">
                             <p class="titleLabel">Possui objetos apreendidos?</p>
                             <div class="divRadiosSeizedObjects">
@@ -239,13 +271,13 @@
                                 <label for="inputTermOfSeizure" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
                                 <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder=""  value="{{old('term_seizure')}}">
                                 <label for="inputSeizedObjects" class="seizedObjects" id="seizedObjects">Descreva os objetos apreendidos:</label>
-                                <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="{{old('seized_objects')}}">
+                                <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="01 - motosserra / 01 - Caminhão Mercedes Bens">
                                 <label for="inputDepositLocation" class="labelDepositLocation" id="labelDepositLocation">Endereço onde foi depositado:</label>
-                                <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="{{old('deposit_location')}}">
+                                <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO">
                                 <label for="inputNameFaithful" class="labelNameFaithful" id="labelNameFaithful">Nome e CPF/CNPJ fiel depositário:</label>
-                                <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="{{old('name_faithful')}}">
+                                <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00">
                                 <label for="inputNameresponsible" class="labelNameresponsible" id="labelNameresponsible">Nome e CPF do responsável pelo recebimento:</label>
-                                <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="{{old('name_responsible')}}">
+                                <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="João Pedro de Nóbrega CPF: 000.000.000-00">
 
                                 <div class="divImagesObjects">
                                     <!-- <h3>Imagens da ocorrência</h3> -->
@@ -267,7 +299,7 @@
                             <div class="row">
                                 <div class="col-sm-7">
                                     <label for="name">Nome do envolvido:</label>
-                                    <input type="text" class="form-control {{ $errors->has ('name') ? 'is-invalid': '' }} name" name="name" id="name" value="{{old('name')}}">
+                                    <input type="text" class="form-control {{ $errors->has ('name') ? 'is-invalid': '' }} name" name="name" id="name" value="Marcos Roberto Gustavo">
                                     @if ($errors->has('name'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name') }}
@@ -276,7 +308,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="cpf">CPF:</label>
-                                    <input type="text" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" name="cpf" id="cpf" value="{{old('cpf')}}">
+                                    <input type="text" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" name="cpf" id="cpf" value="95756484756">
                                     @if ($errors->has('cpf'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('name') }}
@@ -285,7 +317,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="rg">RG:</label>
-                                    <input type="text" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="{{old('rg')}}">
+                                    <input type="text" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="125432 - SSP RO">
                                     @if ($errors->first('rg'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('rg') }}
@@ -296,7 +328,7 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label for="phone">Telefone:</label>
-                                    <input type="text" class="form-control phone {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="{{old('phone')}}">
+                                    <input type="text" class="form-control phone {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="69992254587">
                                     @if ($errors->has('phone'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('phone') }}
@@ -305,7 +337,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="birthday">Data de nascimento:</label>
-                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="{{old('birthday')}}">
+                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="1997-05-23">
                                     @if ($errors->has('birthday'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('birthday') }}
@@ -314,7 +346,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label for="affiliation">Filiação:</label>
-                                    <input type="text" class="form-control affiliation {{ $errors->has('affiliation') ? 'is-invalid' : '' }}" name="affiliation" id="affiliation" value="{{old('affiliation')}}">
+                                    <input type="text" class="form-control affiliation {{ $errors->has('affiliation') ? 'is-invalid' : '' }}" name="affiliation" id="affiliation" value="João Gustavo e Maria da Lida Neto">
                                     @if ($errors->has('affiliation'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('affiliation') }}
@@ -325,7 +357,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label for="address">Endreço do envolvido:</label>
-                                    <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="{{old('address')}}">
+                                    <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="Rua das Mangueiras - 1254 - Centro - Ji-Paraná RO">
                                     @if ($errors->has('address'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('address') }}
@@ -334,7 +366,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="location">Local do fato:</label>
-                                    <input type="text" class="form-control location {{ $errors->has('location') ? 'is-invalid' : '' }}" name="location" id="location" value="{{old('location')}}">
+                                    <input type="text" class="form-control location {{ $errors->has('location') ? 'is-invalid' : '' }}" name="location" id="location" value="Linha 32 - Lote 45 GB 06 - Urupá - RO">
                                     @if ($errors->has('location'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('location') }}
@@ -351,7 +383,23 @@
                     <div class="historic separateDivs">
                         <h3>Histórico da ocorrência</h3>
                         <label for="historic">Dos fatos:</label>
-                        <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10">{{old('historic')}}</textarea>
+                        <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10">No dia 08 de janeiro de 2024, esta equipe de policiamento e fiscalização ambiental em operação na área da Coordenadoria Regional de Policiamento CRP-II, missão Guardiões do Bioma Estadual, em atendimento a solicitação do Ministério Público do Estado de Rondônia, através do oficio nº 000596/2023, da 1ª PJ/ SMG, constante no processo SEI 0021.077375/2023-14, deslocou-se a linha 2, lote 14, município de Seringueiras - RO, onde foi constatado através de imagens de satélite uma supressão de vegetação nativa (desmatamento) de 21,429 hectares, nas Coordenadas Geográficas S11º58’26.08” W63º7’49.29” realizado entre maio e dezembro de 2019, conforme carta imagem nº JIPA-2024-VBS12, confecionado pelo, CB PM Valdison, lotado na 3ª CIA/PA/BPA, em Ji-Paraná.
+Em visita in loco por volta das 11 horas, foram constatado a supressão da vegetação nativa e transformado o local em pastagem, onde o proprietário possuí criação de bovinos, desta forma confirmando a infração ambiental acima mencionado.
+Na propriedade foi mantido contato com o morador o senhor JOÃO JUCELINO KADES, ele relatou que o lote pertence ao seu filho JOSEMAR DA SILVA KADES, CPF 007.727.282-00, que estava viajando a trabalho, então foi lavrado a notificação nº TIA02dv00002, para comparecimento do infrator no Quartel da Policia Militar Ambienta em Ji-Paraná - RO, no dia 13 de janeiro de 2024, as 11 horas, para mais esclarecimento.
+No dia 13 de janeiro de 2024, as 10 horas, compareceu nesta unidade (3ªCIA/PA/BPA), o senhor JOSEMAR DA SILVA KADES e ele informou que é o proprietário e responsável pelo lote 14, localizado a linha 02, km 03 em seringueiras - RO, desde de 2018, quando recebeu da ASSOCIAÇÃO LIGA DOS CAMPONESES POBRES - LCP, e a sua propriedade possui 10 alqueires e que a época que recebeu em 2018 estava totalmente em mata (floresta) nativa.
+Sobre o desmatamento disse que foi ele quem realizou em 2019 e não solicitou autorização dos órgãos ambientais competente, com objetivo de transformar o local em pastagem e criar BOVINOS. 
+Diante dos fatos acima mencionado e a concordância do infrator em comparecer no fórum em São Miguel do Guaporé ou participar de audiência virtual, agendada para o dia 16 de maio de 2024, as 09 horas, foi lavrado este Termo Circunstanciado de Ocorrência - TCO, por estar incorrendo no crime ambiental previsto no artigo 50 da lei federal 9.605/98 e outras providências de praxe.
+CRIMINAL:
+Termo Circunstanciado de Ocorrência - TCO Nº 3309100031.
+Por incorrer no artigo 50 da lei federal 9.605/98.
+
+ADMINISTRATIVO:
+Auto de Infração II nº 102608.
+Por incorrer no artigo 51 do decreto federal 6.514/08.
+Termo de Embargo nº 007928.
+
+Após orientar o infrator quanto aos prazos para recursos administrativos e assinar o termo de compromisso de comparecimento/participação em audiência e assinar ou documentos lavrados, ela foi liberada e permaneceu no local sem alterações.
+Vale salientar que o infrator colaborou com a equipe, fornecendo seus dados e respondendo todos os questionamento feito pela equipe, para a necessária lavratura desta ocorrência e se colocou a disposição da justiça para mais esclarecimentos.</textarea>
                         @if ($errors->has('historic'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('historic') }}
@@ -381,7 +429,8 @@
                     <div class="offenderMotive separateDivs">
                         <h3>Dos Motivos apresentado pelo envolvido</h3>
                         <label for="motive">Motivo:</label>
-                        <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="{{old('motive')}}">
+                        <textarea name="motive" id="motive" cols="30" rows="5" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}">Relatou que não sabia que precisava de licença para realizar o desmatamento.</textarea>
+                        <!-- <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="{{old('motive')}}"> -->
                         @if ($errors->has('motive'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('motive') }}
@@ -503,7 +552,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="cmt">Comandante - Nome completo - Graduação - RE:</label>
-                                <input type="text" class="form-control cmt {{ $errors->has('name_CMT') ? 'is-invalid' : '' }}" id="cmt" name="name_CMT" value="{{old('name_CMT')}}">
+                                <input type="text" class="form-control cmt {{ $errors->has('name_CMT') ? 'is-invalid' : '' }}" id="cmt" name="name_CMT" value="João Paulo da Rocha Andrade - CB QPPM - 100095405">
                                 @if ($errors->has('name_CMT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name_CMT') }}
@@ -523,7 +572,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="mot">Motorista:</label>
-                                <input type="text" class="form-control mot {{ $errors->has('name_MOT') ? 'is-invalid' : '' }}" id="mot" name="name_MOT" value="{{old('name_MOT')}}">
+                                <input type="text" class="form-control mot {{ $errors->has('name_MOT') ? 'is-invalid' : '' }}" id="mot" name="name_MOT" value="Marcos Benedito - CB QPPM - 100025425">
                                 @if ($errors->has('name_MOT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name_MOT') }}
@@ -578,6 +627,9 @@
     </div>
 </div>
 
-
+<script>
+    // Crie uma variável global JavaScript e atribua o valor da variável PHP
+    var infractions = <?php echo json_encode($infractions); ?>;
+</script>
 
 @endsection

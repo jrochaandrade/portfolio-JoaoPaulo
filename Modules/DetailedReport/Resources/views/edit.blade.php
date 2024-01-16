@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="inputBO">Numero da ocorrência:</label>
-                                <input type="number" class="form-control {{ $errors->has ('number_BO') ? 'is-invalid' : '' }}" name="number_BO" id="inputBO" value="{!!$data['number_BO']!!}">
+                                <input type="number" class="form-control {{ $errors->has ('number_BO') ? 'is-invalid' : '' }}" name="number_BO" id="inputBO" value="{{$data['number_BO']}}">
                                 @if ($errors->has('number_BO'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('number_BO') }}
@@ -105,7 +105,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <label for="inputAI">Auto de Infração II:</label>
-                                <input type="number" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value="{!!$data['number_AI']!!}">
+                                <input type="number" class="form-control {{ $errors->has('number_AI') ? 'is-invalid' : '' }}" name="number_AI" id="inputAI" value="{{$data['number_AI']}}">
                                 @if ($errors->has('number_AI'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('number_AI') }}
@@ -182,24 +182,24 @@
                                     <div class="row">
                                         <div class="col-sm-3 divDeforestation">
                                             <label for="inputDeforestationSize" id="labelDeforestationSize">Tamanho do desmate (ha):</label>
-                                            <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="{!!$data['size_deforestation']!!}">
+                                            <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="{{$data['size_deforestation']}}">
                                         </div>
                                         <div class="col-sm-3 divAreaDeforestation">
                                             <span class="titleLabel">Área onde ocorreu o desmatamento:</span>                                            
                                             <div>
-                                                @if ($data['area_deforestation'] === "área de reserva legal")
-                                                <input type="radio" name="area_deforestation" id="offReserve" value="área de reserva legal" checked>
+                                                @if ($data['area_deforestation'] === "área de vegetação nativa")
+                                                <input type="radio" name="area_deforestation" id="offReserve" value="área de vegetação nativa" checked>
                                                 <label for="offReserve" class="labelNotBold">Fora da reserva legal</label>
                                                 @else
-                                                <input type="radio" name="area_deforestation" id="offReserve" value="área de reserva legal">
+                                                <input type="radio" name="area_deforestation" id="offReserve" value="área de vegetação nativa">
                                                 <label for="offReserve" class="labelNotBold">Fora da reserva legal</label>
                                                 @endif
 
-                                                @if ($data['area_deforestation'] === "área de vegetação nativa")
-                                                <input type="radio" name="area_deforestation" id="reserve" value="área de vegetação nativa" checked>
+                                                @if ($data['area_deforestation'] === "área de reserva legal")
+                                                <input type="radio" name="area_deforestation" id="reserve" value="área de reserva legal" checked>
                                                 <label for="reserve" class="labelNotBold">Reserva legal</label>
                                                 @else
-                                                <input type="radio" name="area_deforestation" id="reserve" value="área de vegetação nativa">
+                                                <input type="radio" name="area_deforestation" id="reserve" value="área de reserva legal">
                                                 <label for="reserve" class="labelNotBold">Reserva legal</label>
                                                 @endif
                                                 
@@ -273,7 +273,7 @@
                                     <div class="col-sm-6" id="divInputEmbargo">
                                 @endif
                                         <label for="inputEmbargo" class="labelEmbargo" id="labelEmbargo">Informe o numero do Termo de Embargo:</label>
-                                        <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="{!!$data['number_embargo']!!}">
+                                        <input type="number" class="form-control inputEmbargo" name="number_embargo" id="inputEmbargo" value="{{$data['number_embargo']}}">
                                     </div>
                                 @if ($data['number_letter'] == null)
                                     <div class="col-sm-6 divInputImageletterHidden" id="divInputImageletter">
@@ -281,7 +281,7 @@
                                 <div class="col-sm-6" id="divInputImageletter">                                
                                 @endif    
                                     <label for="inputImageLetter" class="labelImageLetter" id="labelImageLetter">Informe o numero da Carta Imagem:</label>
-                                    <input type="text" class="form-control inputImageLetter" name="number_letter" id="inputImageLetter" value="{!!$data['number_letter']!!}">
+                                    <input type="text" class="form-control inputImageLetter" name="number_letter" id="inputImageLetter" value="{{$data['number_letter']}}">
                                 </div>
                             </div>
 
@@ -344,15 +344,15 @@
                                 <div class="divSeizedObjectsHidden" id="divSeizedObjects" >
                                     <div id="divSeizedObjects">
                                         <label for="inputTermOfSeizure" class="termOfSeizure" id="termOfSeizure">Termo de Apreensão:</label>
-                                        <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder="" value="{!!$data['term_seizure']!!}">
+                                        <input type="text" class="form-control inputTermOfSeizure" name="term_seizure" id="inputTermOfSeizure" placeholder="" value="{{$data['term_seizure']}}">
                                         <label for="inputSeizedObjects" class="labelSeizedObjects" id="labelSeizedObjects">Descreva os objetos apreendidos:</label>
-                                        <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="{!!$data['seized_objects']!!}">
+                                        <input type="text" class="form-control inputSeizedObjects" name="seized_objects" id="inputSeizedObjects" placeholder="Ex.: 01 - motosserra / 01 - Caminhão Mercedes Bens"  value="{{$data['seized_objects']}}">
                                         <label for="inputDepositLocation" class="labelDepositLocation" id="labelDepositLocation">Endereço onde foi depositado:</label>
-                                        <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="{!!$data['deposit_location']!!}">
+                                        <input type="text" class="form-control depositLocation" name="deposit_location" id="inputDepositLocation" placeholder="Ex.: Rua 31 de Março Nº 153 - Bairro Centro - Ji-Paraná/RO"  value="{{$data['deposit_location']}}">
                                         <label for="inputNameFaithful" class="labelNameFaithful" id="labelNameFaithful">Nome e CPF/CNPJ fiel depositário:</label>
-                                        <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="{!!$data['name_faithful']!!}">
+                                        <input type="text" class="form-control inputNameFaithful" name="name_faithful" id="inputNameFaithful" placeholder="Ex.: Prefeitura de Ji-Paraná - CNPJ: 00.000.000/0001-00"  value="{{$data['name_faithful']}}">
                                         <label for="inputNameresponsible" class="labelNameresponsible" id="labelNameresponsible">Nome e CPF do responsável pelo recebimento:</label>
-                                        <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="{!!$data['name_responsible']!!}">
+                                        <input type="text" class="form-control inputNameresponsible" name="name_responsible" id="inputNameresponsible" placeholder="Ex.: João Pedro de Nóbrega CPF: 000.000.000-00"  value="{{$data['name_responsible']}}">
                                         <div class="divImages">
                                             <label for="images1">Alterar as 4 fotos da apreenssão, enviar 3 dos objetos apreendidos e 1 do local onde ficou depositado:</label>
                                             <input type="file" class="form-control images2" name="images2[]" id="images2" multiple>
@@ -374,7 +374,7 @@
                             <div class="row">
                                 <div class="col-sm-7">
                                     <label for="name">Nome do envolvido:</label>
-                                    <input type="text" class="form-control name {{ $errors->has ('name') ? 'is-invalid': '' }}" name="name" id="name" value="{!!$data['name']!!}">
+                                    <input type="text" class="form-control name {{ $errors->has ('name') ? 'is-invalid': '' }}" name="name" id="name" value="{{$data['name']}}">
                                     @if ($errors->has('name'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name') }}
@@ -383,7 +383,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="cpf">CPF:</label>
-                                    <input type="text" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" name="cpf" id="cpf" value="{!!$data['cpf']!!}">
+                                    <input type="text" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" name="cpf" id="cpf" value="{{$data['cpf']}}">
                                     @if ($errors->has('cpf'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('name') }}
@@ -392,7 +392,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="rg">RG:</label>
-                                    <input type="text" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="{!!$data['rg']!!}">
+                                    <input type="text" class="form-control rg {{ $errors->has('rg') ? 'is-invalid' : '' }}" name="rg" id="rg" value="{{$data['rg']}}">
                                     @if ($errors->first('rg'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('rg') }}
@@ -403,7 +403,7 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label for="phone">Telefone:</label>
-                                    <input type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="{!!$data['phone']!!}">
+                                    <input type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="{{$data['phone']}}">
                                     @if ($errors->has('phone'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('phone') }}
@@ -412,7 +412,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="birthday">Data de nascimento:</label>
-                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="{!!$data['birthday']!!}">
+                                    <input type="date" class="form-control birthday {{ $errors->has('birthday') ? 'is-invalid' : '' }}" name="birthday" id="birthday" value="{{$data['birthday']}}">
                                     @if ($errors->has('birthday'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('birthday') }}
@@ -421,7 +421,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label for="affiliation">Filiação:</label>
-                                    <input type="text" class="form-control affiliation {{ $errors->has('affiliation') ? 'is-invalid' : '' }}" name="affiliation" id="affiliation" value="{!!$data['affiliation']!!}">
+                                    <input type="text" class="form-control affiliation {{ $errors->has('affiliation') ? 'is-invalid' : '' }}" name="affiliation" id="affiliation" value="{{$data['affiliation']}}">
                                     @if ($errors->has('affiliation'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('affiliation') }}
@@ -432,7 +432,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label for="address">Endreço:</label>
-                                    <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="{!!$data['address']!!}">
+                                    <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="{{$data['address']}}">
                                     @if ($errors->has('address'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('address') }}
@@ -441,7 +441,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="location">Local do fato:</label>
-                                    <input type="text" class="form-control location {{ $errors->has('location') ? 'is-invalid' : '' }}" name="location" id="location" value="{!!$data['location']!!}">
+                                    <input type="text" class="form-control location {{ $errors->has('location') ? 'is-invalid' : '' }}" name="location" id="location" value="{{$data['location']}}">
                                     @if ($errors->has('location'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('location') }}
@@ -458,7 +458,7 @@
                     <div class="historic separateDivs">
                         <h3>Histórico da ocorrência</h3>
                         <label for="historic">Dos fatos:</label>
-                        <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10" value="">{!!$data['historic']!!}</textarea>
+                        <textarea class="form-control {{ $errors->has('historic') ? 'is-invalid' : '' }}" name="historic" id="historic" cols="30" rows="10" value="">{{$data['historic']}}</textarea>
                         @if ($errors->has('historic'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('historic') }}
@@ -479,7 +479,8 @@
                     <div class="offenderMotive separateDivs">
                         <h3>Dos Motivos apresentado pelo envolvido</h3>
                         <label for="motive">Motivo:</label>
-                        <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="{!!$data['motive']!!}">
+                        <textarea name="motive" id="motive" cols="30" rows="5" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}">{{$data['motive']}}</textarea>
+                        <!-- <input type="text" class="form-control motive {{ $errors->has('motive') ? 'is-invalid' : '' }}" name="motive" id="motive" value="{!!$data['motive']!!}"> -->
                         @if ($errors->has('motive'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('motive') }}
@@ -600,7 +601,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="cmt">Comandante - Nome completo - Graduação - RE:</label>
-                                <input type="text" class="form-control cmt {{ $errors->has('name_CMT') ? 'is-invalid' : '' }}" id="cmt" name="name_CMT" value="{!!$data['name_CMT']!!}">
+                                <input type="text" class="form-control cmt {{ $errors->has('name_CMT') ? 'is-invalid' : '' }}" id="cmt" name="name_CMT" value="{{$data['name_CMT']}}">
                                 @if ($errors->has('name_CMT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name_CMT') }}
@@ -609,7 +610,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitCmt">Unidade CMT:</label>
-                                <input type="text" class="form-control unitCmt {{ $errors->has('unit_CMT') ? 'is-invalid' : '' }}" name="unit_CMT" id="unitCmt" value="{!!$data['unit_CMT']!!}">
+                                <input type="text" class="form-control unitCmt {{ $errors->has('unit_CMT') ? 'is-invalid' : '' }}" name="unit_CMT" id="unitCmt" value="{{$data['unit_CMT']}}">
                                 @if ($errors->has('unit_CMT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('unit_CMT') }}
@@ -620,7 +621,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="mot">Motorista:</label>
-                                <input type="text" class="form-control mot {{ $errors->has('name_MOT') ? 'is-invalid' : '' }}" id="mot" name="name_MOT" value="{!!$data['name_MOT']!!}">
+                                <input type="text" class="form-control mot {{ $errors->has('name_MOT') ? 'is-invalid' : '' }}" id="mot" name="name_MOT" value="{{$data['name_MOT']}}">
                                 @if ($errors->has('name_MOT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name_MOT') }}
@@ -629,7 +630,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitMot">Unidade Motorista:</label>
-                                <input type="text" class="form-control unitMot {{ $errors->has('unit_MOT') ? 'is-invalid' : '' }}" name="unit_MOT" id="unitMot" value="{!!$data['unit_MOT']!!}">
+                                <input type="text" class="form-control unitMot {{ $errors->has('unit_MOT') ? 'is-invalid' : '' }}" name="unit_MOT" id="unitMot" value="{{$data['unit_MOT']}}">
                                 @if ($errors->has('unit_MOT'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('unit_MOT') }}
@@ -640,31 +641,31 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr1">Patrulheiro 1:</label>
-                                <input type="text" class="form-control ptr1" id="ptr1" name="name_PTR1" value="{!!$data['name_PTR1']!!}">
+                                <input type="text" class="form-control ptr1" id="ptr1" name="name_PTR1" value="{{$data['name_PTR1']}}">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr1">Unidade Patrulheiro 1:</label>
-                                <input type="text" class="form-control unitPtr1" name="unit_PTR1" id="unitPtr1" value="{!!$data['unit_PTR1']!!}">
+                                <input type="text" class="form-control unitPtr1" name="unit_PTR1" id="unitPtr1" value="{{$data['unit_PTR1']}}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr2">Patrulheiro 2:</label>
-                                <input type="text" class="form-control ptr2" id="ptr2" name="name_PTR2" value="{!!$data['name_PTR2']!!}">
+                                <input type="text" class="form-control ptr2" id="ptr2" name="name_PTR2" value="{{$data['name_PTR2']}}">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr2">Unidade Patrulheiro 2:</label>
-                                <input type="text" class="form-control unitPtr2" name="unit_PTR2" id="unitPtr2" value="{!!$data['unit_PTR2']!!}">
+                                <input type="text" class="form-control unitPtr2" name="unit_PTR2" id="unitPtr2" value="{{$data['unit_PTR2']}}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="ptr3">Patrulheiro 3:</label>
-                                <input type="text" class="form-control ptr3" id="ptr3" name="name_PTR3" value="{!!$data['name_PTR3']!!}">
+                                <input type="text" class="form-control ptr3" id="ptr3" name="name_PTR3" value="{{$data['name_PTR3']}}">
                             </div>
                             <div class="col-sm-6">
                                 <label for="unitPtr3">Unidade Patrulheiro 3:</label>
-                                <input type="text" class="form-control unitPtr3" name="unit_PTR3" id="unitPtr3" value="{!!$data['unit_PTR3']!!}">
+                                <input type="text" class="form-control unitPtr3" name="unit_PTR3" id="unitPtr3" value="{{$data['unit_PTR3']}}">
                             </div>
                         </div>
                     </div>

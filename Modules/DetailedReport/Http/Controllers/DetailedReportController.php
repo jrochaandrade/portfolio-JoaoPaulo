@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Session;
 use Dompdf\Options;
 use Modules\DetailedReport\Http\Requests\ReportRequest;
 use Modules\DetailedReport\Http\Requests\ReportRequestEdit;
+use Modules\DetailedReport\Models\Infraction;
 use Modules\DetailedReport\Models\PhotosReport;
 use Modules\DetailedReport\Models\Report;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use NumberFormatter;
 
 class DetailedReportController extends Controller
 {
@@ -27,16 +30,20 @@ class DetailedReportController extends Controller
     public function index()
     {
         $perPage = 5;
-        $reports = Report::paginate(5);
-        //dd($reports);
+        $reports = Report::paginate(5);        
         
         return view('detailedreport::index', compact('reports'));
     }
 
     public function show($id)
     {   
+
         
         $data = Report::find($id);
+        
+        $infraction = Infraction::find($data->id_infraction);
+
+
         //$historic = isset($_POST['historic']) ? $_POST['historic'] : null;
         $historic = $data['historic'];
         //dd($historic);
@@ -139,28 +146,30 @@ class DetailedReportController extends Controller
 
             $i++;
         }
-        // Mudar artigo in-verbis
-        if ($data->article_AI == 'Art. 51') {
+
+        $data['article_administrative'] = $infraction->article_administrative;
+        /* // Mudar artigo in-verbis
+        if ($infraction->article_AI == 'Art. 51') {
             $data['article_administrive'] = 'Art. 51.  Destruir, desmatar, danificar ou explorar floresta ou qualquer tipo de vegetação nativa ou de espécies nativas plantadas, em área de reserva legal ou servidão florestal, de domínio público ou privado, sem autorização prévia do órgão ambiental competente ou em desacordo com a concedida: (Redação dada pelo Decreto nº 6.686, de 2008). Multa de R$ 5.000,00 (cinco mil reais) por hectare ou fração.';
 
              
         
-        } elseif ($data->article_AI == 'Art. 50') {
+        } elseif ($infraction->article_AI == 'Art. 50') {
             $data['article_administrive'] = 'Art. 50.  Destruir ou danificar florestas ou qualquer tipo de vegetação nativa ou de espécies nativas plantadas, objeto de especial preservação, sem autorização ou licença da autoridade ambiental competente: Multa de R$ 5.000,00 (cinco mil reais) por hectare ou fração.';
 
             $data['article_criminal'] = 'Art. 50. Destruir ou danificar florestas nativas ou plantadas ou vegetação fixadora de dunas, protetora de mangues, objeto de especial preservação:
 
                     Pena - detenção, de três meses a um ano, e multa.';
-        } elseif ($data->article_AI == 'Art. 43') {
+        } elseif ($infraction->article_AI == 'Art. 43') {
             $data['article_administrive'] = 'Art. 43.  Destruir ou danificar florestas ou demais formas de vegetação natural ou utilizá-las com infringência das normas de proteção em área considerada de preservação permanente, sem autorização do órgão competente, quando exigível, ou em desacordo com a obtida: (Redação dada pelo Decreto nº 6.686, de 2008). Multa de R$ 5.000,00 (cinco mil reais) a R$ 50.000,00 (cinqüenta mil reais), por hectare ou fração.';
 
             $data['article_criminal'] = 'Art. 38. Destruir ou danificar floresta considerada de preservação permanente, mesmo que em formação, ou utilizá-la com infringência das normas de proteção: Pena - detenção, de um a três anos, ou multa, ou ambas as penas cumulativamente.';
-        }elseif ($data->article_AI == 'Art. 48') {
+        }elseif ($infraction->article_AI == 'Art. 48') {
             $data['article_administrive'] = 'Art. 48.  Impedir ou dificultar a regeneração natural de florestas ou demais formas de vegetação nativa em unidades de conservação ou outras áreas especialmente protegidas, quando couber, área de preservação permanente, reserva legal ou demais locais cuja regeneração tenha sido indicada pela autoridade ambiental competente: (Redação dada pelo Decreto nº 6.686, de 2008). Multa de R$ 5.000,00 (cinco mil reais), por hectare ou fração. (Redação dada pelo Decreto nº 6.686, de 2008). Parágrafo único.  O disposto no caput não se aplica para o uso permitido das áreas de preservação permanente. (Redação dada pelo Decreto nº 6.686, de 2008).';
 
             $data['article_criminal'] = 'Art. 48. Impedir ou dificultar a regeneração natural de florestas e demais formas de vegetação: Pena - detenção, de seis meses a um ano, e multa.';
 
-        }
+        } */
 
         if ($data->article_BO == 'Art. 38') {
 
@@ -270,7 +279,10 @@ class DetailedReportController extends Controller
 
     public function create(Request $request)
     {
-        return view('detailedreport::create');
+        
+        $infractions = Infraction::all();
+
+        return view('detailedreport::create', compact('infractions'));
     }
 
 
@@ -280,7 +292,11 @@ class DetailedReportController extends Controller
      */
     public function store(ReportRequest $request)
     {
-        $data = array();
+
+        //dd($_POST['search_article']);
+
+        
+        /* $data = array();
         
         if($_SERVER["REQUEST_METHOD"] == 'POST') {
             // Salva os logos base64 na tabela - Necessário somente para geração do PDF
@@ -394,8 +410,8 @@ class DetailedReportController extends Controller
             $data['phone'] = isset($_POST['phone']) ? $_POST['phone'] : null;
 
             $data['birthday'] = isset($_POST['birthday']) ? $_POST['birthday'] : null;
-            /* dd($dataBirthday);
-            $formattedBirthday = \DateTime::createFromFormat('dmY', $dataBirthday)->format('Y-m-d'); */
+            // dd($dataBirthday);
+            //$formattedBirthday = \DateTime::createFromFormat('dmY', $dataBirthday)->format('Y-m-d');
 
 
             $data['affiliation'] = isset($_POST['affiliation']) ? $_POST['affiliation'] : null;
@@ -450,13 +466,7 @@ class DetailedReportController extends Controller
             // Verifica se o usuário selecionou Desmatamento ou Madeira e formatar o texto conforme selecionado
             $data['text_embargo'] = '';
             if ($data['type_AI'] == 'logging') {
-                /* if ($data['area_deforestation'] == 'offReserve') {
-                    $type_deforestation = 'área de vegetação nativa';                    
-                }else if ($data['area_deforestation'] == 'area_deforestation') {
-                    $type_deforestation = 'área de reserva legal';                    
-                }else {
-                    $type_deforestation = 'regeneração';
-                } */
+                
 
                 if ($data['use_fire'] == 'noUseFire') {
 
@@ -521,15 +531,7 @@ class DetailedReportController extends Controller
             dd('Formuário não enviado');
         }
 
-        // Verifica qual artigo administrativo foi selecionado e seleciona o criminal
-
-        /* if ($data['article_AI'] == 'Art. 50' || $data['article_AI'] == 'Art. 51' ) {
-            $article_BO = 'Art. 50';
-        } else if ($data['article_AI'] == 'Art. 43') {
-            $article_BO = 'Art. 38';
-        }else if ($data['article_AI'] == 'Art. 48') {
-            $article_BO = 'Art. 48';
-        } */
+        
 
         $id_usuario = auth()->id();
 
@@ -605,14 +607,335 @@ class DetailedReportController extends Controller
         }
 
         // Armazenar $data na sessão
-        Session::put('data', $data);       
+        Session::put('data', $data); */   
+        
+        $id_infraction = $_POST['search_article'];
+
+        $infraction =  Infraction::find($id_infraction);
+
+        $data = array();
+        
+        if($_SERVER["REQUEST_METHOD"] == 'POST') {
+            // Salva os logos base64 na tabela - Necessário somente para geração do PDF
+            /* $pathLogo1 = public_path('images/logo1.png');
+            $file1 = file_get_contents($pathLogo1);
+            $base64Logo1 = base64_encode($file1);
+            $data['logo1'] = isset($base64Logo1) ? $base64Logo1 : null;
+            $pathLogo2 = public_path('images/logo2.png');
+            $file2 = file_get_contents($pathLogo2);
+            $base64Logo2 = base64_encode($file2);
+            $data['logo2'] = isset($base64Logo2) ? $base64Logo2 : null;
+            $pathLogo3 = public_path('images/logo3.png');
+            $file3 = file_get_contents($pathLogo3);
+            $base64Logo3 = base64_encode($file3);
+            $data['logo3'] = isset($base64Logo3) ? $base64Logo3 : null; */
+            
+            // Define se houve agravente uso de fogo
+            $data['use_fire'] = isset($_POST['use_fire']) ? $_POST['use_fire'] : null;
+
+
+            // **************Puxar esse valor da tabela de multas ***************
+            $fineValue = $infraction->value_infraction;
+
+            // Recebe o tamanho do desmatamento e separa a parte inteira, verifica se tem fração e define o valor da multa.
+            $data['size_deforestation_fraction'] = null;
+            $data['size_deforestation'] = isset($_POST['size_deforestation']) ? $_POST['size_deforestation'] : null;
+            $data['quantity_wood'] = isset($_POST['quantity_wood']) ? $_POST['quantity_wood'] : null;
+            if ($data['size_deforestation'] != null) {
+                if ($data['size_deforestation'] == intval($data['size_deforestation'])) {
+                    $data['size_deforestation_intereger'] = $data['size_deforestation'];
+                    // Verifica se teve uso de fogo e muda valor da multa
+                    if ($data['use_fire'] == 'noUseFire') {
+                        
+                        $data['value_infraction'] = $data['size_deforestation_intereger'] * $fineValue;
+                    } else {
+                        
+                        $data['value_infraction'] = (($data['size_deforestation_intereger'] * $fineValue) / 2) + ($data['size_deforestation_intereger'] * $fineValue);
+                        //$value = ($data['size_deforestation_intereger'] * $fineValue) / 2;
+                    }
+                } else { // Se tamanho do desmatamento não for inteiro separa a fração para calcular a multa
+                    $fraction = explode ('.', floatval($data['size_deforestation']));
+                    $data['size_deforestation_intereger'] = $fraction[0];
+                    $data['size_deforestation_fraction'] = $fraction[1];
+
+                    if ($data['use_fire'] == 'noUseFire') {
+
+                        $data['value_infraction'] = ($data['size_deforestation_intereger'] * $fineValue) + 5000;                
+                    }else {
+                        $normalValue = $data['size_deforestation_intereger'] * $fineValue + 5000;
+                        $halfValue = $normalValue / 2;
+                        $data['value_infraction'] = $normalValue + $halfValue;
+
+                    }
+                    
+                }
+            } else if ($data['quantity_wood'] != null) {
+                $data['value_infraction'] = $data['quantity_wood'] * $fineValue;
+
+                // Definir valor null par não dar erro
+                $data["size_deforestation_intereger"] = null;
+                $data["size_deforestation"] = null;
+            }
+            
+
+
+           
+             // Verifica se foi carregado imagens salva para carregar no pdf
+             if($request->hasFile('images2')) {
+                $data['imageObjects1'] = base64_encode(file_get_contents($_FILES['images2']['tmp_name'][0]));
+                $data['imageObjects2'] = base64_encode(file_get_contents($_FILES['images2']['tmp_name'][1]));
+                $data['imageObjects3'] = base64_encode(file_get_contents($_FILES['images2']['tmp_name'][2]));
+                $data['imageObjects4'] = base64_encode(file_get_contents($_FILES['images2']['tmp_name'][3]));
+            }
+            
+
+
+            
+            
+
+            // Verifica se foi carregado imagens salva para carregar no pdf
+            if ($request->hasFile('images1')) {
+                $data['image1'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][0]));
+                $data['image2'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][1]));
+                $data['image3'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][2]));
+                $data['image4'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][3]));
+            }
+
+            
+            
+            // Verifica se as agravantes recebeu algum valor e salva todas em uma string separada por *
+            $data['mitigating'] = isset($_POST['mitigating']) ? $_POST['mitigating'] : null;
+            $mitigating_string = '';
+            if ($data['mitigating'] != null) {
+                foreach ($data['mitigating'] as $mitigating) {
+                    $mitigating_string .= $mitigating . '*';
+                }
+            }
+            $data['mitigating_string'] = isset($mitigating_string) ? $mitigating_string : null;
+            // Verifica se as agravantes recebeu algum valor e salva todas em uma string separada por *
+            $data['aggravating'] = isset($_POST['aggravating']) ? $_POST['aggravating'] : null;
+            $aggravating_string = '';
+            if ($data['aggravating'] != null) {
+                foreach ($data['aggravating'] as $aggravating) {
+                    $aggravating_string .= $aggravating . '*';
+                }
+            }
+            $data['aggravating_string'] = isset($aggravating_string) ? $aggravating_string : null;
+
+            $unit_measure = $_POST['unit_measure'];
+            $letter_to_remove = 's';
+            $unit_measure_singular = $this->removeLetterEndOfWord($unit_measure, $letter_to_remove);
+            // Verifica se o usuário selecionou Desmatamento ou Madeira e formatar o texto conforme selecionado
+            //$data['type_AI'] = isset($_POST['type_AI']) ? $_POST['type_AI'] : null;
+
+
+            // Escreve valores numericos por extenso
+            $formatter = new \NumberFormatter('pt_BR', NumberFormatter::SPELLOUT);
+
+
+            $data['text_embargo'] = '';
+            if ($infraction->type_AI == 'logging') {
+                
+
+                if ($data['use_fire'] == 'noUseFire') { // Não tem uso de fogo
+
+                    $data['text_administrative'] = $infraction->verb . ' ' . $data['size_deforestation'] . ' ' . $_POST['unit_measure'] . ' de ' . $infraction->area_deforestation . ', sem autorização prévia do órgão ambiental competente, conforme o ' . $infraction->article_AI . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de ' .  $infraction->value_infraction_text .' por ' . $unit_measure_singular . ' ou fração. Para chegar ao valor obtido, foi ' . $infraction->open_fine_text;
+                    
+                                        
+                    if (intval($data['size_deforestation']) == $data['size_deforestation']) { // Se for desmatamento com área inteira
+                        // Formata o valor da infração
+                        $valueInfractionFormated = number_format($data["value_infraction"], 2, ',', '.');
+                        $data['text_administrative'] .= 'multiplicado ' . $data["size_deforestation_intereger"] . ' vezes R$ '.  number_format($fineValue, 2, ',', '.') . ' (' . $formatter->format($fineValue) . ' reais) totalizando R$' . $valueInfractionFormated . ' (' . $formatter->format($data["value_infraction"]) . ' reais).';
+
+                    }elseif (floatval($data['size_deforestation']) == $data['size_deforestation']) { // Se for desmatamento com área fração                                                
+                        // Formata o valor da infração
+                        $valueInfractionFormated = number_format($data["value_infraction"], 2, ',', '.');
+                        $data['text_administrative'] .= 'multiplicado ' . $data["size_deforestation_intereger"] . ' vezes R$ '.  number_format($fineValue, 2, ',', '.') . ' (' . $formatter->format($fineValue) . ' reais) = ' . number_format($data["size_deforestation_intereger"] * $fineValue, 2, ',', '.') . ' (' . $formatter->format($data["size_deforestation_intereger"] * $fineValue) . ' reais)' . ' mais R$ '.  number_format($fineValue, 2, ',', '.') . ' pela fração 0,' .  $data["size_deforestation_fraction"] .' hectare' . ' totalizando R$' . $valueInfractionFormated . ' (' . $formatter->format($data["value_infraction"]) . ' reais)';
+                    }
+                    
+                    
+                    
+                    
+                    
+                } else { // Agravante com uso de fogo, aumenta pela metadao o valor da multa
+                    
+                    $data['text_administrative'] = $infraction->verb . ' ' . $data['size_deforestation'] . ' ' . $_POST['unit_measure'] . ' de ' . $infraction->area_deforestation . ', sem autorização prévia do órgão ambiental competente, conforme o ' . $infraction->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de ' .  $infraction->value_infraction_text .' por ' . $unit_measure_singular . $infraction->additional_text . ' aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido, foi ' . $infraction->open_fine_text;
+                    
+                    
+                    
+                    
+                    /* if ($infraction->article_AI == 'Art. 43') {                        
+                        $data['text_administrative'] = ' desmatar ' .  number_format($data['size_deforestation'], 3, ',', '') . ' hectares de floresta em ' . $infraction->area_deforestation . ' em área considerada de preservação permanente com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $infraction->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' a R$ 50.000,00 por hectare ou fração, aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido foi utilizado a instrução IN 19/2023 do IBAMA para definir o valor mínimo por hectare, ';
+                    } elseif ($infraction->article_AI == 'Art. 48'){
+                        $data['text_administrative'] = ' impedir ou dificultar a regeneração natural de ' .  number_format($data['size_deforestation'], 3, ',', '') . ' hectares de florestas ou demais formas de vegetação com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $infraction->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração. Para chegar ao valor obtido, foi ';
+                        
+                    } else {
+                        
+                        $data['text_administrative'] = ' desmatar ' .  number_format($data['size_deforestation'], 3, ',', '') . ' hectares de floresta em ' . $infraction->area_deforestation . ' com uso de fogo, sem autorização prévia do órgão ambiental competente, conforme o ' . $infraction->article_AI . ' combinado com Art. 60-I do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de R$ ' .  number_format($fineValue, 2, ',', '.') .' por hectare ou fração, aumentado pela metade quando a infração for consumada mediante uso de fogo ou provocação de incêndio. Para chegar ao valor obtido, foi ';
+                    } */
+                    
+                    
+                    // Recebe o tamanho do desmatamento e separa o valor inteiro e a fração, forma o texto que vai apresentar no relatório.
+                    // Se inteiro
+                    if (intval($data['size_deforestation']) == $data['size_deforestation']) {
+                        // Formata o valor da infração
+                        $normalValue = $data['size_deforestation_intereger'] * $fineValue;
+                        $halfValue = $normalValue / 2;
+                        $valueInfractionFormated = number_format($normalValue + $halfValue, 2, ',', '.');
+                        $data['text_administrative'] .= 'multiplicado ' . $data["size_deforestation_intereger"] . ' vezes R$ '.  number_format($fineValue, 2, ',', '.') . ' = ' . number_format($data["size_deforestation_intereger"] * $fineValue, 2, ',', '.') . ' aumentado pela metade totalizando R$' . $valueInfractionFormated;
+                    } else {
+                        // Formata o valor da infração
+                        $normalValue = ($data['size_deforestation_intereger'] * $fineValue) + 5000;
+                        $halfValue = $normalValue / 2;
+                        $valueInfractionFormated = number_format($normalValue + $halfValue, 2, ',', '.');
+                        $valueInfractionFormated = number_format($data["value_infraction"], 2, ',', '.');
+                        $data['text_administrative'] .= 'multiplicado ' . $data["size_deforestation_intereger"] . ' vezes R$ '.  number_format($fineValue, 2, ',', '.') . ' = ' . number_format($data["size_deforestation_intereger"] * $fineValue, 2, ',', '.') . ' mais R$ '.  number_format($fineValue, 2, ',', '.') . ' pela fração 0,' .  $data["size_deforestation_fraction"] .' hectare = R$ ' . number_format($normalValue, 2, ',', '.') . ' aumentado pela metade totalizando R$ ' . number_format($normalValue + $halfValue, 2, ',', '.');
+                    }
+                }
+                
+                $data['text_embargo'] = 'A área embargada é de <strong>' . $data['size_deforestation'] . '</strong>  hectares de floresta em ' . $infraction->area_deforestation . ', conforme Termo de Embargo Nº <strong>' . $_POST['number_embargo'] . '</strong>, para que a área suprimida se regenere.';
+                
+            } elseif ($infraction->type_AI == 'wood') {
+
+                $data['text_administrative'] = $infraction->verb . ' ' . $_POST['quantity_wood'] . ' ' . $_POST['unit_measure'] . ' de ' . $infraction->area_deforestation . ', sem autorização prévia do órgão ambiental competente, conforme o ' . $infraction->article_AI . ' do decreto federal 6.514 de 22 de julho de 2008, que prevê multa de ' .  $infraction->value_infraction_text .' por ' . $unit_measure_singular . '. Para chegar ao valor obtido, foi ';
+                
+                
+                // Adciona o cálculo ao text_administrative
+                $valueInfractionFormated = number_format($data["value_infraction"], 2, ',', '.');
+                $data['text_administrative'] .= 'multiplicado ' . $_POST['quantity_wood'] . ' vezes R$ '.  number_format($fineValue, 2, ',', '.') . ' (' . $formatter->format($fineValue) . ' reais) totalizando R$' . $valueInfractionFormated . ' (' . $formatter->format($data["value_infraction"]) . ' reais).';
+                
+                
+            }
+            
+
+            $id_usuario = auth()->id();
+
+            //Cria um id único para o relatório
+            $unicIdReport = rand();
+            // Salva os dados na tabela reports
+            $dataReport = Report::create([
+                'name' => $_POST['name'],
+                'cpf' => $_POST['cpf'],
+                'rg' => isset($_POST['rg']) ? $_POST['rg'] : null,
+                'phone' => $_POST['phone'],
+                'birthday' =>  $_POST['birthday'] ,
+                'affiliation' => $_POST['affiliation'],
+                'address' => $_POST['address'],
+                'location' => $_POST['location'],            
+                'historic' => $_POST['historic'],
+                'number_BO' => $_POST['number_BO'],
+                'type_BO' => $_POST['type_BO'],
+                'article_BO' => $_POST['article_BO'],
+                'number_AI' => $_POST['number_AI'],
+                //'value_AI' => $_POST['value_AI'],
+                //'article_AI' => $_POST['article_AI'],
+                'id_infraction' => $id_infraction,
+                'type_AI' => $infraction->type_AI,
+                'unit_measure' =>  $_POST['unit_measure'],
+                'use_fire' => $_POST['use_fire'],
+                'size_deforestation' => $data['size_deforestation'],
+                'size_deforestation_intereger' => $data['size_deforestation_intereger'],
+                'size_deforestation_fraction' => $data['size_deforestation_fraction'],
+                //'type_deforestation' => $_POST['selectTypeAI'],
+                //'area_deforestation' => $_POST['area_deforestation'],
+                'value_infraction' => $data['value_infraction'],
+                'number_embargo' => isset($_POST['number_embargo']) ? intval($_POST['number_embargo']) : null,
+                'quantity_wood' => isset($_POST['quantity_wood']) ? intval($_POST['quantity_wood']) : null,
+
+                'number_letter' => isset($_POST['number_letter']) ? $_POST['number_letter'] : null,
+                'text_administrative' => $data['text_administrative'],
+                'text_embargo' => $data['text_embargo'],
+                'text_type_wood' => $_POST['text_type_wood'],
+                'motive' => $_POST['motive'],
+                'mitigating' => $data['mitigating_string'],
+                'aggravating' => $data['aggravating_string'],
+                'name_CMT' => $_POST['name_CMT'],
+                'name_MOT' => $_POST['name_MOT'],
+                'name_PTR1' => isset($_POST['name_PTR1']) ? $_POST['name_PTR1'] : null,
+                'name_PTR2' => isset($_POST['name_PTR2']) ? $_POST['name_PTR2'] : null,
+                'name_PTR3' => isset($_POST['name_PTR3']) ? $_POST['name_PTR3'] : null,
+                'unit_CMT' => $_POST['unit_CMT'],
+                'unit_MOT' => $_POST['unit_MOT'],
+                'unit_PTR1' => isset($_POST['unit_PTR1']) ? $_POST['unit_PTR1'] : null,
+                'unit_PTR2' => isset($_POST['unit_PTR2']) ? $_POST['unit_PTR2'] : null,
+                'unit_PTR3' => isset($_POST['unit_PTR3']) ? $_POST['unit_PTR3'] : null,
+                'unic_id_report' => $unicIdReport,
+                'term_seizure' => $_POST['term_seizure'],
+                'seized_objects' => $_POST['seized_objects'],
+                'deposit_location' => $_POST['deposit_location'],
+                'name_faithful' => $_POST['name_faithful'],
+                'name_responsible' => $_POST['name_responsible'],
+                'id_user_created_at' => $id_usuario
+            ]);
+
+
+
+
+
+        } else {
+            dd('Formuário não enviado');
+        }
+
+        
+
+        // Recebe o id do Relatório para vincular as fotos e salvar no banco
+        $report = Report::where('unic_id_report', $unicIdReport)->first();
+        $idReport = $report['report_ID'];
+
+        // Salvar as imagens dos objetos no banco de dados
+        if ($request->hasFile('images2')) {
+            $typeImage = 'image2';
+            $images = $this->imageUpload($request->file('images2'), 'image', $unicIdReport, $typeImage);
+            $dataReport->photos()->createMany($images);
+        }
+
+
+        // Salvar as imagens da ocorrência no banco de dados
+        if ($request->hasFile('images1')) {
+            $typeImage = 'image1';
+            $images = $this->imageUpload($request->file('images1'), 'image', $unicIdReport, $typeImage);
+            $dataReport->photos()->createMany($images);
+        }
+
+        // Armazenar $data na sessão
+        Session::put('data', $data);
         
         //return redirect('report/detailed');
-        //generateReport
         return redirect()->route('generateReport', ['id' => $idReport]);
 
     }
 
+    public function removeLetterEndOfWord($unit_measure, $letterToRemove) {
+        // Divide a string em palavras
+        $words = explode(' ', $unit_measure);
+    
+        // Itera sobre cada palavra e remove a letra do final
+        foreach ($words as &$word) {
+            // Verifica se a palavra termina com a letra a ser removida
+            while (substr($word, -1) == $letterToRemove) {
+                // Remove a última letra da palavra
+                $word = substr($word, 0, -1);
+            }
+        }
+    
+        // Junta as palavras novamente
+        $resultString = implode(' ', $words);
+        return $resultString;
+    }
+
+
+    public function selectSearch(Request $request)
+    {
+        $articles = Infraction::where('article', 'LIKE', '%' . $request->searchItem . '%')
+            ->paginate(10, ['*'], 'page', $request->page);
+
+        return response()->json([
+            'data' => $articles->items(),
+            'pagination' => [
+                'more' => $articles->hasMorePages(),
+            ],
+        ]);
+    }
     
 
     private function imageUpload($images, $imageColumn = null, $unicIdReport, $typeImage)

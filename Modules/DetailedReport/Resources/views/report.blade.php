@@ -171,28 +171,32 @@
                                 <p class="pIndent">Como medidas adminstrativas foram lavrados:</p>
                                 
                                 <p class="pIndent">Auto de infração II Nº <strong>{{$data['number_AI']}}</strong> na importância de R$ {{ number_format($data["value_infraction"], 2, ',', '.') }}, por
-                                {!!$data['text_administrative']!!}.</p>
+                                {!!$data['text_administrative']!!}</p>
+
+                                @if($data['text_type_wood'])
+                                    <p class="pIndent">{!! $data['text_type_wood'] !!}</p>
+                                @endif
                                 
-                                <p class="pIndent article">{!!$data['article_administrive']!!}</p>
+                                <p class="pIndent article">{!!$data['article_administrative']!!}</p>
                                 
                                 @if($data['use_fire'] == 'useFire')
-                                <p class="pIndent article">Art. 60.  As sanções administrativas previstas nesta Subseção serão aumentadas pela metade quando: I - ressalvados os casos previstos nos arts. 46 e 58, a infração for consumada mediante uso de fogo ou provocação de incêndio;</p>
+                                    <p class="pIndent article">Art. 60.  As sanções administrativas previstas nesta Subseção serão aumentadas pela metade quando: I - ressalvados os casos previstos nos arts. 46 e 58, a infração for consumada mediante uso de fogo ou provocação de incêndio;</p>
                                 @endif
 
                                 @if ($data['number_embargo'])
-                                <p class="pIndent">{!!$data['text_embargo']!!}</p>
+                                    <p class="pIndent">{!!$data['text_embargo']!!}</p>
                                 @endif
 
                                 @if ($data['term_seizure'])
-                                <p class="pIndent">Foi realizada a aprensão de {!!$data['seized_objects']!!}. Conforme termo de Apreensão e Depósito Nº <strong>{!!$data['term_seizure']!!}</strong>, que ficou depositado no endereço: <strong>{!!$data['deposit_location']!!}</strong>. Ficando como fiel depositário: <strong>{!!$data['name_faithful']!!}</strong>, sendo o responsável pelo recebimento e conferência do material: <strong>{!!$data['name_responsible']!!}</strong>.</p>
+                                    <p class="pIndent">Foi realizada a aprensão de {!!$data['seized_objects']!!}. Conforme termo de Apreensão e Depósito Nº <strong>{!!$data['term_seizure']!!}</strong>, que ficou depositado no endereço: <strong>{!!$data['deposit_location']!!}</strong>. Ficando como fiel depositário: <strong>{!!$data['name_faithful']!!}</strong>, sendo o responsável pelo recebimento e conferência do material: <strong>{!!$data['name_responsible']!!}</strong>.</p>
 
 
-                                <div class="images">
-                                <img src="data:image/jpeg;base64,{{$data['imageObjects1']}}" alt="">
-                                <img src="data:image/jpeg;base64,{{$data['imageObjects2']}}" alt="">
-                                <img src="data:image/jpeg;base64,{{$data['imageObjects3']}}" alt="">
-                                <img src="data:image/jpeg;base64,{{$data['imageObjects4']}}" alt="">
-                                </div>
+                                    <div class="images">
+                                        <img src="data:image/jpeg;base64,{{$data['imageObjects1']}}" alt="">
+                                        <img src="data:image/jpeg;base64,{{$data['imageObjects2']}}" alt="">
+                                        <img src="data:image/jpeg;base64,{{$data['imageObjects3']}}" alt="">
+                                        <img src="data:image/jpeg;base64,{{$data['imageObjects4']}}" alt="">
+                                    </div>
                                 @endif                                
                             </div>
                             

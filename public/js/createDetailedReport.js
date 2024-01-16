@@ -1,5 +1,5 @@
 /* Script para mudar ocultar inputs relacionados as infrações */
-const selectTypeAI = document.getElementById('selectTypeAI')
+/* const selectTypeAI = document.getElementById('selectTypeAI')
 selectTypeAI.addEventListener('change', function () {
     const divDeforestationSize = document.getElementById('divDeforestationSize')
     //const divQuantityWood = document.getElementById('divQuantityWood')
@@ -26,7 +26,128 @@ selectTypeAI.addEventListener('change', function () {
         divInputEmbargo.style.display = 'none'
         divInputImageletter.style.display = 'none'
     }    
-})
+}) */
+
+$(document).ready(function() {
+    // Inicialize o Select2 no seu elemento select
+    $('#searchArticle').select2();
+
+    // Adicione um ouvinte para o evento change
+    $('#searchArticle').on('change', function() {
+
+
+        const divDeforestationSize = document.getElementById('divDeforestationSize')
+        const divQuantityWood = document.getElementById('divQuantityWood')
+        const divEmbargos = document.getElementById('divEmbargos')
+        const divLumber = document.getElementById('divLumber')
+        const divNaturalWood = document.getElementById('divNaturalWood')
+        const divInputEmbargo = document.getElementById('divInputEmbargo')
+        const divInputImageletter = document.getElementById('divInputImageletter')
+        const divWood = document.getElementById('divWood')  
+
+        const selectTypeAI = document.querySelector('#searchArticle')
+       
+
+        var idSelecionado = selectTypeAI.options[selectTypeAI.selectedIndex].value;
+        
+        const infractionsArray = infractions
+
+        const infraction = infractionsArray.find(item => item.id == idSelecionado);
+
+        
+        
+        if(infraction.type_AI === 'logging') {
+            divDeforestationSize.style.display = 'block'
+            divEmbargos.style.display = 'block'
+            divWood.style.display = 'none'
+            divQuantityWood.style.display = 'none'
+            //divLumber.style.display = 'none'
+            //divNaturalWood.style.display = 'none'
+            divInputEmbargo.style.display = 'block'
+            divInputImageletter.style.display = 'block'
+            
+            unitMeasureLogging()
+            
+        } else if (infraction.type_AI === 'wood') {
+            
+            divWood.style.display = 'block'
+            divQuantityWood.style.display = 'block'
+            divDeforestationSize.style.display = 'none'
+            divEmbargos.style.display = 'none'
+            //divLumber.style.display = 'block'
+            //divNaturalWood.style.display = 'block'
+            divInputEmbargo.style.display = 'none'
+            divInputImageletter.style.display = 'none'
+
+            unitMeasureWood()
+        } 
+        
+        
+        const type_AI = infraction.type_AI
+
+
+
+        
+        //console.log('Seleção alterada para:', $(this).val());
+    });
+});
+
+function clearOptions(selectElement) {
+    while (selectElement.options.length > 0) {
+        selectElement.remove(0)
+    }
+}
+
+
+// função para mudar unidades de medida
+function unitMeasureLogging() {
+    const selectUnitMeasure = document.getElementById('unit_measure')
+
+    clearOptions(selectUnitMeasure)
+    
+    const option = document.createElement('option')
+    option.value = 'hectares'
+    option.innerText = 'Hectare'
+
+    selectUnitMeasure.appendChild(option)
+
+}
+
+function unitMeasureWood() {
+    const selectUnitMeasure = document.getElementById('unit_measure')
+
+    clearOptions(selectUnitMeasure)
+
+    const option1 = document.createElement('option')
+    option1.value = 'metros cúbicos'
+    option1.innerText = 'Metros cúbicos'
+    option1.dataInfo = 'metro cúbico'
+
+    const option2 = document.createElement('option')
+    option2.value = 'estéreos'
+    option2.innerText = 'Estéreo'
+    
+    const option3 = document.createElement('option')
+    option3.value = 'MDC'
+    option3.innerText = 'MDC'
+
+    const option4 = document.createElement('option')
+    option4.value = 'unidades'
+    option4.innerText = 'Unidade'
+
+    const option5 = document.createElement('option')
+    option5.value = 'quilos'
+    option5.innerText = 'Quilo'
+
+    selectUnitMeasure.append(option1, option2, option3, option4, option5)
+
+
+}
+
+
+
+
+
 /* Fim do script para mudar ocultar inputs relacionados as infrações */
 
 /* Script para vericar se possui embargo e mostar input na tela */
@@ -41,10 +162,10 @@ if (optionsEmbargo[0].value === 'yes' && optionsEmbargo[0].checked) {
     
 
 }    
-/* Fim script para verificar se possui embargo e mostrar input na tela */
+/* Fim script para verificar se possui planilha madeira serrada e mostrar input na tela */
 
 /* Script para vericar se possui planilha de madeira serrada e mostar input na tela */
-/* const optionsLumber = document.getElementsByName('yesOrNoLumber')
+const optionsLumber = document.getElementsByName('yesOrNoLumber')
 const labelLumber = document.getElementById('labelLumber')
 const inputLumber = document.getElementById('inputLumber')
 
@@ -53,11 +174,11 @@ if (optionsLumber[0].value === 'yes' && optionsLumber[0].checked) {
 } else {
     radioYesOrNo(optionsLumber, labelLumber, inputLumber)
 
-}  */   
+}    
 /* Fim script para verificar se possui planilha de madeira serrada e mostrar input na tela */
 
 /* Script para vericar se possui planilha de madeira in-natura e mostar input na tela */
-/* const optionsNaturalWood = document.getElementsByName('yesOrNoNaturalWood')
+const optionsNaturalWood = document.getElementsByName('yesOrNoNaturalWood')
 const labelNaturalWood = document.getElementById('labelNaturalWood')
 const inputNaturalWood = document.getElementById('inputNaturalWood')
 
@@ -66,7 +187,7 @@ if (optionsNaturalWood[0].value === 'yes' && optionsNaturalWood[0].checked) {
 } else {
     radioYesOrNo(optionsNaturalWood, labelNaturalWood, inputNaturalWood)
 
-}   */  
+}    
 /* Fim script para verificar se possui planilha de madeira in-natura e mostrar input na tela */
 
 /* Script para vericar se possui planilha de madeira in-natura e mostar input na tela */
@@ -276,6 +397,51 @@ function dynamicHiddenMitigatingAgravating(label, checkboxes) {
     });
 
 
+
+    $(function () {
+        $('#searchArticle').select2({
+            ajax: {
+                //url: '{{ (URL('get')) }}',
+                //url: '{{ url("/autocomplete-article") }}',
+                url: '/autocomplete-article',
+                type: 'get', 
+                dataType: 'json',
+                delay: 250,
+                data: function (params)
+                {
+                    return {
+                        searchItem:params.term,
+                        page:params.page
+                    }
+                },
+                processResults:function(data, params)
+                {
+                    params.page=params.page||1;
+                    return {
+                        results:data.data,
+                        pagination: {
+                            more:data.last_page!=params.page
+                        }
+                    }
+                },
+                cache:true,
+            },
+            placeholder:'Escolha o artigo',
+            templateResult:templateResult,
+            templateSelection:templateSelection
+        })
+    })
+
+    function templateResult(data) {
+        if(data.loading) {
+            return data.text
+        }
+        return data.article
+    }
+
+    function templateSelection(data) {
+        return data.article;
+    }
 
 
 
