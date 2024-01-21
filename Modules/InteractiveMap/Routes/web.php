@@ -18,6 +18,10 @@ use Modules\InteractiveMap\app\Http\Controllers\InteractiveMapController;
     Route::get('/', 'InteractiveMapController@index');
 }); */
 
+
+Route::group(['middleware' => ['auth']], function() /* colocando as rotas dentro dessa rota vai proteger do acesso via endereço */
+{
+
 Route::get('/mapa', [InteractiveMapController::class, 'index'])->name('mapa.index');
 Route::post('/uploadKml', [InteractiveMapController::class, 'uploadKml'])->name('uploadKml');
 
@@ -26,3 +30,6 @@ Route::post('/uploadKml', [InteractiveMapController::class, 'uploadKml'])->name(
 Route::get('/sidebar', [InteractiveMapController::class, 'sidebar'])->name('sidebar.index');
 Route::get('/oldsidebar', [InteractiveMapController::class, 'oldsidebar'])->name('oldsidebar');
 Route::get('/teste2', [InteractiveMapController::class, 'teste2'])->name('teste2');
+
+
+});

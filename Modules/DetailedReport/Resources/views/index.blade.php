@@ -26,7 +26,7 @@
             
             <div class="main" id="main"> 
                 <a href="{{ route('create') }}" class="btn btn-success mb-5">Criar relatório</a>
-                <table class="table table-bordered id="tableReports">
+                <table class="table table-responsive table-striped id="tableReports">
                 <thead>
                         <tr>
                             <th>ID</th>

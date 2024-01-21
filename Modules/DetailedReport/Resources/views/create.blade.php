@@ -1,21 +1,28 @@
 @extends('layouts.masterPage')
 
 @section('card-head')
-<link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
-
+<!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<!-- Jequery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<!--select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<!-- inputmask -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
 
+<!-- CSS create -->
+<link rel="stylesheet" href="{{ asset('css/create/createDetailedReport.css') }}">
+<link rel="stylesheet" href="{{ asset('css/styleDefault.css') }}">
+<link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
 
-<link rel="stylesheet" href="{{ asset('css/createDetailedReport.css') }}">
+<!-- Js create -->
 <script src="{{ asset('js/createDetailedReport.js') }}" defer type="module"></script>
 
 <meta http-equiv="refresh" content="; http://127.0.0.1:8000/report/detailed">
+
 
 @endsection
 
@@ -67,16 +74,17 @@
                             </div>
                             <div class="col-sm-6">
                                 <p class="titleLabel" >Artigo Criminal:</p>
-                                <select name="article_BO" id="article_BO" class="form-select articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}"">
+                                <!-- <select name="article_BO" id="article_BO" class="form-select articleBO {{ $errors->has('article_BO') ? 'is-invalid' : '' }}"">
                                     <option value="" selected disabled>Selecione:</option>
                                     <option value="Art. 38" {{ old('article_BO') == 'Art. 38' ? 'selected' : '' }}>Art. 38 Destruir APP:</option>
                                     <option value="Art. 48" {{ old('article_BO') == 'Art. 48' ? 'selected' : '' }}>Art. 48 Impedir ou dificultar a regeneração:</option>
                                     <option value="Art. 50" {{ old('article_BO') == 'Art. 50' ? 'selected' : '' }}>Art. 50 Desmate:</option>
                                     <option value="Art. 50A" {{ old('article_BO') == 'Art. 50A' ? 'selected' : '' }}>Art. 50A Desmate terras publicas:</option>
-                                </select>                                
-                                @if ($errors->has('article_BO'))
+                                </select>  -->
+                                <select class="form-select {{ $errors->has('search_article_BO') ? 'is-invalid' : '' }}" name="search_article_BO" id="search_article_BO"></select>                               
+                                @if ($errors->has('search_article_BO'))
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('article_BO') }}
+                                        {{ $errors->first('search_article_BO') }}
                                     </div>
                                 @endif
                             </div>
@@ -148,11 +156,11 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-sm-2 divDeforestation">
+                                        <div class="col-sm-3 divDeforestation">
                                             <label for="inputDeforestationSize" id="labelDeforestationSize">Tamanho do desmate (ha):</label>
                                             <input type="number" class="form-control" name="size_deforestation" id="inputDeforestationSize" step="0.001" value="50">
                                         </div>
-                                        <div class="col-sm-4 divAreaDeforestation">
+                                        <!-- <div class="col-sm-4 divAreaDeforestation">
                                             <p class="titleLabel">Área onde ocorreu o desmatamento:</p>                                            
                                             <div>
                                                 <input type="radio" name="area_deforestation" id="reserve" value="área de reserva legal" checked>
@@ -162,8 +170,8 @@
                                                 <input type="radio" name="area_deforestation" id="regeneration" value="regeneração">
                                                 <label for="regeneration" class="labelNotBold">Regeneração</label>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-2 divUseFire" id="divUseFire">
+                                        </div> -->
+                                        <div class="col-sm-3 divUseFire" id="divUseFire">
                                             <p class="titleLabel">Uso de fogo?</p>
                                             <div class="divRadiosUseFire">
                                                 <input type="radio" name="use_fire" id="yesUseFire"  value="useFire">
@@ -172,8 +180,17 @@
                                                 <label for="noUseFire" class="labelNotBold">Não</label>
                                             </div>
                                         </div>                                        
-                                        <div class="col-sm-2 divEmbargos" id="divEmbargos">
-                                            <p class="titleLabel">Possui Embargo?</p>
+                                        <div class="col-sm-3 divconservationUnit" id="divconservationUnit">
+                                            <p class="titleLabel">UC ou Zona de amortecimento?</p>
+                                            <div class="divRadiosconservationUnit">
+                                                <input type="radio" name="conservation_unit" id="yesUc"  value="useUc">
+                                                <label for="yesUc" class="labelNotBold">Sim</label>
+                                                <input type="radio" name="conservation_unit" id="noUc" value="noUc" checked>
+                                                <label for="noUc" class="labelNotBold">Não</label>
+                                            </div>
+                                        </div>                                        
+                                        <div class="col-sm-3 divEmbargos" id="divEmbargos">
+                                            <p class="titleLabel">Embargo?</p>
                                             <div class="divRadiosEmbargos">
                                                 <input type="radio" name="yesOrNoEmbargos" id="yesEmbargos"  value="yes">
                                                 <label for="yesEmbargos" class="labelNotBold">Sim</label>
@@ -181,8 +198,8 @@
                                                 <label for="noEmbargos" class="labelNotBold">Não</label>
                                             </div>
                                         </div>                                        
-                                        <div class="col-sm-2 divImageLetter" id="divImageLetter">
-                                            <p class="titleLabel">Possui Carta Imagem?</p>
+                                        <div class="col-sm-3 divImageLetter" id="divImageLetter">
+                                            <p class="titleLabel">Carta Imagem?</p>
                                             <div class="divRadiosImageLetter">
                                                 <input type="radio" name="yesOrNoImageLetter" id="yesImageLetter" value="yes">
                                                 <label for="yesImageLetter" class="labelNotBold">Sim</label>
@@ -244,20 +261,21 @@
                                     <input type="number" class="form-control inputNaturalWood" name="inputNaturalWood" id="inputNaturalWood" value="111111">
                                 </div>
                             </div>
+
+                            <div class="typeWood" id="typeWood">
+                                <p class="titleLabel">Descreva sobre as madeiras aprendidas:</p>
+                                <textarea class="form-control" name="text_type_wood" id="text_type_wood" cols="30" rows="5" placeholder="Ex.: Foi aprendido 40 metros cúbicos de madeira, sendo 10 metros cúbicos de madeira serrada, 10 metros cúbicos de madeira IN-NATURA do tipo Tóra e 20 metros cúbicos de madeira do tipo lasca.">Foi aprendido 40 metros cúbicos de madeira, sendo 10 metros cúbicos de madeira serrada, 10 metros cúbicos de madeira IN-NATURA do tipo Tóra e 20 metros cúbicos de madeira do tipo lasca</textarea>
+                                <!-- <p class="titleLabel">Tipo de madeira:</p>
+                                <select class="form-select" name="type_wood" id="type_wood">
+                                    <option value="" selected disabled>Selecione:</option>
+                                    <option value="serrada">Madeira serrada</option>
+                                    <option value="IN-NATURA do tipo tóra">Tóra</option>
+                                    <option value="IN-NATURA do tipo mourão">Mourão</option>
+                                    <option value="do tipo lasca">Lasca</option>
+                                </select> -->
+                            </div>
                         </div>
                         
-                        <div class="typeWood">
-                            <p class="titleLabel">Descreva sobre as madeiras aprendidas:</p>
-                            <textarea class="form-control" name="text_type_wood" id="" cols="30" rows="5" placeholder="Ex.: Foi aprendido 40 metros cúbicos de madeira, sendo 10 metros cúbicos de madeira serrada, 10 metros cúbicos de madeira IN-NATURA do tipo Tóra e 20 metros cúbicos de madeira do tipo lasca.">Foi aprendido 40 metros cúbicos de madeira, sendo 10 metros cúbicos de madeira serrada, 10 metros cúbicos de madeira IN-NATURA do tipo Tóra e 20 metros cúbicos de madeira do tipo lasca</textarea>
-                            <!-- <p class="titleLabel">Tipo de madeira:</p>
-                            <select class="form-select" name="type_wood" id="type_wood">
-                                <option value="" selected disabled>Selecione:</option>
-                                <option value="serrada">Madeira serrada</option>
-                                <option value="IN-NATURA do tipo tóra">Tóra</option>
-                                <option value="IN-NATURA do tipo mourão">Mourão</option>
-                                <option value="do tipo lasca">Lasca</option>
-                            </select> -->
-                        </div>
                         
                         <div class="seizedObjects">
                             <p class="titleLabel">Possui objetos apreendidos?</p>

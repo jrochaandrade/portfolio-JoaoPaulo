@@ -1,3 +1,6 @@
+/* import 'select2/dist/css/select2.css'; */
+/* import 'select2'; */
+
 /* Script para mudar ocultar inputs relacionados as infrações */
 /* const selectTypeAI = document.getElementById('selectTypeAI')
 selectTypeAI.addEventListener('change', function () {
@@ -65,6 +68,12 @@ $(document).ready(function() {
             //divNaturalWood.style.display = 'none'
             divInputEmbargo.style.display = 'block'
             divInputImageletter.style.display = 'block'
+
+            // Define obratoriedade de preencher o campo tamanho desmatamento e retira obrigatoriedade dos campos relacionados a madeira
+            $('#divDeforestationSize #inputDeforestationSize').prop('required', true)
+            $('#divWood #quantityWood').prop('required', false)
+            $('#typeWood #text_type_wood').prop('required', false)
+
             
             unitMeasureLogging()
             
@@ -78,6 +87,11 @@ $(document).ready(function() {
             //divNaturalWood.style.display = 'block'
             divInputEmbargo.style.display = 'none'
             divInputImageletter.style.display = 'none'
+
+            // Define obratoriedade de preencher o campo quantidade de madeira e retira obrigatoriedade dos campos relacionados a desmatamento            
+            $('#divWood #quantityWood').prop('required', true)
+            $('#typeWood #text_type_wood').prop('required', true)
+            $('#divWood #inputDeforestationSize').prop('required', false)
 
             unitMeasureWood()
         } 
@@ -443,6 +457,44 @@ function dynamicHiddenMitigatingAgravating(label, checkboxes) {
         return data.article;
     }
 
+
+
+    
+    $(function () {
+        $('#search_article_BO').select2({
+            ajax: {
+                //url: '{{ (URL('get')) }}',
+                //url: '{{ url("/autocomplete-article") }}',
+                url: '/boSelect2',
+                type: 'get', 
+                dataType: 'json',
+                delay: 250,
+                data: function (params)
+                {
+                    return {
+                        searchItem:params.term,
+                        page:params.page
+                    }
+                },
+                processResults:function(data, params)
+                {
+                    params.page=params.page||1;
+                    return {
+                        results:data.data,
+                        pagination: {
+                            more:data.last_page!=params.page
+                        }
+                    }
+                },
+                cache:true,
+            },
+            placeholder:'Escolha o artigo',
+            templateResult:templateResult,
+            templateSelection:templateSelection
+        })
+    })
+
+    
 
 
 

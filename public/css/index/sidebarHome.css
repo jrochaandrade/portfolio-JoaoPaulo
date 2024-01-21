@@ -11,14 +11,11 @@
 :root{
     /* Colors */
     /* --body-color: #ffffff;
-    --body-secondy-color: #ffffff; 
     --sidebar-color: #FFF;
     --primary-color: #695CFE;
     --primary-color-light: #F6F5FF;
     --toggle-color: #DDD;
-    --text-color: #707070;
-    --table-color: #ffffff;
-    --paginatecolor: #e5e0e0; */
+    --text-color: #707070; */
 
 
     /* Transition */
@@ -33,19 +30,15 @@ body {
     background: var(--body-color);
     height: 100vh;
     transition: var(--tran-05);
-
 }
 
 body.dark {
     /* --body-color: #0F172A;
-    --body-secondy-color: #222e49;
     --sidebar-color: #0F172A;
     --primary-color: #3A3B3C;
     --primary-color-light: #3A3B3C;
     --toggle-color: #FFF;
-    --text-color: #CCC;
-    --table-color: #141e34;
-    --paginatecolor: #223253; */
+    --text-color: #CCC; */
 }
 
 /* ++++++++++++++++++++Sidebar+++++++++++++++++++++++ */
@@ -64,7 +57,8 @@ body.dark {
 }
 
 .sidebar.close {
-    width: 79px;    
+    width: 0px;
+    padding: 10px 0 10px 0;
 }
 
 /* ++++++++++++++++++++Resuable CSS+++++++++++++++++++++++ */
@@ -81,17 +75,19 @@ body.dark {
     opacity: 0;
 }
 
+.sidebar.close .header-text {
+    opacity: 0;
+}
+
 .sidebar .image {
-    padding-right: 12px;
     min-width: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.sidebar.close .image {
-    padding-right: 12px;
-}
+
+
 
 /* Eu adicionei para tirar o padding da ul */
 .sidebar ul {
@@ -111,7 +107,11 @@ body.dark {
     align-items: center;
     justify-content: center;
     min-width: 50px;
-    font-size: 20px;
+    font-size: 20px;    
+}
+
+.sidebar.close li .icon {
+    opacity: 0;
 }
 
 .sidebar li .icon,
@@ -125,8 +125,13 @@ body.dark {
 }
 
 .sidebar .image-text img {
+    cursor: pointer;
     width: 40px;
     border-radius: 6px;
+}
+
+.sidebar.close .image-text img {
+    opacity: 0; /* opacidade 0 */
 }
 
 .sidebar header .image-text {
@@ -135,10 +140,20 @@ body.dark {
 
 }
 
+.sidebar header .image-text .image {
+    padding-right: 11px;
+}
+.sidebar.close header .image-text .image {
+    padding-left: 29px;
+}
 
 header .image-text .header-text {
     display: flex;
     flex-direction: column;
+}
+
+.sidebar.close .image-text .header-text {
+    margin-left: 14px;
 }
 
 .header-text .name {
@@ -165,10 +180,12 @@ header .image-text .header-text {
     color: var(--sidebar-color);
     /* font-size: 22px; */ /* original 22px */
     transition: var(--tran-02);
+    display: none;
 }
 
 .sidebar.close header .toggle {
     transform: translateY(-50%);
+    right: -20px;
 }
 
 body.dark .sidebar header .toggle {
@@ -185,6 +202,15 @@ body.dark .sidebar header .toggle {
     transition: var(--tran-05);
 }
 
+.search-box .filter {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.sidebar.close .search-box .filter {
+    display: none;
+}
+
 .search-box input {
     height: 100%;
     width: 100%;
@@ -196,16 +222,6 @@ body.dark .sidebar header .toggle {
     font-weight: 500;
     background: var(--primary-color-light);
     transition: var(--tran-05);
-    color: var(--text-color);
-}
-
-.search-box .filter {
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.sidebar.close .search-box .filter {
-    display: none;
 }
 
 .sidebar li a {
@@ -218,29 +234,19 @@ body.dark .sidebar header .toggle {
     transition: var(--tran-04);
 }
 
+.sidebar.close li a i {
+    display: none;
+    
+}
+
 .sidebar.close li a span {
-    display: none;    
+    display: none;
+    
 }
 
 .sidebar li a:hover {
     background: var(--primary-color);
 }
-
-.sidebar.close .menu-bar .nav-links  :hover .text{
-    opacity: 1;
-    display: block;
-    background-color: var(--primary-color);
-    z-index: 2;
-    /* width: 180px; */
-    
-}
-
-.sidebar.close .menu-bar .nav-links a:hover{
-    width: 500px;
-    padding-right: 20px;
-    transition: var(--tran-03);
-}
-
 
 .sidebar li a:hover .icon,
 .sidebar li a:hover .text {
@@ -263,6 +269,10 @@ body.dark .sidebar li a:hover .text {
     position: relative;
     border-radius: 6px;
     background: var(--primary-color-light);
+}
+
+.bottom-content .mode {
+    right: 3px;
 }
 
 .menu-bar .mode .moon-sun {
@@ -288,6 +298,15 @@ body.dark .menu-bar .mode i.sun {
 body.dark .menu-bar .mode i.moon {
     opacity: 0;
 }
+
+.sidebar.close body.dark .menu-bar .mode i.sun {
+    opacity: 0;
+}
+
+body.dark .sidebar.close .menu-bar .mode i.sun {
+    opacity: 0;
+}
+
 
 
 .menu-bar .mode .toggle-switch {
@@ -337,21 +356,37 @@ body.dark .switch::before {
     transition: var(--tran-05);
     overflow-y: auto;
 }
-
-/* .home .sidebar.close {
-    left: 40px;
-    width: 100%
-} */
-
-/* .home .text {
-    color: var(--text-color);
+/* .home {
+    left: 0px;
+    width: 100%;
+    height: 100%;
     overflow-y: auto;
 } */
 
+.home .text {
+    color: var(--text-color);
+    height: 100%;
+    /* padding: 8px 40px; */
+    overflow-y: auto;
+}
+
+.sidebar.close .home .text {
+    color: var(--text-color);
+    padding: 20px 50px;
+    overflow-y: auto;
+}
+
+/* .sidebar.close ~ .home {
+    position: relative;
+    height: 100%;
+    left: 270px;
+    width: calc(100% - 270px);
+    transition: var(--tran-05);
+    overflow-y: auto;
+} */
 .sidebar.close ~ .home {
-    left: 40px;
-    left: 79px;
-    width: calc(100% - 79px);
+    left: 0px;
+    width: 100%;
     height: 100%;
     overflow-y: auto;
 }
@@ -360,39 +395,36 @@ body.dark .switch::before {
     width: 100%;
     height: 100%;
     min-height: 100vh;
-    padding: 20px 60px 30px 60px;
+    padding: 13px 0px 30px 18px;
     overflow-y: auto;
-}
-
-.table-responsive thead tr th {
-    background-color: var(--table-color);
-    color: var(--text-color);
-    border: 2px solid rgb(105, 103, 103);
-}
-.table-responsive tbody tr td {
-    background-color: var(--table-color);
-    color: var(--text-color);
-    border: 2px solid rgb(105, 103, 103);
-}
-
-.pagination .page-item .page-link{
-    background-color: var(--table-color);
-    color: var(--text-color);
-}
-
-.pagination .page-item.active .page-link {
-    background-color: var(--paginatecolor);
-    color: var(--text-color);
-    border-color: var(--text-color);
 }
 
 .small {
     padding: 10px;
+}
+
+.card-body {
+    height: 100vh;
+    background: var(--body-color);
     color: var(--text-color);
 }
 
-.text-muted {
-    color: var(--text-color) !important; /* Mantém a cor que você deseja */
+.card-header {
+    height: 70px;
+    background: var(--body-color);
+    color: var(--text-color);
+}
+
+.card-footer {
+    position: relative;
+    left: 300px;
+    width: calc(100% - 300px);
+}
+
+.sidebar.close ~ .card-footer {
+    left: 0px;
+    width: 100%;
+    overflow-y: auto;
 }
 
 .card {
@@ -402,52 +434,50 @@ body.dark .switch::before {
 }
 
 .card-body {
-    height: 100%;
-    background: var(--body-color);
-    color: var(--text-color);
     padding: 0px;
+    height: 100%;
 }
 
-.card-header {
+#logoIndex {
+    width: 40px;
+    border-radius: 6px;
+    display: none;
+}
+
+.sidebar.close + .home .content #logoIndex {
+    display: block;
+    cursor: pointer;
+    z-index: 999;
+    position: relative;
+}
+
+/* .sidebar.close #logoIndex {
+    display: block;
+} */
+
+.headerIndex {
     display: flex;
     justify-content: space-between;
-    max-height: 70px;
     
+}
+
+.divMain {
+    padding: 18px 31px 30px 46px;
+}
+
+.sidebar.close ~ .home .content .divMain {
+    padding: 18px 20px 30px;
+
+}
+
+.links {
+    width: 485px;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+}
+
+.links a {
+    text-decoration: none;
     color: var(--text-color);
-    padding: 10px 30px 10px 55px;
-    border-radius: 5px;
-}
-
-.card-footer {
-    position: relative;
-    left: 270px;
-    width: calc(100% - 270px);
-    
-}
-
-.sidebar.close ~ .card-footer {
-    left: 79px;
-    width: calc(100% - 79px);
-    overflow-y: auto;
-}
-
-
-.inputSend {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    width: 200px;
-}
-
-.map {
-    z-index: 0;
-}
-
-.containerMap {
-    display: flex;    
-    justify-content: center;
-    z-index: 0;
-}
-
-.clearBtn {
-    margin-bottom: 20px;
 }

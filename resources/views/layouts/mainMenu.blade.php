@@ -2,7 +2,7 @@
     <header>
         <div class="image-text">
             <span class="image">
-                <img src="{{ asset('images/LogoDR3-100.jpg') }}" alt="">
+                <img id="logoIndex2" src="{{ asset('images/LogoDR3-100.jpg') }}" alt="">
             </span>
 
             <div class="text header-text">

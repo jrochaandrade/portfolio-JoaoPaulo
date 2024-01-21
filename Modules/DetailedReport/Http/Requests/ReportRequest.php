@@ -29,7 +29,8 @@ class ReportRequest extends FormRequest
         return [
             'number_BO' => 'required|max:10',
             'type_BO' => 'required|in:Termo Circunstanciado de Ocorrência - TCO,Comunicado de Ocorrência Policial - COP,Prisão e Apreensão - PA',
-            'article_BO' => 'required',
+            //'article_BO' => 'required',
+            'search_article_BO' => 'required',
             'number_AI' => 'required',
             'unit_measure' => 'required',
             'search_article' => 'required',
@@ -67,7 +68,8 @@ class ReportRequest extends FormRequest
         return [
             'number_BO' => 'O campo Numero da Ocorrência é obrigatório',
             'type_BO' => 'Selecione uma das opções',
-            'article_BO' => 'O campo Artigo Criminal é obrigatório',
+            //'article_BO' => 'O campo Artigo Criminal é obrigatório',
+            'search_article_BO' => 'O campo Artigo Criminal é obrigatório',
             'number_AI' => 'O campo Auto de Infração é obrigatório',
             'article_AI' => 'O campo Artigo Administrativo é obrigatório',
             'type_AI' => 'Selecione uma opção',
