@@ -38,7 +38,7 @@ $(document).ready(function() {
     // Adicione um ouvinte para o evento change
     $('#searchArticle').on('change', function() {
 
-
+        // Obtendo div para ocultar
         const divDeforestationSize = document.getElementById('divDeforestationSize')
         const divQuantityWood = document.getElementById('divQuantityWood')
         const divEmbargos = document.getElementById('divEmbargos')
@@ -46,10 +46,17 @@ $(document).ready(function() {
         const divNaturalWood = document.getElementById('divNaturalWood')
         const divInputEmbargo = document.getElementById('divInputEmbargo')
         const divInputImageletter = document.getElementById('divInputImageletter')
-        const divWood = document.getElementById('divWood')  
+        const divWood = document.getElementById('divWood')
+        
+        // Obtendo inputs para limpar
+        const inputDeforestationSize = document.getElementById('inputDeforestationSize')
+        const quantityWood = document.getElementById('quantityWood')
+        const text_type_wood = document.getElementById('text_type_wood')
 
-        const selectTypeAI = document.querySelector('#searchArticle')
-       
+
+
+
+        const selectTypeAI = document.querySelector('#searchArticle')      
 
         var idSelecionado = selectTypeAI.options[selectTypeAI.selectedIndex].value;
         
@@ -60,10 +67,18 @@ $(document).ready(function() {
         
         
         if(infraction.type_AI === 'logging') {
+
+            // Limpando os inputs referente a madeira
+            quantityWood.value = ''
+            inputLumber.value = ''
+            inputNaturalWood.value = ''
+            text_type_wood.value = ''
+            
+            
             divDeforestationSize.style.display = 'block'
             divEmbargos.style.display = 'block'
             divWood.style.display = 'none'
-            divQuantityWood.style.display = 'none'
+            //divQuantityWood.style.display = 'none'
             //divLumber.style.display = 'none'
             //divNaturalWood.style.display = 'none'
             divInputEmbargo.style.display = 'block'
@@ -78,11 +93,16 @@ $(document).ready(function() {
             unitMeasureLogging()
             
         } else if (infraction.type_AI === 'wood') {
+
+            // Limpando inputs referente desmatamento
+            inputDeforestationSize.value = ''
+            inputEmbargo.value = ''
+            inputImageLetter.value = ''
             
             divWood.style.display = 'block'
             divQuantityWood.style.display = 'block'
-            divDeforestationSize.style.display = 'none'
-            divEmbargos.style.display = 'none'
+            //divDeforestationSize.style.display = 'none'
+            //divEmbargos.style.display = 'none'
             //divLumber.style.display = 'block'
             //divNaturalWood.style.display = 'block'
             divInputEmbargo.style.display = 'none'
@@ -91,7 +111,7 @@ $(document).ready(function() {
             // Define obratoriedade de preencher o campo quantidade de madeira e retira obrigatoriedade dos campos relacionados a desmatamento            
             $('#divWood #quantityWood').prop('required', true)
             $('#typeWood #text_type_wood').prop('required', true)
-            $('#divWood #inputDeforestationSize').prop('required', false)
+            $('#divDeforestationSize #inputDeforestationSize').prop('required', false)
 
             unitMeasureWood()
         } 
