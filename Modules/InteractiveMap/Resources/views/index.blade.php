@@ -56,7 +56,32 @@
                             <td>{{ $data->city }}</td>
                             <td>{{ $data->area }}</td>
 
-                            <td></td>
+                            <td>
+                                <a href="#" title="Visualizar Embargo" class="text-primary">
+                                    <span class="fa-stack fa-sm">
+                                        <i class="far fa-square fa-stack-2x"></i>
+                                        <i class="fa-solid fa-eye fa-stack-1x"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="text-warning">
+                                    <span class="fa-stack fa-sm">
+                                        <i class="far fa-square fa-stack-2x"></i>
+                                        <i class="fas fa-pencil-alt fa-stack-1x"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="text-success">
+                                    <span class="fa-stack fa-sm">
+                                        <i class="far fa-square fa-stack-2x"></i>
+                                        <i class="fa-solid fa-download fa-stack-1x"></i>
+                                    </span>
+                                </a>
+                                <a href="" class="text-danger">
+                                    <span class="fa-stack fa-sm">
+                                        <i class="far fa-square fa-stack-2x"></i>
+                                        <i class="far fa-trash-alt fa-stack-1x"></i>
+                                    </span>
+                                </a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
