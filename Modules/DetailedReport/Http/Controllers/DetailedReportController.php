@@ -396,7 +396,7 @@ class DetailedReportController extends Controller
             
 
             // Escreve valores numericos por extenso - erro nos centavos
-            $formatter = new \NumberFormatter('pt_BR', NumberFormatter::SPELLOUT);
+           // $formatter = new \NumberFormatter('pt_BR', NumberFormatter::SPELLOUT);
 
             // Chama a função para escrever o texto administrativo
             $data['text_administrative'] = $this->administrativeTextDeforestation($data, $infraction, $unit_measure_singular);
