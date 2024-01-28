@@ -20,9 +20,13 @@ use Modules\InteractiveMap\app\Http\Controllers\InteractiveMapController;
 
 Route::get('/mapa', [InteractiveMapController::class, 'index'])->name('mapa.index');
 Route::post('/uploadKml', [InteractiveMapController::class, 'uploadKml'])->name('uploadKml');
+Route::get('/show/{id}', [InteractiveMapController::class, 'show'])->name('mapa.show');
+Route::get('/edit/{id}', [InteractiveMapController::class, 'edit'])->name('mapa.edit');
+Route::put('/update/{id}', [InteractiveMapController::class, 'update'])->name('mapa.update');
+Route::delete('/delete/{id}', [InteractiveMapController::class, 'destroy'])->name('mapa.delete');
 
 
 
-Route::get('/sidebar', [InteractiveMapController::class, 'sidebar'])->name('sidebar.index');
+/* Route::get('/sidebar', [InteractiveMapController::class, 'sidebar'])->name('sidebar.index');
 Route::get('/oldsidebar', [InteractiveMapController::class, 'oldsidebar'])->name('oldsidebar');
-Route::get('/teste2', [InteractiveMapController::class, 'teste2'])->name('teste2');
+Route::get('/teste2', [InteractiveMapController::class, 'teste2'])->name('teste2'); */

@@ -1,0 +1,13 @@
+#dataTable {
+    
+}
+
+#refreshMap {
+    margin-left: 178px;
+    margin-bottom: 15px;
+}
+
+#btnDelete,
+#find {
+    cursor: pointer;
+}

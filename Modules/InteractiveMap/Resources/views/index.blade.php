@@ -1,8 +1,9 @@
 @extends('layouts.masterPage')
-
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/interactiveMap/interactiveMapIndex.css') }}">
 <script src="{{ asset('js/scriptsInteractiveIndex.js') }}" defer></script>
+<script src="{{ asset('js/interactiveMap/interactiveMapIndex.js') }}" defer></script>
 @endsection
 
 @section('card-body')
@@ -31,7 +32,7 @@
         <div class="container-fluid content">
             <div class="">                
                 <a href="{{ route('mapa.index') }}" class="btn btn-primary clearBtn">
-                    <i class="bi bi-arrow-clockwise"></i>
+                    <i class="fa-solid fa-arrows-rotate"></i>
                     Limpar filtros
                 </a>
                 <table class="table-responsive table table-striped" id="dataTable">
@@ -57,13 +58,19 @@
                             <td>{{ $data->area }}</td>
 
                             <td>
-                                <a href="#" title="Visualizar Embargo" class="text-primary">
+                                <a class="text-secondary" id="find" data-id="{{ $data->id_polygon }}">
+                                    <span class="fa-stack fa-sm">
+                                    <i class="far fa-square fa-stack-2x"></i>
+                                    <i class="fa-solid fa-magnifying-glass fa-stack-1x"></i>
+                                    </span>
+                                </a>
+                                <a href="{{ route('mapa.show', ['id'=>$data->id_polygon]) }}" title="Visualizar Embargo" class="text-primary">
                                     <span class="fa-stack fa-sm">
                                         <i class="far fa-square fa-stack-2x"></i>
                                         <i class="fa-solid fa-eye fa-stack-1x"></i>
                                     </span>
                                 </a>
-                                <a href="#" class="text-warning">
+                                <a href="{{ route('mapa.edit', ['id'=>$data->id_polygon]) }}" class="text-warning">
                                     <span class="fa-stack fa-sm">
                                         <i class="far fa-square fa-stack-2x"></i>
                                         <i class="fas fa-pencil-alt fa-stack-1x"></i>
@@ -75,12 +82,13 @@
                                         <i class="fa-solid fa-download fa-stack-1x"></i>
                                     </span>
                                 </a>
-                                <a href="" class="text-danger">
+                                <a class="text-danger" id="btnDelete" onclick="deleteData({{ $data->id_polygon }})">
                                     <span class="fa-stack fa-sm">
                                         <i class="far fa-square fa-stack-2x"></i>
                                         <i class="far fa-trash-alt fa-stack-1x"></i>
                                     </span>
                                 </a>
+                                
                             </td>
                         </tr>
                         @endforeach
@@ -89,6 +97,10 @@
                 <div class="d-flex justify-content-end pagination">
                     {{ $polygonsData->links('pagination::bootstrap-5') }}
                 </div>
+                <a id="refreshMap" class="btn btn-primary">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    Resetar mapa
+                </a>
                 <div class="containerMap">
                     <div id="map" class="map"></div>
                 </div>
@@ -96,115 +108,27 @@
         </div>
     </div>
 </div>
-<script>
-    /* Script para criar mapa Leaflet */
-    let osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    })
-    let google = L.tileLayer(' https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-        maxZoom: 19,
-        attribution: '© google', 
-    })
 
-    let googleSatelite = L.tileLayer(' https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-        maxZoom: 19,
-        attribution: '© google', 
-    })
-
-    let esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 19,
-        attribution: '© arcgisonline.com - Esri', 
-    })
-
-    let baseMaps = {
-        "OpenStreetMap": osm,            
-        "Google": google,
-        "Google Satélite": googleSatelite,
-        "ESRI Satélite": esriSatellite
-    }
-
-    // Carregar mapa
-    let map = L.map('map', {
-        center: [-10.93441238, -63.36372516],
-        zoom: 7,
-        layers: [google]
-    })
-
-    L.control.layers(baseMaps).addTo(map)
-    /* Fim script para criar mapa Leaflet */
-</script>
 <script>
     // Converte a variável PHP em JavaScript
     let polygons = {!! json_encode($polygons) !!}
     let embargoes = {!! json_encode($embargoes) !!}
-    
-    // Desenha os poligonos no mapa de acordo com os poligono recebidos na variável $poligonos
-    // A variável vem da função index, que chama a função searchCoordinates
-    const polygonToEmbargoId = {}
-    
-    for (const uniqueId in polygons) {
-        if (polygons.hasOwnProperty(uniqueId)) {
-            const arrayCoordinates = polygons[uniqueId]
-
-            const polygonCoord = arrayCoordinates.map(coordinates => ({
-                lat: coordinates.latitude,
-                lng: coordinates.longitude
-            }))
-
-            const polygon = L.polygon(polygonCoord, {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0,
-                weight: 2
-            }).addTo(map)
-
-            polygon.on('click', () => {
-                const polygonIdClicked = arrayCoordinates[0].id
-                
-                // Chamar função para refazer a tabela posteriormente
-                // Encontre o embargo com Base no ID
-                const polygonEmbargo = embargoes.find(embargo => embargo.id_polygon === polygonIdClicked)                
-                
-                if (polygonEmbargo) {
-                    polygon.bindPopup(`
-                    Nome: ${polygonEmbargo.name}<br>
-                    CPF: ${polygonEmbargo.cpf}<br>
-                    Área: ${polygonEmbargo.area}<br>
-                    Infração: ${polygonEmbargo.type_infraction}
-                    `)
-                }
-                
-            })
-            
-            polygonToEmbargoId[polygon.getBounds().toBBoxString()] = arrayCoordinates[0].id
-            
-        }
-    }
 </script>
+
+
+@if(session('success'))
 <script>
-    /* Script para centralizar o mapa e dar zoom nos polígonos filtrados */
-    let bounds = new L.LatLngBounds()
+    // Script para mostrar mensagem de edição
+    $(document).ready(function() {            
+        Swal.fire({
+            title: 'Sucesso!',
+            text: 'Excluido!',
+            icon: 'success',
+            confirmButtonColor: '',
+            confirmButtonText: 'OK'
+        });            
+    });
+    </script>
+@endif
 
-    // Intere sobre os polígonos e adicione suas coordenadas à extensão
-    for (const uniqueId in polygons) {
-        const arrayPolygons = polygons[uniqueId]
-
-        for (const coordinate of arrayPolygons) {
-            bounds.extend(new L.LatLng(coordinate.latitude, coordinate.longitude))
-        }
-    }
-
-    // Centralizar o mapa na extensão dos polígonos
-    map.setView(bounds.getCenter())
-
-    // Ajuste o mapa para a extensão dos polígonos com um nível de zoom adequado
-    map.fitBounds(bounds)
-
-    // Defina um zoom máximo para evitar zoom excessivo
-    const maxZoom = 15
-    if (map.getZoom() > maxZoom) {
-        map.setZoom(maxZoom)
-    }
-</script>
 @endsection

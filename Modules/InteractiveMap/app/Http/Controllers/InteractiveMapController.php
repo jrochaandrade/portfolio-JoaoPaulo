@@ -341,6 +341,8 @@ class InteractiveMapController extends Controller
      */
     public function create()
     {
+
+        
         return view('interactivemap::create');
     }
 
@@ -361,7 +363,44 @@ class InteractiveMapController extends Controller
      */
     public function show($id)
     {
-        return view('interactivemap::show');
+        $data = PolygonData::where('id_polygon', $id)->first();
+
+        $polygons = $this->searchCoordinatesShow($id);
+
+        return view('interactivemap::show', compact('data', 'polygons'));
+    }
+
+    function searchCoordinatesShow  ($id) 
+    {
+        //$polygon = PolygonData::find($id);
+
+        //dd($id);
+
+        $unique_ids = DB::table('polygon_coordinates')->where('polygon_data_id_fk', $id)->distinct()->pluck('unique_id_coord');
+        //dd($unique_ids);
+
+        foreach ($unique_ids as $unique_id) {
+            $coordinates = DB::table('polygon_coordinates')
+                ->select('latitude', 'longitude', 'polygon_data_id_fk', 'type_polygon')
+                ->where('unique_id_coord', $unique_id)
+                ->get();
+
+
+            $coordinates_array = [];
+            foreach ($coordinates as $coordinate) {
+                $coordinates_array[] = [
+                    'latitude' => $coordinate->latitude,
+                    'longitude' => $coordinate->longitude,
+                    'id' => $coordinate->polygon_data_id_fk,
+                    'type_polygon' => $coordinate->type_polygon
+                ];
+            }
+
+            $polygons[$unique_id] = $coordinates_array;
+
+        }
+
+        return $polygons;
     }
 
     /**
@@ -371,7 +410,8 @@ class InteractiveMapController extends Controller
      */
     public function edit($id)
     {
-        return view('interactivemap::edit');
+        $data = PolygonData::find($id);
+        return view('interactivemap::edit', compact('data'));
     }
 
     /**
@@ -382,7 +422,20 @@ class InteractiveMapController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id_usuario = auth()->id();
+
+        $data = PolygonData::find($id);
+        
+        $data->fill($request->all());
+
+        $data->id_user_last_updated_at = $id_usuario;
+        
+        $data->save();
+
+
+        return redirect()->route('mapa.edit', ['id' => $data])->with('success', true);
+
+
     }
 
     /**
@@ -392,6 +445,17 @@ class InteractiveMapController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $id_usuario = auth()->id();
+
+        $data = PolygonData::find($id);
+
+        $data->delete();
+
+        $data->id_user_deleted_at = $id_usuario;
+
+        $data->save();
+
+        return redirect()->back()->with('success', 'Excluido com sucesso!');
     }
 }
