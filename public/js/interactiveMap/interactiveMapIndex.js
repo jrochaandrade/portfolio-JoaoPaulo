@@ -41,16 +41,14 @@ let map = L.map('map', {
 L.control.layers(baseMaps).addTo(map)
 /* Fim script para criar mapa Leaflet */
 
-
 /* Script para desenha os poligonos no mapa de acordo com os poligono recebidos na variável $poligonos */
 drawnAllPolygons()
 
 function drawnAllPolygons() {
     const polygonToEmbargoId = {};
-
-    for (const uniqueId in polygons) {
-        if (polygons.hasOwnProperty(uniqueId)) {
-            const arrayCoordinates = polygons[uniqueId];
+    for (const unique_id in polygons) {
+        if (polygons.hasOwnProperty(unique_id)) {
+            const arrayCoordinates = polygons[unique_id]
 
             const polygonCoord = arrayCoordinates.map(coordinates => ({
                 lat: coordinates.latitude,
@@ -160,15 +158,19 @@ window.deleteData = function(report_ID) {
 $(document).ready(function() {
     $(document).on('click', '#find', function () {
         const dataId = $(this).data('id')
-
+        
         // Use o id para encontar os polígonos correspondentes na variavel $polygons
         const polygonsOfData = findPoligons(dataId)
+
+        console.log('click', dataId, polygonsOfData)
+
         drawnPolygon(polygonsOfData, dataId)
         
     })
 })
 
 function findPoligons(dataId) {
+    console.log('find', dataId, polygons)
     const polygonsOfData = {}
 
     // Interar sobre os arrays aninhados
@@ -261,7 +263,7 @@ function showPopup(polygon, embargo) {
 
 
 /* Início do script para resertar o mapa */
-document.getElementById('refreshMap').addEventListener('click', function () {
+document.getElementById('refreshMap').addEventListener('click', function () {    
     drawnAllPolygons()
 })
 /* Fim do script para resertar o mapa */

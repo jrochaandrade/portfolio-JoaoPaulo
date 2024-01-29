@@ -38,11 +38,15 @@ class InteractiveMapController extends Controller
         //dd($polygonsData);
 
         // Embargos sem paginação para click no mapa
-        $embargoes = PolygonData::all();
+        //$embargoes = PolygonData::all();
 
         $polygons = $this->searchCoordinates($request);
+
+        //dd($polygons);
+        // Envia todos os poligons sem paginação
+        $allEmbargoes = PolygonDataRepository::search($request)->get();
         
-        return view('interactivemap::index', compact('polygonsData', 'polygons', 'embargoes'));
+        return view('interactivemap::index', compact('polygonsData', 'polygons', 'allEmbargoes'));
     }
     public function oldsidebar()
     {
@@ -165,7 +169,8 @@ class InteractiveMapController extends Controller
 
             // Chama a função formatarData para formatar conforme padrão do bando
             $defaultDate = '';
-            $date = $register['DATA'];
+            $date = isset($register['DATA']) ? $register['DATA'] : (isset($register['data']) ? $register['data'] : '2001-01-01');
+
             $defaultDate = $this->formatDate($defaultDate, $date);
             $register['DATA'] = $defaultDate;
 
@@ -207,8 +212,8 @@ class InteractiveMapController extends Controller
                     'date' =>$polygon['DATA'],
                     'team' =>$polygon['EQUIPE'],
                     'centroid' =>$polygon['COOR_CENTR'],
-                    'geo_manager' =>$polygon['RESP_GEO'],
-                    'operation' =>$polygon['NOME_OPERA'],
+                    'geo_manager' => isset($polygon['RESP_GEO']) ? $polygon['RESP_GEO'] : (isset($polygon['resp_geo']) ? $polygon['resp_geo'] : null),
+                    'operation' => isset($polygon['NOME_OPERA']) ? $polygon['NOME_OPERA'] : (isset($polygon['nome_opera']) ? $polygon['nome_opera'] : null),
                     'id_user_created_at' =>'123456' ,  /* $id_usuario */
                 ]);
                 $polygonData->save();

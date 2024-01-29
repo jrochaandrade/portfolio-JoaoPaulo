@@ -57,7 +57,7 @@
                             <td>{{ $data->city }}</td>
                             <td>{{ $data->area }}</td>
 
-                            <td>
+                            <td id="actions">
                                 <a class="text-secondary" id="find" data-id="{{ $data->id_polygon }}">
                                     <span class="fa-stack fa-sm">
                                     <i class="far fa-square fa-stack-2x"></i>
@@ -97,10 +97,21 @@
                 <div class="d-flex justify-content-end pagination">
                     {{ $polygonsData->links('pagination::bootstrap-5') }}
                 </div>
-                <a id="refreshMap" class="btn btn-primary">
-                    <i class="fa-solid fa-arrows-rotate"></i>
-                    Resetar mapa
-                </a>
+                <div class="btnsMap">
+                    <div class="coordinate">
+                        <div class="btnFindCoordinate">
+                            <label for="findCoordinate">Buscar por coordenadas:</label>
+                            <input type="text" class="form-control" name="findCoordinate" id="findCoordinate">
+                        </div>
+                        <a href="" id="btnSearchCoordinate" class="btn btn-success">Buscar</a>
+                    </div>
+                    <div>
+                        <a id="refreshMap" class="btn btn-primary">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            Resetar mapa
+                        </a>
+                    </div>
+                </div>
                 <div class="containerMap">
                     <div id="map" class="map"></div>
                 </div>
@@ -112,7 +123,7 @@
 <script>
     // Converte a variável PHP em JavaScript
     let polygons = {!! json_encode($polygons) !!}
-    let embargoes = {!! json_encode($embargoes) !!}
+    let embargoes = {!! json_encode($allEmbargoes) !!}
 </script>
 
 
