@@ -31,6 +31,8 @@ selectTypeAI.addEventListener('change', function () {
     }    
 }) */
 
+
+
 $(document).ready(function() {
     // Inicialize o Select2 no seu elemento select
     $('#searchArticle').select2();
