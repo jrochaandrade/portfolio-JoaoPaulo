@@ -31,13 +31,4 @@ Route::delete('/delete/{id}', [InteractiveMapController::class, 'destroy'])->nam
 
 
 
-/* Route::get('/sidebar', [InteractiveMapController::class, 'sidebar'])->name('sidebar.index');
-Route::get('/oldsidebar', [InteractiveMapController::class, 'oldsidebar'])->name('oldsidebar');
-<<<<<<< HEAD
-Route::get('/teste2', [InteractiveMapController::class, 'teste2'])->name('teste2');
-
-
 });
-=======
-Route::get('/teste2', [InteractiveMapController::class, 'teste2'])->name('teste2'); */
->>>>>>> develop
