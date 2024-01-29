@@ -360,6 +360,7 @@ class DetailedReportController extends Controller
                 $data['image3'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][2]));
                 $data['image4'] = base64_encode(file_get_contents($_FILES['images1']['tmp_name'][3]));
             }
+            
 
             
             

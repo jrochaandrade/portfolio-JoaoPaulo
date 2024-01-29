@@ -86,7 +86,7 @@
                 </a>
                 @else
                 
-                <a href="{{ route('login')}}" title="Sair">
+                <a href="{{ route('login')}}" title="Entrar">
                     <i class="bi bi-door-open icon"></i>
                     <span class="text nav-text">Entrar</span>                    
                 </a>
