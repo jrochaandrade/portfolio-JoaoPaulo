@@ -12,7 +12,7 @@
 <div class="home">    
     <div class="card-header">
         <div class="titleHeader">
-            <h1 class=header><strong>Mapa Interativo teste</strong></h1>
+            <h1 class=header><strong>Mapa Interativo</strong></h1>
         </div>
         <div class="inputSend">
             <form action="{{ route('uploadKml') }}" method="POST" data-toggle="tooltip" data-placement="right"
