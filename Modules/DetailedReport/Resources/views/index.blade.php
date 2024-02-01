@@ -18,7 +18,7 @@
 <div class="home">
     <div class="card-header">
         <div class="titleHeader">
-            <h1>Relatório Circunstanciado teste</h1>
+            <h1>Relatório Circunstanciado</h1>
         </div>
     </div>    
     <div class="text">
@@ -26,7 +26,7 @@
             
             <div class="main" id="main"> 
                 <a href="{{ route('create') }}" class="btn btn-success mb-5">Criar relatório</a>
-                <table class="table table-bordered id="tableReports">
+                <table class="table table-responsive table-striped id="tableReports">
                 <thead>
                         <tr>
                             <th>ID</th>
