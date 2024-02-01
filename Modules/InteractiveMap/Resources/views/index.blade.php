@@ -98,13 +98,13 @@
                     {{ $polygonsData->links('pagination::bootstrap-5') }}
                 </div>
                 <div class="btnsMap">
-                    <div class="coordinate">
+                    <form class="formCoordinate" id="formCoordinate">
                         <div class="btnFindCoordinate">
                             <label for="findCoordinate">Buscar por coordenadas:</label>
                             <input type="text" class="form-control" name="findCoordinate" id="findCoordinate">
-                        </div>
-                        <a href="" id="btnSearchCoordinate" class="btn btn-success">Buscar</a>
-                    </div>
+                        </div>                        
+                        <button type="submit" id="btnSearchCoordinate" class="btn btn-success">Buscar</button>
+                    </form>
                     <div>
                         <a id="refreshMap" class="btn btn-primary">
                             <i class="fa-solid fa-arrows-rotate"></i>

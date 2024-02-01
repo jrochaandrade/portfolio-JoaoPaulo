@@ -1,3 +1,4 @@
+let map
 $(document).ready(function() {
     // Seu código aqui, incluindo a função drawnAllPolygons()
 
@@ -32,7 +33,7 @@ let baseMaps = {
 }
 
 // Carregar mapa
-let map = L.map('map', {
+map = L.map('map', {
     center: [-10.93441238, -63.36372516],
     zoom: 7,
     layers: [googleSatelite]
@@ -162,15 +163,12 @@ $(document).ready(function() {
         // Use o id para encontar os polígonos correspondentes na variavel $polygons
         const polygonsOfData = findPoligons(dataId)
 
-        console.log('click', dataId, polygonsOfData)
-
         drawnPolygon(polygonsOfData, dataId)
         
     })
 })
 
 function findPoligons(dataId) {
-    console.log('find', dataId, polygons)
     const polygonsOfData = {}
 
     // Interar sobre os arrays aninhados
@@ -237,7 +235,6 @@ function drawnPolygon (polygonsOfData, dataId) {
             //adicionarLinhaDeEmbargo(idEmbargo); reconstruir tabela
             
             //const polygonsData = findPoligons(dataId)
-            //console.log(dataId, polygonsData)
             //showPopup(polygon, dataId);
             polygon.openPopup();
         });
@@ -261,10 +258,10 @@ function showPopup(polygon, embargo) {
 }
 /* Fim do script para mostrar poligono ao clicar no botão find da tabela */
 
-
 /* Início do script para resertar o mapa */
 document.getElementById('refreshMap').addEventListener('click', function () {    
     drawnAllPolygons()
+    removeMarker()
 })
 /* Fim do script para resertar o mapa */
 
@@ -300,3 +297,157 @@ map.on('click', onMapClick)
 
 
 });
+
+
+document.getElementById('formCoordinate').addEventListener('submit', function(event) {
+
+    event.preventDefault()
+    // Recebe o valor do input
+    let coordinates = document.getElementById('findCoordinate').value
+    // Coloca as letras em maiusculo
+    coordinates = coordinates.toUpperCase()
+   
+    // Cria duas expressões regulares para definir se o valor recebeido no input é graus minutos e segundos ou graus decimais
+    const regexDMS = /^(\d+)[°°]\s*(\d+)[′']\s*([\d.,]+)[″"]\s*([NS])\s*(?:,\s*)?\s*(\d+)[°°]\s*(\d+)[′']\s*([\d.,]+)[″"]\s*([EW])$|^(\d+)\s(\d+)\s([\d.,]+)\s*([NS])\s*(?:,\s*)?\s*(\d+)\s(\d+)\s([\d.,]+)\s*([EW])$/;
+
+    const regexDecimal = /^-\d+([.,])\d+\s*(?:,\s*)?\s*-\d+([.,])\d+$/;
+
+    if (coordinates.match(regexDMS)) {
+        // Substitui vírgula por pontos nos segundos das coordenadas
+        let coordinate = coordinates.replace(/(\d+),(\d+)/g, '$1.$2')
+
+        // Substitui caracteres especiais por espaços
+        let cleanedCoordinates = coordinate.replace(/[^\d.,NSEWnswe\s]+/g, ' ')
+        
+        // Expressão regular para saber se a coordenada veio com vírgula
+        let regexDMSComma = /^(\d+)\s*(\d+)\s*([\d.,]+)\s*([NS])\s*,\s*(\d+)\s*(\d+)\s*([\d.,]+)\s*([EW])$/
+        
+        if (cleanedCoordinates.match(regexDMSComma)) {
+            // Remove o excesso de espaço
+            coordinate = cleanedCoordinates.replace(/\s+/g, ' ');
+            // Remove os espaços antes e depois da virgula
+            coordinate = coordinate.replace(/\s*,\s*/g, ',')
+            const coordinatesDD = converterCoordinateToDD(coordinate)
+            console.log(coordinate)
+            
+            addMarker(coordinatesDD)
+        } else {
+            console.log('semvirgula', cleanedCoordinates)
+            // Acrescentar vírgula após o S
+            coordinate = cleanedCoordinates.replace(/\s*S\s+/, 'S,')
+            
+            const coordinatesDD = converterCoordinateToDD(coordinate)
+            
+            addMarker(coordinatesDD)
+        }
+        
+        const coordinatesDD = converterCoordinateToDD(coordinate)
+        
+        addMarker(coordinatesDD)
+
+
+    } else if(coordinates.match(regexDecimal)) {
+
+        // Substituir vírgula por ponto nas coordenadas
+        let coordinate = coordinates.replace(/(\d+),(\d+)/g, '$1.$2')
+
+        // Expressão regular para definir se a coordenada decimal veio com virgula
+        const regexDecimalComma = /^-?\d+\.\d+,\s*-?\d+\.\d+$/ 
+
+        if (coordinate.match(regexDecimalComma)) {
+            const coordinateDD = coordinate.split(',').map(coordinate => parseFloat(coordinate.trim()))
+
+            addMarker(coordinateDD)
+        } else {
+            // Adciona virgula entre as coordenadas
+            const modifiedCoordinates = coordinate.replace(/(\s-)/, ', $1');
+
+            const coordinateDD = modifiedCoordinates.split(',').map(coordinate => parseFloat(coordinate.trim()))
+
+            addMarker(coordinateDD)
+        }
+
+    } else {
+        errorCoordinate()
+    }
+})
+
+function errorCoordinate() {
+    Swal.fire({
+        title: 'Coordenadas inválida!',
+        text: 'Favor digitar um fomato válido. Ex. 12°0′24.37″S, 63°30′32.60″W / 10 25 38.156S, 62 7 46.701W / -11.27702941, -61.96444919',
+        icon: 'error',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK',
+    })
+}
+
+function converterCoordinateToDD(coordinatesDMS) {
+
+    const parts = coordinatesDMS.split(/,/)
+
+    const partLat = parts[0]
+
+    let partLon = parts[1]
+
+    partLon = partLon.trim()
+
+    const partsLat = partLat.split(' ')
+
+    const partsLon = partLon.split(' ')
+
+    const degreesLat = parseFloat(partsLat[0])
+    const minutesLat = parseFloat(partsLat[1])
+    const secondsLat = parseFloat(partsLat[2])
+
+    const degreesLon = parseFloat(partsLon[0])
+    const minutesLon = parseFloat(partsLon[1])
+    const secondsLon = parseFloat(partsLon[2])
+
+    const directionLat = coordinatesDMS.includes('S') ? 'S' : 'N'
+    const directionLon = coordinatesDMS.includes('W') ? 'W' : 'E'
+
+    let ddLat = degreesLat + minutesLat / 60 + secondsLat / 3600
+    let ddLon = degreesLon + minutesLon / 60 + secondsLon / 3600
+
+    if (directionLat === 'S') {
+        ddLat = -ddLat
+    }
+    if (directionLon === 'W') {
+        ddLon = -ddLon
+    }
+
+    return [ddLat, ddLon]
+
+}
+
+let previousMarker   
+
+function addMarker(coordinates) {
+    const zoomLevel = 15;
+
+    if (previousMarker) {
+        removeMarker()
+    }
+
+    // Adiciona o novo marcador à camada de mapa
+    const marker = L.marker(coordinates).addTo(map);
+    
+    // Ajusta o centro do mapa e o zoom
+    map.setView(coordinates, zoomLevel);
+
+    previousMarker = marker;
+}
+
+function removeMarker() {
+    console.log(previousMarker)
+    
+    map.removeLayer(previousMarker)
+       
+    
+}
+
+
+
+
+

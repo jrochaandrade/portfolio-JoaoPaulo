@@ -25,13 +25,13 @@
     width: 216px;    
 }
 
-.coordinate {
+.formCoordinate {
     display: flex;
     flex-direction: row;
     align-items: end;
 }
 
-.coordinate label {
+.formCoordinate label {
     margin-bottom: 5px;
 }
 
@@ -50,4 +50,8 @@
 
 #btnSearchCoordinate {
     margin-left: 10px;
+}
+
+#findCoordinate {
+    width: 283px;
 }
