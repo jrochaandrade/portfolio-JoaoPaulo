@@ -7,16 +7,6 @@
     box-shadow: 0 0 35px 0 rgba(107, 107, 162, 0.5);;
 }
 
-
-#dataTable {
-    
-}
-
-#refreshMap {
-    
-    
-}
-
 #btnDelete,
 #find {
     cursor: pointer;
@@ -56,3 +46,45 @@
 #findCoordinate {
     width: 283px;
 }
+
+#btnInfoCoord {
+    margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+
+    .card-header {
+        padding: 10px;
+    }
+
+    .inputSend {
+        margin: 0px;
+        display: flex;        
+        justify-content: flex-end;
+    }
+
+    .header {
+        font-size: 24px;
+    }
+    .btnsMap {
+        display: flex;
+        flex-direction: column;
+        
+        align-items: end;
+        margin-bottom: 0px;
+    }
+
+    #refreshMap {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .table-responsive th:nth-child(3),
+    .table-responsive td:nth-child(3) {
+        display: none !important; 
+    }
+    .table-responsive th:nth-child(4),
+    .table-responsive td:nth-child(4) {
+        display: none !important; 
+    }
+}
+

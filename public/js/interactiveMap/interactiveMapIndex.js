@@ -258,10 +258,11 @@ function showPopup(polygon, embargo) {
 }
 /* Fim do script para mostrar poligono ao clicar no botão find da tabela */
 
-/* Início do script para resertar o mapa */
+/* Início do script para resetar o mapa */
 document.getElementById('refreshMap').addEventListener('click', function () {    
     drawnAllPolygons()
     removeMarker()
+    clearInputFindCoordinate()
 })
 /* Fim do script para resertar o mapa */
 
@@ -297,7 +298,16 @@ map.on('click', onMapClick)
 
 
 });
+/* Início do script para limpar o input de buscar as coordenadas no mapa */
 
+function clearInputFindCoordinate (){
+    
+    btnFindCoordinate = document.getElementById('findCoordinate')
+    
+    btnFindCoordinate.value = ''
+}
+
+/* Fim do script para limpar o input de buscar as coordenadas no mapa */
 
 document.getElementById('formCoordinate').addEventListener('submit', function(event) {
 
@@ -446,6 +456,7 @@ function removeMarker() {
        
     
 }
+
 
 
 

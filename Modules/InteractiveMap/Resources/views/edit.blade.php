@@ -102,7 +102,7 @@
     $(document).ready(function() {            
         Swal.fire({
             title: 'Sucesso!',
-            text: 'Editado!',
+            text: 'Embargo atualizado com sucesso.',
             icon: 'success',
             confirmButtonColor: '',
             confirmButtonText: 'OK'

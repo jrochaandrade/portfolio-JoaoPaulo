@@ -9,18 +9,18 @@
 
 <!--select2 -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
 
 <!-- inputmask -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js" defer></script>
 
 <!-- CSS create -->
-<link rel="stylesheet" href="{{ asset('css/create/createDetailedReport.css') }}">
 <link rel="stylesheet" href="{{ asset('css/styleDefault.css') }}">
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/create/createDetailedReport.css') }}">
 
 <!-- Js create -->
-<script src="{{ asset('js/createDetailedReport.js') }}" defer type="module"></script>
+<script src="{{ asset('js/createDetailedReport.js') }}" defer type="module" defer></script>
 
 <meta http-equiv="refresh" content="; http://127.0.0.1:8000/report/detailed">
 

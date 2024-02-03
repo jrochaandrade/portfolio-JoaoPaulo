@@ -22,17 +22,16 @@ function handleFileSelect(event) {
             });
         });
 
-        promises.push(promise);
+        promises.push(promise);        
     }
 
     // Aguarde que todas as Promises sejam resolvidas
     Promise.all(promises)
-        .then(photos => {  
+    .then(photos => {  
             // Formatar data para o padrão reconhecido pela biblioteca
             for (let i = 0; i < photos.length; i++) {
                 let dataString = photos[i].date;                
-                
-                // Substitua os dois pontos apenas na parte da hora
+                // Substitua o espaço por um T
                 let formattedDateString = dataString.replace(' ', 'T');
                 // Substitua todos os dois pontos por underscores apenas antes do "T"
                 formattedDateString = formattedDateString.replace(/:/g, function(match, offset, string) {
@@ -46,11 +45,10 @@ function handleFileSelect(event) {
                 // Crie um objeto Date com a data formatada
                 let formattedDate = new Date(formattedDateString);
                 photos[i].date = formattedDate;
-            }
-
+            }            
             // Quando todas as Promises são resolvidas, ordene as imagens
             photos.sort((a, b) => new Date(a.date) - new Date(b.date));
-            
+
             // Crie um array de elementos de imagem na ordem correta
             const imgElements = photos.map(photo => {
                 const reader = new FileReader();
@@ -159,7 +157,11 @@ function handleFileSelect(event) {
         /* // Chame a função quando quiser rolar para o topo da página
         scrollToTop(); */
 
+        messageReport()
+
 }
+
+
 
 function scrollToBottom() {
     
@@ -184,27 +186,26 @@ function scrollToTop() {
     
 }
 
+
 });
 
 
 
+// Espera até que a página esteja completamente carregada
+window.addEventListener('load', function() {
+    // Obtem o botão gerar pdf
+    const btnPdf = document.getElementById('btnPdf');
+    btnPdf.addEventListener('click', generatePdf);
+});
 
-// Obtem o botão gerar pdf
-const btnPdf = document.getElementById('btnPdf');
-btnPdf.addEventListener('click', generatePdf);
 // Função para gerar o pdf
 function generatePdf() {    
     const page = document.getElementById('page');
-    const pageWithBorder = document.getElementsByName('pageWithBorder')
+    const pageWithBorder = document.getElementsByName('pageWithBorder');
     
     const lastDiv = pageWithBorder[pageWithBorder.length - 1];
-    
-    
-    lastDiv.className = 'lastPageWithBorder'
+    lastDiv.className = 'lastPageWithBorder';
 
-    /* // Força o recálculo do layout antes de gerar o PDF
-    window.dispatchEvent(new Event('resize')); */
-    
     html2pdf(page, {
         margin: [0, 0, 0, 0],
         filename: 'Relatório Fotográfico.pdf',
@@ -218,6 +219,26 @@ function generatePdf() {
         },
     });
 }
+
+
+
+
+
+function messageReport() {
+    Swal.fire({
+        title: 'Aguarde!',
+        text: 'Gerando realtório!',
+        icon: 'warning',
+        confirmButtonColor: '',
+        confirmButtonText: 'OK'
+    }); 
+}
+
+
+
+
+
+
 
 
 // Tentando com imprimir
