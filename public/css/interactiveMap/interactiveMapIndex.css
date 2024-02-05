@@ -7,6 +7,10 @@
     box-shadow: 0 0 35px 0 rgba(107, 107, 162, 0.5);;
 }
 
+label {
+    margin-bottom: 5px;
+}
+
 #btnDelete,
 #find {
     cursor: pointer;
@@ -51,6 +55,38 @@
     margin-left: 5px;
 }
 
+#divSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#divSearch a {
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+#formSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+#formSearch button {
+    margin-left: 10px;
+}
+
+#divInputSearch {
+    display: flex;
+    flex-direction: column;    
+}
+
+#divInputSearch input {
+    width: 300px;
+}
+
 @media (max-width: 768px) {
 
     .card-header {
@@ -85,6 +121,30 @@
     .table-responsive th:nth-child(4),
     .table-responsive td:nth-child(4) {
         display: none !important; 
+    }
+
+    #divSearch {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #divSearch a {
+        margin: 0px;
+    }
+    
+    #formSearch {
+        margin-bottom: 5px;
+    }
+
+    #divInputSearch input {
+        width: 100%;
+    }
+
+    #findCoordinate {
+        width: 100%;
+    }
+    .btnsMap {
+        align-items: flex-start;
     }
 }
 

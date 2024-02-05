@@ -11,7 +11,10 @@
     <div class="card-header">
         <div class="titleHeader">
             <h1 class="header"><strong>Detalhes do embargo</strong></h1>
-            <a href="{{ route('mapa.edit', ['id'=>$data->id_polygon]) }}" class="btn btn-warning" id="btnEdit">Editar</a>
+            <div>
+                <a href="{{ route('mapa.download', ['id'=>$data->id_polygon]) }}" class="btn btn-success" id="btnDownload"><i class="fa-solid fa-download"></i>  Baixar KML</a>
+                <a href="{{ route('mapa.edit', ['id'=>$data->id_polygon]) }}" class="btn btn-warning" id="btnEdit"><i class="fa-solid fa-pen-to-square"></i>  Editar</a>
+            </div>
         </div>
     </div>
     <div class="text">
@@ -108,7 +111,7 @@
                             {{ $data->centroid }}
                         </div>
                     </div>
-                    <a href="{{ url()->previous() }}" class="btn btn-primary">Voltar</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa-solid fa-left-long"></i>  Voltar</a>
                 </div>
                 <div class="containerMap">
                     <div class="map" id="map"></div>
