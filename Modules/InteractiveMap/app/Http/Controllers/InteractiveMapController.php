@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use Modules\InteractiveMap\app\Models\PolygonCoordinates;
 use Modules\InteractiveMap\app\Models\PolygonData;
 use Modules\InteractiveMap\app\Repository\PolygonDataRepository;
+use Modules\InteractiveMap\app\Http\Requests\InteractiveMapRequest;
 use Illuminate\Support\Facades\DB;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Get;
@@ -425,7 +426,7 @@ class InteractiveMapController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(InteractiveMapRequest $request, $id)
     {
         $id_usuario = auth()->id();
 
