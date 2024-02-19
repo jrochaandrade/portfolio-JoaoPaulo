@@ -46,7 +46,8 @@
                 As fotos podem ser carregadas fora de ordem desde que os metadados das imagens estejam íntegros.<br><br>
                 Digite um título, carregue as imagens, aguarde até todas as imagens serem carregadas e em seguida clique em gerar PDF.<br><br>
                 Obs.: Se ao baixar o PDF estiver desconfigurado, role a página para visualizar a primeira parte do documento em seguinda clique em gerar pdf novamente.<br><br>
-                Obs.2: Se estiver usando dispositívo móvel, utilizar o navegador em versão Desktop.
+                Obs.2: Utilize um computador ou notebook.
+                Obs.3: Se for enviar as fotos por Whatsapp envie como Documento ou utilize o Telegran.
             </h5>
             <label for="inputUnit" id="labelDescription">Unidade</label>
             <input type="text" class="form-control inputUnit" id="inputUnit" placeholder="Ex.: 3ª Companhia de Polícia Ambiental" value="3ª Companhia de Polícia Ambiental">
