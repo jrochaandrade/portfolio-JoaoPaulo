@@ -27,6 +27,7 @@ Route::post('/uploadKml', [InteractiveMapController::class, 'uploadKml'])->name(
 Route::get('/show/{id}', [InteractiveMapController::class, 'show'])->name('mapa.show');
 Route::get('/edit/{id}', [InteractiveMapController::class, 'edit'])->name('mapa.edit');
 Route::put('/update/{id}', [InteractiveMapController::class, 'update'])->name('mapa.update');
+Route::get('/download/{id}', [InteractiveMapController::class, 'downloadPolygon'])->name('mapa.download');
 Route::delete('/delete/{id}', [InteractiveMapController::class, 'destroy'])->name('mapa.delete');
 
 

@@ -8,7 +8,7 @@ document.getElementById('kmlFile').addEventListener('change', function () {
 
 
 /* Script para pesquisar não página do mapa */
-const search = document.getElementById('searchData')
+/* const search = document.getElementById('searchData')
 const btnSearch = document.getElementById('btnSearch')
 const filter = document.getElementById('filter')
 
@@ -24,7 +24,7 @@ search.addEventListener('keypress', function (event) {
 filter.addEventListener('click', function () {
     btnSearch.click()
     //search.value = ''
-})
+}) */
 /* Fim do script para pesquisa */
 
 

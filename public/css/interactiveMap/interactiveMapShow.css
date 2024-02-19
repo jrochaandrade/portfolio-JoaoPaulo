@@ -39,3 +39,26 @@
 .home .content {    
     padding: 20px 30px 30px 30px;
 }
+
+@media (max-width: 768px) {    
+
+    .card-header {
+        padding: 22px 15px 10px 10px;
+    }
+    
+    .header {
+        font-size: 15px;
+    }
+
+    #btnEdit {
+        margin-right: 7px;
+    }
+    
+    .home .content {
+        padding: 0px;
+    }
+
+    .separateDivs {
+        padding: 12px;
+    }
+}

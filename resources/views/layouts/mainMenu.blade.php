@@ -16,7 +16,7 @@
 
     <div class="menu-bar">
         <div class="menu">
-            <li class="search-box" id="search-box">
+            <!-- <li class="search-box" id="search-box">
                 <i class="bi bi-search icon"></i>
                 <form action="#" method="GET" id="formSearch" >
                     <input 
@@ -29,7 +29,7 @@
                     <button type="submit" id="btnSearch" style="display: none;">Buscar</button>
                 </form>
                 <i class="bi bi-funnel filter" id="filter"></i>
-            </li>
+            </li> -->
             <ul class="menu-links">
                 <li class="nav-links">
                     <a href="{{ route('home.index') }}" class="link">

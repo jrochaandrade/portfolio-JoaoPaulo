@@ -12,7 +12,7 @@ class PolygonDataRepository extends PolygonData
         // Inicializar a consulta na tabela polygon_data
         $polygons = PolygonData::select('polygon_data.*')->when($request->searchData, function($query, $role) use($request){
             return $query->where(function($query) use($request){
-                $query->where('name', 'LIKE', "%$request->searchData%")->orWhere('cpf', 'LIKE', "%$request->searchData%")->orWhere('address', 'LIKE', "%$request->searchData%");
+                $query->where('name', 'LIKE', "%$request->searchData%")->orWhere('cpf', 'LIKE', "%$request->searchData%")->orWhere('address', 'LIKE', "%$request->searchData%")->orWhere('city', 'LIKE', "%$request->searchData%");
             });
         });
         

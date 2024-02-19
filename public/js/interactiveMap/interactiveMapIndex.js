@@ -343,8 +343,10 @@ document.getElementById('formCoordinate').addEventListener('submit', function(ev
             addMarker(coordinatesDD)
         } else {
             console.log('semvirgula', cleanedCoordinates)
+            // Remove o excesso de espaço
+            coordinate = cleanedCoordinates.replace(/\s+/g, ' ');
             // Acrescentar vírgula após o S
-            coordinate = cleanedCoordinates.replace(/\s*S\s+/, 'S,')
+            coordinate = coordinate.replace(/\s*S\s+/, 'S,')
             
             const coordinatesDD = converterCoordinateToDD(coordinate)
             

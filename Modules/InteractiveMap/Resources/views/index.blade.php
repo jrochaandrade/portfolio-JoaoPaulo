@@ -30,11 +30,22 @@
     </div>
     <div class="text">
         <div class="container-fluid content">
-            <div class="">                
-                <a href="{{ route('mapa.index') }}" class="btn btn-primary clearBtn">
-                    <i class="fa-solid fa-arrows-rotate"></i>
-                    Limpar filtros
-                </a>
+            <div class="">
+                <div id="divSearch">
+                    <form action="#" method="GET" id="formSearch">
+                        <div id="divInputSearch">
+                            <label for="searchData">Pesquisar: <i class="fa-regular fa-circle-question text-primary" id="btnInfoCoord" title="O filtro pode ser realizado por Nome, CPF, Endereço, Cidade" ></i></label>
+                            <input type="text" id="searchData" name="searchData" class="form-control" value="{{ request()->query('searchData') }}" placeHolder="Digite os dados para filtrar">
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i>  Buscar Embargo</button>
+                    </form>                    
+
+                    <a href="{{ route('mapa.index') }}" class="btn btn-outline-primary clearBtn">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        Limpar filtros
+                    </a>
+                </div>                
                 <table class="table-responsive table table-striped" id="dataTable">
                     <thead>
                         <tr>
@@ -76,7 +87,7 @@
                                         <i class="fas fa-pencil-alt fa-stack-1x"></i>
                                     </span>
                                 </a>
-                                <a href="#" class="text-success">
+                                <a href="{{ route('mapa.download', ['id'=>$data->id_polygon]) }}" class="text-success">
                                     <span class="fa-stack fa-sm">
                                         <i class="far fa-square fa-stack-2x"></i>
                                         <i class="fa-solid fa-download fa-stack-1x"></i>
@@ -100,13 +111,13 @@
                 <div class="btnsMap">
                     <form class="formCoordinate" id="formCoordinate">
                         <div class="btnFindCoordinate">
-                            <label for="findCoordinate">Buscar por coordenadas: <i class="fa-regular fa-circle-question text-primary" id="btnInfoCoord" title="Coordenadas suportadas: 12°0′24.37″S, 63°30′32.60″W / 10 25 38.156S, 62 7 46.701W / -11.27702941, -61.96444919" ></i></label>
+                            <label for="findCoordinate">Buscar coordenadas no mapa: <i class="fa-regular fa-circle-question text-primary" id="btnInfoCoord" title="Coordenadas suportadas: 12°0′24.37″S, 63°30′32.60″W / 10 25 38.156S, 62 7 46.701W / -11.27702941, -61.96444919" ></i></label>
                             <input type="text" class="form-control" name="findCoordinate" id="findCoordinate" placeHolder="Ex.: 12°0′24.37″S, 63°30′32.60″W">
                         </div>                        
-                        <button type="submit" id="btnSearchCoordinate" class="btn btn-success">Buscar</button>
+                        <button type="submit" id="btnSearchCoordinate" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i>  Localizar</button>
                     </form>
                     <div>
-                        <a id="refreshMap" class="btn btn-primary">
+                        <a id="refreshMap" class="btn btn-outline-primary">
                             <i class="fa-solid fa-arrows-rotate"></i>
                             Resetar mapa
                         </a>
