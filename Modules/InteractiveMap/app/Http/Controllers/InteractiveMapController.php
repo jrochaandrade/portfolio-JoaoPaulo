@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use Modules\InteractiveMap\app\Models\PolygonCoordinates;
 use Modules\InteractiveMap\app\Models\PolygonData;
 use Modules\InteractiveMap\app\Repository\PolygonDataRepository;
+use Modules\InteractiveMap\app\Http\Requests\InteractiveMapRequest;
 use Illuminate\Support\Facades\DB;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Get;
@@ -38,11 +39,15 @@ class InteractiveMapController extends Controller
         //dd($polygonsData);
 
         // Embargos sem paginação para click no mapa
-        $embargoes = PolygonData::all();
+        //$embargoes = PolygonData::all();
 
         $polygons = $this->searchCoordinates($request);
+
+        //dd($polygons);
+        // Envia todos os poligons sem paginação
+        $allEmbargoes = PolygonDataRepository::search($request)->get();
         
-        return view('interactivemap::index', compact('polygonsData', 'polygons', 'embargoes'));
+        return view('interactivemap::index', compact('polygonsData', 'polygons', 'allEmbargoes'));
     }
     public function oldsidebar()
     {
@@ -165,7 +170,8 @@ class InteractiveMapController extends Controller
 
             // Chama a função formatarData para formatar conforme padrão do bando
             $defaultDate = '';
-            $date = $register['DATA'];
+            $date = isset($register['DATA']) ? $register['DATA'] : (isset($register['data']) ? $register['data'] : '2001-01-01');
+
             $defaultDate = $this->formatDate($defaultDate, $date);
             $register['DATA'] = $defaultDate;
 
@@ -207,8 +213,8 @@ class InteractiveMapController extends Controller
                     'date' =>$polygon['DATA'],
                     'team' =>$polygon['EQUIPE'],
                     'centroid' =>$polygon['COOR_CENTR'],
-                    'geo_manager' =>$polygon['RESP_GEO'],
-                    'operation' =>$polygon['NOME_OPERA'],
+                    'geo_manager' => isset($polygon['RESP_GEO']) ? $polygon['RESP_GEO'] : (isset($polygon['resp_geo']) ? $polygon['resp_geo'] : null),
+                    'operation' => isset($polygon['NOME_OPERA']) ? $polygon['NOME_OPERA'] : (isset($polygon['nome_opera']) ? $polygon['nome_opera'] : null),
                     'id_user_created_at' =>'123456' ,  /* $id_usuario */
                 ]);
                 $polygonData->save();
@@ -305,6 +311,217 @@ class InteractiveMapController extends Controller
         }
     }
 
+    public function downloadPolygon($id) {
+        //Salvar os vértices em um array com base no id enviado da view
+        $result = PolygonData::with('polygonCoordinates')->find($id);
+        if($result) {
+            $polygonsExternal = [];
+            $polygonsInternal = [];            
+            foreach($result->polygonCoordinates as $vertex) {
+                $uniqueIdCoordinate = $vertex->unique_id_coord;
+                if($vertex->type_polygon === 'Externo') {
+                    if(!isset($polygonsExternal[$uniqueIdCoordinate])) {
+                        $polygonsExternal[$uniqueIdCoordinate] = [];
+                    }
+                    $polygonsExternal[$uniqueIdCoordinate][] = $vertex;
+                }
+                if($vertex->type_polygon === 'Interno') {
+                    if(!isset($polygonsInternal[$uniqueIdCoordinate])) {
+                        $polygonsInternal[$uniqueIdCoordinate] = [];
+                    }
+                    $polygonsInternal[$uniqueIdCoordinate][] = $vertex;
+                }
+            }
+        }
+        // Cria uma instância de DomDocument
+        $doc = new \DOMDocument('1.0', 'utf-8');
+        $doc->formatOutput = true;
+
+        // Cria o elemento kml
+        $kml = $doc->createElement('kml');
+        $kml->setAttribute('xmlns', 'http://www.opengis.net/kml/2.2');
+        $doc->appendChild($kml);
+
+        // Cria o elemento Document dentro do kml
+        $document = $doc->createElement('Document');
+        $document->setAttribute('id', 'root_doc');
+        $kml->appendChild($document);
+
+        // Cria o esquema (schema)
+        $schema = $doc->createElement('Schema');
+        $schema->setAttribute('name', 'Embargo');
+        $schema->setAttribute('id', 'Embargo');
+
+        // Define os campos do Schema (SimpleFields)
+        $fields = [
+            'id_polygon' => 'float',
+            'id_register' => 'string',
+            'name' => 'string',
+            'cpf' => 'string',
+            'cnpj' => 'string',
+            'address' => 'string',
+            'cty' => 'string',
+            'area' => 'string',
+            'infraction_notice' => 'string',
+            'decree' => 'string',
+            'embargo' => 'string',
+            'occurrence' => 'string', // Corrected typo in field name
+            'law' => 'string',
+            'type_infraction' => 'string',
+            'date' => 'string',
+            'team' => 'string',
+            'centroid' => 'string',
+            'operation' => 'string',
+            'geo_manager' => 'string',
+        ];
+        foreach ($fields as $fieldName => $fieldType) {
+            $simpleField = $doc->createElement('SimpleField');
+            $simpleField->setAttribute('name', $fieldName);
+            $simpleField->setAttribute('type', $fieldType);
+            $schema->appendChild($simpleField);
+        }
+
+        // Adiciona o Schema ao Document
+        $document->appendChild($schema);
+
+        // Criar o Folder
+        $folder = $doc->createElement('Folder');
+        $document->appendChild($folder);
+
+        // Cria o nome e adiciona ao Folder
+        $name = $doc->createElement('name', 'Embargo');
+        $folder->appendChild($name);
+
+        // Cria o elemento Placemark para cada embargo
+        $placemark = $doc->createElement('Placemark');
+        // Cria o elemento name e define o nome do polígono
+        $name = $doc->createElement('name', $result->name);
+        $placemark->appendChild($name);
+
+        // Cria o elemento Style com os estilos desejados
+        $style = $doc->createElement('Style');
+        $lineStyle = $doc->createElement('LineStyle');
+        $color = $doc->createElement('color', 'ff0000ff');
+        $lineStyle->appendChild($color);
+        $polyStyle = $doc->createElement('PolyStyle');
+        $fill = $doc->createElement('fill', '0');
+        $polyStyle->appendChild($fill);
+        $style->appendChild($lineStyle);
+        $style->appendChild($polyStyle);
+        $placemark->appendChild($style);
+
+        // Cria o elemento ExtendedData
+        $extendedData = $doc->createElement('ExtendedData');
+        $placemark->appendChild($extendedData);
+
+        // Cria o elemento SchemaData com schemaUrl
+        $schemaData = $doc->createElement('SchemaData');
+        $schemaData->setAttribute('schemaUrl', '#Embargo');
+        $extendedData->appendChild($schemaData);
+
+        // Cria o elemento SimpleData para cada campo e adiciona os valores
+        foreach ($fields as $fieldName => $fieldType) {
+            $simpleData = $doc->createElement('SimpleData', $result->$fieldName); // Corrected variable name
+            $simpleData->setAttribute('name', $fieldName);
+            $schemaData->appendChild($simpleData);
+        }
+
+        // Adiciona o ExtendedData ao Placemark
+        $placemark->appendChild($extendedData);
+
+        // Cria o elemento MultiGeometry
+        $multiGeometry = $doc->createElement('MultiGeometry');
+
+        foreach ($polygonsExternal as $uniqueIdCoordinate => $polygon) {
+            $coordinatesString = '';
+
+            foreach ($polygon as $coordinate) {
+                $uniqueIdExternal = $coordinate['unique_id_external']; // Corrected variable name
+                if ($coordinate->polygon_data_id_fk === $result->id_polygon && $coordinate->type_polygon === 'Externo') {
+                    $coordinatesString .= $coordinate->longitude . ',' . $coordinate->latitude . ' ';
+                }
+            }
+
+            // Remove os espaços extras no final de cada string de coordenadas
+            $coordinatesString = trim($coordinatesString);
+
+            if (!empty($coordinatesString)) {
+
+                // Cria o elemento Polygon dentro de MultiGeometry
+                $polygonElement = $doc->createElement('Polygon');
+
+                // Cria o elemento outerBoundaryIs dentro de Polygon
+                $outerBoundaryIs = $doc->createElement('outerBoundaryIs');
+
+                // Cria o elemento LinearRing dentro de outerBoundaryIs
+                $linearRing = $doc->createElement('LinearRing');
+
+                // Adiciona as coordenadas ao LinearRing
+                $coordinates = $doc->createElement('coordinates', $coordinatesString);
+                $linearRing->appendChild($coordinates);
+
+                // Adiciona LinearRing a outerBoundaryIs
+                $outerBoundaryIs->appendChild($linearRing);
+
+                // Adiciona outerBoundaryIs a Polygon
+                $polygonElement->appendChild($outerBoundaryIs);
+
+                // Loop para adicionar os polígonos internos
+                foreach ($polygonsInternal as $uniqueIdCoordinate => $internalPolygon) {
+                    $coordinatesStringInternal = '';
+
+                    foreach ($internalPolygon as $coordinateInternal) {
+                        if ($coordinateInternal->polygon_data_id_fk === $result->id_polygon && $coordinateInternal->unique_id_external === $uniqueIdExternal && $coordinateInternal->type_polygon === 'Interno') {
+                            $coordinatesStringInternal .= $coordinateInternal->longitude . ',' . $coordinateInternal->latitude . ' ';
+                        }
+                    }
+
+                    // Remove espaços extras no final da string
+                    $coordinatesStringInternal = trim($coordinatesStringInternal);
+
+                    if (!empty($coordinatesStringInternal)) {
+                        // Cria o elemento innerBoundaryIs dentro de Polygon
+                        $innerBoundaryIs = $doc->createElement('innerBoundaryIs');
+
+                        // Cria o elemento LinearRing dentro de innerBoundaryIs
+                        $innerLinearRing = $doc->createElement('LinearRing');
+
+                        // Adiciona as coordenadas ao innerLinearRing
+                        $innerCoordinates = $doc->createElement('coordinates', $coordinatesStringInternal);
+                        $innerLinearRing->appendChild($innerCoordinates);
+
+                        // Adiciona innerLinearRing a innerBoundaryIs
+                        $innerBoundaryIs->appendChild($innerLinearRing);
+
+                        // Adiciona innerBoundaryIs a Polygon
+                        $polygonElement->appendChild($innerBoundaryIs);
+                    }
+                }
+
+                // Adiciona Polygon a MultiGeometry
+                $multiGeometry->appendChild($polygonElement);
+            }
+        }
+
+        // Adiciona MultiGeometry ao Placemark
+        $placemark->appendChild($multiGeometry);
+
+        // Adiciona o Placemark ao Folder
+        $folder->appendChild($placemark);
+
+        // Salva o documento KML em um arquivo temporário
+        $tempFilePath = tempnam(sys_get_temp_dir(), $result->name);
+        $doc->save($tempFilePath);
+
+        // Envia o arquivo KML para download
+        return response()->download($tempFilePath, $result->name . '.kml', [
+            'Content-Type' => 'application/xml',
+            'Content-Disposition' => 'attachment; filename="' . $result->name . '.kml"',
+        ]);
+
+
+    }
+
     public function formatDate ($defaultDate, $date) {
         //  Verifica se a data está no formato 'yyyy-mm-dd' (ano-mês-dia) ou 'yyyy/mm/dd' (ano/mês/dia), se tiver não precisa converter.
         if (preg_match('/\d{4}\-\d{2}\-\d{2}$/', $date) ||  preg_match('/\d{4}\/\d{2}\/\d{2}$/', $date)) {
@@ -341,6 +558,8 @@ class InteractiveMapController extends Controller
      */
     public function create()
     {
+
+        
         return view('interactivemap::create');
     }
 
@@ -361,7 +580,44 @@ class InteractiveMapController extends Controller
      */
     public function show($id)
     {
-        return view('interactivemap::show');
+        $data = PolygonData::where('id_polygon', $id)->first();
+
+        $polygons = $this->searchCoordinatesShow($id);
+
+        return view('interactivemap::show', compact('data', 'polygons'));
+    }
+
+    function searchCoordinatesShow  ($id) 
+    {
+        //$polygon = PolygonData::find($id);
+
+        //dd($id);
+
+        $unique_ids = DB::table('polygon_coordinates')->where('polygon_data_id_fk', $id)->distinct()->pluck('unique_id_coord');
+        //dd($unique_ids);
+
+        foreach ($unique_ids as $unique_id) {
+            $coordinates = DB::table('polygon_coordinates')
+                ->select('latitude', 'longitude', 'polygon_data_id_fk', 'type_polygon')
+                ->where('unique_id_coord', $unique_id)
+                ->get();
+
+
+            $coordinates_array = [];
+            foreach ($coordinates as $coordinate) {
+                $coordinates_array[] = [
+                    'latitude' => $coordinate->latitude,
+                    'longitude' => $coordinate->longitude,
+                    'id' => $coordinate->polygon_data_id_fk,
+                    'type_polygon' => $coordinate->type_polygon
+                ];
+            }
+
+            $polygons[$unique_id] = $coordinates_array;
+
+        }
+
+        return $polygons;
     }
 
     /**
@@ -371,7 +627,8 @@ class InteractiveMapController extends Controller
      */
     public function edit($id)
     {
-        return view('interactivemap::edit');
+        $data = PolygonData::find($id);
+        return view('interactivemap::edit', compact('data'));
     }
 
     /**
@@ -380,9 +637,22 @@ class InteractiveMapController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(InteractiveMapRequest $request, $id)
     {
-        //
+        $id_usuario = auth()->id();
+
+        $data = PolygonData::find($id);
+        
+        $data->fill($request->all());
+
+        $data->id_user_last_updated_at = $id_usuario;
+        
+        $data->save();
+
+
+        return redirect()->route('mapa.edit', ['id' => $data])->with('success', true);
+
+
     }
 
     /**
@@ -392,6 +662,17 @@ class InteractiveMapController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $id_usuario = auth()->id();
+
+        $data = PolygonData::find($id);
+
+        $data->delete();
+
+        $data->id_user_deleted_at = $id_usuario;
+
+        $data->save();
+
+        return redirect()->back()->with('success', 'Excluido com sucesso!');
     }
 }

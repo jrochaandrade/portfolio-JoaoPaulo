@@ -2,7 +2,7 @@
     <header>
         <div class="image-text">
             <span class="image">
-                <img src="{{ asset('images/LogoDR3-100.jpg') }}" alt="">
+                <img id="logoIndex2" src="{{ asset('images/LogoDR3-100.jpg') }}" alt="">
             </span>
 
             <div class="text header-text">
@@ -16,7 +16,7 @@
 
     <div class="menu-bar">
         <div class="menu">
-            <li class="search-box" id="search-box">
+            <!-- <li class="search-box" id="search-box">
                 <i class="bi bi-search icon"></i>
                 <form action="#" method="GET" id="formSearch" >
                     <input 
@@ -29,7 +29,7 @@
                     <button type="submit" id="btnSearch" style="display: none;">Buscar</button>
                 </form>
                 <i class="bi bi-funnel filter" id="filter"></i>
-            </li>
+            </li> -->
             <ul class="menu-links">
                 <li class="nav-links">
                     <a href="{{ route('home.index') }}" class="link">
@@ -86,7 +86,7 @@
                 </a>
                 @else
                 
-                <a href="{{ route('login')}}" title="Sair">
+                <a href="{{ route('login')}}" title="Entrar">
                     <i class="bi bi-door-open icon"></i>
                     <span class="text nav-text">Entrar</span>                    
                 </a>

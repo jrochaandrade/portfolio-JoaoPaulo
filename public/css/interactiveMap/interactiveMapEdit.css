@@ -1,0 +1,15 @@
+.title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.divBtns {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {    
+
+    .card-header {
+        padding: 13px 13px 7px 13px;
+    }
+}

@@ -1,0 +1,151 @@
+#map { 
+    border-radius: 3px;
+    height: 500px;
+    /* width: 1486PX; */
+    width: 100%;
+    border: 1px solid var(--text-color);
+    box-shadow: 0 0 35px 0 rgba(107, 107, 162, 0.5);;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+#btnDelete,
+#find {
+    cursor: pointer;
+}
+
+#actions {
+    width: 216px;    
+}
+
+.formCoordinate {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.formCoordinate label {
+    margin-bottom: 5px;
+}
+
+.btnFindCoordinate {
+    display: flex;
+    flex-direction: column;
+}
+
+.btnsMap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 15px;
+}
+
+#btnSearchCoordinate {
+    margin-left: 10px;
+}
+
+#findCoordinate {
+    width: 283px;
+}
+
+#btnInfoCoord {
+    margin-left: 5px;
+}
+
+#divSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#divSearch a {
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+#formSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+#formSearch button {
+    margin-left: 10px;
+}
+
+#divInputSearch {
+    display: flex;
+    flex-direction: column;    
+}
+
+#divInputSearch input {
+    width: 300px;
+}
+
+@media (max-width: 768px) {
+
+    .card-header {
+        padding: 10px;
+    }
+
+    .inputSend {
+        margin: 0px;
+        display: flex;        
+        justify-content: flex-end;
+    }
+
+    .header {
+        font-size: 24px;
+    }
+    .btnsMap {
+        display: flex;
+        flex-direction: column;
+        
+        align-items: end;
+        margin-bottom: 0px;
+    }
+
+    #refreshMap {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .table-responsive th:nth-child(3),
+    .table-responsive td:nth-child(3) {
+        display: none !important; 
+    }
+    .table-responsive th:nth-child(4),
+    .table-responsive td:nth-child(4) {
+        display: none !important; 
+    }
+
+    #divSearch {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #divSearch a {
+        margin: 0px;
+    }
+    
+    #formSearch {
+        margin-bottom: 5px;
+    }
+
+    #divInputSearch input {
+        width: 100%;
+    }
+
+    #findCoordinate {
+        width: 100%;
+    }
+    .btnsMap {
+        align-items: flex-start;
+    }
+}
+
+
