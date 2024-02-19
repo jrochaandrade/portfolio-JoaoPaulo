@@ -23,8 +23,7 @@
                     <i class="bi bi-plus-square"></i>
                     Enviar Embargo
                 </label>
-                <input type="file" name="kmlFile" id="kmlFile" style="display: none;">
-                <!-- jogar o estilo para o css depois**-->
+                <input type="file" name="kmlFile" id="kmlFile" style="display: none;">                
             </form>
         </div>
     </div>
