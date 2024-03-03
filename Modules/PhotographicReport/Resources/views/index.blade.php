@@ -56,7 +56,7 @@
                 e em seguida clique em gerar PDF.<br><br>
                 Obs.: Se ao baixar o PDF estiver desconfigurado, role a página para visualizar a primeira parte do
                 documento em seguinda clique em gerar pdf novamente.<br><br>
-                Obs.2: Se estiver usando dispositívo móvel, utilizar o navegador em versão Desktop.
+                Obs.2: Se estiver usando dispositívo móvel, utilizar o navegador em versão Desktop. 
             </h5>
             <label for="inputUnit" id="labelDescription">Unidade</label>
             <input type="text" class="form-control inputUnit" id="inputUnit"
