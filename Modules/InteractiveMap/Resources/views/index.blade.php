@@ -24,7 +24,6 @@
                     Enviar Embargo
                 </label>
                 <input type="file" name="kmlFile" id="kmlFile" style="display: none;">
-                <!-- jogar o estilo para o css depois**-->
             </form>
         </div>
     </div>
