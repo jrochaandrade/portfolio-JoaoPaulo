@@ -11,6 +11,12 @@
 |
 */
 
-Route::prefix('offenderregistry')->group(function() {
-    Route::get('/', 'OffenderRegistryController@index');
+
+
+Route::group(['middleware' => ['auth']], function() /* colocando as rotas dentro dessa rota vai proteger do acesso via endereço */
+{
+    Route::prefix('offenderregistry')->group(function() {
+        Route::get('/', 'OffenderRegistryController@index');
+    });
+
 });

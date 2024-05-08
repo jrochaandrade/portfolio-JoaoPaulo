@@ -19,8 +19,8 @@ use Modules\InteractiveMap\app\Http\Controllers\InteractiveMapController;
 }); */
 
 
-Route::group(['middleware' => ['auth']], function() /* colocando as rotas dentro dessa rota vai proteger do acesso via endereço */
-{
+//Route::group(['middleware' => ['auth']], function() /* colocando as rotas dentro dessa rota vai proteger do acesso via endereço */
+//{
 
 Route::get('/mapa', [InteractiveMapController::class, 'index'])->name('mapa.index');
 Route::post('/uploadKml', [InteractiveMapController::class, 'uploadKml'])->name('uploadKml');
@@ -32,4 +32,4 @@ Route::delete('/delete/{id}', [InteractiveMapController::class, 'destroy'])->nam
 
 
 
-});
+//
