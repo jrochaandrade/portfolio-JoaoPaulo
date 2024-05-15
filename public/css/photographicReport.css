@@ -1,0 +1,127 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mainReport {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 122px;
+    height: 117px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.head {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.head p {
+    margin: 0px;
+    font-weight: 600;
+}
+
+.operation {
+    font-weight: 600;
+    margin-bottom: 35px;
+    margin-left: -12px;
+}
+
+.title {
+    margin-top: 50px;
+    font-weight: 600;
+    background-color: rgb(174, 170, 170);
+    margin-left: -10px;
+    margin-bottom: 33px;
+    width: 1040px;
+    padding-left: 5px;
+    text-align: center;
+}
+
+.report {
+    color: black;
+    display: flex;
+    /* padding: 300px; */
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    width: 1080px;
+    /* border: 1px solid black; */
+    padding-top: 50px;
+    
+}
+
+.firstPageA4 {
+    padding: 5px;
+    border: 1px solid black;
+    width: 1061px;
+    min-height: 1135px;
+}
+
+.pageA4 {
+    padding: 5px;
+    border: 1px solid black;
+    width: 1061px;
+    min-height: 1410px;
+    margin-top: 60px;
+}
+
+.page {   
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    padding: 5px;
+    page-break-after: always;
+}
+
+.photo {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    width: 507px;
+    height: 389px;
+    margin-top: 40px;
+}
+
+.photo img {
+    margin-top: 5px;
+    width: 497px;
+    height: 338px;
+    border: 1px solid black;
+
+}
+
+.rotulo {
+    display: flex;
+    padding: 3px;
+    border: 1px solid black;
+    width: 496px;
+    height: 33px;
+}
+
+.textRotulo {
+    width: 399px;
+    height: 26px;
+    /* padding: 4px; */
+    padding-bottom: 8px;
+    padding-left: 1px;
+    margin-left: 6px;
+    border: none;
+}
+

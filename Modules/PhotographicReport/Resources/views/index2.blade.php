@@ -31,7 +31,7 @@
 <!-- <script src="{{ asset('node_modules/exif-js/exif.js') }}" defer></script> -->
 <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 
-<!-- <script src="{{ asset('js/reportScript.js') }}" defer type="module"></script> -->
+<script src="{{ asset('js/reportScript.js') }}" defer type="module"></script>
 
 
 @endsection
@@ -47,41 +47,30 @@
     </div>
     <div class="text">
         <div class="container-fluid content">
-            <h2>Carregar fotos</h2>
-            <form action="{{ route('photos.store') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="operation">Nome da operação:</label>
-                    <input type="text" class="form-control" name="operation" id="operation">
-                    <label for="photos">Escolha as fotos:</label>
-                    <input type="file" class="form-control" name="photos[]" id="photos" multiple>
-                </div>
-                <button type="submit" class="btn btn-primary">Carregar fotos</button>
-            </form>
-            <table class="table-responsive table table-striped" id="dataTable">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Operação</th>
-                            <th>Data de criação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (@$reports as $data )
-                            <tr>
-                                <td>{{ $data->id }}</td>
-                                <td>{{ $data->operation }}</td>
-                                <td>{{ $data->created_at }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table> 
-                <div class="d-flex justify-content-end pagination">
-                    {{ $reports->links('pagination::bootstrap-5') }}
-                </div>             
+            <h5 class="h5">
+                Digite qual a sua unidade, um título para o relatório, carregue as imagens, aguarde até todas as imagens
+                serem carregadas
+                e em seguida clique em gerar PDF.<br><br>
+                Obs.: Se ao baixar o PDF estiver desconfigurado, role a página para visualizar a primeira parte do
+                documento em seguinda clique em gerar pdf novamente.<br><br>
+                Obs.2: Se estiver usando dispositívo móvel, utilizar o navegador em versão Desktop. 
+            </h5>
+            <label for="inputUnit" id="labelDescription">Unidade</label>
+            <input type="text" class="form-control inputUnit" id="inputUnit"
+                placeholder="Ex.: 3ª Companhia de Polícia Ambiental" value="3ª Companhia de Polícia Ambiental">
+            <label for="inputDesc" id="labelDescription">Título do relatório</label>
+            <input type="text" class="form-control inputDesc" id="inputDesc"
+                placeholder="Ex.: Relatório Fotográfico Missão Guardiões do Bioma 3 ET/2023 - 01 a 15/05/2023"
+                value="Relatório fotográfico ">
+            <div class="divButtons">                
+                <label for="fileInput" class="btn btn-primary btnInput">Carregar imagens</label>
+                <input type="file" id="fileInput" name="images[]" multiple style="display: none;">
+                <a id="btnPdf" class="btn btn-success">Gerar PDF</a>                
             </div>
             <div class="main" id="main">
-                
+                <div class="page" id="page">
+                    <div class="photoContainer" id="photoContainer"></div>
+                </div>
             </div>
         </div>
     </div>

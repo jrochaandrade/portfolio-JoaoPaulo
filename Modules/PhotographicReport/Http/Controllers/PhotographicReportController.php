@@ -3,8 +3,11 @@
 namespace Modules\PhotographicReport\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Modules\PhotographicReport\Models\Photo;
+use Modules\PhotographicReport\Models\PhotographicReport;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 //use Illuminate\Routing\Controller;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Get;
@@ -26,7 +29,10 @@ class PhotographicReportController extends Controller
         // Obter as imagens da sessão
     $images = Session::get('images', []);
 
-    return view('photographicreport::index', compact('images'));
+    $reports = PhotographicReport::with('photo')->paginate(10);
+
+
+    return view('photographicreport::index', compact('images', 'reports'));
     }
 
     /* public function upload(Request $request) 
@@ -76,17 +82,64 @@ class PhotographicReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $report = PhotographicReport::create([
+            'operation' => $request->operation
+        ]);
 
+        foreach ($request->file('photos') as $file) {
+            $path = $file->store('photos',  'public');
+            // Extrair metadados EXIF da imagem
+            $exif = @exif_read_data($file->getRealPath());
+            //dd($exif);
+            $dataTime = '';
+            if($exif && isset($exif['DateTime'])) {
+                $dataTime = $exif['DateTime'];
+                // Converter data e hora EXIF para o formato SQL
+                $dataTime = date('Y-m-d H:i:s', strtotime($dataTime));
+            } else {
+                // Define o valor padrão cados não exista metadados da data/hora
+                $dataTime = now();
+            }
+            Photo::create([
+                'path' => $path,
+                'date_time' => $dataTime,
+                'photographic_report_id' => $report->id    
+            ]);
+        }
+        return back()->with('success', 'Fotos carregadas e relatório criado com sucesso!');
+    }
     /**
      * Show the specified resource.
      * @param int $id
      * @return Renderable
-     */
+     */  
+
     public function show($id)
+    {   
+        $photos = Photo::where('photographic_report_id', $id)
+                ->orderBy('date_time', 'asc')
+                ->get();
+
+        $firstPagePhotos = $photos->slice(0, 4);
+
+        $otherPhotos = $photos->slice(4);
+
+        foreach ($firstPagePhotos as $photo) {
+            $photo->base64 = $this->convertToBase64($photo->path);
+        }
+
+        foreach ($otherPhotos as $photo) {
+            $photo->base64 = $this->convertToBase64($photo->path);
+        }
+        //dd($photos);
+        return view('photographicreport::show', compact('firstPagePhotos', 'otherPhotos'));
+    }
+
+    private function convertToBase64($path)
     {
-        return view('photographicreport::show');
+        $file = Storage::get($path);
+        $type = Storage::mimeType($path);
+        $base64 = 'data:' . $type . ';base64' . base64_encode($file);
     }
 
     /**

@@ -18,6 +18,8 @@ use Modules\PhotographicReport\Http\Controllers\PhotographicReportController;
 }); */
 
 Route::get('/report', [PhotographicReportController::class, 'index'])->name('report.index');
+Route::get('/show/{id}', [PhotographicReportController::class, 'show'])->name('report.show');
+Route::post('/photos', [PhotographicReportController::class, 'store'])->name('photos.store');
 //Route::post('/upload', [PhotographicReportController::class, 'upload'])->name('report.upload');
 //Route::post('/upload', 'PhotographicReportController@upload')->name('report.upload');
 
