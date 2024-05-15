@@ -125,3 +125,11 @@
     border: none;
 }
 
+/* @media print {
+    @page {
+        margin: 10px;
+    }
+    body {
+        margin: 10px;
+    }
+} */

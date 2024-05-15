@@ -62,14 +62,14 @@
                         <img src="/images/logo2.png" class="logo" alt="logoPM">
                         <div class="head">
                             <p>GOVERNO DO ESTADO DE RONDÔNIA</p>
-                            <p>SECRETARIA DE ESTADO DA SEGURANÇA, DEFESA E CIDADANIA</p>
                             <p>POLICIA MILITAR DO ESTADO DE RONDÔNIA</p>
                             <p>BATALHÃO DE POLICIA AMBIENTAL</p>
                         </div>
                         <img src="/images/logo3.png" class="logo" alt="logoPM">
                     </div>
                     <P class="title">RELATÓRIO FOTOGRÁFICO</P>
-                    <p class="operation">Operação Parque Estadual Guajará Mirim 01 a 17/02/2024</p>
+                    <!-- <p class="operation">Operação Parque Estadual Guajará Mirim 01 a 17/02/2024</p> -->
+                    <!-- <input type="text" class="form-control" placeholder="Operação Protetor do Bioma 01 a 15/03/2024"> -->
                     <div class="firstPageA4 row mb-5">
                         <div class="page">
                             @foreach ($firstPagePhotos as $index => $photo)

@@ -64,6 +64,7 @@
                             <th>ID</th>
                             <th>Operação</th>
                             <th>Data de criação</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,6 +73,14 @@
                                 <td>{{ $data->id }}</td>
                                 <td>{{ $data->operation }}</td>
                                 <td>{{ $data->created_at }}</td>
+                                <td>
+                                    <a href="{{ route('report.show', ['id'=>$data->id]) }}">
+                                        <span class="fa-stack fa-sm">
+                                            <i class="far fa-square fa-stack-2x"></i>
+                                            <i class="fa-solid fa-eye fa-stack-1x"></i>
+                                        </span>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
