@@ -6,6 +6,22 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous">
+</script>
+
 <script src="{{ asset('js/printThis.js') }}" defer type="module"></script>
 
 <script src="{{ asset('js/photographicReport.js') }}" defer type="module"></script>
@@ -66,6 +82,7 @@
                 </div>
                 <div class="divBtn">
                     <a class="btn btn-success btnPrint" id="btnPrint">Imprimir</a>
+                    <a class="btn btn-success btnPdf" id="btnPdf">Gerar PDF</a>
                     <a class="btn btn-primary btnPrint" id="btnBack">Voltar</a>
                 </div>
             </div>

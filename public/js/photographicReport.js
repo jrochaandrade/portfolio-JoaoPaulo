@@ -24,3 +24,43 @@ document.getElementById('btnBack').addEventListener('click', () => {
     window.history.back();
     
 })
+
+
+// Espera até que a página esteja completamente carregada
+window.addEventListener('load', function() {
+    const btnPdf = document.getElementById('btnPdf');
+    btnPdf.addEventListener('click', generatePdf);
+});
+
+async function generatePdf() {
+    const pages = document.querySelectorAll('.borderPage');
+    if (pages.length === 0) {
+        console.error('Nenhuma página encontrada para gerar PDF.');
+        return;
+    }
+
+    // Configurações do jsPDF
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const options = {
+        scale: 2,
+        useCORS: true,
+    };
+
+    for (let i = 0; i < pages.length; i++) {
+        const page = pages[i];
+        const canvas = await html2canvas(page, options);
+        const imgData = canvas.toDataURL('image/jpeg', 0.98);
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        if (i > 0) {
+            pdf.addPage();
+        }
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+    }
+
+    pdf.save('Relatório Fotográfico.pdf');
+}
+
+
