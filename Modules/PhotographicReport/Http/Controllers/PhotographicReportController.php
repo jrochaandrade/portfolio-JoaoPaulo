@@ -114,7 +114,34 @@ class PhotographicReportController extends Controller
      * @return Renderable
      */  
 
-    public function show($id)
+     public function show($id)
+     {   
+        $report = PhotographicReport::with('photo')->findOrFail($id);
+
+         $photos = Photo::where('photographic_report_id', $id)
+                 ->orderBy('date_time', 'asc')
+                 ->get();
+ 
+         /* $firstPagePhotos = $photos->slice(0, 4);
+ 
+         $otherPhotos = $photos->slice(4); */
+ 
+         foreach ($photos as $photo) {
+             $photo->base64 = $this->convertToBase64($photo->path);
+         }
+
+         $totalPages = ceil($photos->count() / 3);
+ 
+         /* foreach ($otherPhotos as $photo) {
+             $photo->base64 = $this->convertToBase64($photo->path);
+         } */
+         //dd($photos);
+         return view('photographicreport::show', compact('photos', 'totalPages', 'report'));
+     }
+
+
+
+    /* public function show2($id)
     {   
         $photos = Photo::where('photographic_report_id', $id)
                 ->orderBy('date_time', 'asc')
@@ -133,7 +160,7 @@ class PhotographicReportController extends Controller
         }
         //dd($photos);
         return view('photographicreport::show', compact('firstPagePhotos', 'otherPhotos'));
-    }
+    } */
 
     private function convertToBase64($path)
     {

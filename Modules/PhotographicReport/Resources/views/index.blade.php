@@ -52,7 +52,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="operation">Nome da operação:</label>
-                    <input type="text" class="form-control" name="operation" id="operation">
+                    <input type="text" class="form-control" name="operation" id="operation" value="Relatório fotográfico - ">
                     <label for="photos">Escolha as fotos:</label>
                     <input type="file" class="form-control" name="photos[]" id="photos" multiple>
                 </div>

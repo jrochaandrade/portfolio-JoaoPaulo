@@ -19,3 +19,8 @@ $(document).ready(function() {
         })
     }) */
 })
+
+document.getElementById('btnBack').addEventListener('click', () => {
+    window.history.back();
+    
+})
