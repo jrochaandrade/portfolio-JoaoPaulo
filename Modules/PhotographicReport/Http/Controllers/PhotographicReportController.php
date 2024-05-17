@@ -29,8 +29,7 @@ class PhotographicReportController extends Controller
         // Obter as imagens da sessão
     $images = Session::get('images', []);
 
-    $reports = PhotographicReport::with('photo')->paginate(10);
-
+    $reports = PhotographicReport::with('photo')->paginate(5);
 
     return view('photographicreport::index', compact('images', 'reports'));
     }
@@ -107,6 +106,7 @@ class PhotographicReportController extends Controller
             ]);
         }
         return back()->with('success', 'Fotos carregadas e relatório criado com sucesso!');
+       //return view('photographicreport::show', compact('report'));
     }
     /**
      * Show the specified resource.
@@ -176,7 +176,29 @@ class PhotographicReportController extends Controller
      */
     public function edit($id)
     {
-        return view('photographicreport::edit');
+
+        $report = PhotographicReport::with('photo')->findOrFail($id);
+
+         $photos = Photo::where('photographic_report_id', $id)
+                 ->orderBy('date_time', 'asc')
+                 ->get();
+ 
+         /* $firstPagePhotos = $photos->slice(0, 4);
+ 
+         $otherPhotos = $photos->slice(4); */
+ 
+         foreach ($photos as $photo) {
+             $photo->base64 = $this->convertToBase64($photo->path);
+         }
+
+         $totalPages = ceil($photos->count() / 3);
+ 
+         /* foreach ($otherPhotos as $photo) {
+             $photo->base64 = $this->convertToBase64($photo->path);
+         } */
+         //dd($photos);
+
+        return view('photographicreport::edit', compact('photos', 'totalPages', 'report'));
     }
 
     /**
@@ -187,7 +209,58 @@ class PhotographicReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $report = PhotographicReport::findOrFail($id);
+
+        // Atualizar nome operação
+        $report->operation = $request->input('operation');
+        $report->save();
+
+        // Exclui fotos
+        if ($request->has('delete_photos')) {
+            foreach ($request->input('delete_photos') as $photoId) {
+                $photo = Photo::findOrFail($photoId);
+                Storage::disk('public')->delete($photo->path);
+                $photo->delete();
+            }
+        }
+
+        // Substitui fotos
+        // Substitui fotos
+        if ($request->hasFile('photo')) {
+            foreach ($request->file('photo') as $photoId => $file) {
+                $photo = Photo::findOrFail($photoId);
+                Storage::disk('public')->delete($photo->path);
+                $path = $file->store('photos', 'public'); // Certifique-se de armazenar no disco 'public'
+                $photo->path = $path;
+                $photo->save();
+            }
+        }
+
+        // Adicionar novas fotos
+        if ($request->hasFile('newPhotos')) {
+            foreach ($request->file('newPhotos') as $file) {
+                $path = $file->store('photos',  'public');
+                // Extrair metadados EXIF da imagem
+                $exif = @exif_read_data($file->getRealPath());
+                //dd($exif);
+                $dataTime = '';
+                if($exif && isset($exif['DateTime'])) {
+                    $dataTime = $exif['DateTime'];
+                    // Converter data e hora EXIF para o formato SQL
+                    $dataTime = date('Y-m-d H:i:s', strtotime($dataTime));
+                } else {
+                    // Define o valor padrão cados não exista metadados da data/hora
+                    $dataTime = now();
+                }
+                Photo::create([
+                    'path' => $path,
+                    'date_time' => $dataTime,
+                    'photographic_report_id' => $report->id    
+                ]);
+            }
+        }
+
+        return redirect()->route('report.show', $report->id)->with('success', 'Relatório atualizado com sucesso');
     }
 
     /**
@@ -197,6 +270,27 @@ class PhotographicReportController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //dd('teste');
+        $report = PhotographicReport::find($id);
+        //dd($report);
+        $photos = Photo::where('photographic_report_id', $id)->get();
+
+        foreach ($photos as $photo) {
+            if (Storage::disk('public')->exists($photo->path)) {
+                Storage::disk('public')->delete($photo->path);
+            }
+            $photo->delete();
+        }
+
+        $report->delete();
+
+        //$report->save();
+
+        return redirect()->back();
+    }
+
+    public function destroyPhoto($id)
+    {
+        dd('teste');
     }
 }

@@ -1,0 +1,31 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.content h2 {
+    margin-bottom: 24px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+#operation {
+    width: 900px;
+}
+
+.divLoadPhotos {
+    display: flex;
+    align-items: flex-end;
+}
+
+.labelPhotos {
+    margin-bottom: 20px;
+    margin-left: 11px;
+}
