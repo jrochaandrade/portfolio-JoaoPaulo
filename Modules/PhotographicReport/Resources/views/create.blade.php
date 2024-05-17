@@ -2,7 +2,7 @@
 
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/report.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('css/report.css') }}"> -->
 <link rel="stylesheet" href="{{ asset('css/photographicReport-create.css') }}">
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

@@ -50,3 +50,24 @@ input {
 }
 
 
+@media (max-width: 768px) {
+
+    .card-header {                
+        padding: 8px;        
+        min-height: 157px;
+    }
+
+    .titleHeader {
+        height: 146px;
+        padding: 12px;
+        flex-direction: column;
+    }
+
+    .card-footer {
+        position: relative;
+        width: 100%;
+        left: 0px;
+    }
+
+}
+

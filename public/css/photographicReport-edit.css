@@ -208,10 +208,9 @@ h2 {
 
 .divBtn {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 200px;
-    margin-top: 34px;
+    width: 100%;
+    margin-bottom: 20px;
+    justify-content: center;
 }
 
 .divBtn2 {
@@ -230,13 +229,14 @@ h2 {
     width: 765px;
 }
 
+.btnSubmit {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
 .btnBack {
     margin-top: 10px;
 
-}
-
-.btnSubmit {
-    margin-top: 10px;
 }
 
 #loader {
@@ -297,8 +297,7 @@ h2 {
 
 @media (max-width: 768px) {
 
-    .card-header {    
-            
+    .card-header {                
         padding: 8px;        
         min-height: 127px;
     }
@@ -338,6 +337,30 @@ h2 {
 
     .labelOperation {        
         font-size: 16px;
-        margin: 0px;
+        margin-bottom: 10px;
+        margin-left: 0px;
+        /* margin: 0px; */
+    }
+
+    .divBtn2 {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .divNewPhotos label {
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-left: 0px;
+        font-weight: 600;
+        /* color: black; */
+        font-size: 16px;
+    }
+
+    .divNewPhotos input {
+        margin-bottom: 10px;
+        margin-left: 0px;
+        margin-top: 3px;
     }
 }

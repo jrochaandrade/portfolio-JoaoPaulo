@@ -40,4 +40,9 @@ document.getElementById('btnGeneration').addEventListener('click', function (e) 
     document.getElementById('btnSubmit').click();
 })
 
+document.getElementById('btnSubmitClick').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('btnSubmit').click();
+})
+
 

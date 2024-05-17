@@ -50,7 +50,7 @@
                 <p class="pFeedback" >Gerando PDF, por favor, aguarde...</p>
             </div>
         </div>
-        <div class="container-fluid content">
+        <div class="container-fluid content" style="padding-bottom: 10px;">
             <h2>Visualizar relatório, imprimir ou gerar PDF</h2>
             <div class="mainReport" id="mainReport"> 
                 <div class="report" id="report">
@@ -83,13 +83,13 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="divBtn">
-                    <a class="btn btn-success btnPdf">Gerar PDF</a>
-                    <a class="btn btn-secondary btnPrint">Imprimir</a>
-                    <a href="{{ route('report.edit', ['id' => $report->id]) }}" class="btn btn-warning btnBack" ">Editar</a>
-                    <a href="{{ route('report.index') }}" class="btn btn-primary btnBack"">Voltar</a>
-                </div>
             </div>
+        </div>
+        <div class="divBtn">
+            <a class="btn btn-success btnPdf">Gerar PDF</a>
+            <a class="btn btn-secondary btnPrint">Imprimir</a>
+            <a href="{{ route('report.edit', ['id' => $report->id]) }}" class="btn btn-warning btnEdit" ">Editar</a>
+            <a href="{{ route('report.index') }}" class="btn btn-primary btnBack"">Voltar</a>
         </div>
     </div>
 </div>

@@ -48,7 +48,7 @@
                 <p class="pFeedback" >Editar Relatório, por favor, aguarde...</p>
             </div>
         </div>
-        <div class="container-fluid content">
+        <div class="container-fluid content" style="padding-bottom: 10px;">
             <h2>Substituir, excluir ou adicionar fotos</h2>
             <form action="{{ route('report.update', $report->id) }}" method="post" enctype="multipart/form-data">
                 <div class="divOperation">
@@ -93,13 +93,13 @@
                             <!-- </div> -->
                         @endforeach
                     </div>
-                    <div class="divBtn">
-                        
-                        <button type="submit" class="btn btn-success btnSubmit" id="btnSubmit">Gerar relatório</button>                        
-                        <a href="{{ route('report.index') }}" class="btn btn-primary btnBack"">Voltar</a>
-                    </div>
+                    <button type="submit" class="btn btn-success btnSubmit" id="btnSubmit" hidden>Gerar relatório</button>                        
                 </div>
             </form>
+        </div>
+        <div class="divBtn">                        
+            <button type="submit" class="btn btn-success btnSubmit" id="btnSubmitClick">Gerar relatório</button>                        
+            <a href="{{ route('report.index') }}" class="btn btn-primary btnBack"">Voltar</a>
         </div>
     </div>
 </div>

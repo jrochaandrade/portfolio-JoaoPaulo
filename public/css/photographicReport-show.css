@@ -179,16 +179,24 @@ h2 {
 .divBtn {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 345px;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 21px;
 }
 
 .btnPdf {
     margin-top: 10px;
+    margin-right: 5px;
 }
 
 .btnPrint {
     margin-top: 10px;
+    margin-right: 5px;
+}
+
+.btnEdit {
+    margin-top: 10px;
+    margin-right: 5px;    
 }
 
 .btnBack {
