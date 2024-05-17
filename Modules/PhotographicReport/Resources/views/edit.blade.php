@@ -36,7 +36,7 @@
         <div class="titleHeader">
             <h1>Relatório Fotográfico</h1>
             <div class="divBtn2">
-                <button class="btn btn-success btnGeneration" id="btnGeneration">Gerar relatório</button>                
+                <button class="btn btn-success btnGeneration" id="btnGeneration">Salvar relatório</button>                
                 <a href="{{ route('report.index') }}" class="btn btn-primary btnBack" ">Voltar</a>
             </div>
         </div>
@@ -98,7 +98,7 @@
             </form>
         </div>
         <div class="divBtn">                        
-            <button type="submit" class="btn btn-success btnSubmit" id="btnSubmitClick">Gerar relatório</button>                        
+            <button type="submit" class="btn btn-success btnSubmit" id="btnSubmitClick">Salvar relatório</button>                        
             <a href="{{ route('report.index') }}" class="btn btn-primary btnBack"">Voltar</a>
         </div>
     </div>
