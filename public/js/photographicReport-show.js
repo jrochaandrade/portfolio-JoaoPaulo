@@ -29,7 +29,7 @@ async function generatePdf() {
     // Mostrar feeedback de carregamento
     document.getElementById('loader').style.display = 'block';
 
-    const pages = document.querySelectorAll('.borderPageFirst');
+    const pages = document.querySelectorAll('.borderPage');
     if (pages.length === 0) {
         console.error('Nenhuma página encontrada para gerar PDF.');
         document.getElementById('loader').style.display = 'none';

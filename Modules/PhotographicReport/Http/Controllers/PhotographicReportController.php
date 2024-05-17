@@ -71,6 +71,7 @@ class PhotographicReportController extends Controller
      */
     public function create()
     {
+        
         return view('photographicreport::create');
     }
 
@@ -82,14 +83,14 @@ class PhotographicReportController extends Controller
     public function store(Request $request)
     {
         $report = PhotographicReport::create([
-            'operation' => $request->operation
+            'operation' => $request->operation,
+            'user' => $request->user
         ]);
 
         foreach ($request->file('photos') as $file) {
             $path = $file->store('photos',  'public');
             // Extrair metadados EXIF da imagem
             $exif = @exif_read_data($file->getRealPath());
-            //dd($exif);
             $dataTime = '';
             if($exif && isset($exif['DateTime'])) {
                 $dataTime = $exif['DateTime'];
@@ -105,8 +106,8 @@ class PhotographicReportController extends Controller
                 'photographic_report_id' => $report->id    
             ]);
         }
-        return back()->with('success', 'Fotos carregadas e relatório criado com sucesso!');
-       //return view('photographicreport::show', compact('report'));
+        //return back()->with('success', 'Fotos carregadas e relatório criado com sucesso!');
+        return redirect()->route('report.index')->with('success', 'Fotos carregadas e relatório criado com sucesso!');
     }
     /**
      * Show the specified resource.

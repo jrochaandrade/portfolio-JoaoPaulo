@@ -95,9 +95,10 @@ h2 {
 .divNewPhotos label {
     margin-top: 20px;
     margin-right: 10px;
-    margin-left: 129px;
+    margin-left: 131px;
     font-weight: 600;
-    color: black;
+    /* color: black; */
+    font-size: 20px;
 }
 
 .divNewPhotos input {
@@ -110,7 +111,7 @@ h2 {
     margin-bottom: 5px;
     margin-left: 129px;
     font-weight: 600;
-    color: black;
+    /* color: black; */
     font-size: 20px;
 }
 
@@ -138,6 +139,7 @@ h2 {
     width: 1060px;
     /* border: 1px solid black; */
     /* padding-top: 50px; */
+    background-color: white;
     
 }
 
@@ -225,7 +227,7 @@ h2 {
 
 .newPhotos {
     margin-top: 10px;
-    width: 412px;
+    width: 765px;
 }
 
 .btnBack {

@@ -10,7 +10,7 @@ class Photo extends Model
 {
     use HasFactory;
     //use SoftDeletes;
-    protected $fillable = ['id', 'path', 'date_time', 'description', 'photographic_report_id'];
+    protected $fillable = ['id', 'path', 'date_time', 'photographic_report_id'];
     
     public function photographicReport()
     {

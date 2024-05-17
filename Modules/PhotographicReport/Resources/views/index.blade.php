@@ -20,13 +20,15 @@
 <div class="home">
     <div class="card-header">
         <div class="titleHeader">
-            <h1>Relatório Fotográfico</h1>
+            <h1>Visualizar todos os relatório fotográficos</h1>
+            <div class="divBtn2">                               
+                <a href="{{ route('report.create') }}" class="btn btn-success btnCreate">Criar relatório</a>
+            </div>
         </div>
     </div>
     <div class="text">
         <div class="container-fluid content">
-            <h2>Criar relatório fotográfico</h2>
-            <form action="{{ route('photos.store') }}" method="post" enctype="multipart/form-data">
+            <!-- <form action="{{ route('report.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group divLoadPhotos">
                     <div class="divTitle">
@@ -38,13 +40,14 @@
                         <input type="file" class="form-control" name="photos[]" id="photos" multiple hidden>
                     </div>
                 </div>
-                <!-- <button type="submit" class="btn btn-primary">Carregar fotos</button> -->
-            </form>
+                
+            </form> -->
             <table class="table-responsive table table-striped" id="dataTable">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Operação</th>
+                            <th>Nome do Policial</th>
                             <th>Data de criação</th>
                             <th>Ações</th>
                         </tr>
@@ -54,8 +57,9 @@
                             <tr>
                                 <td>{{ $data->id }}</td>
                                 <td>{{ $data->operation }}</td>
-                                <td>{{ $data->created_at }}</td>
-                                <td>
+                                <td>{{ $data->user }}</td>
+                                <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y H:i') }}</td>
+                                <td class="actions">
                                     <a href="{{ route('report.show', ['id'=>$data->id]) }}">
                                         <span class="fa-stack fa-sm">
                                             <i class="far fa-square fa-stack-2x"></i>

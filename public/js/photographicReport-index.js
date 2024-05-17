@@ -13,7 +13,7 @@ window.deleteData = function(id) {
         if(result.value) {
             var form = $('<form>', {
                 'method': 'POST',
-                'action': '/photos/' + id,
+                'action': '/report/' + id,
             });
             var hiddenInput = $('<input>', {
                 'name': '_method',

@@ -53,7 +53,7 @@
             <form action="{{ route('report.update', $report->id) }}" method="post" enctype="multipart/form-data">
                 <div class="divOperation">
                     <label for="operation" class="labelOperation">Substituir nome da operação:</label>
-                    <input type="text" class="form-control title" name="operation" id="operation" value="{{ $report->operation }}">
+                    <input type="text" class="form-control title" name="operation" id="operation" value="{{ $report->operation }}" maxlength="63">
                 </div>
                 <div class="divNewPhotos">
                     <label for="">Adicionar novas fotos:</label>
@@ -65,7 +65,7 @@
                 
                     <div class="report" id="report"> 
                         @foreach ($photos->chunk(3) as $page => $chunk)
-                            <div class="borderPageFirst">
+                            <!-- <div class="borderPageFirst"> -->
                                 <div class="borderPage">
                                     <div class="header">
                                         <img src="/images/logo1.png" class="logo1" alt="logoPM">
@@ -90,7 +90,7 @@
                                         <span class="footer">Página {{ $page + 1 }}/{{ $totalPages }}</span>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                         @endforeach
                     </div>
                     <div class="divBtn">
