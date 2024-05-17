@@ -35,7 +35,7 @@
     <div class="card-header">
         <div class="titleHeader">
             <h1>Relatório Fotográfico</h1>
-            <div class="divBtn">
+            <div class="divBtn2">
                 <a class="btn btn-success btnPdf" ">Gerar PDF</a>
                 <a class="btn btn-secondary btnPrint" ">Imprimir</a>
                 <a href="{{ route('report.edit', ['id' => $report->id]) }}" class="btn btn-warning btnBack" ">Editar</a>
