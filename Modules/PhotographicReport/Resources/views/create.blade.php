@@ -9,7 +9,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 
-<script src="{{ asset('js/photographicReport-index.js') }}" defer type="module"></script>
+<script src="{{ asset('js/photographicReport-create.js') }}" defer type="module"></script>
 
 
 @endsection
@@ -48,7 +48,7 @@
                         <input type="file" class="form-control" name="photos[]" id="photos" multiple>
                     </div>
                 </div>
-                <!-- <button type="submit" class="btn btn-primary">Carregar fotos</button> -->
+                <button type="submit" class="btn btn-primary">Criar relatório</button>
             </form>
                          
             </div>

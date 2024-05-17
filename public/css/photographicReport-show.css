@@ -312,6 +312,10 @@ h2 {
         width: 100%;
         margin-bottom: 21px;
     }
+
+    .pFeedback {
+        width: 157px;
+    }
 }
 
 .divReport {

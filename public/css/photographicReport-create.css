@@ -54,11 +54,11 @@ input {
 
     .card-header {                
         padding: 8px;        
-        min-height: 157px;
+        min-height: 126px;
     }
 
     .titleHeader {
-        height: 146px;
+        height: 117px;
         padding: 12px;
         flex-direction: column;
     }
