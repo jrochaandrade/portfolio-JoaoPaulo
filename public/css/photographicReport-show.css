@@ -7,7 +7,7 @@
 .titleHeader {
     display: flex;
     justify-content: space-between;
-    width: 1827px;
+    width: 100%;
 }
 
 .mainReport {
@@ -286,7 +286,7 @@ h2 {
     .titleHeader {
         display: flex;
         justify-content: space-between;
-        width: 1827px;
+        /* width: 1827px; */
         flex-direction: column;
         height: 85px;
     }

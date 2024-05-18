@@ -7,7 +7,7 @@
 .titleHeader {
     display: flex;
     justify-content: space-between;
-    width: 1827px;
+    width: 100%;
 }
 
 .mainReport {
@@ -83,36 +83,42 @@ h2 {
     display: flex;
     flex-direction: column;
     height: 70px;
+    align-items: center;
+    margin-right: 416px;
 }
 
 .divNewPhotos {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    align-items: center;
+    margin-right: 294px;
     
 }
 
 .divNewPhotos label {
     margin-top: 20px;
     margin-right: 10px;
-    margin-left: 131px;
+    /* margin-left: 131px; */
     font-weight: 600;
     /* color: black; */
     font-size: 20px;
+    margin-right: 543px;
 }
 
 .divNewPhotos input {
     margin-bottom: 10px;
-    margin-left: 128px;
+    /* margin-left: 128px; */
     margin-top: 3px;
 }
 
 .labelOperation {
-    margin-bottom: 5px;
-    margin-left: 129px;
+    margin-bottom: 9px;
+    /* margin-left: 129px; */
     font-weight: 600;
     /* color: black; */
     font-size: 20px;
+    margin-right: 356px;
 }
 
 .title {
