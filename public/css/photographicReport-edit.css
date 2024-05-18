@@ -309,7 +309,8 @@ h2 {
     }
 
     .title {
-        margin-left: 0px;
+        margin-left: 411px;
+        margin-top: 5px;
     }
 
     .titleHeader {
@@ -339,13 +340,15 @@ h2 {
     .divOperation {
         display: flex;
         flex-direction: column;
+        margin-right: 0px;
     }
 
     .labelOperation {        
         font-size: 16px;
         margin-bottom: 10px;
         margin-left: 0px;
-        /* margin: 0px; */
+        margin: 0px;
+        margin-right: 129px;
     }
 
     .divBtn2 {
@@ -357,16 +360,23 @@ h2 {
 
     .divNewPhotos label {
         margin-top: 10px;
-        margin-right: 10px;
+        margin-right: 0px;
         margin-left: 0px;
         font-weight: 600;
         /* color: black; */
         font-size: 16px;
+        margin-right: 181px;
     }
 
     .divNewPhotos input {
         margin-bottom: 10px;
-        margin-left: 0px;
+        margin-left: 411px;
+        margin-right: 0px;
         margin-top: 3px;
+    }
+    .divNewPhotos {
+        
+        margin-right: 0px;
+        
     }
 }
