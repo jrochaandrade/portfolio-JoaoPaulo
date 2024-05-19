@@ -48,6 +48,10 @@
                 <p class="pFeedback" >Editar Relatório, por favor, aguarde...</p>
             </div>
         </div>
+        <div class="scrollButtons">
+            <button class="scrollButton" id="scrollUp"><i class="fa-solid fa-up-long"></i></button>
+            <button class="scrollButton" id="scrollDown"><i class="fa-solid fa-down-long"></i></button>
+        </div>
         <div class="container-fluid content" style="padding-bottom: 10px;">
             <h2>Substituir, excluir ou adicionar fotos</h2>
             <form action="{{ route('report.update', $report->id) }}" method="post" enctype="multipart/form-data">

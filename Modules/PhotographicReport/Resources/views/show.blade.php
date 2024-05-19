@@ -50,6 +50,10 @@
                 <p class="pFeedback" >Gerando PDF, por favor, aguarde...</p>
             </div>
         </div>
+        <div class="scrollButtons">
+            <button class="scrollButton" id="scrollUp"><i class="fa-solid fa-up-long"></i></button>
+            <button class="scrollButton" id="scrollDown"><i class="fa-solid fa-down-long"></i></button>
+        </div>
         <div class="container-fluid content" style="padding-bottom: 10px;">
             <h2>Visualizar relatório, imprimir ou gerar PDF</h2>
             <div class="mainReport" id="mainReport"> 
@@ -85,6 +89,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="divBtn">
             <a class="btn btn-success btnPdf">Gerar PDF</a>
             <a class="btn btn-secondary btnPrint">Imprimir</a>

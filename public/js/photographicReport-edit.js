@@ -45,4 +45,20 @@ document.getElementById('btnSubmitClick').addEventListener('click', function (e)
     document.getElementById('btnSubmit').click();
 })
 
+// Levar página para o topo ao clicar no botão acima
+document.getElementById('scrollUp').addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+})
+
+// Levar página para o final ao clicar no botão abaixo
+document.getElementById('scrollDown').addEventListener('click', () => {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    })
+})
+
 
