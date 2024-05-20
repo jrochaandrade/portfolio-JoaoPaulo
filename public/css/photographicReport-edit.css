@@ -34,14 +34,14 @@ h2 {
 }
 
 .logo1 {
-    width: 214px;
-    height: 104px;
+    width: 185px;
+    height: 82px;
     margin-left: 32px;
 }
 
 .logo {
-    width: 95px;
-    height: 98px;
+    width: 75px;
+    height: 79px;
 }
 
 .divLogos {
@@ -57,10 +57,12 @@ h2 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-top: 21px;
+    margin-bottom: 50px;
 }
 
 .head {
-    margin-top: 20px;
+    margin-top: 9px;
     margin-left: 26px;
     display: flex;
     flex-direction: column;

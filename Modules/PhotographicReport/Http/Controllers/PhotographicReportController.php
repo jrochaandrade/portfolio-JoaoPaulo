@@ -29,7 +29,9 @@ class PhotographicReportController extends Controller
         // Obter as imagens da sessão
     $images = Session::get('images', []);
 
-    $reports = PhotographicReport::with('photo')->paginate(5);
+    $reports = PhotographicReport::with('photo')
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
 
     return view('photographicreport::index', compact('images', 'reports'));
     }
