@@ -362,3 +362,12 @@ h2 {
     margin-left: 8px;
     font-weight: 600;
 }
+
+@media (max-width: 370px) {
+
+    .card-header {                
+        padding: 8px;        
+        min-height: 171px;
+    }
+     
+}

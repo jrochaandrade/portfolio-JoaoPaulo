@@ -328,7 +328,37 @@ h2 {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
+
+    .card-header {        
+        min-height: 0px;
+    }
+
+    .titleHeader {        
+        flex-direction: row;
+        height: 100%;
+        
+    }
+
+    .divOperation {        
+        margin-right: 0px;
+    }
+
+    .divNewPhotos {
+        margin-right: 0px;
+    }
+
+    .divNewPhotos label { 
+        margin-right: 422px;
+    }
+
+    .divNewPhotos input {
+        margin-left: 128px;
+    }
+
+}
+
+@media (max-width: 841px) {
 
     .card-header {                
         padding: 8px;        
@@ -406,4 +436,25 @@ h2 {
         margin-right: 0px;
         
     }
+}
+
+@media (max-width: 370px) {
+
+    .card-header {                
+        padding: 8px;        
+        min-height: 171px;
+    }
+
+    .content h2 {        
+        font-size: 21px;
+    }   
+
+    .labelOperation {        
+        margin-right: 112px;
+    }
+
+    .divNewPhotos label {        
+        margin-right: 164px;
+    }
+
 }
