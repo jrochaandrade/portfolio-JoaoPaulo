@@ -75,3 +75,15 @@ table {
     }
 
 }
+
+
+@media (max-width: 841px) {
+
+    .card-header {       
+        max-height: 122px;        
+    }
+
+    .titleHeader {
+        flex-direction: column;
+    }
+}
