@@ -2,6 +2,7 @@
 
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/index/sidebarHome.css') }}">
+<link rel="stylesheet" href="{{ asset('css/index/index.css') }}">
 <script src="{{ asset('js/index/scriptsIndex.js') }}" defer></script>
 @endsection
 
@@ -10,48 +11,57 @@
 <div class="home">
     <div class="text">
         <div class="container-fluid content">
-            <div class="headerIndex">
+            <div class="headerIndex" id="headerIndex">
                 <span class="">
                     <img id="logoIndex" src="{{ asset('images/LogoDR3-100.jpg') }}" alt="">
                 </span>
                 <div class="links">
-                    <a href="#">Meus projetos</a>
-                    <a href="#">Sobre mim</a>
-                    <a href="#">Contato</a>
+                    <i class="bi bi-sun icon sun" id="sun"></i>
+                    <i class="bi bi-moon icon moon" id="moon"></i>
+                    <a href="#"><i class="bi bi-list btnMenu bi-3x"></i></i></a>
+                    
                 </div>
             </div>
-            <div class="divMain container-fluid">
-                <h2>testando</h2>
-                <p>Durante meu percurso como desenvolvedor, tive a oportunidade de trabalhar em um projeto empolgante que envolveu a criação de um mapa interativo altamente funcional. Esse mapa não apenas permitiu a visualização de informações geográficas, mas também ofereceu uma experiência envolvente e interativa para os usuários.</p>
-
+            <div class="divMain container">            
+                <section class="divImageMain row">
+                    <dir class="imageMain col-sm-6">
+                        <img src="{{ asset('images/Foto-Jp-SF.png')}}" alt="">
+                    </dir>
+                    <div class="textMain col-sm-6">
+                        <h3>João Paulo da Rocha Andrade</h3>
+                        <p>Formado em Análise e Desenvolvimento de Sistemas e cursando Engenharia de Software. Apaixonado por tecnologia, tenho experiência em HTML, CSS, JavaScript, PHP (Laravel) e SQL. Estou sempre buscando novas tecnologias e aprimorando minhas habilidades para desenvolver soluções inovadoras e eficientes.</p>
+                    </div>                    
+                </section>
+                <section class="sectionProject1">
+                    <h3>Mapa interativo</h3>
+                    <div class="divProjectsMain row">
+                        <div class="divImageProject1 col-sm-7" id="divImageProject1">
+                            <img src="{{ asset('images/Mapa2.png') }}" alt="">
+                        </div>
+                        <div class="divTextProject1 col-sm-5">
+                            <p>Desenvolvi um sistema de mapa interativo em Laravel para gerenciar e visualizar dados geoespaciais de embargos. A aplicação permite o upload de arquivos KML, extrai os dados e coordenadas, e salva todas as informações no banco de dados. Os dados são exibidos em um mapa interativo e é possível realizar busca, filtragem, CRUD de embargos, e download dos dados em KML. A interface é intuitiva e responsiva, facilitando a navegação e manipulação dos dados geoespaciais.</p>
+                        </div>
+                    </div>                    
+                </section>
+                <section class="sectionProject1">
+                    <h3>Mapa interativo</h3>
+                    <div class="divProjectsMain row">
+                        <div class="divImageProject1 col-sm-7" id="divImageProject1">
+                            <img src="{{ asset('images/Mapa2.png') }}" alt="">
+                        </div>
+                        <div class="divTextProject1 col-sm-5">
+                            <p>Desenvolvi um sistema de mapa interativo em Laravel para gerenciar e visualizar dados geoespaciais de embargos. A aplicação permite o upload de arquivos KML, extrai os dados e coordenadas, e salva todas as informações no banco de dados. Os dados são exibidos em um mapa interativo e é possível realizar busca, filtragem, CRUD de embargos, e download dos dados em KML. A interface é intuitiva e responsiva, facilitando a navegação e manipulação dos dados geoespaciais.</p>
+                        </div>
+                    </div>                    
+                </section>
+            
+            
+            
                 
-                <h3>Desafio:</h3>
-                <p>
-                    O desafio central deste projeto foi transformar dados geográficos brutos em uma interface de usuário amigável e dinâmica. A principal meta era apresentar informações complexas de uma maneira acessível, ao mesmo tempo em que garantia uma experiência de usuário intuitiva e agradável.
-                </p>
-                <h3>Tecnologias Utilizadas:</h3>
-                <p>Para alcançar esse objetivo, utilizei uma variedade de tecnologias e ferramentas, incluindo:</p>
-                <p>
-                    <ul>
-                        <li  class="textList">QGIS: Usei o QGIS para processar e preparar os dados geográficos, bem como para criar camadas de mapas personalizadas.</li>
-                        <li class="textList">HTML/CSS: Utilizei HTML e CSS para criar a estrutura e o estilo da página web que abrigava o mapa interativo.</li>
-                        <li class="textList">JavaScript: A linguagem de programação JavaScript foi a chave para a interatividade do mapa. Usei a biblioteca Leaflet.js para criar e personalizar o mapa.</li>
-                        <li class="textList">PHP: A linguagem de programação PHP foi utilizada no FrontEnd, alimentando e realizando consultas no banco de dados.</li>
-                        <li class="textList">Banco de Dados: Armazenei dados geográficos em um banco de dados, permitindo consultas e atualizações eficientes.</li>                                        
-                    </ul>
-                </p>
-
-                <h3>Funcionalidades Principais:</h3>
-                <p>Visualização de Dados Geográficos: O mapa permitiu aos usuários visualizar dados geográficos detalhados, incluindo marcadores personalizados e camadas sobrepostas.</p>
-                <p>Pesquisa Avançada: Implementei uma função de pesquisa avançada que permitiu aos usuários localizar rapidamente pontos de interesse no mapa.</p>
-                <p>Interação com Marcadores: Os usuários podiam clicar em marcadores para obter informações adicionais, como descrições, imagens e links relacionados.</p>
-                <p>Informações em Tempo Real: A integração de APIs proporcionou informações em tempo real, como condições meteorológicas locais, que eram exibidas diretamente no mapa.</p>
-
-                <h3>Resultados:</h3>
-                <p>O resultado final foi um mapa interativo que proporcionou aos usuários uma maneira fácil e envolvente de explorar informações geográficas. O projeto atendeu com sucesso aos objetivos, apresentando dados de forma clara e acessível.</p>
-
-                <h3>Conclusão:</h3>
-                <p>Este projeto foi um exemplo emocionante de como a tecnologia pode ser usada para simplificar dados complexos e criar uma experiência significativa para os usuários. O desenvolvimento do mapa interativo me permitiu aprimorar minhas habilidades em processamento de dados geoespaciais, programação web e integração de APIs. Estou ansioso para continuar explorando novos projetos que aproveitem o poder da tecnologia para criar soluções inovadoras.</p>
+            
+            
+            
+                
             </div>
         </div>
     </div>
