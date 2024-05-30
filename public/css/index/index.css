@@ -1,3 +1,18 @@
+.container section {    
+    display: grid;
+    align-items: center;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.content .divMain {
+    padding: 0px;
+}
+
+/* p {
+    text-indent: 50px;
+} */
+
 /* Estilo header */
 .headerIndex {
     position: fixed;
@@ -31,15 +46,15 @@
 
 /* Estilos div principal */
 .divImageMain {
-    display: flex;
-    min-height: 665px;    
-    height: 400px;
-    margin: 0px 35px 30px 30px;
-    
+    /* display: flex; */
+    /* min-height: 665px;    
+    height: 400px; */
+    /* margin: 0px 35px 30px 30px; */
+
 }
 
 .imageMain {
-    padding: 30px 30px 0px 30px;
+    /* padding: 30px 30px 0px 30px; */
     max-height: 100%;
     position: relative;
     display: flex;
@@ -48,10 +63,11 @@
 }
 
 .imageMain img {
-    width: 500px;
-    height: 100%;
+    width: auto;
+    height: 100vh;
     display: block;
 }
+
 .imageMain::after {
     content: '';
     position: absolute;
@@ -59,7 +75,7 @@
     left: 0;
     right: 0;
     height: 50%;
-    background: linear-gradient(to bottom, rgb(255 255 255 / 0%) 62%, rgb(255 255 255) 103%);
+    background: linear-gradient(to bottom, rgb(255 255 255 / 0%) 66%, rgb(255 255 255) 100%);
     pointer-events: none;
 }
 
@@ -69,15 +85,15 @@
     align-items: center;
     justify-content: center;
     text-align: justify;
-    padding: 50px;    
+    /* padding: 50px; */
 }
 
 .textMain h3 {
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 }
 
 body.dark .imageMain::after {
-    background: linear-gradient(to bottom, rgb(255 255 255 / 0%) 56%, #0F172A 108%)    
+    background: linear-gradient(to bottom, rgb(255 255 255 / 0%) 56%, #0F172A 108%)
 }
 
 
@@ -92,12 +108,12 @@ body.dark .imageMain::after {
 }
 
 .sectionProject1 h3 {
-    margin-left: 91px;
-    margin-top: 121px;
+    /* margin-left: 91px;
+    margin-top: 121px; */
 }
 
 .sectionProject1 {
-    height: 535px;
+    /* height: 535px; */
 }
 
 .divImageProject1 {
@@ -114,9 +130,16 @@ body.dark .imageMain::after {
 }
 
 .divImageProject1 img:hover {
-    transform: scale(2); /* Aumenta a imagem em 50% */
+    transform: scale(2);
+    /* Aumenta a imagem em 50% */
     position: relative;
     z-index: 10;
+}
+
+.divTextProject1 {
+    display: flex;
+    align-items: center;
+    text-align: justify;
 }
 
 .divProjectsMain2 {
@@ -142,19 +165,16 @@ body.dark .imageMain::after {
 }
 
 .divImageProject2 img:hover {
-    transform: scale(2); /* Aumenta a imagem em 50% */
+    transform: scale(2);
+    /* Aumenta a imagem em 50% */
     position: relative;
     z-index: 10;
 }
 
-.divTextProject1 {
-    display: flex;    
-    align-items: center;
-    text-align: justify;
-}
+
 
 .divTextProject2 {
-    display: flex;    
+    display: flex;
     align-items: center;
     text-align: justify;
 }
