@@ -54,6 +54,10 @@ table {
     width: 100%;
 }
 
+#btnDelete {
+    cursor: pointer;
+}
+
 
 @media (max-width: 768px) {
 

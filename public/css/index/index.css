@@ -82,7 +82,7 @@ body.dark .imageMain::after {
 
 
 /* Estilos div projetos */
-.divProjectsMain {
+.divProjectsMain1 {
     display: flex;
     min-height: 365px;
     /* border: 1px solid black; */
@@ -110,7 +110,7 @@ body.dark .imageMain::after {
 .divImageProject1 img {
     width: 560px;
     height: auto;
-    transform-origin: top left;
+    transform-origin: center left;
 }
 
 .divImageProject1 img:hover {
@@ -119,17 +119,26 @@ body.dark .imageMain::after {
     z-index: 10;
 }
 
-.divImageProject2 {
-    width: 600px;
-    height: 500px;
+.divProjectsMain2 {
     display: flex;
-    justify-content: center;
+    min-height: 365px;
+    /* border: 1px solid black; */
+    /* height: 400px; */
+    margin: 0px 35px 30px 30px;
+    padding: 30px 22px 50px 50px;
+}
+
+.divImageProject2 {
+    /* width: 600px;
+    height: 500px; */
+    display: flex;
+    justify-content: end;
 }
 
 .divImageProject2 img {
-    width: 546px;
-    height: 316px;
-    transform-origin: top right;
+    width: 560px;
+    height: auto;
+    transform-origin: center right;
 }
 
 .divImageProject2 img:hover {
@@ -139,6 +148,12 @@ body.dark .imageMain::after {
 }
 
 .divTextProject1 {
+    display: flex;    
+    align-items: center;
+    text-align: justify;
+}
+
+.divTextProject2 {
     display: flex;    
     align-items: center;
     text-align: justify;

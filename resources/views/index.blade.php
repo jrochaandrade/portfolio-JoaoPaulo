@@ -34,7 +34,7 @@
                 </section>
                 <section class="sectionProject1">
                     <h3>Mapa interativo</h3>
-                    <div class="divProjectsMain row">
+                    <div class="divProjectsMain1 row">
                         <div class="divImageProject1 col-sm-7" id="divImageProject1">
                             <img src="{{ asset('images/Mapa2.png') }}" alt="">
                         </div>
@@ -45,12 +45,24 @@
                 </section>
                 <section class="sectionProject1">
                     <h3>Mapa interativo</h3>
-                    <div class="divProjectsMain row">
-                        <div class="divImageProject1 col-sm-7" id="divImageProject1">
+                    <div class="divProjectsMain2 row">
+                        <div class="divTextProject2 col-sm-5">
+                            <p>Desenvolvi um sistema de mapa interativo em Laravel para gerenciar e visualizar dados geoespaciais de embargos. A aplicação permite o upload de arquivos KML, extrai os dados e coordenadas, e salva todas as informações no banco de dados. Os dados são exibidos em um mapa interativo e é possível realizar busca, filtragem, CRUD de embargos, e download dos dados em KML. A interface é intuitiva e responsiva, facilitando a navegação e manipulação dos dados geoespaciais.</p>
+                        </div>
+                        <div class="divImageProject2 col-sm-7" id="divImageProject2">
                             <img src="{{ asset('images/Mapa2.png') }}" alt="">
                         </div>
-                        <div class="divTextProject1 col-sm-5">
+                    </div>                    
+                </section>
+
+                <section class="sectionProject1">
+                    <h3>Mapa interativo</h3>
+                    <div class="divProjectsMain2 row">
+                        <div class="divTextProject2 col-sm-5">
                             <p>Desenvolvi um sistema de mapa interativo em Laravel para gerenciar e visualizar dados geoespaciais de embargos. A aplicação permite o upload de arquivos KML, extrai os dados e coordenadas, e salva todas as informações no banco de dados. Os dados são exibidos em um mapa interativo e é possível realizar busca, filtragem, CRUD de embargos, e download dos dados em KML. A interface é intuitiva e responsiva, facilitando a navegação e manipulação dos dados geoespaciais.</p>
+                        </div>
+                        <div class="divImageProject2 col-sm-7" id="divImageProject2">
+                            <img src="{{ asset('images/Mapa2.png') }}" alt="">
                         </div>
                     </div>                    
                 </section>
