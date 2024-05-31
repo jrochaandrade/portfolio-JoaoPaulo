@@ -37,11 +37,11 @@
                         </div>
                     </div>
                 </section>
-                <section class="sectionProject1">
+                <section class="sectionProject1 hidden">
                     <h3>Mapa interativo</h3>
                     <div class="divProjectsMain1 row">
                         <div class="divImageProject1 col-sm-7" id="divImageProject1">
-                            <img src="{{ asset('images/Mapa2.png') }}" alt="">
+                            <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
                         </div>
                         <div class="divTextProject1 col-sm-5">
                             <p>Desenvolvi um sistema de mapa interativo em Laravel para gerenciar e visualizar dados
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sectionProject2">
+                <section class="sectionProject2 hidden">
                     <h3>Mapa interativo</h3>
                     <div class="divProjectsMain2 row">
                         <div class="divTextProject2 col-sm-5">
@@ -64,17 +64,17 @@
                                 dos dados em KML. A interface é intuitiva e responsiva, facilitando a navegação e
                                 manipulação dos dados geoespaciais.</p>
                         </div>
-                        <div class="divImageProject2 col-sm-7" id="divImageProject2">
-                            <img src="{{ asset('images/Mapa2.png') }}" alt="">
+                        <div class="divImageProject2 col-sm-7" id="divImageProject1">
+                            <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
                         </div>
                     </div>
                 </section>
 
-                <section class="sectionProject1">
+                <section class="sectionProject1 hidden">
                     <h3>Mapa interativo</h3>
                     <div class="divProjectsMain1 row">
                         <div class="divImageProject1 col-sm-7" id="divImageProject2">
-                            <img src="{{ asset('images/Mapa2.png') }}" alt="">
+                            <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
                         </div>
                         <div class="divTextProject1 col-sm-5">
                             <p>Desenvolvi um sistema de mapa interativo em Laravel para gerenciar e visualizar dados
