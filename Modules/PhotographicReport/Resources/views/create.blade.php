@@ -45,7 +45,12 @@
                     </div>
                     <div class="divPhotos">
                         <label for="photos" class=" labelPhotos">Escolha as fotos (Deve ser selecionado todas as fotos de uma vez):</label>
-                        <input type="file" class="form-control" name="photos[]" id="photos" multiple>
+                        <input type="file" class="form-control @error('photos') is-invalid @enderror" name="photos[]" id="photos" multiple required>
+                        @error('photos')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Criar relatório</button>

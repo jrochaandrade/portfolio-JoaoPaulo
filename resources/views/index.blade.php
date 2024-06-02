@@ -40,7 +40,7 @@
                 <section class="sectionProject1 hidden">
                     <h3>Mapa interativo</h3>
                     <div class="divProjectsMain1 row">
-                        <div class="divImageProject1 col-sm-7" id="divImageProject1">
+                        <div class="divImageProject1 col-sm-7">
                             <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
                         </div>
                         <div class="divTextProject1 col-sm-5">
@@ -64,8 +64,44 @@
                                 dos dados em KML. A interface é intuitiva e responsiva, facilitando a navegação e
                                 manipulação dos dados geoespaciais.</p>
                         </div>
-                        <div class="divImageProject2 col-sm-7" id="divImageProject1">
-                            <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
+                        <div class="divImageProject2 col-sm-7">
+                            <!-- <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt=""> -->
+                            <div class="slider">
+                                <div class="slides">
+                                    <input type="radio" name="radioBtn" id="radio1">
+                                    <input type="radio" name="radioBtn" id="radio2">
+                                    <input type="radio" name="radioBtn" id="radio3">
+                                    <input type="radio" name="radioBtn" id="radio4">
+
+                                    <div class="slide first">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
+                                    </div>
+                                    <div class="slide">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa.png') }}" alt="">
+                                    </div>
+                                    <div class="slide">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
+                                    </div>
+                                    <div class="slide">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa.png') }}" alt="">
+                                    </div>
+
+                                    <div class="navigationAuto">
+                                        <div class="autoBtn1"></div>
+                                        <div class="autoBtn2"></div>
+                                        <div class="autoBtn3"></div>
+                                        <div class="autoBtn4"></div>
+                                    </div>
+                                </div>
+
+                                <div class="manualNavigation">
+                                    <label for="radio1" class="manualBtn"></label>
+                                    <label for="radio2" class="manualBtn"></label>
+                                    <label for="radio3" class="manualBtn"></label>
+                                    <label for="radio4" class="manualBtn"></label>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -84,7 +120,7 @@
                                 dos dados em KML. A interface é intuitiva e responsiva, facilitando a navegação e
                                 manipulação dos dados geoespaciais.</p>
                         </div>
-                        
+
                     </div>
                 </section>
 

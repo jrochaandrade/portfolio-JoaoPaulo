@@ -20,7 +20,7 @@
 <div class="home">
     <div class="card-header">
         <div class="titleHeader">
-            <h1>Visualizar todos os relatório fotográficos</h1>
+            <h1>Visualizar todos os relatórios fotográficos</h1>
             <div class="divBtn2">                               
                 <a href="{{ route('report.create') }}" class="btn btn-success btnCreate">Criar relatório</a>
             </div>

@@ -5,6 +5,7 @@ namespace Modules\PhotographicReport\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Modules\PhotographicReport\Models\Photo;
 use Modules\PhotographicReport\Models\PhotographicReport;
+use Modules\PhotographicReport\Http\Requests\PhotographicRequest;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +32,7 @@ class PhotographicReportController extends Controller
 
     $reports = PhotographicReport::with('photo')
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->paginate(10);
 
     return view('photographicreport::index', compact('images', 'reports'));
     }

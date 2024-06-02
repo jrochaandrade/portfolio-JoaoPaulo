@@ -85,7 +85,7 @@ body.dark .imageMain::after {
 
 
 /* Estilos div projetos */
-.divProjectsMain1 {
+.divProjectsMain1, .divProjectsMain2  {
     display: flex;
     min-height: 365px;
     margin: 0px 35px 30px 30px;
@@ -99,7 +99,7 @@ body.dark .imageMain::after {
     /* overflow: hidden; */
 }
 
-.divImageProject1 img {
+.divImageProject1 img, .divImageProject2 img {
     width: 560px;
     height: auto;
     transform-origin: center left;
@@ -107,9 +107,12 @@ body.dark .imageMain::after {
     cursor: pointer;
 }
 
-.divImageProject1 img.enlarged {
+.divImageProject1 img.enlarged, .divImageProject2 img.enlarged {
     transform: scale(2);
     position: relative;
+   /*  top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2); */
     z-index: 10;
 }
 
@@ -119,37 +122,38 @@ body.dark .imageMain::after {
     z-index: 10;
 } */
 
-.divTextProject1 {
+.divTextProject1, .divTextProject2 {
     display: flex;
     align-items: center;
     text-align: justify;
 }
 
-.divProjectsMain2 {
+/* .divProjectsMain2 {
     display: flex;
     min-height: 365px;
     margin: 0px 35px 30px 30px;
     padding: 30px 22px 50px 50px;
-}
+} */
 
 .divImageProject2 {
     display: flex;
     justify-content: end;
+    overflow: hidden;
 }
 
-.divImageProject2 img {
+/* .divImageProject2 img {
     width: 560px;
     height: auto;
     transform-origin: center right;
     transition: transform 0.3s ease;
     cursor: pointer;
-}
+} */
 
-.divImageProject2 img.enlarged {
+/* .divImageProject2 img.enlarged {
     transform: scale(2);
     position: relative;
     z-index: 10;
-}
+} */
 
 /* .divImageProject2 img:hover {
     transform: scale(2);
@@ -157,11 +161,11 @@ body.dark .imageMain::after {
     z-index: 10;
 } */
 
-.divTextProject2 {
+/* .divTextProject2 {
     display: flex;
     align-items: center;
     text-align: justify;
-}
+} */
 
 .hidden {
     opacity: 0;
@@ -176,3 +180,108 @@ body.dark .imageMain::after {
     transform: translateX(0);
     transition: all 1s;
 }
+
+/* Estilos slides */
+.slider {
+    margin: 0 auto;
+    width: 560px;
+    height: 307px;
+    overflow: hidden;
+}
+
+.slides {
+    width: 400%;
+    height: 307px;
+    display: flex;
+}
+
+.slides input {
+    display: none;
+}
+
+.slide {
+    width: 25%;
+    position: relative;
+}
+
+.slide img {
+    width: 560px;
+    height: 307px;
+}
+
+.manualNavigation {
+    position: absolute;
+    width: 560px;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+}
+
+.manualBtn {
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;    
+}
+
+.manualBtn:not(:Last-child) {
+    margin-right: 40px;
+}
+
+.manualBtn:hover {
+    background-color: white;
+}
+
+#radio1:checked ~ .first {
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first {
+    margin-left: -25%;
+}
+
+#radio3:checked ~ .first {
+    margin-left: -50%;
+}
+
+#radio4:checked ~ .first {
+    margin-left: -75%;
+}
+
+.navigationAuto div {
+    border: 2px solid blue;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.navigationAuto {
+    position: absolute;
+    width: 560px;
+    margin-top: 267px;
+    display: flex;
+    justify-content: center;
+}
+
+.navigationAuto div:not(:last-child) {
+    margin-right: 40px;
+}
+
+#radio1:checked ~ .navigationAuto .autoBtn1 {
+    background-color: white;
+}
+
+#radio2:checked ~ .navigationAuto .autoBtn2 {
+    background-color: white;
+}
+
+#radio3:checked ~ .navigationAuto .autoBtn3 {
+    background-color: white;
+}
+
+#radio4:checked ~ .navigationAuto .autoBtn4 {
+    background-color: white;
+}
+

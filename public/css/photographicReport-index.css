@@ -4,6 +4,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.home .content {
+    padding-top: 0px;
+}
+
 .titleHeader {
     display: flex;
     justify-content: space-between;

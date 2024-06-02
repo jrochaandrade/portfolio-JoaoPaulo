@@ -1,3 +1,4 @@
+
 /* Click no icone para abrir navbar */
 const toggle2 = document.querySelector('#logoIndex');
 const toggle3 = document.querySelector('#logoIndex2');
@@ -121,3 +122,21 @@ images.forEach(image => {
         image.classList.remove('enlarged')
     })
 })
+
+let count = 1
+
+document.getElementById('radio1').checked = true
+
+setInterval ( () => {
+    /* nextImage() */
+}, 2000)
+
+function nextImage() {
+    count++
+    if(count > 4) {
+        count = 1
+    }
+
+    document.getElementById('radio' + count).checked = true
+
+}
