@@ -83,7 +83,7 @@ class PhotographicReportController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(PhotographicRequest $request)
     {
         $report = PhotographicReport::create([
             'operation' => $request->operation,
@@ -110,7 +110,7 @@ class PhotographicReportController extends Controller
             ]);
         }
         //return back()->with('success', 'Fotos carregadas e relatório criado com sucesso!');
-        return redirect()->route('report.index')->with('success', 'Fotos carregadas e relatório criado com sucesso!');
+        return redirect()->route('report.show', $report->id)->with('success', 'Fotos carregadas e relatório criado com sucesso!');
     }
     /**
      * Show the specified resource.

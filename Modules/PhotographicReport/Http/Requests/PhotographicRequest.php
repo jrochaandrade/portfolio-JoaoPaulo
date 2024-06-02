@@ -10,7 +10,20 @@ class PhotographicRequest extends FormRequest
     {
         return [
             'photos' => 'required|array|min:1',
-            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048' // Verifica se cada item no array é uma imagem válida
+            'photos.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'photos.required' => 'É necessário enviar pelo menos uma foto.',
+            'photos.array' => 'O campo fotos deve ser um array.',
+            'photos.min' => 'O campo fotos deve ter pelo menos uma foto.',
+            'photos.*.required' => 'Cada foto é obrigatória.',
+            'photos.*.image' => 'Cada arquivo deve ser uma imagem.',
+            'photos.*.mimes' => 'Cada imagem deve ser do tipo jpeg, png, jpg.',
+            'photos.*.max' => 'Cada imagem não pode ter mais de 4096 kilobytes.',
         ];
     }
 

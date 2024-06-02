@@ -37,20 +37,24 @@
                 <div class="form-group divLoadPhotos">
                     <div class="divTitle">
                         <label for="operation">Defina o título do relatório (Ex.: Operação Protetor do Bioma 01 a 15/05/2024):</label>
-                        <input type="text" class="form-control" name="operation" id="operation" maxlength="63">
+                        <input type="text" class="form-control" name="operation" id="operation" value="{{ old('operation') }}" maxlength="63">
                     </div>
                     <div class="divUser">
                         <label for="user">Nome do policial que gerou o relatório:</label>
-                        <input type="text" class="form-control" name="user" id="user">
+                        <input type="text" class="form-control" name="user" id="user" value="{{ old('user') }}">
                     </div>
                     <div class="divPhotos">
-                        <label for="photos" class=" labelPhotos">Escolha as fotos (Deve ser selecionado todas as fotos de uma vez):</label>
-                        <input type="file" class="form-control @error('photos') is-invalid @enderror" name="photos[]" id="photos" multiple required>
-                        @error('photos')
-                            <div class="invalid-feedback">
-                                {{$message}}
+                        <label for="photos" class="labelPhotos">Escolha as fotos (Deve ser selecionado todas as fotos de uma vez):</label>
+                        <input type="file" class="form-control @error('photos') is-invalid @enderror" name="photos[]" id="photos" multiple accept="image/*">                        
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        @enderror
+                        @endif
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Criar relatório</button>
