@@ -46,7 +46,7 @@
     <div class="text">
         <div id="loader" style="display: none;">
             <div class="divFeedback">
-                <dir class="spinner"></dir>
+                <div class="spinner"></div>
                 <p class="pFeedback" >Gerando PDF, por favor, aguarde...</p>
             </div>
         </div>
