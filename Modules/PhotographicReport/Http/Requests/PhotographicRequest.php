@@ -10,7 +10,7 @@ class PhotographicRequest extends FormRequest
     {
         return [
             'photos' => 'required|array|min:1',
-            'photos.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096'
+            'photos.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:6096'
         ];
     }
 
