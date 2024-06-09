@@ -64,8 +64,8 @@
                                 <img src="/images/logo1.png" class="logo1" alt="logoPM">
                                 <div class="head">
                                     <p>GOVERNO DO ESTADO DE RONDÔNIA</p>
-                                    <p>POLICIA MILITAR DO ESTADO DE RONDÔNIA</p>
-                                    <p>BATALHÃO DE POLICIA AMBIENTAL</p>
+                                    <p>POLÍCIA MILITAR DO ESTADO DE RONDÔNIA</p>
+                                    <p>BATALHÃO DE POLÍCIA AMBIENTAL</p>
                                 </div>
                                 <div class="divLogos">
                                     <img src="/images/logo2.png" class="logo" alt="logoPM">

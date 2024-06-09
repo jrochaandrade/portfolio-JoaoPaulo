@@ -438,7 +438,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <label for="address">Endreço do envolvido:</label>
+                                <label for="address">Endereço do envolvido:</label>
                                 <input type="text"
                                     class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}"
                                     name="address" id="address"

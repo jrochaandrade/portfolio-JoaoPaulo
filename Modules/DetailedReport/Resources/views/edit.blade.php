@@ -431,7 +431,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label for="address">Endreço:</label>
+                                    <label for="address">Endereço:</label>
                                     <input type="text" class="form-control address {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="{{$data['address']}}">
                                     @if ($errors->has('address'))
                                         <div class="invalid-feedback">

@@ -27,21 +27,7 @@
         </div>
     </div>
     <div class="text">
-        <div class="container-fluid content">
-            <!-- <form action="{{ route('report.store') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group divLoadPhotos">
-                    <div class="divTitle">
-                        <label for="operation">Defina o título do relatório (Ex.: Relatório Fotográfico - Operação Protetor do Bioma 01 a 15/05/2024):</label>
-                        <input type="text" class="form-control" name="operation" id="operation" value="Relatório fotográfico - ">
-                    </div>
-                    <div class="divPhotos">
-                        <label for="photos" class="btn btn-primary labelPhotos">Escolha as fotos:</label>
-                        <input type="file" class="form-control" name="photos[]" id="photos" multiple hidden>
-                    </div>
-                </div>
-                
-            </form> -->
+        <div class="container-fluid content">            
             <table class="table-responsive table table-striped" id="dataTable">
                     <thead>
                         <tr>

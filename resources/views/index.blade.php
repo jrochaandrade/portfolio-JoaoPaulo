@@ -40,10 +40,45 @@
                 <section class="sectionProject1 hidden">
                     <h3>Mapa interativo</h3>
                     <div class="divProjectsMain1 row">
-                        <div class="divImageProject1 col-sm-7">
-                            <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
+                        <div class="divImageProject1 col-sm-8">
+                            <div class="slider" id="slider">
+                                <div class="slides" id="slides">
+                                    <input type="radio" name="radioBtn" id="radio1">
+                                    <input type="radio" name="radioBtn" id="radio2">
+                                    <input type="radio" name="radioBtn" id="radio3">
+                                    <input type="radio" name="radioBtn" id="radio4">
+
+                                    <div class="slide first">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt="">
+                                    </div>
+                                    <div class="slide">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
+                                    </div>
+                                    <div class="slide">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt="">
+                                    </div>
+                                    <div class="slide">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt="">
+                                    </div>
+
+                                    <div class="navigationAuto">
+                                        <div class="autoBtn1"></div>
+                                        <div class="autoBtn2"></div>
+                                        <div class="autoBtn3"></div>
+                                        <div class="autoBtn4"></div>
+                                    </div>
+                                </div>
+
+                                <div class="manualNavigation">
+                                    <label for="radio1" class="manualBtn"></label>
+                                    <label for="radio2" class="manualBtn"></label>
+                                    <label for="radio3" class="manualBtn"></label>
+                                    <label for="radio4" class="manualBtn"></label>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="divTextProject1 col-sm-5">
+                        <div class="divTextProject1 col-sm-4">
                             <p>Desenvolvi um sistema de mapa interativo em Laravel para gerenciar e visualizar dados
                                 geoespaciais de embargos. A aplicação permite o upload de arquivos KML, extrai os dados
                                 e coordenadas, e salva todas as informações no banco de dados. Os dados são exibidos em
@@ -56,7 +91,7 @@
                 <section class="sectionProject2 hidden">
                     <h3>Mapa interativo</h3>
                     <div class="divProjectsMain2 row">
-                        <div class="divTextProject2 col-sm-5">
+                        <div class="divTextProject2 col-sm-4">
                             <p>Desenvolvi um sistema de mapa interativo em Laravel para gerenciar e visualizar dados
                                 geoespaciais de embargos. A aplicação permite o upload de arquivos KML, extrai os dados
                                 e coordenadas, e salva todas as informações no banco de dados. Os dados são exibidos em
@@ -64,26 +99,26 @@
                                 dos dados em KML. A interface é intuitiva e responsiva, facilitando a navegação e
                                 manipulação dos dados geoespaciais.</p>
                         </div>
-                        <div class="divImageProject2 col-sm-7">
+                        <div class="divImageProject2 col-sm-8">
                             <!-- <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt=""> -->
-                            <div class="slider">
-                                <div class="slides">
+                            <div class="slider" id="slider">
+                                <div class="slides" id="slides">
                                     <input type="radio" name="radioBtn" id="radio1">
                                     <input type="radio" name="radioBtn" id="radio2">
                                     <input type="radio" name="radioBtn" id="radio3">
                                     <input type="radio" name="radioBtn" id="radio4">
 
                                     <div class="slide first">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
-                                    </div>
-                                    <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa.png') }}" alt="">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt="">
                                     </div>
                                     <div class="slide">
                                         <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa.png') }}" alt="">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt="">
+                                    </div>
+                                    <div class="slide">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt="">
                                     </div>
 
                                     <div class="navigationAuto">
@@ -106,23 +141,7 @@
                     </div>
                 </section>
 
-                <section class="sectionProject1 hidden">
-                    <h3>Mapa interativo</h3>
-                    <div class="divProjectsMain1 row">
-                        <div class="divImageProject1 col-sm-7" id="divImageProject2">
-                            <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
-                        </div>
-                        <div class="divTextProject1 col-sm-5">
-                            <p>Desenvolvi um sistema de mapa interativo em Laravel para gerenciar e visualizar dados
-                                geoespaciais de embargos. A aplicação permite o upload de arquivos KML, extrai os dados
-                                e coordenadas, e salva todas as informações no banco de dados. Os dados são exibidos em
-                                um mapa interativo e é possível realizar busca, filtragem, CRUD de embargos, e download
-                                dos dados em KML. A interface é intuitiva e responsiva, facilitando a navegação e
-                                manipulação dos dados geoespaciais.</p>
-                        </div>
-
-                    </div>
-                </section>
+               
 
 
 

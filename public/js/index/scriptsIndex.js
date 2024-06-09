@@ -111,7 +111,7 @@ elements.forEach( (element) => myObserver.observe(element))
 
 
 /* Click imagem para aumentar */
-const images = document.querySelectorAll('.projectImage1')
+/* const images = document.querySelectorAll('.projectImage1')
 
 images.forEach(image => {
     image.addEventListener('click', () => {
@@ -121,14 +121,15 @@ images.forEach(image => {
     image.addEventListener('mouseleave', () => {
         image.classList.remove('enlarged')
     })
-})
+}) */
 
 let count = 1
 
 document.getElementById('radio1').checked = true
 
+/* Passar imagens slider */
 setInterval ( () => {
-    /* nextImage() */
+    nextImage()
 }, 2000)
 
 function nextImage() {
