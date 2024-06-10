@@ -61,4 +61,8 @@ document.getElementById('scrollDown').addEventListener('click', () => {
     })
 })
 
-
+/* Feedback carregamento */
+document.getElementById('btnGeneration').addEventListener('click', () => {
+    // Mostrar feeedback de carregamento
+    document.getElementById('loader').style.display = 'block';
+});
