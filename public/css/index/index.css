@@ -130,7 +130,7 @@ body.dark .imageMain::after {
 .divImageProject2 {
     display: flex;
     justify-content: end;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .hidden {
@@ -181,13 +181,13 @@ body.dark .imageMain::after {
 .manualNavigation {
     position: absolute;
     width: 737px;
-    margin-top: 15px;
+    margin-top: 14px;
     display: flex;
     justify-content: center;
 }
 
 .manualBtn {
-    border: 2px solid rgb(15, 15, 15);
+    border: 2px solid rgb(126, 122, 122);
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
@@ -199,27 +199,27 @@ body.dark .imageMain::after {
 }
 
 .manualBtn:hover {
-    background-color: rgb(16, 15, 15);
+    background-color: rgb(141, 139, 139);
 }
 
-#radio1:checked ~ .first {
+#radio1:checked ~ .first, #radio2-1:checked ~ .first {
     margin-left: 0;
 }
 
-#radio2:checked ~ .first {
+#radio2:checked ~ .first, #radio2-2:checked ~ .first {
     margin-left: -25%;
 }
 
-#radio3:checked ~ .first {
+#radio3:checked ~ .first, #radio2-3:checked ~ .first {
     margin-left: -50%;
 }
 
-#radio4:checked ~ .first {
+#radio4:checked ~ .first, #radio2-4:checked ~ .first {
     margin-left: -75%;
 }
 
 .navigationAuto div {
-    border: 2px solid rgb(15, 15, 15);
+    border: 2px solid rgb(135, 129, 129);
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
@@ -238,19 +238,23 @@ body.dark .imageMain::after {
     margin-right: 40px;
 }
 
-#radio1:checked ~ .navigationAuto .autoBtn1 {
-    background-color: rgb(10, 10, 10);
+#radio1:checked ~ .navigationAuto .autoBtn1, 
+#radio2-1:checked ~ .navigationAuto .autoBtn1 {
+    background-color: rgb(131, 128, 128);
 }
 
-#radio2:checked ~ .navigationAuto .autoBtn2 {
-    background-color: rgb(22, 21, 21);
+#radio2:checked ~ .navigationAuto .autoBtn2, 
+#radio2-2:checked ~ .navigationAuto .autoBtn2 {
+    background-color: rgb(131, 128, 128);
 }
 
-#radio3:checked ~ .navigationAuto .autoBtn3 {
-    background-color: rgb(10, 10, 10);
+#radio3:checked ~ .navigationAuto .autoBtn3, 
+#radio2-3:checked ~ .navigationAuto .autoBtn3 {
+    background-color: rgb(131, 128, 128);
 }
 
-#radio4:checked ~ .navigationAuto .autoBtn4 {
-    background-color: rgb(15, 15, 15);
+#radio4:checked ~ .navigationAuto .autoBtn4, 
+#radio2-4:checked ~ .navigationAuto .autoBtn4 {
+    background-color: rgb(131, 128, 128);
 }
 

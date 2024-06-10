@@ -110,34 +110,37 @@ const elements = document.querySelectorAll('.hidden')
 elements.forEach( (element) => myObserver.observe(element))
 
 
-/* Click imagem para aumentar */
-/* const images = document.querySelectorAll('.projectImage1')
 
-images.forEach(image => {
-    image.addEventListener('click', () => {
-        image.classList.toggle('enlarged')
-    })
 
-    image.addEventListener('mouseleave', () => {
-        image.classList.remove('enlarged')
-    })
-}) */
+let count = 1;
+let count2 = 1;
 
-let count = 1
-
-document.getElementById('radio1').checked = true
+document.getElementById('radio1').checked = true;
+document.getElementById('radio2-1').checked = true;
 
 /* Passar imagens slider */
-setInterval ( () => {
-    nextImage()
-}, 2000)
+setInterval(() => {
+    nextImage();
+}, 2000);
+
+setInterval(() => {
+    nextImage2();
+}, 2000);
 
 function nextImage() {
-    count++
-    if(count > 4) {
-        count = 1
+    count++;
+    if (count > 4) {
+        count = 1;
     }
 
-    document.getElementById('radio' + count).checked = true
+    document.getElementById('radio' + count).checked = true;
+}
 
+function nextImage2() {
+    count2++;
+    if (count2 > 4) {
+        count2 = 1;
+    }
+
+    document.getElementById('radio2-' + count2).checked = true;
 }

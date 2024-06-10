@@ -103,10 +103,10 @@
                             <!-- <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt=""> -->
                             <div class="slider" id="slider">
                                 <div class="slides" id="slides">
-                                    <input type="radio" name="radioBtn" id="radio1">
-                                    <input type="radio" name="radioBtn" id="radio2">
-                                    <input type="radio" name="radioBtn" id="radio3">
-                                    <input type="radio" name="radioBtn" id="radio4">
+                                    <input type="radio" name="radioBtn2" id="radio2-1">
+                                    <input type="radio" name="radioBtn2" id="radio2-2">
+                                    <input type="radio" name="radioBtn2" id="radio2-3">
+                                    <input type="radio" name="radioBtn2" id="radio2-4">
 
                                     <div class="slide first">
                                         <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt="" loading="lazy">
@@ -130,26 +130,16 @@
                                 </div>
 
                                 <div class="manualNavigation">
-                                    <label for="radio1" class="manualBtn"></label>
-                                    <label for="radio2" class="manualBtn"></label>
-                                    <label for="radio3" class="manualBtn"></label>
-                                    <label for="radio4" class="manualBtn"></label>
+                                    <label for="radio2-1" class="manualBtn"></label>
+                                    <label for="radio2-2" class="manualBtn"></label>
+                                    <label for="radio2-3" class="manualBtn"></label>
+                                    <label for="radio2-4" class="manualBtn"></label>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                 </section>
-
-               
-
-
-
-
-
-
-
-
             </div>
         </div>
     </div>
