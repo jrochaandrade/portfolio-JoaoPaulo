@@ -54,7 +54,8 @@ searchBox.addEventListener('click', function () {
 }) */
 /* Fim do script para abrir o navbar ao clicar no icone da lupa */
 
-
+const sun = document.getElementById('sun');
+const moon = document.getElementById('moon');
 
 /* Script para mudar o tema */
 modeSwtich.addEventListener("click", function () {
@@ -68,8 +69,12 @@ modeSwtich.addEventListener("click", function () {
     
     if(body.classList.contains("dark")){
         modeText.innerText = "Light Mode"
+        moon.style.display = 'none';
+        sun.style.display = 'block';
     }else{
         modeText.innerText = "Dark Mode"
+        moon.style.display = 'block';
+        sun.style.display = 'none';
     }
 });
 

@@ -1,0 +1,384 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.titleHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mainReport {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    margin-bottom: 80px;
+}
+
+/* .borderPageFirst {
+    border: 1px solid black;
+    height: 1503px;
+    
+} */
+
+.borderPage {
+    border: 1px solid black;
+    height: 1503px;
+    padding: 15px;
+    background-color: white;
+}
+
+.logo1 {
+    width: 185px;
+    height: 82px;
+    margin-left: 32px;
+}
+
+.logo {
+    width: 75px;
+    height: 79px;
+}
+
+.divLogos {
+    display: flex;
+    justify-content: space-evenly;
+    width: 287px;
+    flex-direction: row;
+}
+
+.header {
+    width: 1030px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 21px;
+}
+
+.head {
+    margin-top: 9px;
+    margin-left: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.head p {
+    margin: 0px;
+    font-weight: 600;
+}
+
+/* .operation {
+    font-weight: 600;
+    margin-bottom: 35px;
+    margin-left: -12px;
+} */
+
+.title {
+    
+    margin-bottom: 2px;
+    font-weight: 600;
+    /* margin-left: 156px; */
+    padding-left: 6px;
+    /* flex-wrap: wrap; */
+    /* flex-direction: column; */
+    align-content: center;
+    max-width: 534px;
+    
+}
+
+.report {
+    color: black;
+    display: flex;
+    /* padding: 300px; */
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    width: 1060px;
+    /* border: 1px solid black; */
+    /* padding-top: 50px; */
+    background-color: white;
+    
+}
+
+/* .firstPageA4 {
+    padding: 5px;
+    border: 1px solid black;
+    width: 1061px;
+    min-height: 1135px;
+} */
+
+/* .pageA4 {
+    padding: 5px;
+    border: 1px solid black;
+    width: 1061px;
+    min-height: 1376px;
+    margin-top: 10px;
+} */
+
+.page {   
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* border: 1px solid black; */
+    padding: 5px;
+    page-break-after: always;
+    flex-direction: column;
+    align-items: center;
+    height: 1290px;
+}
+
+.photo {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    width: 718px;
+    height: 407px;
+    /* margin-top: 40px; */
+    margin-bottom: 8px;
+}
+
+.photo img {
+    margin-top: 5px;
+    width: 708px;
+    height: 396px;
+    border: 1px solid black;
+
+}
+
+.rotulo {
+    display: flex;
+    padding: 3px;
+    border: 1px solid black;
+    width: 496px;
+    height: 33px;
+}
+
+.textRotulo {
+    width: 399px;
+    height: 26px;
+    /* padding: 4px; */
+    padding-bottom: 8px;
+    padding-left: 1px;
+    margin-left: 6px;
+    border: none;
+}
+
+.footer {
+    font-weight: 600;
+}
+
+
+.divBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: center;
+    margin-bottom: 21px;
+}
+
+.divBtn2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 349px;
+    /* justify-content: center;
+    width: 100%;
+    margin-bottom: 21px; */
+}
+
+.btnPdf {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.btnPrint {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.btnEdit {
+    margin-top: 10px;
+    margin-right: 5px;    
+}
+
+.btnBack {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+#loader {
+    display: flex;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    text-align: center;
+    font-weight: 600;
+    color: black;
+    background: #bdbbbbb5;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.divFeedback {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.spinner {
+    border: 16px solid #080808;
+    border-top: 16px solid #afaaaa00;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+}
+
+.pFeedback {
+    font-size: 23px;    
+    margin-top: 23px;
+    margin-left: 19px;
+}
+
+.scrollButtons {
+    position: fixed;
+    right: 10px;
+    bottom: 50%;
+    transform: translateY(50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.scrollButton {
+    /* background-color: #007bff; */
+    color: rgb(170, 161, 161);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+}
+
+.scrollButton:hover {
+    background-color: #718aa2;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media print {
+    @page {
+        margin: 5px;
+    }
+    body {
+        margin: 5px;
+        padding: 0;
+        background: #fff;
+        color: #000;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width: 841px) {
+
+    .card-header {       
+        max-height: 122px;        
+    }
+
+    .titleHeader {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .card-header {    
+            
+        padding: 8px;        
+        min-height: 127px;
+    }
+
+    .titleHeader {
+        display: flex;
+        justify-content: space-between;
+        /* width: 1827px; */
+        flex-direction: column;
+        height: 85px;
+    }
+
+    .titleHeader h1 {
+        font-size: 38px;
+    }
+
+    .content h2 {
+        margin-bottom: 38px;
+        font-size: 18px;
+    }
+    
+    .mainReport {
+        /* display: flex;
+        flex-wrap: wrap;
+        flex-direction: column; */
+        align-items: flex-start;
+    }
+
+    .divBtn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 21px;
+    }
+
+    .pFeedback {
+        width: 157px;
+    }
+}
+
+.divReport {
+    display: flex;
+    margin-top: 43px;
+    margin-bottom: 5px;
+    margin-left: 156px;
+    background-color: #eeeaea;
+    width: 719px;
+    height: 31px;
+    align-items: center;
+}
+
+.titleReport {
+    margin-top: 12px;
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+@media (max-width: 370px) {
+
+    .card-header {                
+        padding: 8px;        
+        min-height: 171px;
+    }
+     
+}

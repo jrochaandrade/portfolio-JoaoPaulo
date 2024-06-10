@@ -32,7 +32,7 @@
             </li> -->
             <ul class="menu-links">
                 <li class="nav-links">
-                    <a href="{{ route('home.index') }}" class="link">
+                    <a href="{{ route('home.index') }}" class="link">   <!--{{ route('home.index') }}-->
                         <i class="bi bi-house icon"></i>
                         <span class="text nav-text">Portfolio</span>
                     </a>
@@ -44,13 +44,13 @@
                     </a>
                 </li>
                 <li class="nav-links">
-                    <a href="{{ route('report.index') }}">
+                    <a href="{{ route('report.index') }}" class="link"> <!--{{ route('report.index') }}-->
                     <i class="fa-regular fa-images icon"></i>
                         <span class="text nav-text">Relatório Fotográfico</span>
                     </a>
                 </li>
                 <li class="nav-links">
-                    <a href="{{ route('detailed') }}">
+                    <a href="{{ route('detailed') }}" class="link"> <!--{{ route('detailed') }}-->
                     <!-- <i class="fa-regular fa-address-card icon"></i> --> <!-- Cadastro infrator -->
                     <i class="fa-solid fa-file-lines icon"></i>
                     

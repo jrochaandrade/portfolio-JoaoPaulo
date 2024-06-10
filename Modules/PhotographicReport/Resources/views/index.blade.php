@@ -2,36 +2,14 @@
 
 @section('card-head')
 <link rel="stylesheet" href="{{ asset('css/secondarySidebar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/report.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('css/report.css') }}"> -->
+<link rel="stylesheet" href="{{ asset('css/photographicReport-index.css') }}">
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
-    integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous">
-</script>
-
-
-<!-- <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script> -->
-
-
-<!-- <script src="{{ asset('node_modules/exif-js/exif.js') }}" defer></script> -->
 <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 
-<script src="{{ asset('js/reportScript.js') }}" defer type="module"></script>
+<script src="{{ asset('js/photographicReport-index.js') }}" defer type="module"></script>
 
 
 @endsection
@@ -42,10 +20,14 @@
 <div class="home">
     <div class="card-header">
         <div class="titleHeader">
-            <h1>Relatório Fotográfico</h1>
+            <h1>Visualizar todos os relatórios fotográficos</h1>
+            <div class="divBtn2">                               
+                <a href="{{ route('report.create') }}" class="btn btn-success btnCreate">Criar relatório</a>
+            </div>
         </div>
     </div>
     <div class="text">
+<<<<<<< HEAD
         <div class="container-fluid content">
             <h5 class="h5">
                 Protótipo para geração do relatório fotográfico utilizandos no âmbito do Batalhão de Polícia
@@ -69,11 +51,57 @@
                 <label for="fileInput" class="btn btn-primary btnInput">Carregar imagens</label>
                 <input type="file" id="fileInput" name="images[]" multiple style="display: none;">
                 <a id="btnPdf" class="btn btn-success">Gerar PDF</a>                
+=======
+        <div class="container-fluid content">            
+            <table class="table-responsive table table-striped" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Operação</th>
+                            <th>Nome do Policial</th>
+                            <th>Data de criação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (@$reports as $data )
+                            <tr>
+                                <td>{{ $data->id }}</td>
+                                <td>{{ $data->operation }}</td>
+                                <td>{{ $data->user }}</td>
+                                <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y H:i') }}</td>
+                                <td class="actions">
+                                    <a href="{{ route('report.show', ['id'=>$data->id]) }}">
+                                        <span class="fa-stack fa-sm">
+                                            <i class="far fa-square fa-stack-2x"></i>
+                                            <i class="fa-solid fa-eye fa-stack-1x"></i>
+                                        </span>
+                                    </a>
+                                    <a href="{{ route('report.edit', ['id'=>$data->id]) }}" class="text-warning">
+                                        <span class="fa-stack fa-sm">
+                                            <i class="far fa-square fa-stack-2x"></i>
+                                            <i class="fas fa-pencil-alt fa-stack-1x"></i>
+                                        </span>
+                                    </a>
+                                    <a class="text-danger" id="btnDelete" onclick="deleteData({{ $data->id }})">
+                                        <span class="fa-stack fa-sm">
+                                            <i class="far fa-square fa-stack-2x"></i>
+                                            <i class="far fa-trash-alt fa-stack-1x"></i>
+                                        </span>
+                                    </a>
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table> 
+                <div class="d-flex justify-content-end pagination">
+                    {{ $reports->links('pagination::bootstrap-5') }}
+                </div>             
+>>>>>>> master
             </div>
             <div class="main" id="main">
-                <div class="page" id="page">
-                    <div class="photoContainer" id="photoContainer"></div>
-                </div>
+                
             </div>
         </div>
     </div>
