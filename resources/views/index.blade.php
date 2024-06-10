@@ -49,16 +49,16 @@
                                     <input type="radio" name="radioBtn" id="radio4">
 
                                     <div class="slide first">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt="">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt="" loading="lazy">
+                                    </div>
+                                    <div class="slide"> 
+                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="" loading="lazy">
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt="" loading="lazy">
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt="">
-                                    </div>
-                                    <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt="">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt="" loading="lazy">
                                     </div>
 
                                     <div class="navigationAuto">
@@ -109,16 +109,16 @@
                                     <input type="radio" name="radioBtn" id="radio4">
 
                                     <div class="slide first">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt="">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt="" loading="lazy">
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt="" loading="lazy">
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt="">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt="" loading="lazy">
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt="">
+                                        <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt="" loading="lazy">
                                     </div>
 
                                     <div class="navigationAuto">
