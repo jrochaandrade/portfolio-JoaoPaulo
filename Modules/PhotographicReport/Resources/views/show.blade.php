@@ -79,7 +79,7 @@
                             <div class="page">
                                 @foreach ($chunk as $index => $photo)
                                     <div class="photo col-sm-6">
-                                        <img src="{{ Storage::url($photo->path) }}" class="img-fluid" alt="Photo">                                        
+                                        <img src="{{ Storage::url($photo->path) }}" class="img-fluid" alt="Photo" loading="lazy">                                        
                                     </div>
                                 @endforeach
                                 <span class="footer">Página {{ $page + 1 }}/{{ $totalPages }}</span>
