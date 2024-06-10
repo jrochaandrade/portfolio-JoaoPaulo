@@ -27,31 +27,6 @@
         </div>
     </div>
     <div class="text">
-<<<<<<< HEAD
-        <div class="container-fluid content">
-            <h5 class="h5">
-                Protótipo para geração do relatório fotográfico utilizandos no âmbito do Batalhão de Polícia
-                Ambiental.<br><br>
-                As fotos podem ser carregadas fora de ordem desde que os metadados das imagens estejam íntegros.<br><br>
-                Digite qual a sua unidade, um título para o relatório, carregue as imagens, aguarde até todas as imagens
-                serem carregadas
-                e em seguida clique em gerar PDF.<br><br>
-                Obs.: Se ao baixar o PDF estiver desconfigurado, role a página para visualizar a primeira parte do
-                documento em seguinda clique em gerar pdf novamente.<br><br>
-                Obs.2: Se estiver usando dispositívo móvel, utilizar o navegador em versão Desktop. 
-            </h5>
-            <label for="inputUnit" id="labelDescription">Unidade</label>
-            <input type="text" class="form-control inputUnit" id="inputUnit"
-                placeholder="Ex.: 3ª Companhia de Polícia Ambiental" value="3ª Companhia de Polícia Ambiental">
-            <label for="inputDesc" id="labelDescription">Título do relatório</label>
-            <input type="text" class="form-control inputDesc" id="inputDesc"
-                placeholder="Ex.: Relatório Fotográfico Missão Guardiões do Bioma 3 ET/2023 - 01 a 15/05/2023"
-                value="Relatório fotográfico ">
-            <div class="divButtons">                
-                <label for="fileInput" class="btn btn-primary btnInput">Carregar imagens</label>
-                <input type="file" id="fileInput" name="images[]" multiple style="display: none;">
-                <a id="btnPdf" class="btn btn-success">Gerar PDF</a>                
-=======
         <div class="container-fluid content">            
             <table class="table-responsive table table-striped" id="dataTable">
                     <thead>
@@ -98,7 +73,6 @@
                 <div class="d-flex justify-content-end pagination">
                     {{ $reports->links('pagination::bootstrap-5') }}
                 </div>             
->>>>>>> master
             </div>
             <div class="main" id="main">
                 
