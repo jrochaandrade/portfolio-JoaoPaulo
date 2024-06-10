@@ -139,3 +139,18 @@ input {
     }
 
 }
+
+@media (max-width: 468px) {
+
+    .spinner {        
+        width: 55px;
+        height: 55px;        
+        margin-left: 3px;
+    }
+
+    .pFeedback {
+        font-size: 14px;       
+        margin-left: 9px;
+    }
+
+}

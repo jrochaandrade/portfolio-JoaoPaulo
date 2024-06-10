@@ -47,7 +47,7 @@
         <div id="loader" style="display: none;">
             <div class="divFeedback">
                 <div class="spinner"></div>
-                <p class="pFeedback" >Gerando PDF, por favor, aguarde...</p>
+                <p class="pFeedback" >Gerando PDF, aguarde...</p>
             </div>
         </div>
         <div class="scrollButtons">

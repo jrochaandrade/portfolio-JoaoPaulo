@@ -45,7 +45,7 @@
         <div id="loader" style="display: none;">
             <div class="divFeedback">
                 <dir class="spinner"></dir>
-                <p class="pFeedback" >Editar Relatório, por favor, aguarde...</p>
+                <p class="pFeedback" >Salvando Relatório, aguarde...</p>
             </div>
         </div>
         <div class="scrollButtons">

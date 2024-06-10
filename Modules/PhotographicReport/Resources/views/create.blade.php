@@ -33,7 +33,7 @@
         <div id="loader" style="display: none;">
             <div class="divFeedback">
                 <div class="spinner"></div>
-                <p class="pFeedback">Gerando o relatório, por favor, aguarde...</p>
+                <p class="pFeedback">Gerando o relatório, aguarde...</p>
             </div>
         </div>
         <div class="container-fluid content">
@@ -117,5 +117,6 @@
     </div>
 </div>
 </div>
+
 
 @endsection
