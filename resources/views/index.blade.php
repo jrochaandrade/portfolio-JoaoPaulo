@@ -49,28 +49,36 @@
                                     <input type="radio" name="radioBtn" id="radio4">
 
                                     <div class="slide first">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}"
-                                            srcset="{{ asset('images/Mapa1-small.png') }} 600w, {{ asset('images/Mapa1.png') }} 1200w"
-                                            sizes="(max-width: 300px) 100vw, (min-width: 301px) 50vw" alt=""
-                                            loading="lazy">
+                                        <picture>
+                                            <source media="(max-width: 468px)"
+                                                srcset="{{ asset('images/Mapa1-small.png') }}">
+                                            <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt=""
+                                                loading="lazy">
+                                        </picture>
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}"
-                                            srcset="{{ asset('images/Mapa2-small.png') }} 600w, {{ asset('images/Mapa2.png') }} 1200w"
-                                            sizes="(max-width: 600px) 100vw, (min-width: 601px) 50vw" alt=""
-                                            loading="lazy">
+                                        <picture>
+                                            <source media="(max-width: 468px)"
+                                                srcset="{{ asset('images/Mapa2-small.png') }}">
+                                            <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt=""
+                                                loading="lazy">
+                                        </picture>
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}"
-                                            srcset="{{ asset('images/Mapa3-small.png') }} 600w, {{ asset('images/Mapa3.png') }} 1200w"
-                                            sizes="(max-width: 600px) 100vw, (min-width: 601px) 50vw" alt=""
-                                            loading="lazy">
+                                        <picture>
+                                            <source media="(max-width: 468px)"
+                                                srcset="{{ asset('images/Mapa3-small.png') }}">
+                                            <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt=""
+                                                loading="lazy">
+                                        </picture>
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}"
-                                            srcset="{{ asset('images/Mapa4-small.png') }} 600w, {{ asset('images/Mapa4.png') }} 1200w"
-                                            sizes="(max-width: 600px) 100vw, (min-width: 601px) 50vw" alt=""
-                                            loading="lazy">
+                                        <picture>
+                                            <source media="(max-width: 468px)"
+                                                srcset="{{ asset('images/Mapa4-small.png') }}">
+                                            <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt=""
+                                                loading="lazy">
+                                        </picture>
                                     </div>
 
                                     <div class="navigationAuto">
@@ -121,20 +129,36 @@
                                     <input type="radio" name="radioBtn2" id="radio2-4">
 
                                     <div class="slide first">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt=""
-                                            loading="lazy">
+                                        <picture>
+                                            <source media="(max-width: 468px)"
+                                                srcset="{{ asset('images/Mapa1-small.png') }}">
+                                            <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt=""
+                                                loading="lazy">
+                                        </picture>
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt=""
-                                            loading="lazy">
+                                        <picture>
+                                            <source media="(max-width: 468px)"
+                                                srcset="{{ asset('images/Mapa2-small.png') }}">
+                                            <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt=""
+                                                loading="lazy">
+                                        </picture>
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt=""
-                                            loading="lazy">
+                                        <picture>
+                                            <source media="(max-width: 468px)"
+                                                srcset="{{ asset('images/Mapa3-small.png') }}">
+                                            <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt=""
+                                                loading="lazy">
+                                        </picture>
                                     </div>
                                     <div class="slide">
-                                        <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt=""
-                                            loading="lazy">
+                                        <picture>
+                                            <source media="(max-width: 468px)"
+                                                srcset="{{ asset('images/Mapa4-small.png') }}">
+                                            <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt=""
+                                                loading="lazy">
+                                        </picture>
                                     </div>
 
                                     <div class="navigationAuto">

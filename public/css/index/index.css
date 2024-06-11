@@ -271,5 +271,34 @@ body.dark .imageMain::after {
     .textMain {        
         padding: 15px;
     }
+
+    .slider {       
+        width: 330px;        
+    }
+
+    .slide img {
+        width: 330px;
+        height: auto;
+    }
+
+    .navigationAuto {        
+        width: 330px;
+        margin-top: 522px;
+       
+    }
+
+    .manualNavigation {        
+        width: 330px;
+        margin-top: 13px;        
+    }
+
+    .divTextProject1, .divTextProject2 {        
+        margin-top: 50px;
+    }
+
+    .sidebar.close .image-text img {
+        z-index: 100000;
+    }
+
 }
 
