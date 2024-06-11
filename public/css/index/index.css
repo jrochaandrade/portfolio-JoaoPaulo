@@ -25,10 +25,12 @@ section h3 {
 .headerIndex {
     position: fixed;
     width: 100%;
+    /* z-index: 1000; */
 }
 
 .headerIndexSmaller {
     width: calc(100% - 270px);
+    z-index: 0;
 }
 
 .links {
@@ -295,10 +297,13 @@ body.dark .imageMain::after {
     .divTextProject1, .divTextProject2 {        
         margin-top: 50px;
     }
-
-    .sidebar.close .image-text img {
-        z-index: 100000;
+    
+    .headerIndex {        
+        z-index: 1000;
     }
 
+    .monn {
+        display: none;
+    }
 }
 

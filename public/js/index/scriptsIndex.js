@@ -5,10 +5,14 @@ const toggle3 = document.querySelector('#logoIndex2');
 // Fechar ou abrir sidebar ao clicar no logo
 toggle2.addEventListener('click', () => {
     sidebar.classList.toggle('close');
+    let headerIndex = document.getElementById('headerIndex');
+    headerIndex.classList.toggle('headerIndexSmaller');
 });
 
 toggle3.addEventListener('click', () => {
     sidebar.classList.toggle('close');
+    let headerIndex = document.getElementById('headerIndex');
+    headerIndex.classList.toggle('headerIndexSmaller');
 });
 
 /* Desvanecer foto */
@@ -29,10 +33,9 @@ window.addEventListener('scroll', function () {
 });
 
 /* Reduz o tamanho do header ao abrir navbar */
-document.getElementById('logoIndex2').addEventListener('click', function () {
-    let headerIndex = document.getElementById('headerIndex');
-    headerIndex.classList.toggle('headerIndexSmaller');
-});
+/* document.getElementById('logoIndex2').addEventListener('click', function () {
+    
+}); */
 
 
 /* Mudança de tema */
