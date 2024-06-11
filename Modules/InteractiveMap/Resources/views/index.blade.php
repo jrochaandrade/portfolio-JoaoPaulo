@@ -113,7 +113,7 @@
                             <label for="findCoordinate">Buscar coordenadas no mapa: <i class="fa-regular fa-circle-question text-primary" id="btnInfoCoord" title="Coordenadas suportadas: 12°0′24.37″S, 63°30′32.60″W / 10 25 38.156S, 62 7 46.701W / -11.27702941, -61.96444919" ></i></label>
                             <input type="text" class="form-control" name="findCoordinate" id="findCoordinate" placeHolder="Ex.: 12°0′24.37″S, 63°30′32.60″W">
                         </div>                        
-                        <button type="submit" id="btnSearchCoordinate" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i>  Localizar</button>
+                        <button type="submit" id="btnSearchCoordinate" class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                     <div>
                         <a id="refreshMap" class="btn btn-outline-primary">
