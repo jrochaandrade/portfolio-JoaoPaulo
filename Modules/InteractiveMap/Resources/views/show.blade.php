@@ -12,8 +12,8 @@
         <div class="titleHeader">
             <h1 class="header"><strong>Detalhes do embargo</strong></h1>
             <div>
-                <a href="{{ route('mapa.download', ['id'=>$data->id_polygon]) }}" class="btn btn-success" id="btnDownload"><i class="fa-solid fa-download"></i>  Baixar KML</a>
-                <a href="{{ route('mapa.edit', ['id'=>$data->id_polygon]) }}" class="btn btn-warning" id="btnEdit"><i class="fa-solid fa-pen-to-square"></i>  Editar</a>
+                <a href="{{ route('mapa.download', ['id'=>$data->id_polygon]) }}" class="btn btn-success" id="btnDownload"><i class="fa-solid fa-download"></i></a>
+                <a href="{{ route('mapa.edit', ['id'=>$data->id_polygon]) }}" class="btn btn-warning" id="btnEdit"><i class="fa-solid fa-pen-to-square"></i></a>
             </div>
         </div>
     </div>
