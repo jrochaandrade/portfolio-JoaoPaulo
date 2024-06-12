@@ -185,7 +185,7 @@ body.dark .imageMain::after {
 
 .manualNavigation {
     position: absolute;
-    width: 737px;
+    width: 250px;
     margin-top: 14px;
     display: flex;
     justify-content: center;
@@ -237,7 +237,7 @@ body.dark .imageMain::after {
 
 .navigationAuto {
     position: absolute;
-    width: 737px;
+    width: 250px;
     margin-top: 405px;
     display: flex;
     justify-content: center;
@@ -363,9 +363,8 @@ body.dark .imageMain::after {
     }
 
     .textMain {
-        padding: 0px;
-        padding-left: 25px;
-        z-index: 10;
+        width: 100vw;
+        padding: 20px
     }
 
     section h3 {
