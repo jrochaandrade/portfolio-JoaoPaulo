@@ -306,11 +306,13 @@ body.dark .imageMain::after {
     }
 
     .manualNavigation {
+        width: 250px;
         justify-content: start;
 
     }
 
     .navigationAuto {
+        width: 250px;
         margin-top: 333px;
         justify-content: start;
     }
@@ -326,6 +328,13 @@ body.dark .imageMain::after {
         padding: 45px;
     }
 
+    .imageMain {
+        width: 100vw;       
+    }
+
+    .textMain {       
+        width: 100vw;
+    }
 
 }
 
@@ -341,11 +350,13 @@ body.dark .imageMain::after {
     }
 
     .manualNavigation {
+        width: 250px;
         justify-content: start;
         margin-left: 69px;
     }
 
     .navigationAuto {
+        width: 250px;
         margin-top: 513px;
         margin-left: 69px;
         justify-content: start;
@@ -396,13 +407,13 @@ body.dark .imageMain::after {
     }
 
     .navigationAuto {
-        width: 330px;
+        width: 250px;
         margin-top: 522px;
 
     }
 
     .manualNavigation {
-        width: 330px;
+        width: 250px;
         margin-top: 13px;
     }
 
@@ -418,4 +429,20 @@ body.dark .imageMain::after {
     .monn {
         display: none;
     }
+
+    .divImageProject1, .divImageProject2 {
+        width: 366px;
+    }
+}
+
+@media (max-width: 368px) {    
+
+    .navigationAuto {
+        width: 250px;  
+    }
+
+    .manualNavigation {
+        width: 250px;        
+    } 
+
 }
