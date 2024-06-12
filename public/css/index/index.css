@@ -189,6 +189,7 @@ body.dark .imageMain::after {
     margin-top: 14px;
     display: flex;
     justify-content: center;
+    margin-left: 229px;
 }
 
 .manualBtn {
@@ -241,6 +242,7 @@ body.dark .imageMain::after {
     margin-top: 405px;
     display: flex;
     justify-content: center;
+    margin-left: 229px;
 }
 
 .navigationAuto div:not(:last-child) {
@@ -413,7 +415,7 @@ body.dark .imageMain::after {
 
     .manualNavigation {
         width: 250px;
-        margin-top: 13px;
+        margin-top: 5px;
     }
 
     .divTextProject1,
