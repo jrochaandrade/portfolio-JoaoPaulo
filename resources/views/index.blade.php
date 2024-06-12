@@ -50,7 +50,7 @@
 
                                     <div class="slide first">
                                         <picture>
-                                            <source media="(max-width: 468px)"
+                                            <source media="(max-width: 768px)"
                                                 srcset="{{ asset('images/Mapa1-small.png') }}">
                                             <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt=""
                                                 loading="lazy">
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="slide">
                                         <picture>
-                                            <source media="(max-width: 468px)"
+                                            <source media="(max-width: 768px)"
                                                 srcset="{{ asset('images/Mapa2-small.png') }}">
                                             <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt=""
                                                 loading="lazy">
@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="slide">
                                         <picture>
-                                            <source media="(max-width: 468px)"
+                                            <source media="(max-width: 768px)"
                                                 srcset="{{ asset('images/Mapa3-small.png') }}">
                                             <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt=""
                                                 loading="lazy">
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="slide">
                                         <picture>
-                                            <source media="(max-width: 468px)"
+                                            <source media="(max-width: 768px)"
                                                 srcset="{{ asset('images/Mapa4-small.png') }}">
                                             <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt=""
                                                 loading="lazy">
@@ -130,7 +130,7 @@
 
                                     <div class="slide first">
                                         <picture>
-                                            <source media="(max-width: 468px)"
+                                            <source media="(max-width: 768px)"
                                                 srcset="{{ asset('images/Mapa1-small.png') }}">
                                             <img class="projectImage1" src="{{ asset('images/Mapa1.png') }}" alt=""
                                                 loading="lazy">
@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="slide">
                                         <picture>
-                                            <source media="(max-width: 468px)"
+                                            <source media="(max-width: 768px)"
                                                 srcset="{{ asset('images/Mapa2-small.png') }}">
                                             <img class="projectImage1" src="{{ asset('images/Mapa2.png') }}" alt=""
                                                 loading="lazy">
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="slide">
                                         <picture>
-                                            <source media="(max-width: 468px)"
+                                            <source media="(max-width: 768px)"
                                                 srcset="{{ asset('images/Mapa3-small.png') }}">
                                             <img class="projectImage1" src="{{ asset('images/Mapa3.png') }}" alt=""
                                                 loading="lazy">
@@ -154,7 +154,7 @@
                                     </div>
                                     <div class="slide">
                                         <picture>
-                                            <source media="(max-width: 468px)"
+                                            <source media="(max-width: 768px)"
                                                 srcset="{{ asset('images/Mapa4-small.png') }}">
                                             <img class="projectImage1" src="{{ asset('images/Mapa4.png') }}" alt=""
                                                 loading="lazy">
