@@ -36,7 +36,7 @@
                     </div>
                     <div class="div_btns">
                         <button type="submit" class="btn btn-outline-success">Buscar relatório</button>
-                        <a href="{{ route('report.index') }}" class="btn btn-outline-primary">Limpar Filtros</a>
+                        <a href="{{ route('report.index') }}" class="btn btn-outline-primary">Limpar Filtro</a>
                     </div>
                 </div>
             </form>
