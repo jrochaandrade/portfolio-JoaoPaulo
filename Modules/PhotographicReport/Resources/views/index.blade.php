@@ -32,7 +32,7 @@
                 <div class="div_search">
                     <div class="div_input_search" id="div_input_search">
                         <label for="search_data">Pesquisar:</label>
-                        <input type="text" class="form-control" id="search_data" name="search_data" value="{{ request()->query('search_data') }}" placeholder="Realizar busca por Operação ou Nome do Policial">
+                        <input type="text" class="form-control" id="search_data" name="search_data" value="{{ request()->query('search_data') }}" placeholder="Realizar busca por ID, Operação ou Nome do Policial">
                     </div>
                     <div class="div_btns">
                         <button type="submit" class="btn btn-outline-success">Buscar relatório</button>
