@@ -27,18 +27,15 @@ class PhotographicReportController extends Controller
      */
     //#[Get(uri: '/report', name: 'report.index')]
     public function index(Request $request)
-    {
-        // Obter as imagens da sessão
-    /* $images = Session::get('images', []); */
-
-    /* $reports = PhotographicReport::with('photo')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10); */
+    {     
 
 
-    $reports = PhotographicReportRepository::search($request)->orderBy('created_at', 'desc')->paginate(8);
+    $reports = PhotographicReportRepository::search($request)
+        ->orderBy('created_at', 'desc')
+        ->paginate(8)
+        ->appends($request->all());
 
-    /* dd($reports); */
+    
 
     return view('photographicreport::index', compact('reports'));
     }
