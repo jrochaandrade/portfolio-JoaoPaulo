@@ -36,7 +36,7 @@ class PhotographicReportController extends Controller
             ->paginate(10); */
 
 
-    $reports = PhotographicReportRepository::search($request)->paginate(10);
+    $reports = PhotographicReportRepository::search($request)->orderBy('created_at', 'desc')->paginate(10);
 
     /* dd($reports); */
 
