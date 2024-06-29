@@ -4,6 +4,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.home .content {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .titleHeader {
     display: flex;
     justify-content: space-between;
@@ -137,6 +143,16 @@ input {
         width: 100%;
         left: 0px;
     }
+
+}
+
+@media (max-width: 568px) {
+
+    .home .content {
+        display: flex;
+        justify-content: start;
+        margin-top: 20px;
+    }    
 
 }
 

@@ -119,3 +119,19 @@ table {
         flex-direction: column;
     }
 }
+
+@media (max-width: 1096px) {
+
+    .div_search {        
+        flex-direction: column;
+    }
+
+    .div_input_search input {
+        margin: 0px;        
+    }
+
+    .div_btns {
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+}
