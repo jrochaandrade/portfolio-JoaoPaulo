@@ -27,7 +27,19 @@
         </div>
     </div>
     <div class="text">
-        <div class="container-fluid content">            
+        <div class="container-fluid content"> 
+            <form action="#" method="GET" id="form_search">
+                <div class="div_search">
+                    <div class="div_input_search" id="div_input_search">
+                        <label for="search_data">Pesquisar:</label>
+                        <input type="text" class="form-control" id="search_data" name="search_data" value="{{ request()->query('search_data') }}" placeholder="Realizar busca por Operação ou Nome do Policial">
+                    </div>
+                    <div class="div_btns">
+                        <button type="submit" class="btn btn-outline-success">Buscar relatório</button>
+                        <a href="{{ route('report.index') }}" class="btn btn-outline-primary">Limpar Filtros</a>
+                    </div>
+                </div>
+            </form>
             <table class="table-responsive table table-striped" id="dataTable">
                     <thead>
                         <tr>

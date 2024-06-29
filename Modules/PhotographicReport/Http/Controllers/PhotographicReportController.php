@@ -10,6 +10,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 //use Illuminate\Routing\Controller;
+use Modules\PhotographicReport\Repository\PhotographicReportRepository;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Post;
@@ -25,16 +26,21 @@ class PhotographicReportController extends Controller
      * @return Renderable
      */
     //#[Get(uri: '/report', name: 'report.index')]
-    public function index()
+    public function index(Request $request)
     {
         // Obter as imagens da sessão
-    $images = Session::get('images', []);
+    /* $images = Session::get('images', []); */
 
-    $reports = PhotographicReport::with('photo')
+    /* $reports = PhotographicReport::with('photo')
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(10); */
 
-    return view('photographicreport::index', compact('images', 'reports'));
+
+    $reports = PhotographicReportRepository::search($request)->paginate(10);
+
+    /* dd($reports); */
+
+    return view('photographicreport::index', compact('reports'));
     }
 
     /* public function upload(Request $request) 
