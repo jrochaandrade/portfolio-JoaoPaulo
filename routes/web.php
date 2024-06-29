@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Home\HomeController;
 use Illuminate\Support\Facades\Route;
 use Modules\InteractiveMap\Http\Controllers\InteractiveMapController;
+use Modules\PhotographicReport\Http\Controllers\PhotographicReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,5 @@ use Modules\InteractiveMap\Http\Controllers\InteractiveMapController;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/', [PhotographicReportController::class, 'index'])->name('report.index');

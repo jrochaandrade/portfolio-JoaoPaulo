@@ -18,7 +18,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    #[Get(uri: '/', name: 'home.index')]
+    /* #[Get(uri: '/', name: 'home.index')] */
     public function index(Request $request)
     {
         return view('index');
