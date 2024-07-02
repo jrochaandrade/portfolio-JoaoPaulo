@@ -12,7 +12,7 @@ class Photo extends Model
     //use SoftDeletes;
     protected $fillable = ['id', 'path', 'date_time', 'photographic_report_id'];
     
-    public function photographicReport()
+    public function photographicReports()
     {
         return $this->belongsTo(PhotographicReport::class, 'photographic_report_id');
     }

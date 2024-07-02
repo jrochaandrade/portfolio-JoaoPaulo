@@ -123,7 +123,7 @@ class PhotographicReportController extends Controller
 
      public function show($id)
      {   
-        $report = PhotographicReport::with('photo')->findOrFail($id);
+        $report = PhotographicReport::with('photos')->findOrFail($id);
 
          $photos = Photo::where('photographic_report_id', $id)
                  ->orderBy('date_time', 'asc')
@@ -184,7 +184,7 @@ class PhotographicReportController extends Controller
     public function edit($id)
     {
 
-        $report = PhotographicReport::with('photo')->findOrFail($id);
+        $report = PhotographicReport::with('photos')->findOrFail($id);
 
          $photos = Photo::where('photographic_report_id', $id)
                  ->orderBy('date_time', 'asc')

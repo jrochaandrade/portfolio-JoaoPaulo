@@ -10,9 +10,9 @@ class PhotographicReport extends Model
 {
     use HasFactory;
     //use SoftDeletes;
-    protected $fillable = ['operation', 'user'];
+    protected $fillable = ['operation', 'user', 'created_at'];
     
-    public function photo()
+    public function photos()
     {
         return $this->hasMany(Photo::class, 'photographic_report_id');
     }
