@@ -36,12 +36,12 @@ class DeleteOldReports extends Command
      */
     public function handle()
     {
-        $dateThreshold = Carbon::now()->subDays(30);
+        $dateThreshold = Carbon::now()->subDays(35);
         $oldReports = PhotographicReport::with('photos')->where('created_at', '<', $dateThreshold)->get();
 
         if ($oldReports->isEmpty()) {
-            $this->info('No reports older than 30 days found');
-            Log::info('No reports older tha 30 days found');
+            $this->info('No reports older than 35 days found');
+            Log::info('No reports older tha 35 days found');
             return;
         }
 
