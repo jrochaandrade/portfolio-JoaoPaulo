@@ -16,7 +16,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command('reports:delete-old')->everyMinute();
+
+         // Tarefa temporária
+        $schedule->call(function () {
+            \Log::info('Scheduler test executed successfully');
+        })->everyMinute();
     }
+
+    
 
     /**
      * Register the commands for the application.
