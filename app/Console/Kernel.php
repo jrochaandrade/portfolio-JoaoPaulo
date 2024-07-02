@@ -15,14 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('reports:delete-old')->everyMinute();
-
-         // Tarefa temporária
-         $schedule->call(function () {
-            \Log::info('Scheduler test executed successfully.');
-            // Ou crie um arquivo para verificação
-            file_put_contents('/home/u620638499/domains/devrocha.online/public_html/scheduler-test.txt', 'Scheduler test executed at ' . now() . PHP_EOL, FILE_APPEND);
-        })->everyMinute();
+        $schedule->command('reports:delete-old')->daily();         
     }
 
     
