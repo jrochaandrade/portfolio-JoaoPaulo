@@ -85,10 +85,15 @@ class PhotographicReportController extends Controller
      */
     public function store(PhotographicRequest $request)
     {
+        $logo = $request->file('logo');
+        $path_logo = $logo->store('photos', 'public');
         $report = PhotographicReport::create([
+            'header' => $request->header,
+            'logo' => $path_logo,
             'operation' => $request->operation,
             'user' => $request->user
         ]);
+
 
         foreach ($request->file('photos') as $file) {
             $path = $file->store('photos',  'public');
@@ -276,7 +281,10 @@ class PhotographicReportController extends Controller
     {
         //dd('teste');
         $report = PhotographicReport::find($id);
-        //dd($report);
+        if (Storage::disk('public')->exists($report->logo)) {
+            Storage::disk('public')->delete($report->logo);
+        }
+
         $photos = Photo::where('photographic_report_id', $id)->get();
 
         foreach ($photos as $photo) {
@@ -291,10 +299,5 @@ class PhotographicReportController extends Controller
         //$report->save();
 
         return redirect()->back();
-    }
-
-    public function destroyPhoto($id)
-    {
-        dd('teste');
     }
 }

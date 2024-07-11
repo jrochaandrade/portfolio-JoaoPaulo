@@ -61,16 +61,14 @@
                     @foreach ($photos->chunk(3) as $page => $chunk )
                         <div class="borderPage">
                             <div class="header">                                
-                                <img src="/images/logo1.png" class="logo1" alt="logoPM">
+                                <img src="{{ Storage::url($report->logo) }}" class="logo1" alt="logoPM">
                                 <div class="head">
-                                    <p>GOVERNO DO ESTADO DE RONDÔNIA</p>
-                                    <p>POLÍCIA MILITAR DO ESTADO DE RONDÔNIA</p>
-                                    <p>BATALHÃO DE POLÍCIA AMBIENTAL</p>
+                                    <p>{!! nl2br(e($report->header)) !!}</p>                                    
                                 </div>
-                                <div class="divLogos">
+                                <!-- <div class="divLogos">
                                     <img src="/images/logo2.png" class="logo" alt="logoPM">
                                     <img src="/images/logo3.png" class="logo" alt="logoPM">
-                                </div>
+                                </div> -->
                             </div>
                             <div class="divReport">
                                 <p class="titleReport">Relatório Fotográfico: </p>

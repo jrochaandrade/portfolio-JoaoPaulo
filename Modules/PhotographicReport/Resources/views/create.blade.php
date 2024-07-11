@@ -40,6 +40,15 @@
             <form action="{{ route('report.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group divLoadPhotos">
+                    <div class="div_header">
+                        <label for="header">Digite o texto do cabeçalho (Ex.: Governo do Estado do Amazonas) Aceita no máximo 3 quebras de linha</label>
+                        <!-- <input type="text" class="form-control" name="header" id="header"> -->
+                        <textarea name="header" id="header" rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="div_logo">
+                        <label for="logo">Carregar o logo que deve aparecer no relatório</label>
+                        <input type="file" class="form-control" name="logo" id="logo">
+                    </div>
                     <div class="divTitle">
                         <label for="operation">Defina o título do relatório (Ex.: Operação Protetor do Bioma 01 a
                             15/05/2024):</label>
@@ -88,7 +97,7 @@
                             value="{{ old('operation') }}" maxlength="63">
                     </div>
                     <div class="divUser">
-                        <label for="user">Nome do policial que gerou o relatório:</label>
+                        <label for="user">Nome de quem gerou o relatório:</label>
                         <input type="text" class="form-control" name="user" id="user" value="{{ old('user') }}">
                     </div>
                     <div class="divPhotos">
@@ -117,6 +126,34 @@
     </div>
 </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const textarea = document.getElementById('header');
+    const maxLines = 3;
+    const maxCharsPerLine = 80;
+
+    textarea.addEventListener('input', function() {
+        let lines = textarea.value.split('\n');
+
+        // Limita o número de linhas
+        if (lines.length > maxLines) {
+            textarea.value = lines.slice(0, maxLines).join('\n');
+            lines = textarea.value.split('\n');
+        }
+
+        // Limita o número de caracteres por linha
+        for (let i = 0; i < lines.length; i++) {
+            if (lines[i].length > maxCharsPerLine) {
+                lines[i] = lines[i].substring(0, maxCharsPerLine);
+            }
+        }
+
+        textarea.value = lines.join('\n');
+    });
+});
+
+</script>
 
 
 @endsection

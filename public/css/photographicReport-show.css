@@ -35,8 +35,8 @@ h2 {
 }
 
 .logo1 {
-    width: 185px;
-    height: 82px;
+    width: auto;
+    height: 90px;
     margin-left: 32px;
 }
 
@@ -55,7 +55,7 @@ h2 {
 .header {
     width: 1030px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin-top: 21px;
@@ -73,6 +73,7 @@ h2 {
 .head p {
     margin: 0px;
     font-weight: 600;
+    text-align: center;
 }
 
 /* .operation {
@@ -132,7 +133,7 @@ h2 {
     page-break-after: always;
     flex-direction: column;
     align-items: center;
-    height: 1290px;
+    height: 1208px;
 }
 
 .photo {
@@ -140,16 +141,16 @@ h2 {
     justify-content: center;
     flex-wrap: wrap;
     border: 1px solid black;
-    width: 718px;
-    height: 407px;
+    width: 602px;
+    height: 348px;
     /* margin-top: 40px; */
     margin-bottom: 8px;
 }
 
 .photo img {
     margin-top: 5px;
-    width: 708px;
-    height: 396px;
+    width: 592px;
+    height: 335px;
     border: 1px solid black;
 
 }
@@ -359,7 +360,7 @@ h2 {
 
 .divReport {
     display: flex;
-    margin-top: 43px;
+    margin-top: 20px;
     margin-bottom: 5px;
     margin-left: 156px;
     background-color: #eeeaea;

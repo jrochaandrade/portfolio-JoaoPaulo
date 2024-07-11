@@ -10,7 +10,7 @@ class PhotographicReport extends Model
 {
     use HasFactory;
     //use SoftDeletes;
-    protected $fillable = ['operation', 'user'];
+    protected $fillable = ['header', 'logo', 'operation', 'user'];
     
     public function photo()
     {

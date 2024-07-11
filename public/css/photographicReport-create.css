@@ -15,6 +15,12 @@
     margin-right: 30px;
 }
 
+.content {
+    display: flex;
+    justify-content: center;
+    margin-top: 17px;
+}
+
 .content h2 {
     margin-bottom: 24px;
 }
@@ -29,16 +35,24 @@ input {
 }
 
 #operation {
-    width: 594px;
+    width: 811px;  
 }
 
 #user {
-    width: 594px;
+    width: 811px;  
 }
 
 #photos {
 
-    width: 594px;
+    width: 811px;  
+}
+
+.div_header textarea {
+    max-width: 811px;
+}
+
+.div_logo {    
+    max-width: 811px;    
 }
 
 .divLoadPhotos {
